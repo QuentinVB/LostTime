@@ -7,9 +7,11 @@ public class PlayerMovementBehavior : MonoBehaviour {
     public float Drag = 0.5f;
     public Vector3 MoveVector { get; set; }
     private Rigidbody playerRigidbody;
+    private Vector3 movement;
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
         playerRigidbody = gameObject.AddComponent<Rigidbody>();
         playerRigidbody.drag = Drag;
         playerRigidbody.mass = 50;
@@ -17,13 +19,10 @@ public class PlayerMovementBehavior : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        Vector3 movement = new Vector3();
-        movement.x = LeftJoystick.LeftVertical();
-        movement.z = LeftJoystick.LeftHorizontal();
-        transform.position +=  movement;
 
         MoveVector = PoolInput();
         Move();
+        transform.position += movement;
     }
     private void Move()
     {
@@ -32,9 +31,9 @@ public class PlayerMovementBehavior : MonoBehaviour {
 
     private Vector3 PoolInput()
     {
-        Vector3 movement = Vector3.zero;
-        movement.x = LeftJoystick.LeftHorizontal();
-        movement.z = movement.x = LeftJoystick.LeftVertical();
+        movement = Vector3.zero;
+        movement.z = -LeftJoystick.LeftHorizontal();
+        movement.x = LeftJoystick.LeftVertical();
 
         if(movement.magnitude > 1)
         {
