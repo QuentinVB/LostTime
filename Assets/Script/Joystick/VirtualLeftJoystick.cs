@@ -49,7 +49,7 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
     }
 
     // this fct return the InputVectorPosition.x of the Left Joystick
-    public float Horizontal()
+    public float LeftHorizontal()
     {
         if (LeftJostickInputVector.x != 0)
         {
@@ -62,7 +62,7 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
     }
 
     // this fct return the InputVectorPosition.y of the Left Joystick
-    public float Vertical()
+    public float LeftVertical()
     {
         if (LeftJostickInputVector.z != 0)
         {
