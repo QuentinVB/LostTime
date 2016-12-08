@@ -32,7 +32,7 @@ public class PlayerMovementBehavior : MonoBehaviour {
     private Vector3 PoolInput()
     {
         movement = Vector3.zero;
-        movement.z = -LeftJoystick.LeftHorizontal();
+        movement.z = LeftJoystick.LeftHorizontal();
         movement.x = LeftJoystick.LeftVertical();
 
         if(movement.magnitude > 1)
