@@ -19,14 +19,14 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
     // fct when the user is still using the Left Joystick
     public virtual void OnDrag(PointerEventData ped)
     {
-        Vector2 positionLeftJoystick;
+        Vector2 positionJoystick;
 
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(BackGroundLeftJoystick.rectTransform, ped.position, ped.pressEventCamera, out positionLeftJoystick))
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(BackGroundLeftJoystick.rectTransform, ped.position, ped.pressEventCamera, out positionJoystick))
         {
-            positionLeftJoystick.x = (positionLeftJoystick.x / BackGroundLeftJoystick.rectTransform.sizeDelta.x);
-            positionLeftJoystick.y = (positionLeftJoystick.y / BackGroundLeftJoystick.rectTransform.sizeDelta.y);
+            positionJoystick.x = (positionJoystick.x / BackGroundLeftJoystick.rectTransform.sizeDelta.x);
+            positionJoystick.y = (positionJoystick.y / BackGroundLeftJoystick.rectTransform.sizeDelta.y);
 
-            LeftJostickInputVector = new Vector3(positionLeftJoystick.x * 2 + 1, 0, positionLeftJoystick.y * 2 - 1);
+            LeftJostickInputVector = new Vector3(positionJoystick.x * 2 + 1, 0, positionJoystick.y * 2 - 1);
             LeftJostickInputVector = (LeftJostickInputVector.magnitude > 1.0f) ? LeftJostickInputVector.normalized : LeftJostickInputVector;
 
             LeftJoystick.rectTransform.anchoredPosition = new Vector3(LeftJostickInputVector.x * (BackGroundLeftJoystick.rectTransform.sizeDelta.x / 4), LeftJostickInputVector.z * (BackGroundLeftJoystick.rectTransform.sizeDelta.y / 4));
