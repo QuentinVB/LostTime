@@ -2,43 +2,46 @@
 using System.Collections;
 
 public class PlayerMovementBehavior : MonoBehaviour {
-    public VirtualLeftJoystick LeftJoystick;
-    public float MoveSpeed = 5.0f;
-    public float Drag = 0.5f;
-    public Vector3 MoveVector { get; set; }
+    public VirtualRightJoystick RightJoystick;
     private Rigidbody playerRigidbody;
-    private Vector3 movement;
 
 
     // Use this for initialization
     void Start () {
         playerRigidbody = gameObject.AddComponent<Rigidbody>();
-        playerRigidbody.drag = Drag;
-        playerRigidbody.mass = 50;
+        playerRigidbody.mass = 150;
+        
     }
 
     // Update is called once per frame
-    void Update () {
-
-        MoveVector = PoolInput();
-        Move();
-        transform.position += movement;
-    }
-    private void Move()
+    void Update ()
     {
-        playerRigidbody.AddForce(MoveVector * MoveSpeed);
-    }
-
-    private Vector3 PoolInput()
-    {
-        movement = Vector3.zero;
-        movement.z = LeftJoystick.LeftHorizontal();
-        movement.x = LeftJoystick.LeftVertical();
-
-        if(movement.magnitude > 1)
+        if(RightJoystick._isJoystickUsed == true)
         {
-            movement.Normalize();
+            Vector3 move = new Vector3();
+            move.x = RightJoystick.RightHorizontal();
+            move.z = RightJoystick.RightVertical();
+
+            move.x = move.x / 10;
+            move.z = move.z / 10;
+
+            transform.position += move;
         }
-        return movement;
+    }
+    
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+
     }
 }

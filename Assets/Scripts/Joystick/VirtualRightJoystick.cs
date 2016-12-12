@@ -9,6 +9,7 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
     private Image BackGroundRightJoystick;
     private Image RightJoystick;
     private Vector3 RightJostickInputVector;
+    public bool _isJoystickUsed = false;
 
     // initialise the two Image : BackGroundRightJoystick , RightJoystick
     private void Start()
@@ -20,14 +21,14 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
     // fct when the user is still using the Right Joystick
     public virtual void OnDrag(PointerEventData ped)
     {
-        Vector2 positionLeftJoystick;
+        Vector2 positionJoystick;
 
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(BackGroundRightJoystick.rectTransform, ped.position, ped.pressEventCamera, out positionLeftJoystick))
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(BackGroundRightJoystick.rectTransform, ped.position, ped.pressEventCamera, out positionJoystick))
         {
-            positionLeftJoystick.x = (positionLeftJoystick.x / BackGroundRightJoystick.rectTransform.sizeDelta.x);
-            positionLeftJoystick.y = (positionLeftJoystick.y / BackGroundRightJoystick.rectTransform.sizeDelta.y);
+            positionJoystick.x = (positionJoystick.x / BackGroundRightJoystick.rectTransform.sizeDelta.x);
+            positionJoystick.y = (positionJoystick.y / BackGroundRightJoystick.rectTransform.sizeDelta.y);
 
-            RightJostickInputVector = new Vector3(positionLeftJoystick.x * 2 + 1, 0, positionLeftJoystick.y * 2 - 1);
+            RightJostickInputVector = new Vector3(positionJoystick.x * 2 + 1, 0, positionJoystick.y * 2 - 1);
             RightJostickInputVector = (RightJostickInputVector.magnitude > 1.0f) ? RightJostickInputVector.normalized : RightJostickInputVector;
 
             RightJoystick.rectTransform.anchoredPosition = new Vector3(RightJostickInputVector.x * (BackGroundRightJoystick.rectTransform.sizeDelta.x / 4), RightJostickInputVector.z * (BackGroundRightJoystick.rectTransform.sizeDelta.y / 4));
@@ -40,6 +41,7 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
     public virtual void OnPointerDown(PointerEventData ped)
     {
         OnDrag(ped);
+        _isJoystickUsed = true;
     }
 
     // fct start when user stop touching the Right Joystick
@@ -47,6 +49,7 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
     {
         RightJostickInputVector = Vector3.zero;
         RightJoystick.rectTransform.anchoredPosition = Vector3.zero;
+        _isJoystickUsed = false;
     }
     
     // this fct return the InputVectorPosition.x of the Left Joystick
