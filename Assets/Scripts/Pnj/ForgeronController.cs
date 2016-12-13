@@ -54,15 +54,15 @@ public class ForgeronController : MonoBehaviour {
                 PlayerQuest player  = otherObject.gameObject.GetComponent<PlayerQuest>();
                 if (player.Quest)
                 {
-                    Debug.Log("j'ai perdu mon marteau , peux tu aller me le chercher ?");
+                    Debug.Log("J'ai perdu mon marteau, peux tu aller me le chercher ?");
                     context.changeState(new Quest());
                 }
                 else
-                    Debug.Log("Attention !!! j'ai falli perdre mon marteau ! Jette un coup d'oeil sur le tableau des quetes de la guilde ,tu trainera moin dans mes pattes");
+                    Debug.Log("Attention !!! J'ai falli perdre mon marteau ! Jette un coup d'oeil sur le tableau des quêtes de la guilde ,tu traineras moins dans mes pattes.");
             }
             else if (otherObject.gameObject.tag == "Entity" )
             {
-                Debug.Log("Attention !!! j'ai falli perdre mon marteau !");
+                Debug.Log("Attention !!! J'ai falli perdre mon marteau !");
             }
         }
     }
@@ -75,11 +75,11 @@ public class ForgeronController : MonoBehaviour {
             PlayerQuest player = otherObject.gameObject.GetComponent<PlayerQuest>();
             if (player.inventory.Contains("Marteau"))
             {
-                Debug.Log("Genial tu as retrouver Mon Marteau !!! pour te recompenser je t'offre .... ce Marteau!");
+                Debug.Log("Genial tu as retrouvé mon Marteau !!! Pour te recompenser je t'offre .... ce Marteau !");
                 context.changeState(new ValidateQuest());
             }
             else
-                Debug.Log("Alors tu as trouver mon marteau");
+                Debug.Log("Alors tu as trouvé mon marteau ?");
         }
     }
 

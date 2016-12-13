@@ -19,7 +19,11 @@ public class QuestTableScript : MonoBehaviour {
         {
             PlayerQuest player = collision.gameObject.GetComponent<PlayerQuest>();
             if (player.Quest == false)
+            {
+                Debug.Log("Perdu : Marteau, rencontrer le forgeron ! Récompense.");
                 Marteau.SetActive(true);
+
+            }
             player.Quest = true;
         }
     }
