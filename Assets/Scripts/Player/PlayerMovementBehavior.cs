@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerMovementBehavior : MonoBehaviour {
     public VirtualRightJoystick RightJoystick;
-    private Rigidbody playerRigidbody;
-
+   // public  Rigidbody playerRigidbody;
 
     // Use this for initialization
     void Start () {
-        playerRigidbody = gameObject.AddComponent<Rigidbody>();
-        playerRigidbody.mass = 150;
-        
+      //  playerRigidbody = gameObject.AddComponent<Rigidbody>();
+      //  playerRigidbody.mass = 150;
     }
 
     // Update is called once per frame
@@ -27,21 +26,5 @@ public class PlayerMovementBehavior : MonoBehaviour {
 
             transform.position += move;
         }
-    }
-    
-
-    private void OnCollisionEnter(Collision collision)
-    {
-
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-
     }
 }
