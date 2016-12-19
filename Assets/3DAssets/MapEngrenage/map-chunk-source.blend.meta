@@ -1,0 +1,129 @@
+fileFormatVersion: 2
+guid: 27d03f706dea9524e9c48b61be1e068a
+timeCreated: 1482152815
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Chunk-BackstreetNorth
+    100002: Chunk-BackstreetSouth
+    100004: Chunk-Garden
+    100006: Chunk-Guilde
+    100008: Chunk-LowerDoor
+    100010: Chunk-Market
+    100012: Chunk-Plazza
+    100014: Chunk-SouthStreet
+    100016: Chunk-UpperDoor
+    100018: Chunk-Winerie
+    100020: //RootNode
+    400000: Chunk-BackstreetNorth
+    400002: Chunk-BackstreetSouth
+    400004: Chunk-Garden
+    400006: Chunk-Guilde
+    400008: Chunk-LowerDoor
+    400010: Chunk-Market
+    400012: Chunk-Plazza
+    400014: Chunk-SouthStreet
+    400016: Chunk-UpperDoor
+    400018: Chunk-Winerie
+    400020: //RootNode
+    2300000: Chunk-BackstreetNorth
+    2300002: Chunk-BackstreetSouth
+    2300004: Chunk-Garden
+    2300006: Chunk-Guilde
+    2300008: Chunk-LowerDoor
+    2300010: Chunk-Market
+    2300012: Chunk-Plazza
+    2300014: Chunk-SouthStreet
+    2300016: Chunk-UpperDoor
+    2300018: Chunk-Winerie
+    3300000: Chunk-BackstreetNorth
+    3300002: Chunk-BackstreetSouth
+    3300004: Chunk-Garden
+    3300006: Chunk-Guilde
+    3300008: Chunk-LowerDoor
+    3300010: Chunk-Market
+    3300012: Chunk-Plazza
+    3300014: Chunk-SouthStreet
+    3300016: Chunk-UpperDoor
+    3300018: Chunk-Winerie
+    4300000: Chunk-Winerie
+    4300002: Chunk-BackstreetSouth
+    4300004: Chunk-SouthStreet
+    4300006: Chunk-Plazza
+    4300008: Chunk-LowerDoor
+    4300010: Chunk-UpperDoor
+    4300012: Chunk-Market
+    4300014: Chunk-Garden
+    4300016: Chunk-Guilde
+    4300018: Chunk-BackstreetNorth
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
