@@ -45,3 +45,8 @@ public class PlayerMovementBehavior : MonoBehaviour {
 
     }
 }
+/* to do
+ * move  rigid body to player
+ * move player towards playercontrol
+ * rename script to PlayerControlMovementBehavior
+ * create new PlayerMovementBehavior script */
