@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Scene/LostTimeMenuGame.unity
   - enabled: 1
     path: Assets/Scenes/LostTimeMenuGame.unity
+  - enabled: 1
+    path: Assets/Scenes/LostTimeEnvironement3D.unity
