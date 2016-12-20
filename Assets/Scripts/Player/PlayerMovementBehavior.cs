@@ -36,7 +36,7 @@ public class PlayerMovementBehavior : MonoBehaviour
     }
     private void PlayerRotation()
     {
-
+        //Long bunch of if, depending on the horizontal input for the force speed of the rotation
     }
     private void OnCollisionEnter(Collision collision)
     {
