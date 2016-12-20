@@ -1,35 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovementBehavior : MonoBehaviour {
+public class PlayerMovementBehavior : MonoBehaviour
+{
     public VirtualRightJoystick RightJoystick;
     private Rigidbody playerRigidbody;
-
+    private Transform targetMovement;
+    private Vector3 direction;
+    float lockPos = 0;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         playerRigidbody = gameObject.AddComponent<Rigidbody>();
         playerRigidbody.mass = 150;
-        
+        playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
-        if(RightJoystick._isJoystickUsed == true)
+        if (RightJoystick._isJoystickUsed == true)
         {
+            //Movement
             Vector3 move = new Vector3();
             move.x = RightJoystick.RightHorizontal();
             move.z = RightJoystick.RightVertical();
-
             move.x = move.x / 10;
             move.z = move.z / 10;
-
             transform.position += move;
+            //Rotation
+
         }
     }
-    
+    private void PlayerRotation()
+    {
 
+    }
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -45,8 +53,4 @@ public class PlayerMovementBehavior : MonoBehaviour {
 
     }
 }
-/* to do
- * move  rigid body to player
- * move player towards playercontrol
- * rename script to PlayerControlMovementBehavior
- * create new PlayerMovementBehavior script */
+
