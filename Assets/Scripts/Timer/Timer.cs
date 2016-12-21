@@ -26,6 +26,7 @@ public class testScript : MonoBehaviour {
 
 
     void Update () {
+        getSwapMalus();
         Timer();
 	}
 
@@ -45,7 +46,6 @@ public class testScript : MonoBehaviour {
             }
         }
         updateSun();
-
     }
 
     public void updateSun()
@@ -66,6 +66,7 @@ public class testScript : MonoBehaviour {
 
     void TimeUp()
     {
+        jeuFini = !jeuFini;
         // sauvergarder inventaire
         //afficher texture GAMEOVER
         // WAIT 2s
