@@ -27,16 +27,28 @@ public class PlayerMovementBehavior : MonoBehaviour
             Vector3 move = new Vector3();
             move.x = RightJoystick.RightHorizontal();
             move.z = RightJoystick.RightVertical();
-            move.x = move.x / 10;
-            move.z = move.z / 10;
-            transform.position += move;
+            move.x = move.x / 15;
+            move.z = move.z / 15;
+            transform.Translate(move);
+
+            PlayerRotation(RightJoystick.RightHorizontal());
             //Rotation
 
         }
     }
-    private void PlayerRotation()
+    private void PlayerRotation(float xAxis)
     {
-        //Long bunch of if, depending on the horizontal input for the force speed of the rotation
+        
+        //To the right
+        if (xAxis <= 0.9) { transform.Rotate(Vector3.down, Time.deltaTime * 100); }
+        if (xAxis <= 0.7) { transform.Rotate(Vector3.down, Time.deltaTime * 75); }
+        if (xAxis <= 0.5) { transform.Rotate(Vector3.down, Time.deltaTime * 50); }
+        //if (xAxis >= 0.5 && xAxis > 0) { transform.Rotate(Vector3.up, Time.deltaTime * 15); }
+        //To the left
+        if (xAxis >= -0.9) { transform.Rotate(Vector3.up, Time.deltaTime * 100); }
+        if (xAxis >= -0.7) { transform.Rotate(Vector3.up, Time.deltaTime * 75); }
+        if (xAxis >= -0.5) { transform.Rotate(Vector3.up, Time.deltaTime * 50); }
+        //if (xAxis >= -0.5 && xAxis < 0) { }
     }
     private void OnCollisionEnter(Collision collision)
     {
