@@ -10,6 +10,7 @@ TagManager:
   - Item
   - House
   - Entity
+  - Ground
   layers:
   - Default
   - TransparentFX
