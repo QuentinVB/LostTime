@@ -5,20 +5,62 @@ using System.Collections.Generic;
 public class ForgeronController : MonoBehaviour {
 
     private Forgeron forgeron;
+    public bool OnCollisionWithPlayer;
+    public bool IstriggerPlayer;
+    public Collider collisionPlayer;
+    public bool showGui;
 
     void Start()
     {
+        OnCollisionWithPlayer = false;
+        IstriggerPlayer = false;
         forgeron = new Forgeron();
+        showGui = false;
+    }
+    void OnGUI()
+    {
+        if (showGui)
+        {
+            GUI.BeginGroup(new Rect(new Vector2(Screen.width / 2 - 150 , Screen.height / 2 - 75) , new Vector2(300, 150)));
+            GUI.Label(new Rect(new Vector2(10, 20),new Vector2( 280, 150)), "Forgeron");
+            GUI.EndGroup();
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnMouseUp()
     {
-        forgeron.callStateCurrent(collision);
+        if (OnCollisionWithPlayer == true )
+        {
+            showGui = true;
+            OnGUI();
+            forgeron.callStateCurrent(collisionPlayer);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            //OnGUI();
+            OnCollisionWithPlayer = true;
+            collisionPlayer = other;
+           
+
+        }
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        OnCollisionWithPlayer = false;
+        collisionPlayer = null;
+        IstriggerPlayer = false;
+        showGui = false;
     }
 
     interface IControlerForgeron
     {
-         void forgeronTalk(Forgeron context,  Collision otherObject);
+         void forgeronTalk(Forgeron context, Collider otherObject);
     }
 
     class Forgeron
@@ -38,7 +80,7 @@ public class ForgeronController : MonoBehaviour {
         }
 
 
-        public void callStateCurrent(Collision otherObject)
+        public void callStateCurrent(Collider otherObject)
         {
             currentStatesInstance.forgeronTalk(this, otherObject);
         }
@@ -47,7 +89,7 @@ public class ForgeronController : MonoBehaviour {
 
     class Neutral : IControlerForgeron
     {
-        public void forgeronTalk(Forgeron context, Collision otherObject) {
+        public void forgeronTalk(Forgeron context, Collider otherObject) {
 
             if (otherObject.gameObject.tag == "Player")
             {
@@ -70,7 +112,7 @@ public class ForgeronController : MonoBehaviour {
      class Quest : IControlerForgeron
     {
 
-        public void forgeronTalk(Forgeron context, Collision otherObject)
+        public void forgeronTalk(Forgeron context, Collider otherObject)
         {
             PlayerQuest player = otherObject.gameObject.GetComponent<PlayerQuest>();
             if (player.inventory.Contains("Marteau"))
@@ -85,7 +127,7 @@ public class ForgeronController : MonoBehaviour {
 
     class ValidateQuest : IControlerForgeron
     {
-        public void forgeronTalk(Forgeron context, Collision otherObject)
+        public void forgeronTalk(Forgeron context, Collider otherObject)
         {
             Debug.Log("Encore merci pour ton service. Je n'oublirais jamais.");
         }
