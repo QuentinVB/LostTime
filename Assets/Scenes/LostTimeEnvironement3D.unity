@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37964c0a84c8e4541ad5af1d02ae617c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isJoystickUsed: 0
+  _isRightJoystickUsed: 0
 --- !u!1 &110870084
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +655,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91860850a45661c498db66fac8847462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCollisionWithPlayer: 0
+  IstriggerPlayer: 0
+  collisionPlayer: {fileID: 0}
+  showGui: 0
 --- !u!1 &384019141
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,6 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e4146aeab6781c4382b8221edc3e34d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isLeftJoystickUsed: 0
 --- !u!114 &384019144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,7 +1081,7 @@ RectTransform:
   - {fileID: 41230922}
   - {fileID: 384019142}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1418,7 +1423,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1193563032
 Prefab:
@@ -1589,6 +1594,7 @@ GameObject:
   - component: {fileID: 1355504761}
   - component: {fileID: 1355504764}
   - component: {fileID: 1355504765}
+  - component: {fileID: 1355504766}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1603,12 +1609,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1355504759}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.79999995, y: 1, z: -21.75}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 0, y: 2.1499999, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 252446175}
-  m_Father: {fileID: 1709849112}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1355504761
 MeshRenderer:
@@ -1688,6 +1694,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1355504766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1355504759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f70f867ccec22f543acf4dd9b1ab58bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RightJoystick: {fileID: 41230925}
 --- !u!1001 &1356861503
 Prefab:
   m_ObjectHideFlags: 0
@@ -2114,10 +2132,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.08, y: 2.05, z: 2.175}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
-  m_Children:
-  - {fileID: 1355504760}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1831632859
 GameObject:

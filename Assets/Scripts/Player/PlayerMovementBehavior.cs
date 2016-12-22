@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PlayerMovementBehavior : MonoBehaviour
 {
     public VirtualRightJoystick RightJoystick;
-   // public  Rigidbody playerRigidbody;
+    private Rigidbody playerRigidbody;
     private Transform targetMovement;
     private Vector3 direction;
     float lockPos = 0;
@@ -23,7 +23,7 @@ public class PlayerMovementBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (RightJoystick._isJoystickUsed == true)
+        if (RightJoystick._isRightJoystickUsed == true)
         {
             //Movement
             Vector3 move = new Vector3();

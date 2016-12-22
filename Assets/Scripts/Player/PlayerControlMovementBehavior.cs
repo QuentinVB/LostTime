@@ -22,7 +22,7 @@ public class PlayerControlMovementBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (RightJoystick._isJoystickUsed == true)
+        if (RightJoystick._isRightJoystickUsed == true)
         {
             //Movement
             Vector3 move = new Vector3();
