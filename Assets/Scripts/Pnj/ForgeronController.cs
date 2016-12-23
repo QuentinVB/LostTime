@@ -5,35 +5,44 @@ using System.Collections.Generic;
 public class ForgeronController : MonoBehaviour {
 
     private Forgeron forgeron;
-    public bool OnCollisionWithPlayer;
-    public bool IstriggerPlayer;
+    public bool OntouchPlayer;
     public Collider collisionPlayer;
-    public bool showGui;
+    public bool showPnjName;
+    string StringForgeronTalk;
 
+
+
+
+    public Canvas _canvas;
     void Start()
     {
-        OnCollisionWithPlayer = false;
-        IstriggerPlayer = false;
+        OntouchPlayer = false;
         forgeron = new Forgeron();
-        showGui = false;
+        showPnjName = false;
     }
     void OnGUI()
     {
-        if (showGui)
+        if (OntouchPlayer)
         {
-            GUI.BeginGroup(new Rect(new Vector2(Screen.width / 2 - 150 , Screen.height / 2 - 75) , new Vector2(300, 150)));
-            GUI.Label(new Rect(new Vector2(10, 20),new Vector2( 280, 150)), "Forgeron");
+            GUI.BeginGroup(new Rect(new Vector2(Screen.width / 2 - 150, Screen.height / 2 - 75), new Vector2(300, 150)));
+            GUI.Label(new Rect(new Vector2(10, 50), new Vector2(280, 150)), "Forgeron : " + StringForgeronTalk);
             GUI.EndGroup();
+
+          //  _canvas.GetComponent<RectTransform>().rect.width
+        }
+
+        else if (showPnjName)
+        {
+            GUI.Label(new Rect(new Vector2(10, 20), new Vector2(50, 20)), "Forgeron");
         }
     }
 
     private void OnMouseUp()
     {
-        if (OnCollisionWithPlayer == true )
+        if (showPnjName == true )
         {
-            showGui = true;
-            OnGUI();
-            forgeron.callStateCurrent(collisionPlayer);
+            OntouchPlayer = true;
+            StringForgeronTalk = forgeron.callStateCurrent(collisionPlayer);
         }
     }
 
@@ -41,26 +50,23 @@ public class ForgeronController : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            //OnGUI();
-            OnCollisionWithPlayer = true;
+            showPnjName = true;
             collisionPlayer = other;
-           
-
         }
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        OnCollisionWithPlayer = false;
+        OntouchPlayer = false;
         collisionPlayer = null;
-        IstriggerPlayer = false;
-        showGui = false;
+        showPnjName = false;
+        StringForgeronTalk = "";
     }
 
     interface IControlerForgeron
     {
-         void forgeronTalk(Forgeron context, Collider otherObject);
+         string forgeronTalk(Forgeron context, Collider otherObject);
     }
 
     class Forgeron
@@ -80,31 +86,31 @@ public class ForgeronController : MonoBehaviour {
         }
 
 
-        public void callStateCurrent(Collider otherObject)
+        public string callStateCurrent(Collider otherObject)
         {
-            currentStatesInstance.forgeronTalk(this, otherObject);
+           return currentStatesInstance.forgeronTalk(this, otherObject);
         }
     }
 
 
     class Neutral : IControlerForgeron
     {
-        public void forgeronTalk(Forgeron context, Collider otherObject) {
+        public string forgeronTalk(Forgeron context, Collider otherObject) {
 
             if (otherObject.gameObject.tag == "Player")
             {
-                PlayerQuest player  = otherObject.gameObject.GetComponent<PlayerQuest>();
+                        PlayerQuest player  = otherObject.gameObject.GetComponent<PlayerQuest>();
                 if (player.Quest)
                 {
-                    Debug.Log("J'ai perdu mon marteau, peux tu aller me le chercher ?");
                     context.changeState(new Quest());
+                    return "J'ai perdu mon marteau, peux tu aller me le chercher ?";
                 }
                 else
-                    Debug.Log("Attention !!! J'ai falli perdre mon marteau ! Jette un coup d'oeil sur le tableau des quêtes de la guilde ,tu traineras moins dans mes pattes.");
+                    return "Attention !!! J'ai falli perdre mon marteau ! Jette un coup d'oeil sur le tableau des quêtes de la guilde ,tu traineras moins dans mes pattes.";
             }
-            else if (otherObject.gameObject.tag == "Entity" )
+            else
             {
-                Debug.Log("Attention !!! J'ai falli perdre mon marteau !");
+                return "Attention !!! J'ai falli perdre mon marteau !";
             }
         }
     }
@@ -112,24 +118,24 @@ public class ForgeronController : MonoBehaviour {
      class Quest : IControlerForgeron
     {
 
-        public void forgeronTalk(Forgeron context, Collider otherObject)
+        public string forgeronTalk(Forgeron context, Collider otherObject)
         {
             PlayerQuest player = otherObject.gameObject.GetComponent<PlayerQuest>();
             if (player.inventory.Contains("Marteau"))
             {
-                Debug.Log("Genial tu as retrouvé mon Marteau !!! Pour te recompenser je t'offre .... ce Marteau !");
                 context.changeState(new ValidateQuest());
+                return"Genial tu as retrouvé mon Marteau !!! Pour te recompenser je t'offre .... ce Marteau !";
             }
             else
-                Debug.Log("Alors tu as trouvé mon marteau ?");
+                return "Alors tu as trouvé mon marteau ?";
         }
     }
 
     class ValidateQuest : IControlerForgeron
     {
-        public void forgeronTalk(Forgeron context, Collider otherObject)
+        public string forgeronTalk(Forgeron context, Collider otherObject)
         {
-            Debug.Log("Encore merci pour ton service. Je n'oublirais jamais.");
+            return"Encore merci pour ton service. Je n'oublirais jamais.";
         }
     }
 }
