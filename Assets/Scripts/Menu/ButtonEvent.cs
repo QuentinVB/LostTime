@@ -7,7 +7,7 @@ public class ButtonEvent : MonoBehaviour {
 
     public void LaunchGame()
     {
-        SceneManager.LoadScene("LostTimeEnvironement3D");
+        SceneManager.LoadScene("LostTimeGearDistrict");
     }
 
     public void LeaveGame()
