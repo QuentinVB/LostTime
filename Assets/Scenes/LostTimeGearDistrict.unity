@@ -2768,6 +2768,8 @@ GameObject:
   - component: {fileID: 1311161134}
   - component: {fileID: 1311161133}
   - component: {fileID: 1311161132}
+  - component: {fileID: 1311161136}
+  - component: {fileID: 1311161137}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2851,6 +2853,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1311161136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1311161131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afed47133a395cb44a125ca6b3585005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mapButton: {fileID: 21300000, guid: df8c59ee35ade814ba2b4767bf398b86, type: 3}
+  _ConfigButton: {fileID: 21300000, guid: ac3d6e798cd394b4da347a9eea7e6be9, type: 3}
+  _QuestButton: {fileID: 21300000, guid: ef88d874f0e063d4b806b7e1222ef4ac, type: 3}
+  _LeaveButton: {fileID: 21300000, guid: 7fd9c117df8a00f4bba5d1f085133054, type: 3}
+  _MapPanel: {fileID: 21300000, guid: 66638c6b0345cbd42b3b6fe76211d01d, type: 3}
+  _BagButton: {fileID: 21300000, guid: 8824e0e179fdb6c44a8a9ef91193b4d4, type: 3}
+--- !u!114 &1311161137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1311161131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbdc41fe64c0e242bf53a4f708bba07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1347573796
 Prefab:
   m_ObjectHideFlags: 0
@@ -3919,11 +3949,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc00bdcfa38ed764481a23c19f4ca198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UserInterface: {fileID: 1311161134}
   _systemButton: {fileID: 453286917}
   _inventoryButton: {fileID: 394280815}
-  _isPanelCreated: 0
-  _isInventoryCreated: 0
 --- !u!1001 &2108658964
 Prefab:
   m_ObjectHideFlags: 0

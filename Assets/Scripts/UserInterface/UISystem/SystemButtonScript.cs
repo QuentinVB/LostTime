@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class SystemButtonScript : MonoBehaviour {
 
-    public Canvas UserInterface;
+    private GameObject _userInterface;
 
     public Button _systemButton;
     public Button _inventoryButton;
@@ -19,8 +19,10 @@ public class SystemButtonScript : MonoBehaviour {
 
     private void Start()
     {
+        _userInterface = GameObject.Find("Canvas"); 
         _systemButton.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width / 12, Screen.width / 12);
         _inventoryButton.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width / 12, Screen.width / 12);
+        _userInterface.AddComponent<Monitoring>();
     }
 
     public void CreateSystemPanel()
@@ -31,7 +33,7 @@ public class SystemButtonScript : MonoBehaviour {
             _systemPanel.AddComponent<RectTransform>();
             Image i = _systemPanel.AddComponent<Image>();
             i.color = Color.grey;
-            _systemPanel.transform.SetParent(UserInterface.transform, true);
+            _systemPanel.transform.SetParent(_userInterface.transform, true);
             _systemPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width / 8, (Screen.height / 4) * 3);
             _systemPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(-(Screen.width / 2) + (_systemPanel.GetComponent<RectTransform>().rect.width / 2), 
                                                                                     (- _systemButton.GetComponent<RectTransform>().rect.height / 2));
@@ -60,19 +62,33 @@ public class SystemButtonScript : MonoBehaviour {
         if (isButton == true)
         {
             if (gameObjectName == "GameMap")
+            {
                 gameObject.AddComponent<GameMapScript>();
+                gameObject.AddComponent<Image>();
+                gameObject.GetComponent<Image>().sprite = _userInterface.GetComponent<Monitoring>().MapButton;
+            }
 
             if (gameObjectName == "QuestBook")
+            {
                 gameObject.AddComponent<QuestBookScript>();
+                gameObject.AddComponent<Image>();
+                gameObject.GetComponent<Image>().sprite = _userInterface.GetComponent<Monitoring>().QuestButton;
+            }
 
             if (gameObjectName == "SystemConfiguration")
+            {
                 gameObject.AddComponent<SystemConfigurationScript>();
+                gameObject.AddComponent<Image>();
+                gameObject.GetComponent<Image>().sprite = _userInterface.GetComponent<Monitoring>().ConfigButton;
+            }
 
             if (gameObjectName == "Leave")
+            {
                 gameObject.AddComponent<LeaveScript>();
+                gameObject.AddComponent<Image>();
+                gameObject.GetComponent<Image>().sprite = _userInterface.GetComponent<Monitoring>().LeaveButton;
+            }
         }
-        Image x = gameObject.AddComponent<Image>();
-        x.color = color;
     }
 
     public void Inventaire()
@@ -82,8 +98,8 @@ public class SystemButtonScript : MonoBehaviour {
             _isInventoryCreated = true;
             _inventoryBag = new GameObject("Inventory Bag");
             _inventoryBag.AddComponent<RectTransform>();
-            _inventoryBag.transform.SetParent(UserInterface.gameObject.transform, true);
-            _inventoryBag.GetComponent<RectTransform>().sizeDelta = new Vector2(UserInterface.GetComponent<RectTransform>().rect.width / 2, UserInterface.GetComponent<RectTransform>().rect.height / 2);
+            _inventoryBag.transform.SetParent(_userInterface.gameObject.transform, true);
+            _inventoryBag.GetComponent<RectTransform>().sizeDelta = new Vector2(_userInterface.GetComponent<RectTransform>().rect.width / 2, _userInterface.GetComponent<RectTransform>().rect.height / 2);
             _inventoryBag.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
             Image x = _inventoryBag.AddComponent<Image>();
             x.color = Color.grey;

@@ -141,38 +141,40 @@ public class ButtonEvent : MonoBehaviour
             _configureGamePanel.GetComponent<RectTransform>().sizeDelta = new Vector2(_backGroundMenu.GetComponent<RectTransform>().rect.width / 4, _backGroundMenu.GetComponent<RectTransform>().rect.height);
             _configureGamePanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(_backGroundMenu.GetComponent<RectTransform>().rect.width / 2.7f, 0);
             _isConfigureGamePanelCreated = true;
+            CreateConfigureGamePanelComponent();
         }
         else
         {
             Destroy(_configureGamePanel);
             _isConfigureGamePanelCreated = false;
         }
+
     }
     
 
     private void CreateNewGamePanelComponent()
     {
-        CreateGameObjectButtonMenuSystem("SaveState01", "SaveState01", _newGamePanel, true, _newGamePanel.GetComponent<RectTransform>().rect.width,
+        CreateGameObjectButtonMenuSystem("SaveState01", _newGamePanel, true, _newGamePanel.GetComponent<RectTransform>().rect.width,
             (_newGamePanel.GetComponent<RectTransform>().rect.height / 10) * 2.5f, 0, (_newGamePanel.GetComponent<RectTransform>().rect.height / 10) * 3.5f,
             Color.blue, true);
-        CreateGameObjectButtonMenuSystem("SaveState02", "SaveState02", _newGamePanel, true, _newGamePanel.GetComponent<RectTransform>().rect.width,
+        CreateGameObjectButtonMenuSystem("SaveState02", _newGamePanel, true, _newGamePanel.GetComponent<RectTransform>().rect.width,
             (_newGamePanel.GetComponent<RectTransform>().rect.height / 10) * 2.5f, 0, (_newGamePanel.GetComponent<RectTransform>().rect.height / 10) * 0,
             Color.blue, true);
-        CreateGameObjectButtonMenuSystem("SaveState03", "SaveState03", _newGamePanel, true, _newGamePanel.GetComponent<RectTransform>().rect.width,
+        CreateGameObjectButtonMenuSystem("SaveState03", _newGamePanel, true, _newGamePanel.GetComponent<RectTransform>().rect.width,
             (_newGamePanel.GetComponent<RectTransform>().rect.height / 10) * 2.5f, 0, -(_newGamePanel.GetComponent<RectTransform>().rect.height / 10) * 3.5f,
             Color.blue, true);
-        CreateConfigureGamePanelComponent();
+        
     }
 
     private void CreateLoadGamePanelComponent()
     {
-        CreateGameObjectButtonMenuSystem("SaveState01", "SaveState01", _loadGamePanel, true, _loadGamePanel.GetComponent<RectTransform>().rect.width, 
+        CreateGameObjectButtonMenuSystem("LaunchSaveState01", _loadGamePanel, true, _loadGamePanel.GetComponent<RectTransform>().rect.width, 
             (_loadGamePanel.GetComponent<RectTransform>().rect.height / 10) * 2.5f, 0, (_loadGamePanel.GetComponent<RectTransform>().rect.height / 10) * 3.5f,
             Color.blue, true);
-        CreateGameObjectButtonMenuSystem("SaveState02", "SaveState02", _loadGamePanel, true, _loadGamePanel.GetComponent<RectTransform>().rect.width, 
+        CreateGameObjectButtonMenuSystem("LaunchSaveState02", _loadGamePanel, true, _loadGamePanel.GetComponent<RectTransform>().rect.width, 
             (_loadGamePanel.GetComponent<RectTransform>().rect.height / 10) * 2.5f, 0, (_loadGamePanel.GetComponent<RectTransform>().rect.height / 10) * 0, 
             Color.blue, true);
-        CreateGameObjectButtonMenuSystem("SaveState03", "SaveState03", _loadGamePanel, true, _loadGamePanel.GetComponent<RectTransform>().rect.width,
+        CreateGameObjectButtonMenuSystem("LaunchSaveState03", _loadGamePanel, true, _loadGamePanel.GetComponent<RectTransform>().rect.width,
             (_loadGamePanel.GetComponent<RectTransform>().rect.height / 10) * 2.5f, 0, -(_loadGamePanel.GetComponent<RectTransform>().rect.height / 10) * 3.5f,
             Color.blue, true);
     }
@@ -182,7 +184,7 @@ public class ButtonEvent : MonoBehaviour
         
     }
 
-    private void CreateGameObjectButtonMenuSystem(string _gameObjectName, string gameObjectName, GameObject setParent, bool anchoredChildToParent, float sizeDeltaX, float sizeDeltaY, float anchoredPositionX, float anchoredPositionY, Color color, bool isButton)
+    private void CreateGameObjectButtonMenuSystem(string gameObjectName, GameObject setParent, bool anchoredChildToParent, float sizeDeltaX, float sizeDeltaY, float anchoredPositionX, float anchoredPositionY, Color color, bool isButton)
     {
         GameObject gameObject = new GameObject(gameObjectName);
         gameObject.AddComponent<RectTransform>();
@@ -191,8 +193,30 @@ public class ButtonEvent : MonoBehaviour
         gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(anchoredPositionX, anchoredPositionY);
         if (isButton == true)
         {
-            
-            // ajouter un script a chaque button pour valider son choix
+            if(gameObjectName == "SaveState01")
+            {
+                gameObject.AddComponent<LaunchNewGame>();
+            }
+            if (gameObjectName == "SaveState02")
+            {
+                gameObject.AddComponent<LaunchNewGame>();
+            }
+            if (gameObjectName == "SaveState03")
+            {
+                gameObject.AddComponent<LaunchNewGame>();
+            }
+            if (gameObjectName == "LaunchSaveState01")
+            {
+                gameObject.AddComponent<LoadGame>();
+            }
+            if (gameObjectName == "LaunchSaveState02")
+            {
+                gameObject.AddComponent<LoadGame>();
+            }
+            if (gameObjectName == "LaunchSaveState03")
+            {
+                gameObject.AddComponent<LoadGame>();
+            }
         }
         Image x = gameObject.AddComponent<Image>();
         x.color = color;

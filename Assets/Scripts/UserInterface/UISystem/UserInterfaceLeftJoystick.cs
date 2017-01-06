@@ -15,7 +15,6 @@ public class UserInterfaceLeftJoystick : MonoBehaviour, IDragHandler, IPointerUp
 
     private void Start()
     {
-        this.gameObject.AddComponent<RectTransform>();
         this.GetComponent<RectTransform>().sizeDelta = new Vector2((_userInterface.GetComponent<RectTransform>().rect.width / 2) + 1, _userInterface.GetComponent<RectTransform>().rect.height);
     }
 

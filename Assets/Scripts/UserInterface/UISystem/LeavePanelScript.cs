@@ -9,10 +9,6 @@ public class LeavePanelScript : MonoBehaviour, IPointerDownHandler
 
 	public virtual void OnPointerDown(PointerEventData leave)
     {
-        if(leave.position.x > 0 && leave.position.y > 0)
-        {
-            Destroy(this.gameObject);
-        }
+        Destroy(this.transform.parent.gameObject);
     }
-	
 }
