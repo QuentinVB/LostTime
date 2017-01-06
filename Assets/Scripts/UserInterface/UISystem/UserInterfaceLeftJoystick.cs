@@ -16,30 +16,30 @@ public class UserInterfaceLeftJoystick : MonoBehaviour, IDragHandler, IPointerUp
     private void Start()
     {
         this.gameObject.AddComponent<RectTransform>();
-        this.GetComponent<RectTransform>().sizeDelta = new Vector2(_userInterface.GetComponent<RectTransform>().rect.width, _userInterface.GetComponent<RectTransform>().rect.height);
+        this.GetComponent<RectTransform>().sizeDelta = new Vector2((_userInterface.GetComponent<RectTransform>().rect.width / 2) + 1, _userInterface.GetComponent<RectTransform>().rect.height);
     }
 
-    public virtual void OnPointerUp(PointerEventData ped)
+    public virtual void OnPointerUp(PointerEventData pedLeftJoystick)
     {
         _isJoystickLeftUsed = false;
         _leftJoystick.ResetPosition();
     }
 
-    public virtual void OnPointerDown(PointerEventData ped)
+    public virtual void OnPointerDown(PointerEventData pedLeftJoystick)
     {
-        if(ped.position.x < Screen.width / 2)
+        if(pedLeftJoystick.position.x < Screen.width / 2)
         {
             bG.enabled = true;
             joyst.enabled = true;
             _isJoystickLeftUsed = true;
-            _leftJoystick.GetComponent<RectTransform>().position = new Vector2(ped.position.x, ped.position.y);
+            _leftJoystick.GetComponent<RectTransform>().position = new Vector2(pedLeftJoystick.position.x, pedLeftJoystick.position.y);
         }
         
     }
 
-    public virtual void OnDrag(PointerEventData ped)
+    public virtual void OnDrag(PointerEventData pedLeftJoystick)
     {
-        _leftJoystick.OnDrag(ped);
+        _leftJoystick.OnDrag(pedLeftJoystick);
     }
 
     public bool IsJostickUsed

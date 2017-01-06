@@ -7,11 +7,13 @@ using UnityEngine.EventSystems;
 public class SystemButtonScript : MonoBehaviour {
 
     public Canvas UserInterface;
+
     public Button _systemButton;
     public Button _inventoryButton;
 
-    public bool _isPanelCreated;
-    public bool _isInventoryCreated;
+    private bool _isPanelCreated;
+    private bool _isInventoryCreated;
+
     private GameObject _systemPanel;
     private GameObject _inventoryBag;
 
@@ -25,7 +27,7 @@ public class SystemButtonScript : MonoBehaviour {
     {
         if (_isPanelCreated == false)
         {
-            _systemPanel = new GameObject("Panel System");
+            _systemPanel = new GameObject("SystemPanel");
             _systemPanel.AddComponent<RectTransform>();
             Image i = _systemPanel.AddComponent<Image>();
             i.color = Color.grey;
@@ -33,14 +35,11 @@ public class SystemButtonScript : MonoBehaviour {
             _systemPanel.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width / 8, (Screen.height / 4) * 3);
             _systemPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(-(Screen.width / 2) + (_systemPanel.GetComponent<RectTransform>().rect.width / 2), 
                                                                                     (- _systemButton.GetComponent<RectTransform>().rect.height / 2));
-            
 
-
-
-            CreateGameObjectButtonSystem("_map", "GameMap", _systemPanel, true, _systemPanel.GetComponent<RectTransform>().rect.width / 1.5f, _systemPanel.GetComponent<RectTransform>().rect.height / 8, 0, _systemPanel.GetComponent<RectTransform>().rect.height / 3, Color.black, true);
-            CreateGameObjectButtonSystem("_questBook", "QuestBook", _systemPanel, true, _systemPanel.GetComponent<RectTransform>().rect.width / 1.5f, _systemPanel.GetComponent<RectTransform>().rect.height / 8, 0, _systemPanel.GetComponent<RectTransform>().rect.height / 8, Color.black, true);
-            CreateGameObjectButtonSystem("_systemConfiguration", "System Configuration", _systemPanel, true, _systemPanel.GetComponent<RectTransform>().rect.width / 1.5f, _systemPanel.GetComponent<RectTransform>().rect.height / 8, 0, -_systemPanel.GetComponent<RectTransform>().rect.height / 8, Color.black, true);
-            CreateGameObjectButtonSystem("_leave", "Leave", _systemPanel, true, _systemPanel.GetComponent<RectTransform>().rect.width / 1.5f, _systemPanel.GetComponent<RectTransform>().rect.height / 8, 0, -_systemPanel.GetComponent<RectTransform>().rect.height / 3, Color.black, true);
+            CreateGameObjectButtonSystem("GameMap", _systemPanel, true, _systemPanel.GetComponent<RectTransform>().rect.width / 1.5f, _systemPanel.GetComponent<RectTransform>().rect.height / 8, 0, _systemPanel.GetComponent<RectTransform>().rect.height / 3, Color.black, true);
+            CreateGameObjectButtonSystem("QuestBook", _systemPanel, true, _systemPanel.GetComponent<RectTransform>().rect.width / 1.5f, _systemPanel.GetComponent<RectTransform>().rect.height / 8, 0, _systemPanel.GetComponent<RectTransform>().rect.height / 8, Color.black, true);
+            CreateGameObjectButtonSystem("SystemConfiguration", _systemPanel, true, _systemPanel.GetComponent<RectTransform>().rect.width / 1.5f, _systemPanel.GetComponent<RectTransform>().rect.height / 8, 0, -_systemPanel.GetComponent<RectTransform>().rect.height / 8, Color.black, true);
+            CreateGameObjectButtonSystem("Leave", _systemPanel, true, _systemPanel.GetComponent<RectTransform>().rect.width / 1.5f, _systemPanel.GetComponent<RectTransform>().rect.height / 8, 0, -_systemPanel.GetComponent<RectTransform>().rect.height / 3, Color.black, true);
 
             _isPanelCreated = true;
         }
@@ -51,7 +50,7 @@ public class SystemButtonScript : MonoBehaviour {
         }
     }
 
-    private void CreateGameObjectButtonSystem(string GameObjectName, string gameObjectName, GameObject setParent, bool anchoredChildToParent, float sizeDeltaX, float sizeDeltaY, float anchoredPositionX, float anchoredPositionY, Color color, bool isButton)
+    private void CreateGameObjectButtonSystem(string gameObjectName, GameObject setParent, bool anchoredChildToParent, float sizeDeltaX, float sizeDeltaY, float anchoredPositionX, float anchoredPositionY, Color color, bool isButton)
     {
         GameObject gameObject = new GameObject(gameObjectName);
         gameObject.AddComponent<RectTransform>();
@@ -60,8 +59,17 @@ public class SystemButtonScript : MonoBehaviour {
         gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(anchoredPositionX, anchoredPositionY);
         if (isButton == true)
         {
-            gameObject.AddComponent<Button>();
-            //gameObject.GetComponent<Button>().onClick.AddListener(Map);
+            if (gameObjectName == "GameMap")
+                gameObject.AddComponent<GameMapScript>();
+
+            if (gameObjectName == "QuestBook")
+                gameObject.AddComponent<QuestBookScript>();
+
+            if (gameObjectName == "SystemConfiguration")
+                gameObject.AddComponent<SystemConfigurationScript>();
+
+            if (gameObjectName == "Leave")
+                gameObject.AddComponent<LeaveScript>();
         }
         Image x = gameObject.AddComponent<Image>();
         x.color = color;
@@ -95,7 +103,7 @@ public class SystemButtonScript : MonoBehaviour {
 
         for (int var = 0; var < tmpCount; var++)
         {
-            CreateGameObjectButtonSystem("testObject", "Hammer", _inventoryBag, true, (_inventoryBag.GetComponent<RectTransform>().rect.width / 10) / 2, (_inventoryBag.GetComponent<RectTransform>().rect.width / 10) / 2, (_inventoryBag.GetComponent<RectTransform>().rect.width / 10), (_inventoryBag.GetComponent<RectTransform>().rect.width / 10), Color.blue, false);
+            CreateGameObjectButtonSystem("Hammer", _inventoryBag, true, (_inventoryBag.GetComponent<RectTransform>().rect.width / 10) / 2, (_inventoryBag.GetComponent<RectTransform>().rect.width / 10) / 2, (_inventoryBag.GetComponent<RectTransform>().rect.width / 10), (_inventoryBag.GetComponent<RectTransform>().rect.width / 10), Color.blue, false);
         }
 
     }
