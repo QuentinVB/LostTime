@@ -16,7 +16,9 @@ public class CharacterAnimationMoveByPass : MonoBehaviour, IWalk
     private bool isRunning;
     private readonly int delayForJump = 125;
     private int awaitForJumpAgain;
-
+    public VirtualRightJoystick VRJ;
+    private float x;
+    private float y;
 
     // Use this for initialization
     void Start()
@@ -35,6 +37,8 @@ public class CharacterAnimationMoveByPass : MonoBehaviour, IWalk
     // Update is called once per frame
     void Update()
     {
+        InputH = VRJ.RightVertical();
+        InputV = VRJ.RightHorizontal(); ;
 
         //is the space bare pressed ?
         IsJumping = Input.GetKey(KeyCode.Space) ? true : false;
@@ -111,8 +115,8 @@ public class CharacterAnimationMoveByPass : MonoBehaviour, IWalk
             && Input.GetKey(KeyCode.S) == false
             && Input.GetKey(KeyCode.D) == false
             ) IsRunning = false;
-        //Debug.Log(inputH);
-    
-}
+        ////Debug.Log(inputH);
+
+    }
 
 }

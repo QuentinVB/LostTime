@@ -27,6 +27,7 @@ public class CharacterAnimationDefaultCtrl : MonoBehaviour {
         getBored();
         inputH = walk.InputH;
         inputV = walk.InputV;
+        Debug.Log(inputH);
 
         anim.SetFloat("inputH", inputH);
         anim.SetFloat("inputV", inputV);
