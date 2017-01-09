@@ -5,7 +5,6 @@ using UnityEngine;
 public class InventaireScript : MonoBehaviour {
 
     List<InventaireScript> _playerInventory;
-    private GameObject _playerBag;
 
     private string _itemName;
     private string _itemDescription;
