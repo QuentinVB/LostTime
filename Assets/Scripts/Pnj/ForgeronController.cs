@@ -17,7 +17,7 @@ public class ForgeronController : MonoBehaviour, IbehaviourEntity
     public Collider collisionPlayer;
     public bool showPnjName;
     string StringForgeronTalk;
-    private Text display;
+    public Text display;
     IinteractionWithUser interactionWithUser;
     
 
@@ -28,7 +28,8 @@ public class ForgeronController : MonoBehaviour, IbehaviourEntity
         showPnjName = false;
 
         display = GameObject.Find("display").GetComponent<Text>();
-        display.text = "Iteration 2 : Test.";
+        display.verticalOverflow = VerticalWrapMode.Overflow;
+        display.text = "";
     }
 
     ForgeronController(IinteractionWithUser _interactionWithUser)
