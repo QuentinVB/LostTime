@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: afed47133a395cb44a125ca6b3585005
+timeCreated: 1483715813
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - _mapButton: {fileID: 21300000, guid: df8c59ee35ade814ba2b4767bf398b86, type: 3}
+  - _ConfigButton: {fileID: 21300000, guid: ac3d6e798cd394b4da347a9eea7e6be9, type: 3}
+  - _QuestButton: {fileID: 21300000, guid: ef88d874f0e063d4b806b7e1222ef4ac, type: 3}
+  - _LeaveButton: {fileID: 21300000, guid: 7fd9c117df8a00f4bba5d1f085133054, type: 3}
+  - _MapPanel: {fileID: 21300000, guid: 66638c6b0345cbd42b3b6fe76211d01d, type: 3}
+  - _BagButton: {fileID: 21300000, guid: 8824e0e179fdb6c44a8a9ef91193b4d4, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
