@@ -8,21 +8,27 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
     private Image BackGroundLeftJoystick;
     private Image LeftJoystick;
     private Vector3 LeftJostickInputVector;
-    public bool _isLeftJoystickUsed = false;
 
     // initialise the two Image : BackGroundLeftJoystick , LeftJoystick
     private void Start()
     {
         BackGroundLeftJoystick = GetComponent<Image>();
         LeftJoystick = transform.GetChild(0).GetComponent<Image>();
+        ResetPosition();
+    }
+
+    public void ResetPosition()
+    {
+        BackGroundLeftJoystick.enabled = false;
+        LeftJoystick.enabled = false;
     }
 
     // fct when the user is still using the Left Joystick
-    public virtual void OnDrag(PointerEventData ped)
+    public virtual void OnDrag(PointerEventData pedLeftJoystick)
     {
         Vector2 positionJoystick;
 
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(BackGroundLeftJoystick.rectTransform, ped.position, ped.pressEventCamera, out positionJoystick))
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(BackGroundLeftJoystick.rectTransform, pedLeftJoystick.position, pedLeftJoystick.pressEventCamera, out positionJoystick))
         {
             positionJoystick.x = (positionJoystick.x / BackGroundLeftJoystick.rectTransform.sizeDelta.x);
             positionJoystick.y = (positionJoystick.y / BackGroundLeftJoystick.rectTransform.sizeDelta.y);
@@ -37,18 +43,16 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
     }
 
     // fct start when user touch the Left Joystick
-    public virtual void OnPointerDown(PointerEventData ped)
+    public virtual void OnPointerDown(PointerEventData pedLeftJoystick)
     {
-        OnDrag(ped);
-        _isLeftJoystickUsed = true;
+        OnDrag(pedLeftJoystick);
     }
 
     // fct start when user stop touching the Left Joystick
-    public virtual void OnPointerUp(PointerEventData ped)
+    public virtual void OnPointerUp(PointerEventData pedLeftJoystick)
     {
         LeftJostickInputVector = Vector3.zero;
         LeftJoystick.rectTransform.anchoredPosition = Vector3.zero;
-        _isLeftJoystickUsed = false;
     }
 
     // this fct return the InputVectorPosition.x of the Left Joystick

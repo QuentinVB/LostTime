@@ -16,14 +16,21 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
     {
         BackGroundRightJoystick = GetComponent<Image>();
         RightJoystick = transform.GetChild(0).GetComponent<Image>();
+        ResetPosition();
+    }
+
+    public void ResetPosition()
+    {
+        BackGroundRightJoystick.enabled = false;
+        RightJoystick.enabled = false;
     }
 
     // fct when the user is still using the Right Joystick
-    public virtual void OnDrag(PointerEventData ped)
+    public virtual void OnDrag(PointerEventData pedRightJoystick)
     {
         Vector2 positionJoystick;
 
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(BackGroundRightJoystick.rectTransform, ped.position, ped.pressEventCamera, out positionJoystick))
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(BackGroundRightJoystick.rectTransform, pedRightJoystick.position, pedRightJoystick.pressEventCamera, out positionJoystick))
         {
             positionJoystick.x = (positionJoystick.x / BackGroundRightJoystick.rectTransform.sizeDelta.x);
             positionJoystick.y = (positionJoystick.y / BackGroundRightJoystick.rectTransform.sizeDelta.y);
@@ -38,14 +45,14 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
     }
 
     // // fct start when user touch the Right Joystick
-    public virtual void OnPointerDown(PointerEventData ped)
+    public virtual void OnPointerDown(PointerEventData pedRightJoystick)
     {
-        OnDrag(ped);
+        OnDrag(pedRightJoystick);
         _isRightJoystickUsed = true;
     }
 
     // fct start when user stop touching the Right Joystick
-    public virtual void OnPointerUp(PointerEventData ped)
+    public virtual void OnPointerUp(PointerEventData pedRightJoystick)
     {
         RightJostickInputVector = Vector3.zero;
         RightJoystick.rectTransform.anchoredPosition = Vector3.zero;
