@@ -15,7 +15,7 @@ public class CameraBehavior : MonoBehaviour
         //cameraPosition = camera.transform;
         //targetPlayer = target.transform;
         cameraPosition = GameObject.Find("CameraTarget").transform;
-        targetPlayer = GameObject.Find("head").transform;
+        targetPlayer = GameObject.Find("HeadTarget").transform;
     }
 
     // Update is called once per frame

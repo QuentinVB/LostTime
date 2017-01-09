@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,6 +10,7 @@ public class PlayerMovementBehavior : MonoBehaviour
     private Transform targetMovement;
     private Vector3 direction;
     float lockPos = 0;
+    private NavMeshObstacle playerObstacle;
 
     // Use this for initialization
     void Start()
@@ -17,6 +19,8 @@ public class PlayerMovementBehavior : MonoBehaviour
         playerRigidbody = gameObject.AddComponent<Rigidbody>();
         playerRigidbody.mass = 150;
         playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        SetPlayerObstacle();
+
     }
 
     // Update is called once per frame
@@ -36,6 +40,15 @@ public class PlayerMovementBehavior : MonoBehaviour
             //Rotation
 
         }
+    }
+    //initialize and sets property of the NavMeshObstacle
+    private void SetPlayerObstacle()
+    {
+        playerObstacle.radius = 1;
+        playerObstacle.carving = true;
+        playerObstacle.carvingMoveThreshold = 0.1f;
+        playerObstacle.carvingTimeToStationary = 0.2f;
+        playerObstacle.carveOnlyStationary = true;
     }
     private void PlayerRotation(float xAxis)
     {

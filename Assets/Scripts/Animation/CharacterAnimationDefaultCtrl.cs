@@ -17,7 +17,7 @@ public class CharacterAnimationDefaultCtrl : MonoBehaviour {
     {
         anim = GetComponent<Animator>();
         toggle = anim.GetBool("isRunning");
-        walk = GetComponent<CharacterAnimationMoveByPass>();
+        walk = GetComponent<CharacterAnimationMoveByJoystick>();
     }
 
     // Update is called once per frame
@@ -27,7 +27,8 @@ public class CharacterAnimationDefaultCtrl : MonoBehaviour {
         getBored();
         inputH = walk.InputH;
         inputV = walk.InputV;
-        Debug.Log(inputH);
+
+        //Debug.Log(string.Format("H: {0}, V : {1}", inputH, inputV));
 
         anim.SetFloat("inputH", inputH);
         anim.SetFloat("inputV", inputV);
