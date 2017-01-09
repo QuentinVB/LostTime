@@ -16,7 +16,7 @@ public class CharacterAnimationMoveByPass : MonoBehaviour, IWalk
     private bool isRunning;
     private readonly int delayForJump = 125;
     private int awaitForJumpAgain;
-    public VirtualRightJoystick VRJ;
+    public VirtualLeftJoystick joystick;
     private float x;
     private float y;
 
@@ -69,9 +69,8 @@ public class CharacterAnimationMoveByPass : MonoBehaviour, IWalk
             awaitForJumpAgain = awaitForJumpAgain <= 0 ? delayForJump : awaitForJumpAgain;
         }
         //inputs
-        InputH = VRJ.RightHorizontal();
-        InputV = VRJ.RightVertical();
-
+        InputH = joystick.LeftHorizontal();
+        InputV = joystick.LeftVertical();
         //if rotate
         if (InputH != 0)
         {
