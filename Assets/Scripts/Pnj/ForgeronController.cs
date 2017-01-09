@@ -1,21 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
-public class ForgeronController : MonoBehaviour {
+interface IbehaviourEntity
+{
 
+}
+
+public class ForgeronController : MonoBehaviour , IbehaviourEntity
+{
     private Forgeron forgeron;
     public bool OntouchPlayer;
     public Collider collisionPlayer;
     public bool showPnjName;
     string StringForgeronTalk;
-
-
-
-
     public Canvas _canvas;
+    public Text textFieldTest;
+
     void Start()
     {
+        //    _canvas = gameObject.AddComponent<Canvas>();
+        textFieldTest = GameObject.Find("TextFieldTest").GetComponent<Text>();
+        textFieldTest.text = "test test";
         OntouchPlayer = false;
         forgeron = new Forgeron();
         showPnjName = false;
@@ -24,16 +31,12 @@ public class ForgeronController : MonoBehaviour {
     {
         if (OntouchPlayer)
         {
-            GUI.BeginGroup(new Rect(new Vector2(Screen.width / 2 - 150, Screen.height / 2 - 75), new Vector2(300, 150)));
-            GUI.Label(new Rect(new Vector2(10, 50), new Vector2(280, 150)), "Forgeron : " + StringForgeronTalk);
-            GUI.EndGroup();
-
-          //  _canvas.GetComponent<RectTransform>().rect.width
+            textFieldTest.text = "Forgeron : " + StringForgeronTalk;
         }
 
         else if (showPnjName)
         {
-            GUI.Label(new Rect(new Vector2(10, 20), new Vector2(50, 20)), "Forgeron");
+            textFieldTest.text = "Forgeron";
         }
     }
 
@@ -61,7 +64,7 @@ public class ForgeronController : MonoBehaviour {
         OntouchPlayer = false;
         collisionPlayer = null;
         showPnjName = false;
-        StringForgeronTalk = "";
+        textFieldTest.text = "";
     }
 
     interface IControlerForgeron
