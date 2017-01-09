@@ -31,6 +31,7 @@ public class CharacterAnimationDefaultCtrl : MonoBehaviour {
 
         anim.SetFloat("inputH", inputH);
         anim.SetFloat("inputV", inputV);
+
         anim.SetBool("isRunning", walk.IsRunning);
 
         anim.SetBool("jump", walk.IsJumping);
