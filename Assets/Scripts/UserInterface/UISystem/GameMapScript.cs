@@ -27,6 +27,10 @@ public class GameMapScript : MonoBehaviour, IPointerDownHandler
         {
             Destroy(GameObject.Find("QuestBookPanel"));
         }
+        if (GameObject.Find("InventoryBag") == true)
+        {
+            Destroy(GameObject.Find("InventoryBag"));
+        }
 
         if (GameObject.Find("GameMapPanel") == false)
         {
