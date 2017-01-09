@@ -3,7 +3,7 @@ using Zenject;
 
 interface IpositionEntity
 {
-    PositionEntity instantiateIPositionEntity(InjectContext context);
+    Vector3 getPosition();
 }
 
 public class PositionEntity : MonoBehaviour, IpositionEntity
@@ -19,8 +19,8 @@ public class PositionEntity : MonoBehaviour, IpositionEntity
         nameOfPosition = "Park";
     }
 
-     public PositionEntity instantiateIPositionEntity(InjectContext context)
+     public Vector3 getPosition()
     {
-        return this;
+        return position;
     }
 }

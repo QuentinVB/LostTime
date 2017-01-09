@@ -23,7 +23,7 @@ public class EntityInstaller : MonoInstaller
     }
 }
 
-public class Entity
+public class Entity : MonoBehaviour
 {
     IpositionEntity positionEntity;
     IbehaviourEntity behaviourEntity;
@@ -39,6 +39,8 @@ public class Entity
         pathFindingEntity = _pathFindingEntity;
         interactionWithUser = _interactionWithUser;
 
+        this.transform.position = positionEntity.getPosition();
+
     }
     //Entity se qui peut ce deplacer + comportement
     Entity(IpositionEntity _positionEntity,
@@ -48,6 +50,8 @@ public class Entity
         behaviourEntity = null;
         pathFindingEntity = _pathFindingEntity;
         interactionWithUser = null;
+
+        this.transform.position = positionEntity.getPosition();
     }
 
     Entity(IpositionEntity _positionEntity, IbehaviourEntity _behaviourEntity,
@@ -57,6 +61,8 @@ public class Entity
         behaviourEntity = _behaviourEntity;
         pathFindingEntity = null;
         interactionWithUser = _interactionWithUser;
+
+        this.transform.position = positionEntity.getPosition();
     }
 
     Entity(IpositionEntity _positionEntity)
@@ -65,5 +71,7 @@ public class Entity
         behaviourEntity = null;
         pathFindingEntity = null;
         interactionWithUser = null;
+
+        this.transform.position = positionEntity.getPosition();
     }
 }

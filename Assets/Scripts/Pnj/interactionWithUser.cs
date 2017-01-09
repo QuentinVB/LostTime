@@ -11,11 +11,16 @@ interface IinteractionWithUser
 
 public class interactionWithUser : MonoBehaviour, IinteractionWithUser
 {
-    public Text textFieldTest;
+    private Text display;
     void Start()
-    { 
-        textFieldTest = textFieldTest = GameObject.Find("TextFieldTest").GetComponent<Text>();
-        textFieldTest.text = "test test";
+    {
+        display = GameObject.Find("TextFieldTest").GetComponent<Text>();
+        display.text = "test test";
+    }
+
+    public Text getDisplay()
+    {
+        return display;
     }
 
 }

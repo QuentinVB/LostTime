@@ -17,6 +17,7 @@ public class ForgeronController : MonoBehaviour , IbehaviourEntity
     string StringForgeronTalk;
     public Canvas _canvas;
     public Text textFieldTest;
+    IinteractionWithUser interactionWithUser;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class ForgeronController : MonoBehaviour , IbehaviourEntity
         forgeron = new Forgeron();
         showPnjName = false;
     }
+
+
     void OnGUI()
     {
         if (OntouchPlayer)
