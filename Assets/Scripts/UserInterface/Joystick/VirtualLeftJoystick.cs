@@ -19,6 +19,8 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
 
     public void ResetPosition()
     {
+        LeftJostickInputVector = new Vector3(0, 0, 0);
+        LeftJoystick.rectTransform.anchoredPosition = new Vector3(0, 0, 0);
         BackGroundLeftJoystick.enabled = false;
         LeftJoystick.enabled = false;
     }
@@ -51,8 +53,6 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
     // fct start when user stop touching the Left Joystick
     public virtual void OnPointerUp(PointerEventData pedLeftJoystick)
     {
-        LeftJostickInputVector = Vector3.zero;
-        LeftJoystick.rectTransform.anchoredPosition = Vector3.zero;
     }
 
     // this fct return the InputVectorPosition.x of the Left Joystick

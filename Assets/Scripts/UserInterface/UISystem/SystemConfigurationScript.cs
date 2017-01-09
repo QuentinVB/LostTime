@@ -43,6 +43,20 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
             x.color = Color.grey;
             _SystemConfigurationPanel.transform.SetParent(_systemPanel.gameObject.transform, true);
 
+            GameObject _SystemConfigurationPanelLabel = new GameObject("_SystemConfigurationPanelLabel");
+            _SystemConfigurationPanelLabel.AddComponent<RectTransform>();
+            _SystemConfigurationPanelLabel.AddComponent<Button>();
+            _SystemConfigurationPanelLabel.transform.SetParent(_SystemConfigurationPanel.transform, true);
+            _SystemConfigurationPanelLabel.GetComponent<RectTransform>().sizeDelta = new Vector2((_SystemConfigurationPanel.GetComponent<RectTransform>().rect.width), _SystemConfigurationPanel.GetComponent<RectTransform>().rect.height);
+            _SystemConfigurationPanelLabel.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+            _SystemConfigurationPanelLabel.AddComponent<Text>();
+            _SystemConfigurationPanelLabel.GetComponent<Text>().text = "Game Config";
+            _SystemConfigurationPanelLabel.GetComponent<Text>().font = _userInterface.GetComponent<Monitoring>().GetArialTextFont;
+            _SystemConfigurationPanelLabel.GetComponent<Text>().alignment = TextAnchor.UpperCenter;
+            _SystemConfigurationPanelLabel.GetComponent<Text>().fontStyle = FontStyle.Bold;
+            _SystemConfigurationPanelLabel.GetComponent<Text>().fontSize = (int)(gameObject.GetComponent<RectTransform>().rect.height / 2);
+            _SystemConfigurationPanelLabel.GetComponent<Text>().color = Color.black;
+
             GameObject ButtonLeave = new GameObject("ButtonLeaveConfiguration");
             ButtonLeave.AddComponent<RectTransform>();
             ButtonLeave.transform.SetParent(_SystemConfigurationPanel.gameObject.transform, true);
@@ -231,11 +245,9 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
     {
         GameObject CreateMusiquelevelBackGround = new GameObject("CreateMusiquelevelBackGround");
         CreateMusiquelevelBackGround.AddComponent<RectTransform>();
-        Image z = CreateMusiquelevelBackGround.AddComponent<Image>();
         CreateMusiquelevelBackGround.transform.SetParent(Parent.transform, true);
         CreateMusiquelevelBackGround.GetComponent<RectTransform>().sizeDelta = new Vector2(Parent.GetComponent<RectTransform>().rect.width, Parent.GetComponent<RectTransform>().rect.height);
         CreateMusiquelevelBackGround.GetComponent<RectTransform>().anchoredPosition = new Vector2(Parent.GetComponent<RectTransform>().rect.width, 0);
-        z.color = Color.white;
 
         CreateMusiquelevelLabel(CreateMusiquelevelBackGround);
         CreateMusicLevelNb(CreateMusiquelevelBackGround);
@@ -305,12 +317,9 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
     {
         GameObject CreateSoundEffectLevelBackGround = new GameObject("CreateSoundEffectLevelBackGround");
         CreateSoundEffectLevelBackGround.AddComponent<RectTransform>();
-        Image z = CreateSoundEffectLevelBackGround.AddComponent<Image>();
         CreateSoundEffectLevelBackGround.transform.SetParent(Parent.transform, true);
         CreateSoundEffectLevelBackGround.GetComponent<RectTransform>().sizeDelta = new Vector2(Parent.GetComponent<RectTransform>().rect.width, Parent.GetComponent<RectTransform>().rect.height);
         CreateSoundEffectLevelBackGround.GetComponent<RectTransform>().anchoredPosition = new Vector2(Parent.GetComponent<RectTransform>().rect.width, -Parent.GetComponent<RectTransform>().rect.height);
-        z.color = Color.white;
-
         CreateSoundEffectlevelLabel(CreateSoundEffectLevelBackGround);
         CreateSoundEffectLevelNb(CreateSoundEffectLevelBackGround);
         CreateSoundEffectLevelSlider(CreateSoundEffectLevelBackGround);

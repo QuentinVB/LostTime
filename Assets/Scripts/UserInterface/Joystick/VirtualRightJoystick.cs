@@ -21,6 +21,10 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
 
     public void ResetPosition()
     {
+
+        RightJostickInputVector = new Vector3(0, 0, 0);
+        RightJoystick.rectTransform.anchoredPosition = new Vector3(0, 0, 0);
+        Debug.Log(RightJostickInputVector);
         BackGroundRightJoystick.enabled = false;
         RightJoystick.enabled = false;
     }
@@ -40,7 +44,7 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
 
             RightJoystick.rectTransform.anchoredPosition = new Vector3(RightJostickInputVector.x * (BackGroundRightJoystick.rectTransform.sizeDelta.x / 4), RightJostickInputVector.z * (BackGroundRightJoystick.rectTransform.sizeDelta.y / 4));
 
-         //   Debug.Log(RightJostickInputVector);
+            Debug.Log(RightJostickInputVector);
         }
     }
 
@@ -54,9 +58,6 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
     // fct start when user stop touching the Right Joystick
     public virtual void OnPointerUp(PointerEventData pedRightJoystick)
     {
-        RightJostickInputVector = Vector3.zero;
-        RightJoystick.rectTransform.anchoredPosition = Vector3.zero;
-        _isRightJoystickUsed = false;
     }
     
     // this fct return the InputVectorPosition.x of the Left Joystick
