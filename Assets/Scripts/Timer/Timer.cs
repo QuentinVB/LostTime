@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class testScript : MonoBehaviour {
+public class Timer : MonoBehaviour {
     public Light sun;
     private static float WAKE_UP_SUN = 0.22f;
     public float secondsInFullDay = 120f;
@@ -20,18 +20,18 @@ public class testScript : MonoBehaviour {
         sunInitialIntensity = sun.intensity;
         jeuFini = false;
         swapMalus = 0;
-        level = "DayLightScene";
+        level = "LostTimeGearDistrict";
         getSwapMalus();
     }
 
 
     void Update () {
         getSwapMalus();
-        Timer();
+        Chrono();
 	}
 
 
-    void Timer()
+    void Chrono()
     {
         if (currentTimeOfDay >= 1)
         {
@@ -70,7 +70,7 @@ public class testScript : MonoBehaviour {
         // sauvergarder inventaire
         //afficher texture GAMEOVER
         // WAIT 2s
-         SceneManager.LoadScene(level);
+         SceneManager.LoadScene(level);  
     }
 
     float getSwapMalus()
