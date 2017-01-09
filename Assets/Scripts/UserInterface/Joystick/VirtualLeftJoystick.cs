@@ -21,7 +21,6 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
     {
         LeftJostickInputVector = new Vector3(0, 0, 0);
         LeftJoystick.rectTransform.anchoredPosition = new Vector3(0, 0, 0);
-        Debug.Log(LeftJostickInputVector);
         BackGroundLeftJoystick.enabled = false;
         LeftJoystick.enabled = false;
     }
