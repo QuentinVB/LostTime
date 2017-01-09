@@ -70,7 +70,7 @@ public class SystemButtonScript : MonoBehaviour {
             _inventoryBag.AddComponent<RectTransform>();
             _inventoryBag.transform.SetParent(_userInterface.gameObject.transform, true);
             _inventoryBag.GetComponent<RectTransform>().sizeDelta = new Vector2(_userInterface.GetComponent<RectTransform>().rect.width / 2, _userInterface.GetComponent<RectTransform>().rect.height);
-            _inventoryBag.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+            _inventoryBag.GetComponent<RectTransform>().anchoredPosition = new Vector2((_inventoryBag.GetComponent<RectTransform>().rect.width / 2) - (_inventoryButton.GetComponent<RectTransform>().rect.width), 0);
             Image x = _inventoryBag.AddComponent<Image>();
             x.color = Color.grey;
 
