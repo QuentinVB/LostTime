@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CharacterAnimationMoveByJoystick : MonoBehaviour, IWalk
 {
-    public float speed;
+    public float turnSpeed;
+    public float runSpeed;
     private Vector3 position;
     private Vector3 rotation;
     private float inputH;
@@ -23,7 +24,8 @@ public class CharacterAnimationMoveByJoystick : MonoBehaviour, IWalk
     // Use this for initialization
     void Start()
     {
-        speed = 0.7f;
+        turnSpeed = 1.1f;
+        runSpeed = 0.08f;
         inputH = 0;
         inputV = 0;
         awaitForJumpAgain = delayForJump;
@@ -59,7 +61,7 @@ public class CharacterAnimationMoveByJoystick : MonoBehaviour, IWalk
         }
         if (awaitForJumpAgain < delayForJump * 0.78 && awaitForJumpAgain > delayForJump * 0.5)
         {
-            transform.Translate(-0.2f, 0, 0, Space.Self);
+            transform.Translate(-0.1f, 0, 0, Space.Self);
         }
 
         if (awaitForJumpAgain < delayForJump)
@@ -71,76 +73,22 @@ public class CharacterAnimationMoveByJoystick : MonoBehaviour, IWalk
         //inputs
         InputH = joystick.LeftHorizontal();
         InputV = joystick.LeftVertical();
+
         //if rotate
         if (InputH != 0)
         {
-            transform.Rotate(new Vector3(0, InputH * speed, 0));
+            InputV *= 1.2f;
+            transform.Rotate(new Vector3(0, InputH * turnSpeed, 0));
         }
 
-        if (InputV >= 0.3f || (InputH>0.3f||InputH<-0.3f))
+        if (InputV >= 0.2f)
         {
-            InputV = 1.0f;
-            InputH = 1.0f;
-            transform.Translate(-0.1f, 0, 0, Space.Self);
+            //InputV *= 1.2f;
+            //InputH *= 1.2f;
+            transform.Translate(- runSpeed , 0, 0, Space.Self);
         }
-
-        //Key
-        //reset if needed
-        //if (Input.GetKey(KeyCode.Z) == false && Input.GetKey(KeyCode.S) == false)
-        //{
-        //    if (InputH < 0) InputH += 0.1f;
-        //    if (InputH > 0) InputH -= 0.1f;
-        //    if (InputH == -0.1f) InputH = 0;
-        //}
-        //if (Input.GetKey(KeyCode.Q) == false && Input.GetKey(KeyCode.D) == false)
-        //{
-        //    if (InputV < 0) InputV += 0.1f;
-        //    if (InputV > 0) InputV -= 0.1f;
-        //    if (InputV == -0.1f) InputV = 0;
-
-        //}
-        //if (Input.GetKey(KeyCode.Z))
-        //{
-        //    if (awaitForJumpAgain == delayForJump)
-        //    {
-        //        InputH += 0.1f;
-        //        transform.Translate(-0.1f, 0, 0, Space.Self);
-        //        IsRunning = true;
-        //    }
-        //}
-        //if (Input.GetKey(KeyCode.S))
-        //{
-        //    if (awaitForJumpAgain == delayForJump)
-        //    {
-        //        InputH -= 0.1f;
-        //    }
-        //}
-        //if (Input.GetKey(KeyCode.Q))
-        //{
-        //    if (awaitForJumpAgain == delayForJump)
-        //    {
-        //        inputV -= 0.1f;
-        //        transform.Rotate(new Vector3(0, -1f, 0));
-        //    }
-        //}
-        //if (Input.GetKey(KeyCode.D))
-        //{
-        //    if (awaitForJumpAgain == delayForJump)
-        //    {
-        //        inputV += 0.1f;
-        //        transform.Rotate(new Vector3(0, 1f, 0));
-        //    }
-        //}
 
         IsRunning = (InputH != 0 || InputV != 0) ? true : false;
-
-        //set the run (or not)
-        //if (Input.GetKey(KeyCode.Z) == false
-        //    && Input.GetKey(KeyCode.Q) == false
-        //    && Input.GetKey(KeyCode.S) == false
-        //    && Input.GetKey(KeyCode.D) == false
-        //    ) IsRunning = false;
-        ////Debug.Log(inputH);
 
     }
 
