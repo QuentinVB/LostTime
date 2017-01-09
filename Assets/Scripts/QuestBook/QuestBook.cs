@@ -18,7 +18,7 @@ public class QuestBook : MonoBehaviour {
         SetQuestTest();
     }
 
-    public QuestBook(string QuestName, string QuestDescription, bool QuestIsFinished, Dictionary<string, int> QuestStep)
+    public QuestBook(string QuestName, string QuestDescription, bool QuestIsFinished , Dictionary<string, int> QuestStep)
     {
         _questName = QuestName;
         _questDescription = QuestDescription;
@@ -29,15 +29,25 @@ public class QuestBook : MonoBehaviour {
     private void SetQuestTest()
     {
         Dictionary<string, int> test = new Dictionary<string, int>();
-        test.Add("FirstChicken Recup", 0);
-        test.Add("SecondChickenRecup", 0);
-        test.Add("ThirdChickenRecup", 0);
-        test.Add("4CRecup", 0);
-        test.Add("5CRecup", 0);
+        test.Add("FirstChickenRecup", 0);
+        test.Add("SecondChickenRecup", 1);
+        test.Add("ThirdChickenRecup", 2);
+        test.Add("4CRecup", 3);
+        test.Add("5CRecup", 4);
 
-        _questBook.Add(new QuestBook("Poulets Braisés", "Récupérez tous les poulets de Julie", false, test));
-        _questBook.Add(new QuestBook("Poulets Samoussas", "Récupérer tous les poulets du cuisinier", true, test));
 
+        _questBook.Add(new QuestBook("La Quete du marteau", "Récupérez le marteau du forgeron", false, test));
+        _questBook.Add(new QuestBook("aaaaa", "bbbbbbb", false, test));
+        _questBook.Add(new QuestBook("ccccccc", "dddddddd", false, test));
+        _questBook.Add(new QuestBook("eeeeee", "fffffffff", false, test));
+        _questBook.Add(new QuestBook("gggggg", "hhhhhhhhhh", false, test));
+        _questBook.Add(new QuestBook("iiiiiiiiii", "jjjjjjjjjjj", false, test));
+
+        _questBook.Add(new QuestBook("Les poulets mécaniques", "Les poulets mécaniques de Julie se sont enfuient. Retrouvez les et rapportez les à Julie", true, test));
+        _questBook.Add(new QuestBook("yyyyyy ", "zzzzzzzzzzz", true, test));
+        _questBook.Add(new QuestBook("oooooooo", "mmmmmmmmmm", true, test));
+        _questBook.Add(new QuestBook("nnnnnnn", "qqqqqqqqqqq", true, test));
+        _questBook.Add(new QuestBook("qsdqdqsdqsdqsd", "aazeazeaeaze", true, test));
     }
 
     public List<QuestBook> GetQuestBook

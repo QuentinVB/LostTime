@@ -10,6 +10,7 @@ public class SystemButtonScript : MonoBehaviour {
 
     private GameObject _systemButton;
     private GameObject _inventoryButton;
+    private GameObject _QuestBookPanel;
 
     private GameObject _systemPanel;
     private GameObject _inventoryBag;
@@ -337,5 +338,4 @@ public class SystemButtonScript : MonoBehaviour {
             }
         }
     }
-
 }
