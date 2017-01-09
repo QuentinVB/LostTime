@@ -17,7 +17,6 @@ public class PlayerMovementBehavior : MonoBehaviour
         playerRigidbody = gameObject.AddComponent<Rigidbody>();
         playerRigidbody.mass = 150;
         playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-
     }
 
     // Update is called once per frame

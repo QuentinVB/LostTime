@@ -32,7 +32,7 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
 
             LeftJoystick.rectTransform.anchoredPosition = new Vector3(LeftJostickInputVector.x * (BackGroundLeftJoystick.rectTransform.sizeDelta.x / 4), LeftJostickInputVector.z * (BackGroundLeftJoystick.rectTransform.sizeDelta.y / 4));
 
-            Debug.Log(LeftJostickInputVector);
+           // Debug.Log(LeftJostickInputVector);
         }
     }
 
