@@ -17,7 +17,7 @@ public class CharacterAnimationDefaultCtrl : MonoBehaviour {
     {
         anim = GetComponent<Animator>();
         toggle = anim.GetBool("isRunning");
-        walk = GetComponent<CharacterAnimationMoveByPass>();
+        walk = GetComponent<CharacterAnimationMoveByJoystick>();
     }
 
     // Update is called once per frame

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterAnimationMoveByPass : MonoBehaviour, IWalk
+public class CharacterAnimationMoveByJoystick : MonoBehaviour, IWalk
 {
     public float speed;
     private Vector3 position;
