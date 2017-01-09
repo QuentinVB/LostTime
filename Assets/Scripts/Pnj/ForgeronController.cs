@@ -8,7 +8,9 @@ interface IbehaviourEntity
 
 }
 
-public class ForgeronController : MonoBehaviour , IbehaviourEntity
+
+
+public class ForgeronController : MonoBehaviour, IbehaviourEntity
 {
     private Forgeron forgeron;
     public bool OntouchPlayer;
@@ -17,6 +19,7 @@ public class ForgeronController : MonoBehaviour , IbehaviourEntity
     string StringForgeronTalk;
     public Canvas _canvas;
     public Text textFieldTest;
+    private Text diplay;
     IinteractionWithUser interactionWithUser;
 
     void Start()
@@ -29,23 +32,28 @@ public class ForgeronController : MonoBehaviour , IbehaviourEntity
         showPnjName = false;
     }
 
+    ForgeronController(IinteractionWithUser _interactionWithUser)
+    {
+        interactionWithUser = _interactionWithUser;
+    }
 
     void OnGUI()
     {
         if (OntouchPlayer)
         {
-            textFieldTest.text = "Forgeron : " + StringForgeronTalk;
+
+             interactionWithUser.setDisplay("Forgeron : " + StringForgeronTalk) ;
         }
 
         else if (showPnjName)
         {
-            textFieldTest.text = "Forgeron";
+            interactionWithUser.setDisplay("Forgeron");
         }
     }
 
     private void OnMouseUp()
     {
-        if (showPnjName == true )
+        if (showPnjName == true)
         {
             OntouchPlayer = true;
             StringForgeronTalk = forgeron.callStateCurrent(collisionPlayer);
@@ -67,12 +75,12 @@ public class ForgeronController : MonoBehaviour , IbehaviourEntity
         OntouchPlayer = false;
         collisionPlayer = null;
         showPnjName = false;
-        textFieldTest.text = "";
+        interactionWithUser.setDisplay("");
     }
 
     interface IControlerForgeron
     {
-         string forgeronTalk(Forgeron context, Collider otherObject);
+        string forgeronTalk(Forgeron context, Collider otherObject);
     }
 
     class Forgeron
@@ -85,7 +93,7 @@ public class ForgeronController : MonoBehaviour , IbehaviourEntity
             currentStatesInstance = new Neutral();
         }
 
-        
+
         public void changeState(IControlerForgeron StatesInstance)
         {
             currentStatesInstance = StatesInstance;
@@ -94,18 +102,19 @@ public class ForgeronController : MonoBehaviour , IbehaviourEntity
 
         public string callStateCurrent(Collider otherObject)
         {
-           return currentStatesInstance.forgeronTalk(this, otherObject);
+            return currentStatesInstance.forgeronTalk(this, otherObject);
         }
     }
 
 
     class Neutral : IControlerForgeron
     {
-        public string forgeronTalk(Forgeron context, Collider otherObject) {
+        public string forgeronTalk(Forgeron context, Collider otherObject)
+        {
 
             if (otherObject.gameObject.tag == "Player")
             {
-                        PlayerQuest player  = otherObject.gameObject.GetComponent<PlayerQuest>();
+                PlayerQuest player = otherObject.gameObject.GetComponent<PlayerQuest>();
                 if (player.Quest)
                 {
                     context.changeState(new Quest());
@@ -121,7 +130,7 @@ public class ForgeronController : MonoBehaviour , IbehaviourEntity
         }
     }
 
-     class Quest : IControlerForgeron
+    class Quest : IControlerForgeron
     {
 
         public string forgeronTalk(Forgeron context, Collider otherObject)
@@ -130,7 +139,7 @@ public class ForgeronController : MonoBehaviour , IbehaviourEntity
             if (player.inventory.Contains("Marteau"))
             {
                 context.changeState(new ValidateQuest());
-                return"Genial tu as retrouvé mon Marteau !!! Pour te recompenser je t'offre .... ce Marteau !";
+                return "Genial tu as retrouvé mon Marteau !!! Pour te recompenser je t'offre .... ce Marteau !";
             }
             else
                 return "Alors tu as trouvé mon marteau ?";
@@ -141,7 +150,7 @@ public class ForgeronController : MonoBehaviour , IbehaviourEntity
     {
         public string forgeronTalk(Forgeron context, Collider otherObject)
         {
-            return"Encore merci pour ton service. Je n'oublirais jamais.";
+            return "Encore merci pour ton service. Je n'oublirais jamais.";
         }
     }
 }

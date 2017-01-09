@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 interface IinteractionWithUser
 {
-    //     interactionWithUser InstantiateIinteractionWithUser();
+    Text getDisplay();
+    void setDisplay(string text);
 }
 
 public class interactionWithUser : MonoBehaviour, IinteractionWithUser
@@ -15,7 +16,7 @@ public class interactionWithUser : MonoBehaviour, IinteractionWithUser
     void Start()
     {
         display = GameObject.Find("TextFieldTest").GetComponent<Text>();
-        display.text = "test test";
+        display.text = "Iteration 2 : Test";
     }
 
     public Text getDisplay()
@@ -23,4 +24,8 @@ public class interactionWithUser : MonoBehaviour, IinteractionWithUser
         return display;
     }
 
+    public void setDisplay(string text)
+    {
+        display.text = text;
+    }
 }

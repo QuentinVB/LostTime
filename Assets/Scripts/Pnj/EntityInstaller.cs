@@ -9,19 +9,48 @@ interface IpathFindingEntity
     // par vivan
 }
 
-
-
-public class EntityInstaller : MonoInstaller
+public class EntitysInstaller : MonoInstaller
 {
     public override void InstallBindings()
     {
-        Container.Bind<IpositionEntity>().FromInstance(new PositionEntity());
-        Container.Bind<IinteractionWithUser>().FromInstance(new interactionWithUser());
-        Container.Bind<IbehaviourEntity>().FromInstance(new ForgeronController());
+        EntityInstaller.Install(Container);
+        EntityInstaller.Install(Container);
+        EntityInstaller.Install(Container);
+        EntityInstaller.Install(Container);
+        EntityInstaller.Install(Container);
+
+    }
+
+}
+
+
+public class EntityInstaller : Installer<EntityInstaller>
+{
+
+    public struct Who
+    {
+        public string name;
+        public Who(string name){
+            this.name = name;
+        }
+    }
+
+
+
+
+    public override void InstallBindings()
+    {
+
+
+        Container.Bind<Who>();
+        Container.Bind<IpositionEntity>();
+        Container.Bind<IinteractionWithUser>(); // done 
+        Container.Bind<IbehaviourEntity>(); // done
         //Container.Bind<IpathFindingEntity>().FromInstance(new pathFindingEntity());
-        Container.Bind<Entity>().FromNew();
+        Container.Bind<Entity>();
     }
 }
+
 
 public class Entity : MonoBehaviour
 {
