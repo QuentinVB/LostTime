@@ -15,6 +15,7 @@ public class PlayerMovementBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+      //  playerRigidbody.mass = 150;
         playerRigidbody = gameObject.AddComponent<Rigidbody>();
         playerRigidbody.mass = 150;
         playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
