@@ -24,7 +24,7 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
 
         RightJostickInputVector = new Vector3(0, 0, 0);
         RightJoystick.rectTransform.anchoredPosition = new Vector3(0, 0, 0);
-        Debug.Log(RightJostickInputVector);
+        //Debug.Log(RightJostickInputVector);
         BackGroundRightJoystick.enabled = false;
         RightJoystick.enabled = false;
     }
