@@ -17,19 +17,19 @@ public class ForgeronController : MonoBehaviour, IbehaviourEntity
     public Collider collisionPlayer;
     public bool showPnjName;
     string StringForgeronTalk;
-    public Canvas _canvas;
-    public Text textFieldTest;
-    private Text diplay;
+    public Text display;
     IinteractionWithUser interactionWithUser;
+    
 
     void Start()
     {
-        //    _canvas = gameObject.AddComponent<Canvas>();
-        textFieldTest = GameObject.Find("TextFieldTest").GetComponent<Text>();
-        textFieldTest.text = "test test";
         OntouchPlayer = false;
         forgeron = new Forgeron();
         showPnjName = false;
+
+        display = GameObject.Find("display").GetComponent<Text>();
+        display.verticalOverflow = VerticalWrapMode.Overflow;
+        display.text = "";
     }
 
     ForgeronController(IinteractionWithUser _interactionWithUser)
@@ -41,24 +41,23 @@ public class ForgeronController : MonoBehaviour, IbehaviourEntity
     {
         if (OntouchPlayer)
         {
-
-             interactionWithUser.setDisplay("Forgeron : " + StringForgeronTalk) ;
+            display.text = "Forgeron : " + StringForgeronTalk;
         }
 
-        else if (showPnjName)
-        {
-            interactionWithUser.setDisplay("Forgeron");
-        }
+        //else if (showPnjName)
+        //{
+        //    interactionWithUser.setDisplay("Forgeron");
+        //}
     }
 
-    private void OnMouseUp()
-    {
-        if (showPnjName == true)
-        {
-            OntouchPlayer = true;
-            StringForgeronTalk = forgeron.callStateCurrent(collisionPlayer);
-        }
-    }
+    //private void OnMouseUp()
+    //{
+    //    if (showPnjName == true)
+    //    {
+    //        OntouchPlayer = true;
+    //        StringForgeronTalk = forgeron.callStateCurrent(collisionPlayer);
+    //    }
+    //}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -66,6 +65,8 @@ public class ForgeronController : MonoBehaviour, IbehaviourEntity
         {
             showPnjName = true;
             collisionPlayer = other;
+            OntouchPlayer = true;
+            StringForgeronTalk = forgeron.callStateCurrent(collisionPlayer);
         }
     }
 
@@ -75,7 +76,9 @@ public class ForgeronController : MonoBehaviour, IbehaviourEntity
         OntouchPlayer = false;
         collisionPlayer = null;
         showPnjName = false;
-        interactionWithUser.setDisplay("");
+
+        display.text = "";
+        //interactionWithUser.setDisplay("");
     }
 
     interface IControlerForgeron

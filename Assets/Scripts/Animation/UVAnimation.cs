@@ -16,17 +16,17 @@ public class UVAnimation : MonoBehaviour {
     void Start()
     {
         renderer = GetComponent<Renderer>();
+        //size of each tile
+        size = new Vector2(1.0f / UVTileY, 1.0f / UVTileX);
+        renderer.material.SetTextureScale("_MainTex", size);
     }
     // Update is called once per frame
     void Update () {
         //set index
         index = (int)(Time.time * fps);
+
         //cut index based on the current frame from the begining
-        index = index % (UVTileX * UVTileY);
-
-        //size of each tile
-        size = new Vector2(1.0f / UVTileY, 1.0f / UVTileX);
-
+        index = index % (UVTileX * UVTileY);  
         uIndex = index % UVTileY;
         vIndex = index / UVTileX;
 
@@ -34,6 +34,5 @@ public class UVAnimation : MonoBehaviour {
 
         //offset the uv at the position and rescale based ont the size of the tile
         renderer.material.SetTextureOffset("_MainTex", offset);
-        renderer.material.SetTextureScale("_MainTex", size);
     }
 }

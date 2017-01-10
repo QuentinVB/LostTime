@@ -3,7 +3,8 @@ using System.Collections;
 
 public class CameraBehavior : MonoBehaviour
 {
-
+    public GameObject camera;
+    public GameObject target;
     private Transform cameraPosition;
     private Transform targetPlayer;
     private Vector3 direction;
@@ -11,8 +12,10 @@ public class CameraBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        cameraPosition = GameObject.Find("CameraPosition").transform;
-        targetPlayer = GameObject.Find("Player").transform;
+        //cameraPosition = camera.transform;
+        //targetPlayer = target.transform;
+        cameraPosition = GameObject.Find("CameraTarget").transform;
+        targetPlayer = GameObject.Find("HeadTarget").transform;
     }
 
     // Update is called once per frame

@@ -11,6 +11,7 @@ TagManager:
   - House
   - Entity
   - Ground
+  - Waypoint
   layers:
   - Default
   - TransparentFX
