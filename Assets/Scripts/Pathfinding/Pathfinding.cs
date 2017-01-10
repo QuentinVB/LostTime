@@ -17,6 +17,7 @@ public class Pathfinding : MonoBehaviour
         GetNavMeshAgent();
         target = SetDestination();
         npcRigidbody = gameObject.AddComponent<Rigidbody>();
+        npcRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;     //temp
         agent.avoidancePriority = Random.Range(10, 50);
         agent.speed = 2;        //temp
     }
