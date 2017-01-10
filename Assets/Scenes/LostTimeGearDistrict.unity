@@ -585,8 +585,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 656d2f571eba03a48bc9a2d29b76bd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSpeed: 0
-  runSpeed: 0
   joystick: {fileID: 1928312904}
 --- !u!114 &116290817
 MonoBehaviour:
@@ -596,12 +594,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 116290813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 000de87c4707df24ab90b28a16860326, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fea1eb02a86c6340884ccea40db7180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 116290814}
-  toggle: 0
-  jump: 0
+  turnSpeed: 0
+  runSpeed: 0
+  walkSpeed: 0
+  inputMode: 1
 --- !u!136 &116290818
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2803,7 +2803,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 725e467449b5374429329c3d1e0eb7f6, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 725e467449b5374429329c3d1e0eb7f6, type: 3}
       propertyPath: m_Name
@@ -3174,7 +3174,7 @@ Transform:
   - {fileID: 1659073804}
   - {fileID: 175669259}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &704985969
 Prefab:
@@ -4036,10 +4036,9 @@ Transform:
   m_LocalPosition: {x: 21.846321, y: 0.34387505, z: 0.214}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 828031554}
   - {fileID: 539933234}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &983487529
 Prefab:
