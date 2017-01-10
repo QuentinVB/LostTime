@@ -5,12 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Player
-  - New Tag
   - Wall
   - NPC
   - Item
   - House
   - Entity
+  - Ground
+  - Waypoint
   layers:
   - Default
   - TransparentFX
