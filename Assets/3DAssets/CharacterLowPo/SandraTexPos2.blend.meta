@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6a2d18f33dfc67e45beacc4112b2364d
-timeCreated: 1483718367
+timeCreated: 1484209506
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -37,13 +37,19 @@ ModelImporter:
     400028: Shoulder_R
     4300000: body
     7400000: Default Take
-    7400002: Fixe
-    7400004: Idle
-    7400006: Idle2
-    7400008: Jump1
-    7400010: Run
-    7400012: RunL
-    7400014: RunR
+    7400002: CatchGround
+    7400004: CatchTable
+    7400006: Fixe
+    7400008: Idle
+    7400010: Idle2
+    7400012: Idle3
+    7400014: Jump1
+    7400016: Run
+    7400018: RunL
+    7400020: RunR
+    7400022: Walk
+    7400024: WalkL
+    7400026: WalkR
     9500000: //RootNode
     13700000: body
   materials:
@@ -71,7 +77,7 @@ ModelImporter:
       name: Default Take
       takeName: Default Take
       firstFrame: 0
-      lastFrame: 49
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -79,6 +85,122 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: CTRL_chara
+        weight: 1
+      - path: CTRL_chara/Armature
+        weight: 1
+      - path: CTRL_chara/Armature/belly
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/head
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L/Arm_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R/Arm_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L/leg_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R/leg_R
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: CatchGround
+      takeName: CatchGround
+      firstFrame: 0
+      lastFrame: 99
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: CTRL_chara
+        weight: 1
+      - path: CTRL_chara/Armature
+        weight: 1
+      - path: CTRL_chara/Armature/belly
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/head
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L/Arm_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R/Arm_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L/leg_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R/leg_R
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: CatchTable
+      takeName: CatchTable
+      firstFrame: 0
+      lastFrame: 78
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -300,6 +422,64 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: Idle3
+      takeName: Idle3
+      firstFrame: 0
+      lastFrame: 249
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: CTRL_chara
+        weight: 1
+      - path: CTRL_chara/Armature
+        weight: 1
+      - path: CTRL_chara/Armature/belly
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/head
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L/Arm_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R/Arm_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L/leg_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R/leg_R
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: Jump1
       takeName: Jump1
       firstFrame: 0
@@ -310,7 +490,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -478,6 +658,180 @@ ModelImporter:
       takeName: RunR
       firstFrame: 0
       lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: CTRL_chara
+        weight: 1
+      - path: CTRL_chara/Armature
+        weight: 1
+      - path: CTRL_chara/Armature/belly
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/head
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L/Arm_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R/Arm_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L/leg_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R/leg_R
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: CTRL_chara
+        weight: 1
+      - path: CTRL_chara/Armature
+        weight: 1
+      - path: CTRL_chara/Armature/belly
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/head
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L/Arm_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R/Arm_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L/leg_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R/leg_R
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WalkL
+      takeName: WalkL
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body
+        weight: 1
+      - path: CTRL_chara
+        weight: 1
+      - path: CTRL_chara/Armature
+        weight: 1
+      - path: CTRL_chara/Armature/belly
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/head
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_L/Arm_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/body_0/Shoulder_R/Arm_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_L/leg_L
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R
+        weight: 1
+      - path: CTRL_chara/Armature/belly/femur_R/leg_R
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WalkR
+      takeName: WalkR
+      firstFrame: 0
+      lastFrame: 16
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
