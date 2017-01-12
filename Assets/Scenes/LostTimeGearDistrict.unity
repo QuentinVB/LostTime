@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70f867ccec22f543acf4dd9b1ab58bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftJoystick: {fileID: 1928312904}
+  leftJoystick: {fileID: 1928312904}
   animCtrl: {fileID: 116290817}
   speed: 0
 --- !u!114 &116290817
@@ -5941,9 +5941,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1327761477}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cae8ed4064d191c4da6caedd21439752, type: 3}
+  m_Script: {fileID: 11500000, guid: 82fd329e3ac9739489f6c0e6db9fb9e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightJoystick: {fileID: 1121442807}
 --- !u!1001 &1347573796
 Prefab:
   m_ObjectHideFlags: 0

@@ -47,8 +47,6 @@ public class PlayerMovement : MonoBehaviour
         //Rotation   
         PlayerRotation(leftJoystick.LeftHorizontal());
         //Debug.Log(string.Format("H: {0}, V : {1}, LJS : {2}", LeftJoystick.LeftHorizontal(), LeftJoystick.LeftVertical(), LeftJoystick.IsLeftJoystickUsed));
-        //Debug.Log(string.Format("X: {0}", move.x));
-
     }
     //initialize and sets property of the NavMeshObstacle
     private void SetPlayerObstacle()
