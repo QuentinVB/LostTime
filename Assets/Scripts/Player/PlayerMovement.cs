@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         
         animCtrl = GetComponent<CharaAnimCtrl>();
 
-        //SetPlayerObstacle();
+        SetPlayerObstacle();
     }
 
     // Update is called once per frame
@@ -36,37 +36,28 @@ public class PlayerMovement : MonoBehaviour
         //send to the animator
         animCtrl.InputH = LeftJoystick.LeftHorizontal();
         animCtrl.InputV = LeftJoystick.LeftVertical();
-        
+   
+        animCtrl.WalkMode = WalkMode.running;
+        //Movement
+        Vector3 move = new Vector3();
+        move.x = -LeftJoystick.LeftVertical() * Time.deltaTime * speed;
+        transform.Translate(move, Space.Self);
 
-        if (animCtrl.AwaitThisUpdate == false)
-        {
-            animCtrl.WalkMode = WalkMode.running;
-            //Movement
-            Vector3 move = new Vector3();
-            move.x = -LeftJoystick.LeftVertical() * Time.deltaTime * speed;
-            transform.Translate(move, Space.Self);
-
-            //Rotation   
-            PlayerRotation(LeftJoystick.LeftHorizontal());
-            //Debug.Log(string.Format("H: {0}, V : {1}, LJS : {2}", LeftJoystick.LeftHorizontal(), LeftJoystick.LeftVertical(), LeftJoystick.IsLeftJoystickUsed));
-            //Debug.Log(string.Format("X: {0}", move.x));
-        }
-        else
-        {
-           
-        }
-        
+        //Rotation   
+        PlayerRotation(LeftJoystick.LeftHorizontal());
+        //Debug.Log(string.Format("H: {0}, V : {1}, LJS : {2}", LeftJoystick.LeftHorizontal(), LeftJoystick.LeftVertical(), LeftJoystick.IsLeftJoystickUsed));
+        //Debug.Log(string.Format("X: {0}", move.x));
 
     }
     //initialize and sets property of the NavMeshObstacle
-    //private void SetPlayerObstacle()
-    //{
-    //    playerObstacle.radius = 1;
-    //    playerObstacle.carving = true;
-    //    playerObstacle.carvingMoveThreshold = 0.1f;
-    //    playerObstacle.carvingTimeToStationary = 0.2f;
-    //    playerObstacle.carveOnlyStationary = true;
-    //}
+    private void SetPlayerObstacle()
+    {
+        playerObstacle.radius = 1;
+        playerObstacle.carving = true;
+        playerObstacle.carvingMoveThreshold = 0.1f;
+        playerObstacle.carvingTimeToStationary = 0.2f;
+        playerObstacle.carveOnlyStationary = true;
+    }
     private void PlayerRotation(float xAxis)
     {
         transform.Rotate(Vector3.up, Time.deltaTime * xAxis * 100);       

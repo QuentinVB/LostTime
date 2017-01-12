@@ -21,12 +21,13 @@ public class CharaAnimCtrl : MonoBehaviour {
     //public float runSpeed;
     //public float walkSpeed;
     public InputMode inputMode = InputMode.byTransform;
+    public WalkMode walkmode = WalkMode.idle;
+
 
     private float inputH;
     private float inputV;
     private float normalizedHorizontal;
     private float normalizedVertical;
-    private WalkMode walkmode;
 
     private bool isWalking;
     private bool isRunning;
@@ -34,18 +35,23 @@ public class CharaAnimCtrl : MonoBehaviour {
     private bool isCatchingGround;
     private bool isCatchingTable;
 
-    private int waitCounter = 0;
-    private int waitDelay = 800;
+    private int waitForBoringCounter = 0;
+    private int waitForBoringDelay = 800;
 
     private bool awaitThisUpdate;
+    private float waitForActionCounter = 0; //in s
+    private float waitForActionDelay = 0; //in s
 
-    private Rigidbody rigidbody;
+    private Transform transformOfTheCharacter;
+    private Vector3 lastPosition;
+    private Quaternion lastRotation;
+    private float computedVelocity;
 
     // Use this for initialization
     void Start ()
     {
         anim = GetComponent<Animator>();
-        rigidbody = GetComponent<Rigidbody>();
+        transformOfTheCharacter= GetComponent<Transform>();
 
         isWalking = anim.GetBool("isWalking");
         isRunning = anim.GetBool("isRunning");
@@ -54,7 +60,6 @@ public class CharaAnimCtrl : MonoBehaviour {
         isCatchingTable = anim.GetBool("isCatchingTable");
 
         awaitThisUpdate = false;
-        walkmode = WalkMode.idle;
     }
 
     // Update is called once per frame
@@ -97,7 +102,17 @@ public class CharaAnimCtrl : MonoBehaviour {
         anim.SetBool("isCatchingGround", isCatchingGround);
         anim.SetBool("isCatchingTable", isCatchingTable);
 
-        Debug.Log(string.Format("{0},  {1}, {2},{3}", normalizedVertical, normalizedHorizontal, waitCounter, isRunning));
+        //if set to true : no move !
+        if (AwaitThisUpdate == true)
+        {
+            transformOfTheCharacter.position = lastPosition;
+        }
+
+        //save the last coordinate for computing
+        lastPosition = transformOfTheCharacter.position;
+        lastRotation = transformOfTheCharacter.rotation;
+
+        Debug.Log(string.Format("{0},  {1}, {2},{3}", normalizedVertical, normalizedHorizontal, waitForBoringCounter, isRunning));
 
     }
     public float InputH { get { return inputH; } set { inputH = Mathf.Clamp(value, -1.0f, 1.0f); } }
@@ -111,15 +126,16 @@ public class CharaAnimCtrl : MonoBehaviour {
     }
     private float Vertical()
     {
-        return Mathf.Clamp(rigidbody.velocity.x, -1.0f, 1.0f); 
+        computedVelocity = (lastPosition.magnitude - transformOfTheCharacter.position.magnitude)*Time.deltaTime;
+        return Mathf.Clamp(computedVelocity, -1.0f, 1.0f); 
     }
     private void getBored()
     {
         if (normalizedHorizontal == 0 || normalizedVertical == 0)
         {
-            waitCounter++;
+            waitForBoringCounter++;
 
-            if (waitCounter > waitDelay)
+            if (waitForBoringCounter > waitForBoringDelay)
             {
                 string idleState;
                 int randomNumber = UnityEngine.Random.Range(0, 1);
@@ -136,12 +152,12 @@ public class CharaAnimCtrl : MonoBehaviour {
                         break;
                 }
                 anim.Play(idleState, -1, 0f);
-                waitCounter = 0;
+                waitForBoringCounter = 0;
             }
         }
         else
         {
-            waitCounter = 0;
+            waitForBoringCounter = 0;
         }
     }
     private void resetBool()
