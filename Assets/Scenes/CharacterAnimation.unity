@@ -267,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 392646719}
   inputMode: 1
-  walkmode: 0
+  walkmode: 2
 --- !u!114 &392646721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,8 +279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70f867ccec22f543acf4dd9b1ab58bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftJoystick: {fileID: 456524674}
+  leftJoystick: {fileID: 456524674}
   animCtrl: {fileID: 392646720}
+  speed: 0
 --- !u!136 &392646722
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -309,6 +310,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!208 &392646724
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 392646718}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.71, y: 1.71, z: 0.67}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.68, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &456524672
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +810,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1076941883}
-  - component: {fileID: 1076941884}
   m_Layer: 0
   m_Name: CameraTarget
   m_TagString: Untagged
@@ -815,17 +830,6 @@ Transform:
   m_Father: {fileID: 107612475}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1076941884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1076941882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cae8ed4064d191c4da6caedd21439752, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1122496551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,6 +1049,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1519763141}
+  - component: {fileID: 1519763142}
   m_Layer: 0
   m_Name: CameraPosition
   m_TagString: Untagged
@@ -1065,6 +1070,18 @@ Transform:
   m_Father: {fileID: 687467130}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1519763142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1519763140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82fd329e3ac9739489f6c0e6db9fb9e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightJoystick: {fileID: 111548356}
 --- !u!1 &1545441514
 GameObject:
   m_ObjectHideFlags: 0

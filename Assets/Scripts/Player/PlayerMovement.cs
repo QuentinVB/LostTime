@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public VirtualLeftJoystick LeftJoystick;
+    public VirtualLeftJoystick leftJoystick;
     public CharaAnimCtrl animCtrl;
+    public float speed;
+
     private Rigidbody playerRigidbody;
     private Transform targetMovement;
     private Vector3 direction;
         
     private NavMeshObstacle playerObstacle;
-
-    private float speed;
 
     // Use this for initialization
     void Start()
@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         
         animCtrl = GetComponent<CharaAnimCtrl>();
+        playerObstacle = GetComponent<NavMeshObstacle>();
 
         SetPlayerObstacle();
     }
@@ -34,17 +35,17 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //send to the animator
-        animCtrl.InputH = LeftJoystick.LeftHorizontal();
-        animCtrl.InputV = LeftJoystick.LeftVertical();
+        animCtrl.InputH = leftJoystick.LeftHorizontal();
+        animCtrl.InputV = leftJoystick.LeftVertical();
    
         animCtrl.WalkMode = WalkMode.running;
         //Movement
         Vector3 move = new Vector3();
-        move.x = -LeftJoystick.LeftVertical() * Time.deltaTime * speed;
+        move.z = leftJoystick.LeftVertical() * Time.deltaTime * speed;
         transform.Translate(move, Space.Self);
 
         //Rotation   
-        PlayerRotation(LeftJoystick.LeftHorizontal());
+        PlayerRotation(leftJoystick.LeftHorizontal());
         //Debug.Log(string.Format("H: {0}, V : {1}, LJS : {2}", LeftJoystick.LeftHorizontal(), LeftJoystick.LeftVertical(), LeftJoystick.IsLeftJoystickUsed));
         //Debug.Log(string.Format("X: {0}", move.x));
 

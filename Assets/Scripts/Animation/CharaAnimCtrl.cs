@@ -112,7 +112,7 @@ public class CharaAnimCtrl : MonoBehaviour {
         lastPosition = transformOfTheCharacter.position;
         lastRotation = transformOfTheCharacter.rotation;
 
-        Debug.Log(string.Format("{0},  {1}, {2},{3}", normalizedVertical, normalizedHorizontal, waitForBoringCounter, isRunning));
+        //Debug.Log(string.Format("{0},  {1}, {2},{3}", normalizedVertical, normalizedHorizontal, waitForBoringCounter, isRunning));
 
     }
     public float InputH { get { return inputH; } set { inputH = Mathf.Clamp(value, -1.0f, 1.0f); } }
