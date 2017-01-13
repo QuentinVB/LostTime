@@ -95,7 +95,7 @@ public class CharaAnimCtrl : MonoBehaviour {
         anim.SetFloat("horizontal", normalizedHorizontal);
         anim.SetFloat("vertical", normalizedVertical);
 
-        anim.SetBool("isWalking",isWalking);
+        anim.SetBool("isWalking", isWalking);
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isJumping", isJumping);
 

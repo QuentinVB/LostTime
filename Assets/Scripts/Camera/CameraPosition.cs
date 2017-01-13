@@ -17,7 +17,7 @@ public class CameraPosition : MonoBehaviour {
     void Start () {
         rotationDelta = 50;
         translateDelta = 0.1f;
-        resetDelta = 0.4f;
+        resetDelta = 0.1f;
         initial = transform.localPosition;
     }
 	
