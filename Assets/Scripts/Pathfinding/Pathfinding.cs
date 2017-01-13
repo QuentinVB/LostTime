@@ -55,6 +55,7 @@ public class Pathfinding : MonoBehaviour
     private void MoveTo(Vector3 target)
     {
         agent.SetDestination(target);
+        
     }
 
     //Will set the NavMeshAgent and its properties
