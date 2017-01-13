@@ -9,47 +9,61 @@ interface IpathFindingEntity
     // par vivan
 }
 
-public class EntitysInstaller : MonoInstaller
+class Pnjs : MonoBehaviour
 {
-    public override void InstallBindings()
-    {
-        EntityInstaller.Install(Container);
-        EntityInstaller.Install(Container);
-        EntityInstaller.Install(Container);
-        EntityInstaller.Install(Container);
-        EntityInstaller.Install(Container);
+    List<pnj> blop;
 
+    Pnjs()
+    {
+        blop = new List<pnj>();
+        blop.Add(new pnj("Fleuriste", 1));
+        blop.Add(new pnj("Forgeron", 1));
+        blop.Add(new pnj());
     }
 
-}
-
-
-public class EntityInstaller : Installer<EntityInstaller>
-{
-
-    public struct Who
+    class pnj
     {
-        public string name;
-        public Who(string name){
-            this.name = name;
+        public string namepnj;
+        public int Idpnj;
+
+        public pnj(string v, int id)
+        {
+            this.namepnj = v;
+            this.Idpnj = id;
+        }
+        public pnj()
+        {
+            this.namepnj = "";
+            this.Idpnj = -1;
         }
     }
 
-
-
-
-    public override void InstallBindings()
+    public class EntitysInstaller : MonoInstaller
     {
+        public override void InstallBindings()
+        {
+            Pnjs toto = new Pnjs();
+            foreach (pnj s in toto.blop)
+                EntityInstaller.Install(Container);
+        }
+    }
 
-
-        Container.Bind<Who>();
-        Container.Bind<IpositionEntity>();
-        Container.Bind<IinteractionWithUser>(); // done 
-        Container.Bind<IbehaviourEntity>(); // done
-        //Container.Bind<IpathFindingEntity>().FromInstance(new pathFindingEntity());
-        Container.Bind<Entity>();
+    public class EntityInstaller : Installer<EntityInstaller>
+    {
+        public override void InstallBindings()
+        {
+            Pnjs toto = new Pnjs();
+            foreach (pnj s in toto.blop)
+                Container.Bind<string>().FromInstance(s.namepnj); // verifier difference entre assingle ,transcient, ascached
+            Container.Bind<IpositionEntity>();
+            Container.Bind<IinteractionWithUser>(); // done 
+            Container.Bind<IbehaviourEntity>(); // done
+                                                //Container.Bind<IpathFindingEntity>().FromInstance(new pathFindingEntity());
+            Container.Bind<Entity>();
+        }
     }
 }
+
 
 
 public class Entity : MonoBehaviour
