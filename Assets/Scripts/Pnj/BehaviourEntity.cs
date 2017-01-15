@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+
 
 interface IbehaviourEntity
 {
@@ -10,49 +9,25 @@ interface IbehaviourEntity
 
 public class BehaviourEntity : MonoBehaviour, IbehaviourEntity
 {
-
-    delegate void ActionFunc();
-    //declarer un enum EnumActionFunc et le setter avec l'xml 
+    QuestManager questManager = null;
+    string currentQuest = null;
+    string currentAction = null;
+    List<Quest> questList = null;
 
     // Use this for initialization
-    void Start () {
-
-        Dictionary<int, Delegate> actionFuncTab = new Dictionary<int, Delegate>();
-        ActionFunc dialogue = dialogueFunction;
-        ActionFunc toggle = toggleFunction;
-        ActionFunc jump = jumpFunction;
-        ActionFunc next = nextFunction;
-
-        actionFuncTab.Add(0, dialogue);
-        actionFuncTab.Add(1, toggle);
-        actionFuncTab.Add(2, jump);
-        actionFuncTab.Add(3, next);
-    }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     private void OnMouseUp()
     {
+        questManager = GameObject.Find("QuestManager").GetComponent<QuestManager>();
+        currentQuest = questManager.questContainer.nameOfcurrentQuest;
+        questList = questManager.questContainer.questCollection;
+        
+        }
+        // checker s'il y a eu une mise a jour dans le fichier xml
+        // checker si la quete en cours concerne le pnj courant
+        // checker si linstruction en cours nous concerne 
+        // executer l'instruction
     }
 
-    public void dialogueFunction()
-    {
 
-    }
-    public void toggleFunction()
-    {
 
-    }
-
-    public void jumpFunction()
-    {
-
-    }
-    public void nextFunction()
-    {
-
-    }
 }

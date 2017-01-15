@@ -1,13 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
-
-//interface IbehaviourEntity
-//{
-
-//}
-
 
 
 public class ForgeronController : MonoBehaviour, IbehaviourEntity
