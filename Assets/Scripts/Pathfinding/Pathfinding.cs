@@ -10,16 +10,34 @@ public class Pathfinding : MonoBehaviour
     public List<GameObject> Waypoints = new List<GameObject>();
     public Rigidbody npcRigidbody;
     private Collider last;
+    int _job = 0;
+    bool _willMove = true;
 
     // Use this for initialization
     void Start()
     {
-        GetNavMeshAgent();
-        target = SetDestination();
-        npcRigidbody = gameObject.AddComponent<Rigidbody>();
-        npcRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;     //temp
-        agent.avoidancePriority = Random.Range(10, 50);
-        agent.speed = 2;        //temp
+        //If NPC never moves, remove Pathfinding script
+        /*if(Toolbox.JobToString(_job)=="neverMoving" || _willMove == false)
+        {
+            Destroy(GetComponent("Pathfinding"));
+        }
+        else*/
+        {
+            //Search for rigidbody - If not, create one.
+            if (GetComponent<Rigidbody>() == null)
+            {
+                GetRigidBody();
+            }
+            //Search for Get waypoints with tags as given
+
+            //Sets NavMeshAgent values
+            if (GetComponent<NavMeshAgent>() == null)
+            {
+                GetNavMeshAgent();
+            }
+            //Set destination
+            target = SetDestination();
+        }
     }
 
     // Update is called once per frame
@@ -61,5 +79,19 @@ public class Pathfinding : MonoBehaviour
     private void GetNavMeshAgent()
     {
         agent = gameObject.AddComponent<NavMeshAgent>();
+        agent.avoidancePriority = Random.Range(10, 50);
+        agent.speed = 2;
+    }
+    //Will set the Rigidbody and its properties
+    private void GetRigidBody()
+    {
+        npcRigidbody = gameObject.AddComponent<Rigidbody>();
+        npcRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+    }
+
+    public Pathfinding(int job, bool willMove)
+    {
+        _job = job;
+        _willMove = willMove;
     }
 }
