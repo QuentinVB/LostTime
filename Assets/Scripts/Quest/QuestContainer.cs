@@ -34,14 +34,20 @@ public class UsefulEntityForThisQuest
     int id;
 }
 
+public struct actionBooleenByEntityPair
+{
+    public string Key;
+    public bool Value;
+}
+
 public class Action
 {
-    public string nameofAction;
+    private string nameofAction { get; set; }
     string typeOfAction; // choix multiple ou serie d'action (ActionJump or ActionNext)
     int actionFunc;
 
     //public Dictionary<string, bool> actionBooleenByEntity = new Dictionary<string, bool>();
-    public List<KeyValuePair<string, bool>> actionBooleenByEntity = new List<KeyValuePair<string, bool>>();
+    public List<actionBooleenByEntityPair> actionsBooleenByEntity = new List<actionBooleenByEntityPair>();
 
     enum EnumActionFunc
     {

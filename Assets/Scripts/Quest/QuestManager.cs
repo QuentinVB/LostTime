@@ -75,7 +75,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public string setCurrentActionList(string entityName)
+    public void setCurrentActionList(string entityName)
     {
 
         foreach (Quest quest in questContainer.questCollection)
@@ -86,15 +86,18 @@ public class QuestManager : MonoBehaviour
                 {
                     if (action.nameofAction == currentAction)
                     {
-                        foreach (KeyValuePair<string, bool> actionBooleenByEntity in action.actionsBooleenByEntity)
-                            if (actionBooleenByEntity.Key == entityName)
-                                actionBooleenByEntity.Value = false;
+                        int cpt = 0;
+                        foreach (actionBooleenByEntityPair actionBooleenByEntity in action.actionsBooleenByEntity)
+                        {
+                            int index = action.actionsBooleenByEntity.IndexOf(actionBooleenByEntity);
+                            action.actionsBooleenByEntity[index] = true;
+                        }
                     }
                 }
             }
         }
+
+
+        // getCurrentActionEntityList()
     }
-
-
-    getCurrentActionEntityList()
 }
