@@ -31,7 +31,6 @@ public class Pathfinding : MonoBehaviour
     //Will set another waypoint when destination is reached
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(this);
         if(other != last)
         {
             do {
