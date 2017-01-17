@@ -12,6 +12,7 @@ TagManager:
   - Entity
   - Ground
   - Waypoint
+  - StreetLight
   layers:
   - Default
   - TransparentFX
