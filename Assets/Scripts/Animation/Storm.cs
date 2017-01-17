@@ -21,7 +21,7 @@ public class Storm : MonoBehaviour
         if (clak == true) { image.color = new Color(1, 1, 1, 0); }
 
         outrand = Random.Range(0, 100);
-        Debug.Log(outrand); ;
+        //Debug.Log(outrand); ;
         if (outrand == 1)
         {
             image.color = new Color(1, 1, 1, 1);
