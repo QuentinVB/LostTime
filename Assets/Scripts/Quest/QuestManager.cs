@@ -7,9 +7,10 @@ using System.Xml.Serialization;
 
 public class QuestManager : MonoBehaviour
 {
-    private delegate void ActionFunc();
-    public QuestContainer questContainer { get { return questContainer; } set { questContainer = value; } }
-    string currentQuest = null;
+    private delegate void ActionFunc(string Entity);
+    public QuestContainer questContainer;
+    public List<UsefulEntityForCurrentQuest> usefulEntityForCurrentQuest;
+    public string currentQuest = null;
     string currentAction = null;
 
     //declarer un enum EnumActionFunc et le setter avec l'xml 
@@ -32,28 +33,71 @@ public class QuestManager : MonoBehaviour
         actionFuncTab.Add(4, end);
     }
 
-    public void dialogueFunction()
+    public void dialogueFunction(string Entity)
+    {
+
+    }
+    public void toggleFunction(string entityName)
+    {
+        foreach (Quest quest in questContainer.questCollection) // navigation dans la liste des quest
+        {
+            if (quest.nameOfQuest.Equals(currentQuest))
+            {
+                foreach (Action action in quest.action) // navigtion liste action
+                {
+                    if (action.nameofAction.Equals(currentAction))
+                    {
+                        foreach (KeyValuePair<string, bool> actionBooleenByEntity in action.actionsBooleenByEntity) // navigation dans la liste des entité concernée par l'action en cours
+                        {
+                            if (actionBooleenByEntity.Key.Equals(entityName))
+                            {
+                                int index = action.actionsBooleenByEntity.IndexOf(actionBooleenByEntity); // recupere  dans la liste des entité concernée par l'action en cours , l'entité qui nous interresse
+                                action.actionsBooleenByEntity.RemoveAt(index); // supprime l'action
+                                action.actionsBooleenByEntity.Insert(index, new KeyValuePair<string, bool>(entityName, true)); // recree l'action et la set
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    public void jumpFunction(string entityName)
+    {
+        foreach (Quest quest in questContainer.questCollection) // navigation dans la liste des quest
+        {
+            if (quest.nameOfQuest.Equals(currentQuest))
+            {
+                foreach (Action action in quest.action) // navigtion liste action
+                {
+                    if (action.nameofAction.Equals(currentAction))
+                    {
+                        foreach (KeyValuePair<string, bool> actionBooleenByEntity in action.actionsBooleenByEntity) // navigation dans la liste des entité concernée par l'action en cours
+                        {
+                            if (actionBooleenByEntity.Key.Equals(entityName))
+                            {
+                                int index = action.actionsBooleenByEntity.IndexOf(actionBooleenByEntity); // recupere  dans la liste des entité concernée par l'action en cours , l'entité qui nous interresse
+                                action.actionsBooleenByEntity.RemoveAt(index); // supprime l'action
+                                action.actionsBooleenByEntity.Insert(index, new KeyValuePair<string, bool>(entityName, true)); // recree l'action et la set
+                                
+                               // Write()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public void nextFunction(string Entity)
     {
 
     }
 
-    public void toggleFunction()
+    public void endFunction(string Entity)
     {
-
-    }
-
-    public void jumpFunction()
-    {
-
-    }
-    public void nextFunction()
-    {
-
-    }
-
-    public void endFunction()
-    {
-
+        // destruction  de l'entité (Idispose)
     }
 
     public void Write(QuestContainer questContainer, string FileName)
@@ -75,29 +119,20 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void setCurrentActionList(string entityName)
-    {
 
-        foreach (Quest quest in questContainer.questCollection)
+
+
+
+    public List<UsefulEntityForCurrentQuest> getCurrentEntityList()
+    {
+        foreach(Quest quest in questContainer.questCollection) // navigation dans la liste des quest
         {
-            if (quest.nameOfQuest == currentQuest)
+            if (quest.nameOfQuest.Equals(currentQuest))
             {
-                foreach (Action action in quest.action)
-                {
-                    if (action.nameofAction == currentAction)
-                    {
-                        int cpt = 0;
-                        foreach (actionBooleenByEntityPair actionBooleenByEntity in action.actionsBooleenByEntity)
-                        {
-                            int index = action.actionsBooleenByEntity.IndexOf(actionBooleenByEntity);
-                            action.actionsBooleenByEntity[index] = true;
-                        }
-                    }
-                }
+                usefulEntityForCurrentQuest = quest.usefulEntityForCurrentQuest;
+                // a terminer
             }
         }
-
-
-        // getCurrentActionEntityList()
+        return usefulEntityForCurrentQuest;
     }
 }

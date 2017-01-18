@@ -11,30 +11,40 @@ interface IpathFindingEntity
 
 class Pnjs : MonoBehaviour
 {
-    List<pnj> blop;
+    List<UsefulEntityForCurrentQuest> stamp;
+    List<UsefulEntityForCurrentQuest> usefulEntity;
+    QuestManager questManager;
+    string currentQuest = null;
+    EntitysInstaller entitysInstaller;
 
     Pnjs()
     {
-        blop = new List<pnj>();
-        blop.Add(new pnj("Fleuriste", 1));
-        blop.Add(new pnj("Forgeron", 1));
-        blop.Add(new pnj());
+        entitysInstaller = new EntitysInstaller();
+        questManager = GameObject.Find("QuestManager").GetComponent<QuestManager>();
+    }
+    private void Update()
+    {
+        if (currentQuest != questManager.currentQuest)
+        {
+            stamp = questManager.getCurrentEntityList();// a terminer insert nouveau entity dans la list
+            putOnEntitysOnListOnlyIfDoesntExist();
+            entitysInstaller.InstallBindings();
+            usefulEntity = stamp;
+            currentQuest = questManager.currentQuest;
+        }
     }
 
-    class pnj
+    public void putOnEntitysOnListOnlyIfDoesntExist()
     {
-        public string namepnj;
-        public int Idpnj;
-
-        public pnj(string v, int id)
+        foreach(UsefulEntityForCurrentQuest stampElement in stamp)
         {
-            this.namepnj = v;
-            this.Idpnj = id;
-        }
-        public pnj()
-        {
-            this.namepnj = "";
-            this.Idpnj = -1;
+             foreach(UsefulEntityForCurrentQuest usefulEntityElement in usefulEntity)
+            {
+                if (usefulEntityElement.name.Equals(stampElement))
+                {
+                    stamp.Remove(stampElement);
+                }
+            }
         }
     }
 
@@ -43,7 +53,7 @@ class Pnjs : MonoBehaviour
         public override void InstallBindings()
         {
             Pnjs toto = new Pnjs();
-            foreach (pnj s in toto.blop)
+            foreach (UsefulEntityForCurrentQuest usefulEntity in toto.stamp)
                 EntityInstaller.Install(Container);
         }
     }
@@ -53,8 +63,8 @@ class Pnjs : MonoBehaviour
         public override void InstallBindings()
         {
             Pnjs toto = new Pnjs();
-            foreach (pnj s in toto.blop)
-                Container.Bind<string>().FromInstance(s.namepnj); // verifier difference entre assingle ,transcient, ascached
+            foreach (UsefulEntityForCurrentQuest usefulEntity in toto.stamp)
+                Container.Bind<UsefulEntityForCurrentQuest>().FromInstance(usefulEntity); // verifier difference entre assingle ,transcient, ascached
             Container.Bind<IpositionEntity>();
             Container.Bind<IinteractionWithUser>(); // done 
             Container.Bind<IbehaviourEntity>(); // done
@@ -68,6 +78,8 @@ class Pnjs : MonoBehaviour
 
 public class Entity : MonoBehaviour
 {
+    Transform InitialPosition;
+
     IpositionEntity positionEntity;
     IbehaviourEntity behaviourEntity;
     IpathFindingEntity pathFindingEntity;
@@ -82,39 +94,9 @@ public class Entity : MonoBehaviour
         pathFindingEntity = _pathFindingEntity;
         interactionWithUser = _interactionWithUser;
 
+        InitialPosition.position = positionEntity.getPosition();
         this.transform.position = positionEntity.getPosition();
 
     }
     //Entity se qui peut ce deplacer + comportement
-    Entity(IpositionEntity _positionEntity,
-        IpathFindingEntity _pathFindingEntity)
-    {
-        positionEntity = _positionEntity;
-        behaviourEntity = null;
-        pathFindingEntity = _pathFindingEntity;
-        interactionWithUser = null;
-
-        this.transform.position = positionEntity.getPosition();
-    }
-
-    Entity(IpositionEntity _positionEntity, IbehaviourEntity _behaviourEntity,
-        IinteractionWithUser _interactionWithUser)
-    {
-        positionEntity = _positionEntity;
-        behaviourEntity = _behaviourEntity;
-        pathFindingEntity = null;
-        interactionWithUser = _interactionWithUser;
-
-        this.transform.position = positionEntity.getPosition();
-    }
-
-    Entity(IpositionEntity _positionEntity)
-    {
-        positionEntity = _positionEntity;
-        behaviourEntity = null;
-        pathFindingEntity = null;
-        interactionWithUser = null;
-
-        this.transform.position = positionEntity.getPosition();
-    }
 }

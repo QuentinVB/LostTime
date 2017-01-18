@@ -22,33 +22,28 @@ public class Quest
     [XmlAttribute("nameOfQuest")]
     public string nameOfQuest;
     public int id;
-    List<UsefulEntityForThisQuest> usefulEntityForThisQuest = new List<UsefulEntityForThisQuest>();
+    public List<UsefulEntityForCurrentQuest> usefulEntityForCurrentQuest = new List<UsefulEntityForCurrentQuest>();
     public List<Action> action = new List<Action>();
     String nameOfcurrentAction;
 
 }
 
-public class UsefulEntityForThisQuest
+public class UsefulEntityForCurrentQuest
 {
-    string name;
-    int id;
+    public string name;
+    public int id;
 }
 
-public struct actionBooleenByEntityPair
-{
-    public string Key;
-    public bool Value;
-}
 
 public class Action
 {
-    private string nameofAction { get; set; }
+    public string nameofAction { get; set; }
     string typeOfAction; // choix multiple ou serie d'action (ActionJump or ActionNext)
     int actionFunc;
 
     //public Dictionary<string, bool> actionBooleenByEntity = new Dictionary<string, bool>();
-    public List<actionBooleenByEntityPair> actionsBooleenByEntity = new List<actionBooleenByEntityPair>();
-
+     public List<KeyValuePair<string, bool>> actionsBooleenByEntity = new List< KeyValuePair<string, bool>>();
+    //public KeyValuePair <string, bool> actionBooleenByEntityPair = new KeyValuePair<string, bool>();
     enum EnumActionFunc
     {
         dialogue = 0, // Displays a dialog between the entity and the player
