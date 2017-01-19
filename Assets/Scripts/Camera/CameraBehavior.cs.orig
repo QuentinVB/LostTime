@@ -1,0 +1,35 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class CameraBehavior : MonoBehaviour
+{
+    private GameObject camera;
+    private GameObject target;
+    private GameObject rightJoystick;
+    private Transform cameraPosition;
+    private Transform targetPlayer;
+    private Vector3 direction;
+
+    // Use this for initialization
+    void Start()
+    {
+<<<<<<< HEAD
+        cameraPosition = GameObject.Find("CameraTarget").transform;
+        targetPlayer = GameObject.Find("HeadTarget").transform;
+        rightJoystick = GameObject.Find("BackGroundRightJoystick");
+=======
+        //cameraPosition = camera.transform;
+        //targetPlayer = target.transform;
+        cameraPosition = GameObject.Find("CameraPosition").transform;
+        targetPlayer = GameObject.Find("CameraTarget").transform;
+>>>>>>> origin/CharacterAnimation
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.position = Vector3.Lerp(transform.position, cameraPosition.position, 0.1f);
+        direction = targetPlayer.transform.position - transform.position;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.1f);
+    }
+}
