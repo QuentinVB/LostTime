@@ -50,7 +50,12 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
             RightJostickInputVector = (RightJostickInputVector.magnitude > 1.0f) ? RightJostickInputVector.normalized : RightJostickInputVector;
 
             RightJoystick.rectTransform.anchoredPosition = new Vector3(RightJostickInputVector.x * (BackGroundRightJoystick.rectTransform.sizeDelta.x / 4), RightJostickInputVector.z * (BackGroundRightJoystick.rectTransform.sizeDelta.y / 4));
+<<<<<<< HEAD
+
+            //Debug.Log(RightJostickInputVector);
+=======
             
+>>>>>>> origin/InterfaceAnimation
         }
     }
 

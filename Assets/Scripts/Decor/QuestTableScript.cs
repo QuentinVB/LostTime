@@ -21,7 +21,7 @@ public class QuestTableScript : MonoBehaviour {
             if (player.Quest == false)
             {
                 ForgeronController forgeron = GameObject.Find("Forgeron").GetComponent<ForgeronController>();
-                forgeron.display.text = "Table de quête : Marteau, rencontrer le forgeron ! Récompense.";
+                //forgeron.display.text = "Table de quête : Marteau, rencontrer le forgeron ! Récompense.";                     ////////////////////////////////////////
                 Marteau.SetActive(true);
 
             }

@@ -3120,6 +3120,23 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 725e467449b5374429329c3d1e0eb7f6, type: 3}
   m_PrefabInternal: {fileID: 619752453}
+<<<<<<< HEAD
+--- !u!1 &626702103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100024, guid: 6a2d18f33dfc67e45beacc4112b2364d, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 626702108}
+  - component: {fileID: 626702104}
+  - component: {fileID: 626702105}
+  - component: {fileID: 626702107}
+  - component: {fileID: 626702106}
+  m_Layer: 0
+  m_Name: NPCJazz
+  m_TagString: NPC
+=======
 --- !u!1 &638019751
 GameObject:
   m_ObjectHideFlags: 0
@@ -3133,10 +3150,45 @@ GameObject:
   m_Layer: 5
   m_Name: InventoryControllerImage
   m_TagString: Untagged
+>>>>>>> origin/InterfaceAnimation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
+--- !u!95 &626702104
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9500000, guid: 6a2d18f33dfc67e45beacc4112b2364d,
+    type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 626702103}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 6a2d18f33dfc67e45beacc4112b2364d, type: 3}
+  m_Controller: {fileID: 9100000, guid: 99eb81e82c873604b9ed7d4d4c1028d3, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!136 &626702105
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 626702103}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.92
+  m_Height: 3.394268
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.62, z: 0}
+--- !u!114 &626702106
+=======
 --- !u!224 &638019752
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3156,38 +3208,25 @@ RectTransform:
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &638019753
+>>>>>>> origin/InterfaceAnimation
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 638019751}
+<<<<<<< HEAD
+  m_GameObject: {fileID: 626702103}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 968ea264bda2bfc40b85d34f08a2c80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8824e0e179fdb6c44a8a9ef91193b4d4, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &638019754
-CanvasRenderer:
+  anim: {fileID: 626702104}
+  inputMode: 0
+  walkmode: 1
+--- !u!114 &626702107
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 638019751}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 626702103}
   m_Enabled: 1
@@ -3244,6 +3283,36 @@ Transform:
   m_Father: {fileID: 710996404}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+  m_GameObject: {fileID: 638019751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 8824e0e179fdb6c44a8a9ef91193b4d4, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &638019754
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638019751}
+>>>>>>> origin/InterfaceAnimation
 --- !u!1001 &690998842
 Prefab:
   m_ObjectHideFlags: 0
@@ -3349,7 +3418,11 @@ Transform:
   - {fileID: 1659073804}
   - {fileID: 175669259}
   m_Father: {fileID: 0}
+<<<<<<< HEAD
+  m_RootOrder: 10
+=======
   m_RootOrder: 19
+>>>>>>> origin/InterfaceAnimation
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &704985969
 Prefab:
@@ -4274,7 +4347,11 @@ Transform:
   - {fileID: 539933234}
   - {fileID: 1721295342}
   m_Father: {fileID: 0}
+<<<<<<< HEAD
   m_RootOrder: 19
+=======
+  m_RootOrder: 18
+>>>>>>> origin/InterfaceAnimation
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &983487529
 Prefab:
@@ -5448,6 +5525,8 @@ MonoBehaviour:
   OntouchPlayer: 0
   collisionPlayer: {fileID: 0}
   showPnjName: 0
+<<<<<<< HEAD
+  display: {fileID: 0}
 --- !u!1 &1220146931
 GameObject:
   m_ObjectHideFlags: 0
@@ -5516,6 +5595,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+=======
+>>>>>>> origin/InterfaceAnimation
 --- !u!1001 &1220271841
 Prefab:
   m_ObjectHideFlags: 0
