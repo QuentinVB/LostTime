@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1519763140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82fd329e3ac9739489f6c0e6db9fb9e9, type: 3}
+  m_Script: {fileID: 11500000, guid: f1d41fff469c0cb4aa52d9c8dc7cc49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rightJoystick: {fileID: 111548356}
