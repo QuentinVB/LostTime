@@ -6,6 +6,23 @@ using System.Collections.Generic;
 
 public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
 {
+    private bool _isSystemConfigPanelActivated;
+    private bool _isSystemConfigAnimationOn;
+
+    private void Update()
+    {
+        if(GameObject.Find("SystemConfigurationPanel") == true && _isSystemConfigPanelActivated == true && _isSystemConfigAnimationOn == true)
+        {
+            _isSystemConfigAnimationOn = GameObject.Find("Canvas").GetComponent<AnimationUserInterfaceController>().VrtAnimToUserInterface("SystemConfigurationPanel",
+                0, 0, -1);
+        }
+        else if(GameObject.Find("SystemConfigurationPanel") == true && _isSystemConfigPanelActivated == false && _isSystemConfigAnimationOn == true)
+        {
+            _isSystemConfigAnimationOn = GameObject.Find("Canvas").GetComponent<AnimationUserInterfaceController>().VrtAnimToDestroy("SystemConfigurationPanel",
+                (GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 2 + GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 2), 1);
+        }
+    }
+
 
     public virtual void OnPointerDown(PointerEventData Map)
     {
@@ -21,8 +38,9 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
         if (GameObject.Find("SystemConfigurationPanel") == false)
         {
             GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("SystemConfigurationPanel", GameObject.Find("Canvas"), true, 
-                GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height, 0, 0, Color.grey);
-            GameObject.Find("SystemConfigurationPanel").transform.SetParent(GameObject.Find("SystemPanel").transform, true);
+                GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height,
+                0, (GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height), 
+                Color.grey);
 
             GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("SystemConfigurationPanelLabel", GameObject.Find("SystemConfigurationPanel"), true,
                 GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width, GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height,
@@ -37,12 +55,16 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
                 Color.red);
             GameObject.Find("ButtonLeaveConfiguration").AddComponent<LeavePanelScript>();
 
+            _isSystemConfigPanelActivated = true;
+            _isSystemConfigAnimationOn = true;
+
             AddGameMusicConfig();
             AddGameLanguageConfig();
         }
         else
         {
-            Destroy(GameObject.Find("SystemConfigurationPanel"));
+            _isSystemConfigPanelActivated = false;
+            _isSystemConfigAnimationOn = true;
         }
     }
 

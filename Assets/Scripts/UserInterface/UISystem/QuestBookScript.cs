@@ -5,10 +5,49 @@ using UnityEngine.EventSystems;
 public class QuestBookScript : MonoBehaviour, IPointerDownHandler
 {
     private GameObject _userInterface;
+    private string _lastQuestOpen;
+
+    private bool _isBookQuestOpen;
+    private bool _isDetailQuestOpen;
+    private bool _isQuestBookAnimationOn;
+    private bool _isDestailQuestAnimationOn;
 
     private void Start()
     {
         _userInterface = GameObject.Find("Canvas");
+    }
+
+    private void Update()
+    {
+        #region PanelQuestBookAnimationController
+
+        if (GameObject.Find("QuestBookPanel") == true && _isBookQuestOpen == true && _isQuestBookAnimationOn == true)
+        {
+            _isQuestBookAnimationOn = GameObject.Find("Canvas").GetComponent<AnimationUserInterfaceController>().VrtAnimToUserInterface("QuestBookPanel",
+                0, 0, -1);
+        }
+        else if (GameObject.Find("QuestBookPanel") == true && _isBookQuestOpen == false && _isQuestBookAnimationOn == true)
+        {
+            _isQuestBookAnimationOn = GameObject.Find("Canvas").GetComponent<AnimationUserInterfaceController>().VrtAnimToDestroy("QuestBookPanel",
+                GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 2 + GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.height / 2, 1);
+        }
+        #endregion
+
+        #region PanelDescriptionQuestAnimationController
+
+        if (GameObject.Find("QuestDetailBackGround") == true && _isDetailQuestOpen == true && _isDestailQuestAnimationOn == true)
+        {
+            _isDestailQuestAnimationOn = GameObject.Find("Canvas").GetComponent<AnimationUserInterfaceController>().HztAnimToUserInterfaceLeftToRight("QuestDetailBackGround",
+                (GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 2) +
+                    (GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 6), 0, 1);
+        }
+        else if (GameObject.Find("QuestDetailBackGround") == true && _isDetailQuestOpen == false && _isDestailQuestAnimationOn == true)
+        {
+            _isDestailQuestAnimationOn = GameObject.Find("Canvas").GetComponent<AnimationUserInterfaceController>().HztAnimToDestroyRightToLeft("QuestDetailBackGround",
+                (GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 2) - (GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 6),
+                -1);
+        } 
+        #endregion
     }
 
     public virtual void OnPointerDown(PointerEventData Map)
@@ -27,8 +66,7 @@ public class QuestBookScript : MonoBehaviour, IPointerDownHandler
             _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("QuestBookPanel", GameObject.Find("Canvas"), true,
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 2,
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height,
-                0, 0, Color.grey);
-            GameObject.Find("QuestBookPanel").transform.SetParent(GameObject.Find("SystemPanel").transform, true);
+                0, GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height + GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 2, Color.grey);
 
             _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveQuest", GameObject.Find("QuestBookPanel"), true,
                 GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 15,
@@ -37,11 +75,15 @@ public class QuestBookScript : MonoBehaviour, IPointerDownHandler
                 GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 30, Color.red);
             GameObject.Find("ButtonLeaveQuest").AddComponent<LeavePanelScript>();
 
+            _isBookQuestOpen = true;
+            _isQuestBookAnimationOn = true;
+
             ShowQuestBook();
         }
         else
         {
-            Destroy(GameObject.Find("QuestBookPanel"));
+            _isBookQuestOpen = false;   
+            _isQuestBookAnimationOn = true;
         }
 
     }
@@ -98,6 +140,9 @@ public class QuestBookScript : MonoBehaviour, IPointerDownHandler
             GameObject.Find("ActiveQuestPanelBackGroundLabel").GetComponent<RectTransform>().rect.width, GameObject.Find("ActiveQuestPanelBackGroundLabel").GetComponent<RectTransform>().rect.height,
             0, -GameObject.Find("ActiveQuestPanelBackGroundLabel").GetComponent<RectTransform>().rect.height * tmpActiveQuest, _userInterface.GetComponent<QuestBook>().GetQuestBook[var].GetQuestName,
             _userInterface.GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.UpperCenter, FontStyle.Bold, (int)(GameObject.Find("ActiveQuestPanelBackGroundLabel").GetComponent<RectTransform>().rect.height / 2), Color.black);
+        GameObject.Find(_userInterface.GetComponent<QuestBook>().GetQuestBook[var].GetQuestName).AddComponent<Button>();
+        GameObject.Find(_userInterface.GetComponent<QuestBook>().GetQuestBook[var].GetQuestName).GetComponent<Button>().onClick.AddListener(() => ShowQuestDetail(
+            _userInterface.GetComponent<QuestBook>().GetQuestBook[var].GetQuestName, _userInterface.GetComponent<QuestBook>().GetQuestBook[var].GetQuestDescription));
     }
 
     private void ShowFinishedQuestList(int var, float tmpFinishedQuest)
@@ -106,10 +151,51 @@ public class QuestBookScript : MonoBehaviour, IPointerDownHandler
             GameObject.Find("FinishedQuestPanelBackGroundLabel").GetComponent<RectTransform>().rect.width, GameObject.Find("FinishedQuestPanelBackGroundLabel").GetComponent<RectTransform>().rect.height,
             0, -GameObject.Find("FinishedQuestPanelBackGroundLabel").GetComponent<RectTransform>().rect.height * tmpFinishedQuest, _userInterface.GetComponent<QuestBook>().GetQuestBook[var].GetQuestName,
             _userInterface.GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.UpperCenter, FontStyle.Bold, (int)(GameObject.Find("FinishedQuestPanelBackGroundLabel").GetComponent<RectTransform>().rect.height / 2), Color.black);
+        GameObject.Find(_userInterface.GetComponent<QuestBook>().GetQuestBook[var].GetQuestName).AddComponent<Button>();
+        GameObject.Find(_userInterface.GetComponent<QuestBook>().GetQuestBook[var].GetQuestName).GetComponent<Button>().onClick.AddListener(() => ShowQuestDetail(
+            _userInterface.GetComponent<QuestBook>().GetQuestBook[var].GetQuestName, _userInterface.GetComponent<QuestBook>().GetQuestBook[var].GetQuestDescription));
     }
 
-    private void ShowQuestDetail()
+    private void ShowQuestDetail(string QuestLabel, string QuestDescription)
     {
+        if(GameObject.Find("QuestDetailBackGround") == false)
+        {
+            _lastQuestOpen = QuestLabel;
+            _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("QuestDetailBackGround", GameObject.Find("QuestBookPanel"), true,
+            GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 3,
+            GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.height,
+            (GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 2) - (GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 6),
+            0, Color.white);
 
+            _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("QuestDetailLabel", GameObject.Find("QuestDetailBackGround"), true,
+                GameObject.Find("QuestDetailBackGround").GetComponent<RectTransform>().rect.width,
+                GameObject.Find("QuestDetailBackGround").GetComponent<RectTransform>().rect.height,
+                0, 0, QuestLabel, _userInterface.GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.UpperCenter, FontStyle.Bold,
+                (int)(GameObject.Find("QuestDetailBackGround").GetComponent<RectTransform>().rect.height / 15f), Color.black);
+
+            _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("QuestDetailDescription", GameObject.Find("QuestDetailBackGround"), true,
+                GameObject.Find("QuestDetailBackGround").GetComponent<RectTransform>().rect.width,
+                GameObject.Find("QuestDetailBackGround").GetComponent<RectTransform>().rect.height,
+                0, 0, QuestDescription, _userInterface.GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+                (int)(GameObject.Find("QuestDetailBackGround").GetComponent<RectTransform>().rect.height / 15f), Color.black);
+
+            _isDetailQuestOpen = true;
+            _isDestailQuestAnimationOn = true;
+        }
+        else
+        {
+            if(_lastQuestOpen != QuestLabel)
+            {
+                _lastQuestOpen = QuestLabel;
+                GameObject.Find("QuestDetailLabel").GetComponent<Text>().text = QuestLabel;
+                GameObject.Find("QuestDetailDescription").GetComponent<Text>().text = QuestDescription;
+            }
+            else
+            {
+                _isDetailQuestOpen = false;
+                _isDestailQuestAnimationOn = true;
+            }
+        }
+        
     }
 }

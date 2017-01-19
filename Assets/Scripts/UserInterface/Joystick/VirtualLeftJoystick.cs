@@ -17,6 +17,14 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
         ResetPosition();
     }
 
+    //private void Update()
+    //{
+    //    if(GameObject.Find("AstridPlayer").GetComponent<>(). == true)
+    //    {
+    //        ResetPosition();
+    //    }
+    //}
+
     public void ResetPosition()
     {
         LeftJostickInputVector = new Vector3(0, 0, 0);
