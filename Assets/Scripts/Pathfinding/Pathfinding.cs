@@ -7,17 +7,24 @@ public class Pathfinding : MonoBehaviour
 {
     public Vector3 target;
     private NavMeshAgent agent;
-    public List<GameObject> Waypoints = new List<GameObject>();
+    public List<GameObject> AllWaypoints = new List<GameObject>();
+    public List<GameObject> NPCWaypoints = new List<GameObject>();
     public Rigidbody npcRigidbody;
     private Collider last;
     int _job = 0;
     bool _willMove = true;
 
+    public Pathfinding(int job, bool willMove)
+    {
+        _job = job;
+        _willMove = willMove;
+    }
+    
     // Use this for initialization
     void Start()
     {
         //If NPC never moves, remove Pathfinding script
-        /*if(Toolbox.JobToString(_job)=="neverMoving" || _willMove == false)
+        /*if(_willMove == false)
         {
             Destroy(GetComponent("Pathfinding"));
         }
@@ -28,15 +35,14 @@ public class Pathfinding : MonoBehaviour
             {
                 GetRigidBody();
             }
-            //Search for Get waypoints with tags as given
 
             //Sets NavMeshAgent values
             if (GetComponent<NavMeshAgent>() == null)
             {
                 GetNavMeshAgent();
             }
-            //Set destination
-            target = SetDestination();
+            SetWaypoints();                 //Set waypoints
+            target = SetDestination();      //Set destination
         }
     }
 
@@ -62,12 +68,10 @@ public class Pathfinding : MonoBehaviour
     //Will set the destination of the NPC
     public Vector3 SetDestination()
     {
-        //Stack waypoints in list
-        Waypoints.AddRange(GameObject.FindGameObjectsWithTag("Waypoint"));
         //Get random waypoint
-        int w = Random.Range(0, Waypoints.Count);
+        int w = Random.Range(0, NPCWaypoints.Count);
         //Set target to said waypoint
-        return Waypoints[w].transform.position;
+        return NPCWaypoints[w].transform.position;
     }
 
     private void MoveTo(Vector3 target)
@@ -88,10 +92,18 @@ public class Pathfinding : MonoBehaviour
         npcRigidbody = gameObject.AddComponent<Rigidbody>();
         npcRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
-
-    public Pathfinding(int job, bool willMove)
+    //Generates the list of waypoints for the NPC movement patern
+    private void SetWaypoints()
     {
-        _job = job;
-        _willMove = willMove;
+        //AllWaypoints list
+        AllWaypoints.AddRange(GameObject.FindGameObjectsWithTag("Waypoint"));
+        //SpecificWaypoints list
+        foreach (GameObject way in AllWaypoints)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(way.name, Toolbox.JobToString(_job), System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+            {
+                NPCWaypoints.Add(way);
+            }
+        }
     }
 }

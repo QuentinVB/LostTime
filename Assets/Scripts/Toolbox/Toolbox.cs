@@ -11,6 +11,7 @@ public class Toolbox
         none,
         blacksmith,
         clockworker,
+        nevermoving
     }
     //Translate job's int into its name
     public static string JobToString(int job)
@@ -30,8 +31,12 @@ public class Toolbox
                 translated = "clockworker";
                 break;
 
+            case 3:
+                translated = "nevermoving";
+                break;
+
             default:
-                translated = "neverMoving";
+                translated = "generic";
                 break;
         }
         return translated;
@@ -53,6 +58,10 @@ public class Toolbox
 
             case "clockworker":
                 translated = 2;
+                break;
+
+            case "nevermoving":
+                translated = 3;
                 break;
 
             default:
