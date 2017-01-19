@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterAnimationDefaultCtrl : MonoBehaviour {
+public class CharacterAnimationDefaultCtrl : MonoBehaviour
+{
     public Animator anim;
     public IWalk walk;
     public bool toggle;
