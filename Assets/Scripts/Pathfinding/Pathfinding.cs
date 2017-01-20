@@ -20,7 +20,7 @@ public class Pathfinding : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //If NPC never moves, remove Pathfinding script
+        //If NPC never moves, remove Pathfinding script from itself
         if(_willMove == false)
         {
             Destroy(GetComponent("Pathfinding"));
