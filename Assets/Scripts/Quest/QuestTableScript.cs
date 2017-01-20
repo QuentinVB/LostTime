@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class QuestTableScript : MonoBehaviour {
+public class QuestTableScript : MonoBehaviour
+{
 
     private GameObject Marteau;
-   // private Rigidbody QuestTableRigidbody;
+    // private Rigidbody QuestTableRigidbody;
 
-	void Start () {
-      //  QuestTableRigidbody = gameObject.AddComponent<Rigidbody>();
+    void Start()
+    {
+        //  QuestTableRigidbody = gameObject.AddComponent<Rigidbody>();
         Marteau = GameObject.Find("Marteau");
         Marteau.SetActive(false);
     }
@@ -23,7 +25,6 @@ public class QuestTableScript : MonoBehaviour {
                 ForgeronController forgeron = GameObject.Find("Forgeron").GetComponent<ForgeronController>();
                 //forgeron.display.text = "Table de quête : Marteau, rencontrer le forgeron ! Récompense.";                     ////////////////////////////////////////
                 Marteau.SetActive(true);
-
             }
             player.Quest = true;
         }

@@ -10,11 +10,12 @@ public class PositionEntity : MonoBehaviour, IpositionEntity
 {
     Vector3 position;
     string nameOfPosition;
+    string name;
     //string nameOfEntityAtThisPosition;
     //bool isEmpty;
 
-    void Start()
-    {
+    PositionEntity(string name)
+    { 
         position = new Vector3(10, 10, 10);
         nameOfPosition = "Park";
     }
