@@ -63,8 +63,8 @@ class Pnjs : MonoBehaviour
         public override void InstallBindings()
         {
             Pnjs toto = new Pnjs();
-            foreach (UsefulEntityForCurrentQuest usefulEntity in toto.stamp)
-                Container.Bind<UsefulEntityForCurrentQuest>().FromInstance(usefulEntity); // verifier difference entre assingle ,transcient, ascached
+           // foreach (UsefulEntityForCurrentQuest usefulEntity in toto.stamp)
+                Container.Bind<UsefulEntityForCurrentQuest>().FromInstance(); // verifier difference entre assingle ,transcient, ascached
             Container.Bind<IpositionEntity>();
             Container.Bind<IinteractionWithUser>(); // done 
             Container.Bind<IbehaviourEntity>(); // done
@@ -72,31 +72,4 @@ class Pnjs : MonoBehaviour
             Container.Bind<Entity>();
         }
     }
-}
-
-
-
-public class Entity : MonoBehaviour
-{
-    Transform InitialPosition;
-
-    IpositionEntity positionEntity;
-    IbehaviourEntity behaviourEntity;
-    IpathFindingEntity pathFindingEntity;
-    IinteractionWithUser interactionWithUser;
-
-    // Entity se qui peut ce deplacer + interagir + comportement
-    Entity(IpositionEntity _positionEntity, IbehaviourEntity _behaviourEntity,
-        IpathFindingEntity _pathFindingEntity, IinteractionWithUser _interactionWithUser)
-    {
-        positionEntity = _positionEntity;
-        behaviourEntity = _behaviourEntity;
-        pathFindingEntity = _pathFindingEntity;
-        interactionWithUser = _interactionWithUser;
-
-        InitialPosition.position = positionEntity.getPosition();
-        this.transform.position = positionEntity.getPosition();
-
-    }
-    //Entity se qui peut ce deplacer + comportement
 }
