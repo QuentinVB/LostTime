@@ -19,7 +19,7 @@ public class Pathfinding : MonoBehaviour
         npcRigidbody = gameObject.AddComponent<Rigidbody>();
         npcRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;     //temp
         agent.avoidancePriority = Random.Range(10, 50);
-        agent.speed = 2;        //temp
+        agent.speed = 0.2f;        //temp
     }
 
     // Update is called once per frame
@@ -55,6 +55,7 @@ public class Pathfinding : MonoBehaviour
     private void MoveTo(Vector3 target)
     {
         agent.SetDestination(target);
+        
     }
 
     //Will set the NavMeshAgent and its properties

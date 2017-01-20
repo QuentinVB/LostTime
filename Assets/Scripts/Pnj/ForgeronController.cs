@@ -10,7 +10,7 @@ public class ForgeronController : MonoBehaviour, IbehaviourEntity
     public Collider collisionPlayer;
     public bool showPnjName;
     string StringForgeronTalk;
-    public Text display;
+    //public Text display;                      ////////////////////////////////////////
     IinteractionWithUser interactionWithUser;
     
 
@@ -20,9 +20,9 @@ public class ForgeronController : MonoBehaviour, IbehaviourEntity
         forgeron = new Forgeron();
         showPnjName = false;
 
-        display = GameObject.Find("display").GetComponent<Text>();
-        display.verticalOverflow = VerticalWrapMode.Overflow;
-        display.text = "";
+        /*display = GameObject.Find("display").GetComponent<Text>();                ////////////////////////////////////////
+        display.verticalOverflow = VerticalWrapMode.Overflow;               ////////////////////////////////////////
+        display.text = "";*/                ////////////////////////////////////////
     }
 
     ForgeronController(IinteractionWithUser _interactionWithUser)
@@ -34,7 +34,7 @@ public class ForgeronController : MonoBehaviour, IbehaviourEntity
     {
         if (OntouchPlayer)
         {
-            display.text = "Forgeron : " + StringForgeronTalk;
+            // display.text = "Forgeron : " + StringForgeronTalk;            ////////////////////////////////////////
         }
 
         //else if (showPnjName)
@@ -70,7 +70,14 @@ public class ForgeronController : MonoBehaviour, IbehaviourEntity
         collisionPlayer = null;
         showPnjName = false;
 
-        display.text = "";
+
+
+
+       // display.text = "";////////////////////////////////////////
+
+
+
+
         //interactionWithUser.setDisplay("");
     }
 
