@@ -7,16 +7,13 @@ public class Pathfinding : MonoBehaviour
 {
     public Vector3 target;
     private NavMeshAgent agent;
-    public List<GameObject> AllWaypoints = new List<GameObject>();
-    public List<GameObject> NPCWaypoints = new List<GameObject>();
+    public List<GameObject> Waypoints = new List<GameObject>();
     public Rigidbody npcRigidbody;
     private Collider last;
-    int _job = 0;
-    bool _willMove = true;
+    bool _willMove;
 
-    public Pathfinding(int job, bool willMove)
+    public Pathfinding(bool willMove)
     {
-        _job = job;
         _willMove = willMove;
     }
     
@@ -24,11 +21,11 @@ public class Pathfinding : MonoBehaviour
     void Start()
     {
         //If NPC never moves, remove Pathfinding script
-        /*if(_willMove == false)
+        if(_willMove == false)
         {
             Destroy(GetComponent("Pathfinding"));
         }
-        else*/
+        else
         {
             //Search for rigidbody - If not, create one.
             if (GetComponent<Rigidbody>() == null)
@@ -69,9 +66,9 @@ public class Pathfinding : MonoBehaviour
     public Vector3 SetDestination()
     {
         //Get random waypoint
-        int w = Random.Range(0, NPCWaypoints.Count);
+        int w = Random.Range(0, Waypoints.Count);
         //Set target to said waypoint
-        return NPCWaypoints[w].transform.position;
+        return Waypoints[w].transform.position;
     }
 
     private void MoveTo(Vector3 target)
@@ -96,14 +93,6 @@ public class Pathfinding : MonoBehaviour
     private void SetWaypoints()
     {
         //AllWaypoints list
-        AllWaypoints.AddRange(GameObject.FindGameObjectsWithTag("Waypoint"));
-        //SpecificWaypoints list
-        foreach (GameObject way in AllWaypoints)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(way.name, Toolbox.JobToString(_job), System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-            {
-                NPCWaypoints.Add(way);
-            }
-        }
+        Waypoints.AddRange(GameObject.FindGameObjectsWithTag("Waypoint"));
     }
 }
