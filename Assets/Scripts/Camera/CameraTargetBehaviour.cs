@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class CameraTargetBehaviour : MonoBehaviour
 {
     public VirtualRightJoystick rightJoystick;
+    public VirtualLeftJoystick leftJoystick;
     private float verticalInput;
     private float horizontalInput;
     private Transform initialPos;
@@ -44,5 +45,14 @@ public class CameraTargetBehaviour : MonoBehaviour
         {
             transform.RotateAround(astridPos, Vector3.down, 30 * Time.deltaTime);
         }
+
+        //Reset position on moving
+        if (leftJoystick.LeftHorizontal() != 0.0f
+           || leftJoystick.LeftVertical() != 0.0f)
+        {
+            transform.position = Vector3.Lerp(transform.position, initialPos.position, 30 * Time.deltaTime);
+        }
+        Debug.Log(leftJoystick.LeftHorizontal());
+        Debug.Log(leftJoystick.LeftVertical());
     }
 }
