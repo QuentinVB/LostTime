@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraBehavior : MonoBehaviour
 {
-    public GameObject camera;
+    //public GameObject camera;
     public GameObject target;
     private Transform cameraPosition;
     private Transform targetPlayer;

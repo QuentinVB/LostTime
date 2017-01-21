@@ -9,9 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public CharaAnimCtrl animCtrl;
     public float speed;
 
-    private Rigidbody playerRigidbody;
-    private Transform targetMovement;
-    private Vector3 direction;
+    private Rigidbody playerRigidbody;   
         
     private NavMeshObstacle playerObstacle;
 
