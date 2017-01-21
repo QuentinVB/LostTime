@@ -25,7 +25,7 @@ public class CameraPositionTemp : MonoBehaviour {
 	void Update () {
         InputH = rightJoystick.RightHorizontal();
         InputV = rightJoystick.RightVertical();
-        Debug.Log(string.Format("{0},  {1}", InputH, InputV));
+        //Debug.Log(string.Format("{0},  {1}", InputH, InputV));
 
         //rotation (left and right)
         transform.RotateAround(transform.parent.position, Vector3.up, -InputH * rotationDelta * Time.deltaTime);

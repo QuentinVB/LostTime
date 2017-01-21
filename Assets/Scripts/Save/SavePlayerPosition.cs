@@ -4,49 +4,59 @@ using UnityEngine;
 
 public class SavePlayerPosition : MonoBehaviour {
 
-    private bool _saveStateOneUsed;
-    private bool _saveStateTwoUsed;
-    private bool _saveStateThreeUsed;
+    private int _isSaveStateOneUsed; //bool
+    private int _isSaveStateTwoUsed; //bool
+    private int _isSaveStateThreeUsed; //bool
+    private string _currentSaveStateUsed;
 
-    public void SavePlayerNewPosition(Vector3 PlayerPosition)
+    private int _SoundTrackVolume;
+    private int _SoundEffectsVolume;
+
+    private string _gameLanguageChoose;
+
+    public void LoadMenuConfig()
     {
-        PlayerPrefs.SetFloat("PlayerPositionX", PlayerPosition.x);
-        PlayerPrefs.SetFloat("PlayerPositionY", PlayerPosition.y);
-        PlayerPrefs.SetFloat("PlayerPositionZ", PlayerPosition.z);
+
     }
 
-    public void SaveStateOneMenu(int used)
+    public void LoadGameConfig()
     {
-        PlayerPrefs.SetInt("SaveStateOne", used);
     }
 
-    public void SaveStateTwoMenu(int used)
+    public void SaveCurrentGameConfig()
     {
-        PlayerPrefs.SetInt("SaveStateTwo", used);
+
     }
 
-    public void SaveStateThreeMenu(int used)
+    public int IsSaveStateOneUsed
     {
-        PlayerPrefs.SetInt("SaveStateThree", used);
+        get { return _isSaveStateOneUsed; }
     }
 
-    public bool SaveStateOneUsed
+    public int IsSaveStateTwoUsed
     {
-        get { return _saveStateOneUsed; }
+        get { return _isSaveStateTwoUsed; }
     }
 
-    public bool SaveStateTwoUsed
+    public int IsSaveStateThreeUsed
     {
-        get { return _saveStateTwoUsed; }
+        get { return _isSaveStateThreeUsed; }
     }
 
-    public bool SaveStateThreeUsed
+    public int GetSoundTrackVolume
     {
-        get { return _saveStateThreeUsed; }
+        get { return _SoundTrackVolume; }
     }
 
-    public Vector3 GetPlayerPosition
+    public int GetSoundEffectVolume
     {
-        get { return new Vector3(PlayerPrefs.GetFloat("PlayerPositionX"), PlayerPrefs.GetFloat("PlayerPositionY"), PlayerPrefs.GetFloat("PlayerPositionZ")); }
+        get { return _SoundEffectsVolume; }
     }
+
+    public string GetGameLanguages
+    {
+        get { return _gameLanguageChoose; }
+    }
+
+
 }
