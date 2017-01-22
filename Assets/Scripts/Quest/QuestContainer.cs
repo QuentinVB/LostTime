@@ -3,83 +3,80 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Xml.Serialization;
 
-public class QuestContainer : MonoBehaviour
+
+[XmlRoot("QuestContainer")]
+class QuestContainer
+{
+    [XmlArray("QuestCollection")]
+    [XmlArrayItem("Quest")]
+    public List<Quest> questCollection = new List<Quest>();
+    public string nameOfcurrentQuest;
+    public List<LinkedActor> setUpActorList = new List<LinkedActor>();
+}
+
+class Quest
 {
 
-    [XmlRoot("QuestContainer")]
-    public class QuestContainer
+    [XmlAttribute("valuesList")]
+    string valuesList;
+    [XmlAttribute("currentState")]
+    string currentState;
+    [XmlAttribute("currentActivity")]
+    string currentActivity;
+    [XmlAttribute("questDescritpionID")]
+    int questDescritpionID;
+    [XmlAttribute("questID")]
+    int questID;
+
+    [XmlAttribute("nameOfQuest")]
+    List<LinkedActor> LinkedActorList = new List<LinkedActor>();
+    [XmlArray("StateArray")]
+    [XmlArrayItem("State")]
+    State[] StateArray;
+
+
+}
+
+public class LinkedActor
+{
+    string id;
+    string name;
+    string job;
+}
+
+
+public class State
+{
+    bool isSetUp { get; set; }
+    List<Actor> actor = new List<Actor>();
+
+    bool get()
     {
-        [XmlArray("QuestCollection")]
-        [XmlArrayItem("Quest")]
-        public List<Quest> questCollection = new List<Quest>();
-        public string nameOfcurrentQuest;
+        return this.isSetUp;
+    }
+    void set()
+    {
+        this.isSetUp = true;
+    }
+}
+
+class Actor
+{
+    string id;
+    bool isSetUp { get; set; }
+    void Update()
+    {
     }
 
-    public class Quest
+    List<IEvent> actionListSetUp = new List<IEvent>(); //  ??
+    List<IEvent> actionListActive = new List<IEvent>(); // ??
+    IEvent currentAction;
+    bool get()
     {
-
-        [XmlAttribute("valuesList")]
-        string valuesList;
-        [XmlAttribute("currentState")]
-        string currentState;
-        [XmlAttribute("currentActivity")]
-        string currentActivity;
-        [XmlAttribute("questDescritpionID")]
-        int questDescritpionID;
-        [XmlAttribute("questID")]
-        int questID;
-
-        [XmlAttribute("nameOfQuest")]
-        List<LinkedActor> LinkedActorList = new List<LinkedActor>();
-        [XmlArray("StateArray")]
-        [XmlArrayItem("State")]
-        State[] StateArray;
-
-
+        return this.isSetUp;
     }
-
-    public class LinkedActor
+    void set()
     {
-
-        string id;
-        string name;
-        string job;
-    }
-
-
-    public class State
-    {
-        bool isSetUp { get; set; }
-        List<Actor> actor = new List<Actor>();
-
-        bool get()
-        {
-            return this.isSetUp;
-        }
-        void set()
-        {
-            this.isSetUp = true;
-        }
-    }
-
-    class Actor
-    {
-        string id;
-        bool isSetUp { get; set; }
-        void Update()
-        {
-        }
-
-        List<IEvent> actionListSetUp = new List<IEvent>(); //  ??
-        List<IEvent> actionListActive = new List<IEvent>(); // ??
-        IEvent currentAction;
-        bool get()
-        {
-            return this.isSetUp;
-        }
-        void set()
-        {
-            this.isSetUp = true;
-        }
+        this.isSetUp = true;
     }
 }

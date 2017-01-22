@@ -6,8 +6,25 @@ using System;
 
 public class QuestManager : MonoBehaviour
 {
+    private QuestContainer questContainer;
+    public int count;
+
+    internal QuestContainer QuestContainer
+    {
+        get
+        {
+            return questContainer;
+        }
+
+        set
+        {
+            questContainer = value;
+        }
+    }
+
     private void Start()
     {
+        QuestContainer = new QuestContainer();
         setUP();
     }
 
@@ -31,7 +48,7 @@ public class QuestManager : MonoBehaviour
 
     void setUP()
     {
-
+        count = QuestContainer.setUpActorList.Count;
     }
 
     public void ProcessEvent(string functionName, IEvent Event)
@@ -55,4 +72,6 @@ public class QuestManager : MonoBehaviour
                 break;
         }
     }
+
+
 }
