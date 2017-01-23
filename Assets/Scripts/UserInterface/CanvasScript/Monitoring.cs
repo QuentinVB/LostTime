@@ -31,12 +31,6 @@ public class Monitoring : MonoBehaviour {
         }
     }
 
-    public string GetCurrentGameLanguages
-    {
-        get { return _CurrentGameLanguages; }
-        set { _CurrentGameLanguages = value; }
-    }
-
     public List<string> GetGameLanguaguesList
     {
         get { return _gameLanguages; }

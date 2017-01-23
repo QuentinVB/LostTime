@@ -64,11 +64,10 @@ public class SliderScriptSoundTrack : MonoBehaviour, IDragHandler, IPointerDownH
         getSliderValue();
         OnDrag(SliderEvent);
     }
-    
-    public int GetSliderSoundTrackMusicValue
+
+    public virtual void OnPointerUp(PointerEventData SliderEvent)
     {
-        get { return _sliderSoundTrackMusicValue; }
-        set { _sliderSoundTrackMusicValue = value; }
+        PlayerPrefs.SetInt("SoundTrackVolumeSave", _sliderSoundTrackMusicValue);
     }
 
     private void getSliderValue()
