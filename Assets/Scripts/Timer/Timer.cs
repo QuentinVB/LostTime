@@ -15,8 +15,9 @@ public class Timer : MonoBehaviour {
     float swapMalus;
     string level;
 
+    public float CurrentTimeOfDay { get { return currentTimeOfDay; } }
     void Start () {
-        sun = GameObject.Find("Directional Light").GetComponent<Light>();
+        sun = GameObject.Find("Sun").GetComponent<Light>();
         sunInitialIntensity = sun.intensity;
         jeuFini = false;
         swapMalus = 0;
@@ -27,7 +28,7 @@ public class Timer : MonoBehaviour {
 
     void Update () {
         getSwapMalus();
-        Chrono();
+        Chrono();       
 	}
 
 
