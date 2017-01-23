@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+interface IpathFinding { 
+}
+
 public class Pathfinding : MonoBehaviour
 {
     public Vector3 target;

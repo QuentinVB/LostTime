@@ -6,7 +6,7 @@ using UnityEngine;
 
 public interface ISculptor
 {
-    GameObject GetPrefab { get; }
+    //GameObject GetPrefab { get; }
     GameObject PrefabByName(string name);
-    GameObject PrefabByName(string name,Transform initialTransform);
+    //GameObject PrefabByName(string name,Transform initialTransform);
 }
