@@ -19,6 +19,12 @@ class HumanSculptor : MonoBehaviour,ISculptor
             return (GameObject)Instantiate(humanPrefab);
         }
     }
+    /// <summary>
+    /// Get a Prefabs by sending the job string according to the texture name.
+    /// Tip : call the <see cref="jobTranslator.jobStringToEnum(string)"/> and then get the string
+    /// </summary>
+    /// <param name="characterJob">The character job.</param>
+    /// <returns></returns>
     public GameObject PrefabByJob(string characterJob)
     {    
         GameObject humanToSculpt = (GameObject)Instantiate(humanPrefab);

@@ -34,10 +34,10 @@ public static class jobTranslator
     //{
     //    return "";
     //}
-    public static job getJobFromIdString(string idString)
-    {       
-        return jobStringToEnum(idString);
-    }
+    //public static job getJobFromIdString(string idString)
+    //{       
+    //    return jobStringToEnum(idString);
+    //}
     //public static int getPriorityFromIdString(string idString)
     //{
     //    return 0;
@@ -46,6 +46,11 @@ public static class jobTranslator
     //{
     //    return 0;
     //}
+    /// <summary>
+    /// get the job enum from the job string.
+    /// </summary>
+    /// <param name="job">The job.</param>
+    /// <returns></returns>
     public static string jobEnumToString(job job)
     {
         string ret = "";
@@ -90,6 +95,11 @@ public static class jobTranslator
         }
         return ret;
     }
+    /// <summary>
+    /// get the job string from the job enum.
+    /// </summary>
+    /// <param name="job">The job.</param>
+    /// <returns></returns>
     public static job jobStringToEnum(string job)
     {
         job ret = global::job.none;
