@@ -14,7 +14,7 @@ public class Entity : MonoBehaviour, ISculptor, Iposition, IpathFinding
     GameObject entity;
 
     
-    Entity(ISculptor sculptor, Iposition position, IpathFinding _pathFinding, IbehaviourEntity _behaviourEntity)
+    public Entity(ISculptor sculptor, Iposition position, IpathFinding _pathFinding, IbehaviourEntity _behaviourEntity)
     {
         name = "toto";
         _sculptor = sculptor;

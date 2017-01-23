@@ -3,7 +3,7 @@ using Zenject;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
-interface Iposition
+public interface Iposition
 {
     Vector3 getPosition();
 }

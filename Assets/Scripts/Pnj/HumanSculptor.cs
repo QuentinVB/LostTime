@@ -31,6 +31,15 @@ class HumanSculptor : MonoBehaviour,ISculptor
     }
     private Material skinSwitch(string characterType)
     {
-        return defaultMaterial;
+        Material returned = defaultMaterial;
+        switch (characterType)
+        {
+            case "forgeron":
+                break;
+            default:
+                returned = defaultMaterial;
+                break;
+        }
+        return returned;
     }
 }
