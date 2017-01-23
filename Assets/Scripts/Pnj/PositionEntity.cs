@@ -12,7 +12,7 @@ public class PositionEntity : MonoBehaviour, Iposition
 {
     Vector3 position;
     string nameOfPosition;
-    List<Position> positionList = new List<Position>();
+    List<Position> positionList ;
 
     public class Position
     {
@@ -27,8 +27,12 @@ public class PositionEntity : MonoBehaviour, Iposition
         }
     }
 
-
-    void Start()
+    public PositionEntity()
+    {
+        positionList = new List<Position>();
+        begin();
+    }
+    void begin()
     {
         positionList.Add(new Position { isSetUp = false, position =  new Vector3(17.6f, -0.04f, -21.3f) });
         positionList.Add(new Position { isSetUp = false, position = new Vector3(17.6f, -0.04f, -21.3f) });

@@ -16,20 +16,20 @@ public class Entity : MonoBehaviour, ISculptor, Iposition, IpathFinding
     
     public Entity(ISculptor sculptor, Iposition position, IpathFinding _pathFinding, IbehaviourEntity _behaviourEntity)
     {
-        name = "toto";
+        _name = "bla";
         _sculptor = sculptor;
         _position = position;
         pathFinding = _pathFinding;
         behaviourEntity = _behaviourEntity;
-        entity = PrefabByName(_name);
+        entity = PrefabByJob(_name);
 
         entity.transform.position = getPosition(); // get the Iposition Vector3 and set the scupltor tranform
     }
 
 
-    public  GameObject PrefabByName(string name)
+    public  GameObject PrefabByJob(string name)
     {
-        return _sculptor.PrefabByName(name);
+        return _sculptor.PrefabByJob(name);
     }
 
     public Vector3 getPosition()

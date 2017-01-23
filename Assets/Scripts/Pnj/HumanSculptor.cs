@@ -10,7 +10,7 @@ class HumanSculptor : MonoBehaviour,ISculptor
     public HumanSculptor()
     {
         humanPrefab = Resources.Load("CharacterLowPo/CharacterLowPo");
-        defaultMaterial = (Material)Resources.Load("CharacterLowPo/CharacterLowPo/Materials/jazz");
+        defaultMaterial = (Material)Resources.Load("CharacterLowPo/Materials/citizen1");
     }
     public GameObject GetPrefab
     {
@@ -19,10 +19,10 @@ class HumanSculptor : MonoBehaviour,ISculptor
             return (GameObject)Instantiate(humanPrefab);
         }
     }
-    public GameObject PrefabByName(string characterType)
+    public GameObject PrefabByJob(string characterJob)
     {    
         GameObject humanToSculpt = (GameObject)Instantiate(humanPrefab);
-        humanToSculpt.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material = skinSwitch(characterType);
+        humanToSculpt.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material = skinSwitch(characterJob);
         return humanToSculpt;
     }
     public GameObject PrefabByName(string name, Transform initialTransform)
@@ -31,14 +31,13 @@ class HumanSculptor : MonoBehaviour,ISculptor
     }
     private Material skinSwitch(string characterType)
     {
-        Material returned = defaultMaterial;
-        switch (characterType)
+        Material returned = defaultMaterial;       
+        string craft = string.Format("CharacterLowPo/Materials/{0}", characterType);       
+        returned = (Material)Resources.Load(craft);
+        if(returned == null)
         {
-            case "forgeron":
-                break;
-            default:
-                returned = defaultMaterial;
-                break;
+            Debug.Log(string.Format("Texture .{0}. does not exist, use default instead", characterType));
+            returned = (Material)Resources.Load("CharacterLowPo/Materials/citizen1");
         }
         return returned;
     }

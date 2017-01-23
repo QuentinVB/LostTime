@@ -7,6 +7,6 @@ using UnityEngine;
 public interface ISculptor
 {
     //GameObject GetPrefab { get; }
-    GameObject PrefabByName(string name);
+    GameObject PrefabByJob(string name);
     //GameObject PrefabByName(string name,Transform initialTransform);
 }
