@@ -14,13 +14,14 @@ public class SavePlayerPosition : MonoBehaviour {
 
     private string _gameLanguageChoose;
 
-    public void LoadMenuConfig()
+    public void LoadSaveStateOne()
     {
 
     }
 
     public void LoadGameConfig()
     {
+
     }
 
     public void SaveCurrentGameConfig()
@@ -42,6 +43,11 @@ public class SavePlayerPosition : MonoBehaviour {
     {
         get { return _isSaveStateThreeUsed; }
     }
+
+
+
+
+
 
     public int GetSoundTrackVolume
     {
