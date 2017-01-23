@@ -6,6 +6,9 @@ public class SaveStateController : MonoBehaviour {
 
     private void Start()
     {
+        // créer dynamiquement les SaveState WayPoints en fts des scènes charger
+
+
         /*if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
         {
             if(PlayerPrefs.GetString("SaveStateOneCurrentScene") == "LostTimeGearDistrict")
