@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Entity : MonoBehaviour, ISculptor, Iposition, IpathFinding
 {
@@ -11,12 +12,14 @@ public class Entity : MonoBehaviour, ISculptor, Iposition, IpathFinding
     IpathFinding pathFinding;
     IbehaviourEntity behaviourEntity;
     string _name;
+    string _id;
     GameObject entity;
 
-    
-    Entity(ISculptor sculptor, Iposition position, IpathFinding _pathFinding, IbehaviourEntity _behaviourEntity)
+    [Inject]
+    Entity(LinkedActor who,ISculptor sculptor, Iposition position, [InjectOptional] IpathFinding _pathFinding, IbehaviourEntity _behaviourEntity)
     {
-        name = "toto";
+        name = who.name;
+        _id = who.id;
         _sculptor = sculptor;
         _position = position;
         pathFinding = _pathFinding;

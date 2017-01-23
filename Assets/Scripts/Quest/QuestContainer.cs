@@ -10,7 +10,7 @@ class QuestContainer
     [XmlArray("QuestCollection")]
     [XmlArrayItem("Quest")]
     public List<Quest> questCollection = new List<Quest>();
-    public string nameOfcurrentQuest;
+    public Quest currentQuest;
     public List<LinkedActor> setUpActorList = new List<LinkedActor>();
 }
 
@@ -18,9 +18,9 @@ class Quest
 {
 
     [XmlAttribute("valuesList")]
-    string valuesList;
+    public string [] valuesList;
     [XmlAttribute("currentState")]
-    string currentState;
+    public State currentState;
     [XmlAttribute("currentActivity")]
     string currentActivity;
     [XmlAttribute("questDescritpionID")]
@@ -30,20 +30,24 @@ class Quest
 
     [XmlAttribute("nameOfQuest")]
     List<LinkedActor> LinkedActorList = new List<LinkedActor>();
-    [XmlArray("StateArray")]
+    [XmlArray("stateArray")]
     [XmlArrayItem("State")]
-    State[] StateArray;
-
-
+    public State[] stateArray;
 }
 
 public class LinkedActor
 {
-    string id;
-    string name;
-    string job;
+    public string id;
+    public string name;
+    public string job;
+    public float[] position;
 }
 
+public class KeyValue
+{
+    public string key;
+    public string value;
+}
 
 public class State
 {
