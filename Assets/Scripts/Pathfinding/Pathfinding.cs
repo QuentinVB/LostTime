@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Pathfinding : MonoBehaviour
+public interface IpathFinding { 
+}
+
+public class Pathfinding : MonoBehaviour, IpathFinding
 {
     public Vector3 target;
     private NavMeshAgent agent;
