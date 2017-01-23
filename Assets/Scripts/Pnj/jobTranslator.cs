@@ -30,23 +30,22 @@ public static class jobTranslator
         
         return String.Format("{0}-{1}-{2}",Mathf.Clamp(priority,0,999),job, UnityEngine.Random.Range(0,999));
     }
-    public static string craftIdString(int priority, job job)
-    {
-        return "";
-    }
+    //public static string craftIdString(int priority, job job)
+    //{
+    //    return "";
+    //}
     public static job getJobFromIdString(string idString)
-    {
-        
-        return job.blacksmith;
+    {       
+        return jobStringToEnum(idString);
     }
-    public static int getPriorityFromIdString(string idString)
-    {
-        return 0;
-    }
-    public static int getIdFromIdString(string idString)
-    {
-        return 0;
-    }
+    //public static int getPriorityFromIdString(string idString)
+    //{
+    //    return 0;
+    //}
+    //public static int getIdFromIdString(string idString)
+    //{
+    //    return 0;
+    //}
     public static string jobEnumToString(job job)
     {
         string ret = "";
