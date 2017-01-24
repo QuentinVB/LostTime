@@ -2,7 +2,7 @@
 
 
 
-class HumanSculptor : MonoBehaviour,ISculptor
+class HumanSculptor : MonoBehaviour, ISculptor
 {
 
     private Object humanPrefab;

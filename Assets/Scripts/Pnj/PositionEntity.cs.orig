@@ -3,7 +3,11 @@ using Zenject;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
+<<<<<<< HEAD
+public interface Iposition
+=======
 public interface IPosition
+>>>>>>> origin/QuestReborn
 {
     Vector3 getPosition();
 }
@@ -12,8 +16,13 @@ public class PositionEntity : MonoBehaviour, IPosition
 {
     Vector3 position;
     string nameOfPosition;
+<<<<<<< HEAD
+    List<Position> positionList ;
+=======
     [Inject]
     int index;
+    List<Position> positionList = new List<Position>();
+>>>>>>> origin/QuestReborn
 
     public class Position
     {
@@ -32,11 +41,16 @@ public class PositionEntity : MonoBehaviour, IPosition
         FillPosition();
     }
 
-    void FillPosition()
+<<<<<<< HEAD
+    public PositionEntity()
+    {
         positionList = new List<Position>();
         begin();
     }
     void begin()
+=======
+    void FillPosition()
+>>>>>>> origin/QuestReborn
     {
         positionList.Add(new Position { isSetUp = false, position =  new Vector3(17.6f, -0.04f, -21.3f) });
         positionList.Add(new Position { isSetUp = false, position = new Vector3(17.6f, -0.04f, -21.3f) });

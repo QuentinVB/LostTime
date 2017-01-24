@@ -1,4 +1,6 @@
 ﻿
+using System.Collections;
+
 public interface IEvent
 {
     string functionName { get; }
@@ -6,8 +8,8 @@ public interface IEvent
 
 public struct Value : IEvent
 {
-    string ID;
-    bool value;
+    public string ID;
+    public string value;
     public string functionName
     {
         get
@@ -32,8 +34,22 @@ public struct DialogueData : IEvent
 
 public struct NPCData : IEvent
 {
-    float[] Position;
-    string name;
+    public float[] Position;
+    public string name;
+    public string id;
+    public string job;
+    public string functionName
+    {
+        get
+        {
+            return functionName;
+        }
+    }
+}
+
+public struct NPCsData : IEvent
+{
+    public NPCData[] NPCList;
     public string functionName
     {
         get
@@ -60,8 +76,8 @@ public struct ChangeBehaviorData : IEvent
 
 public struct StateData : IEvent
 {
-    string QuestToSwitchAction;
-    string TargetState;
+    public string QuestToSwitchAction;
+    public string TargetState;
 
     public string functionName
     {

@@ -22,19 +22,39 @@ using Zenject;
     string _id;
     GameObject entity;
 
+<<<<<<< HEAD
+    
+    public Entity(ISculptor sculptor, Iposition position, IpathFinding _pathFinding, IbehaviourEntity _behaviourEntity)
+    {
+        _name = "bla";
+        _sculptor = sculptor;
+        _position = position;
+        pathFinding = _pathFinding;
+        behaviourEntity = _behaviourEntity;
+        entity = PrefabByJob(_name);
+
+        entity.transform.position = getPosition(); // get the Iposition Vector3 and set the scupltor tranform
+    }
+
+
+    public  GameObject PrefabByJob(string name)
+    {
+        return _sculptor.PrefabByJob(name);
+=======
     public void setUp()
     {
         Debug.Log(string.Format("questManager: {0}", questManager == null ? "is null" : "is not null"));
         _name = who.name;
         _id = who.id;
-        entity = PrefabByJob(_name);
+        entity = PrefabByName(_name);
         entity.transform.position = _position.getPosition(); // get the Iposition Vector3 and set the scupltor tranform
     }
 
-    public  GameObject PrefabByJob(string name)
+    public  GameObject PrefabByName(string name)
     {
         Debug.Log("getprefab");
         return _sculptor.PrefabByName(name);
+>>>>>>> origin/QuestReborn
     }
 
   

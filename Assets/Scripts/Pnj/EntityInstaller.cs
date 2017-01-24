@@ -5,36 +5,52 @@ using System.Collections.Generic;
 using System;
 
 
+//public class EntitysInstaller : MonoInstaller, IDisposable
+//{
+//    QuestManager questManager = GameObject.Find("QuestTable").GetComponent<QuestManager>();
+//    public override void InstallBindings()
+//    {
+//        Debug.Log("EntitysInstaller");
+//        foreach (LinkedActor actor in questManager.NPCList)
+//            EntityInstaller.Install(Container);
+//    }
 
+//    public void Dispose()
+//    {
+//        //
+//    }
+//}
 
-
-
-
-public class EntitysInstaller : MonoInstaller
+public class EntityInstaller : MonoInstaller
 {
-    QuestManager questManager = GameObject.Find("QuestManager").GetComponent<QuestManager>();
+
     public override void InstallBindings()
     {
-        foreach (LinkedActor actor in questManager.QuestContainer.setUpActorList)
-            EntityInstaller.Install(Container);
-    }
-}
+        Container.Bind<QuestManager>().AsSingle();
 
-public class EntityInstaller : Installer<EntityInstaller>
-{
-    QuestManager questManager = GameObject.Find("QuestManager").GetComponent<QuestManager>();
-    public void chooseMyPrefab()
-    {
+        for (int index = 0; index <= 10; index++)
+        {
+            Container.Bind<int>().FromInstance(index);
+            Container.Bind<ISculptor>().To<HumanSculptor>().AsCached();
+            Container.Bind<LinkedActor>().AsTransient();
+            Container.Bind<IPosition>().To<PositionEntity>();
+            Container.Bind<Entity>();
+        }
+        //Debug.Log(string.Format("questManager: {0}", questManager == null ? "is null" : "is not null"));
+        //Debug.Log(string.Format("questManager.NPCList.Count: {0}", questManager.NPCList.Count));
+        //LinkedActor temp = questManager.NPCList[0];
+        //Debug.Log(temp.job);
+        //Container.Bind<LinkedActor>().AsTransient();
+        //if (questManager.NPCList[questManager.count] != null)
+        //    
+        //else
+        //    Debug.Log("La puta madre\n");
+        //questManager.count++;
+        //Container.Bind<LinkedActor>().FromInstance(new LinkedActor { id = "id2", name = "tutu", job = "poubelier" });
+        //if (questManager.NPCList[questManager.count].job != null)
 
-    }
-    public override void InstallBindings()
-    {
-        Container.Bind<LinkedActor>().FromInstance(questManager.QuestContainer.setUpActorList[questManager.count]); // verifier difference entre assingle ,transcient, ascached
-        Container.Bind<ISculptor>();
-        Container.Bind<Iposition>();
-        Container.Bind<IinteractionWithUser>(); // done 
-        Container.Bind<IbehaviourEntity>(); // done
-                                            //Container.Bind<IpathFindingEntity>().FromInstance(new pathFindingEntity());
-        Container.Bind<Entity>();
+        //Container.Bind<IpathFindingEntity>().FromInstance(new pathFindingEntity());
+
+        //Debug.Log("Bindings ended.");
     }
 }

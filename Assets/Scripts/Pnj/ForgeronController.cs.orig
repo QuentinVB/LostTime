@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+<<<<<<< HEAD
+public interface IbehaviourEntity
+=======
 interface IBehaviourEntity
+>>>>>>> origin/QuestReborn
 {
 
 }
