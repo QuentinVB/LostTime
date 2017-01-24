@@ -53,7 +53,7 @@ public class CameraTargetBehaviour : MonoBehaviour
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, initialPos, 30 * Time.deltaTime);
         }
-        Debug.Log(leftJoystick.LeftHorizontal());
-        Debug.Log(leftJoystick.LeftVertical());
+        //Debug.Log(leftJoystick.LeftHorizontal());
+        //Debug.Log(leftJoystick.LeftVertical());
     }
 }
