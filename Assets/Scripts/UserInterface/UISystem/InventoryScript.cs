@@ -84,6 +84,7 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
                 GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 30, Color.red);
             GameObject.Find("ButtonLeaveConfiguration").AddComponent<Button>();
             GameObject.Find("ButtonLeaveConfiguration").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
+            
 
             _PanelIsActivated = true;
             _launchPanelAnimation = true;

@@ -18,7 +18,7 @@ public class TextDialogPNJController : MonoBehaviour {
             GameObject.Find("BackGroundLeftInterface").GetComponent<RectTransform>().rect.width,
             (GameObject.Find("BackGroundLeftInterface").GetComponent<RectTransform>().rect.height / 10) * 3,
             0, (GameObject.Find("BackGroundLeftInterface").GetComponent<RectTransform>().rect.height / 10) * -3.5f,
-            Color.black);
+            Color.clear);
     }
 
     private void CreateTextBoxTextZone()
@@ -26,8 +26,8 @@ public class TextDialogPNJController : MonoBehaviour {
         _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("TextBoxTextZone", GameObject.Find("TextBoxBackGround"), true,
             GameObject.Find("TextBoxBackGround").GetComponent<RectTransform>().rect.width,
             GameObject.Find("TextBoxBackGround").GetComponent<RectTransform>().rect.height,
-            0, 0, "Forgeron : Salutation Voyageur, j'ai perdu mon unique marteau. \r\nJ'en ai vraiment besoin pour travailler.\r\nPeux tu me le retrouver? \r\nMerci beaucoup pour ton aide",
+            0, 0, "",
             _userInterface.GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.UpperCenter, FontStyle.Normal, 
-            (int)(GameObject.Find("TextBoxBackGround").GetComponent<RectTransform>().rect.height / 7.5f), Color.white);
+            (int)(GameObject.Find("TextBoxBackGround").GetComponent<RectTransform>().rect.height / 7.5f), Color.black);
     }
 }

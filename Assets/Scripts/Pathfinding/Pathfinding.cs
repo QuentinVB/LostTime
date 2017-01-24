@@ -3,23 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Pathfinding : MonoBehaviour
+public interface IpathFinding { 
+}
+
+public class Pathfinding : MonoBehaviour, IpathFinding
 {
     public Vector3 target;
     private NavMeshAgent agent;
     public List<GameObject> Waypoints = new List<GameObject>();
     public Rigidbody npcRigidbody;
     private Collider last;
+    bool _willMove;
 
+    public Pathfinding(bool willMove)
+    {
+        _willMove = willMove;
+    }
+    
     // Use this for initialization
     void Start()
     {
-        GetNavMeshAgent();
-        target = SetDestination();
-        npcRigidbody = gameObject.AddComponent<Rigidbody>();
-        npcRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;     //temp
-        agent.avoidancePriority = Random.Range(10, 50);
-        agent.speed = 0.2f;        //temp
+        //If NPC never moves, remove Pathfinding script from itself
+        if (_willMove == false)
+        {
+            Destroy(GetComponent("Pathfinding"));
+        }
+        else
+        {
+            //Search for rigidbody - If not, create one.
+            if (GetComponent<Rigidbody>() == null)
+            {
+                GetRigidBody();
+            }
+
+            //Sets NavMeshAgent values
+            if (GetComponent<NavMeshAgent>() == null)
+            {
+                GetNavMeshAgent();
+            }
+            SetWaypoints();                 //Set waypoints
+            target = SetDestination();      //Set destination
+        }
     }
 
     // Update is called once per frame
@@ -44,8 +68,6 @@ public class Pathfinding : MonoBehaviour
     //Will set the destination of the NPC
     public Vector3 SetDestination()
     {
-        //Stack waypoints in list
-        Waypoints.AddRange(GameObject.FindGameObjectsWithTag("Waypoint"));
         //Get random waypoint
         int w = Random.Range(0, Waypoints.Count);
         //Set target to said waypoint
@@ -62,5 +84,19 @@ public class Pathfinding : MonoBehaviour
     private void GetNavMeshAgent()
     {
         agent = gameObject.AddComponent<NavMeshAgent>();
+        agent.avoidancePriority = Random.Range(10, 50);
+        agent.speed = 2;
+    }
+    //Will set the Rigidbody and its properties
+    private void GetRigidBody()
+    {
+        npcRigidbody = gameObject.AddComponent<Rigidbody>();
+        npcRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+    }
+    //Generates the list of waypoints for the NPC movement patern
+    private void SetWaypoints()
+    {
+        //AllWaypoints list
+        Waypoints.AddRange(GameObject.FindGameObjectsWithTag("Waypoint"));
     }
 }
