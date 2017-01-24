@@ -4,103 +4,53 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-interface IpathFindingEntity
-{
-    // par vivan
-}
 
-public class EntitysInstaller : MonoInstaller
+//public class EntitysInstaller : MonoInstaller, IDisposable
+//{
+//    QuestManager questManager = GameObject.Find("QuestTable").GetComponent<QuestManager>();
+//    public override void InstallBindings()
+//    {
+//        Debug.Log("EntitysInstaller");
+//        foreach (LinkedActor actor in questManager.NPCList)
+//            EntityInstaller.Install(Container);
+//    }
+
+//    public void Dispose()
+//    {
+//        //
+//    }
+//}
+
+public class EntityInstaller : MonoInstaller
 {
+
     public override void InstallBindings()
     {
-        EntityInstaller.Install(Container);
-        EntityInstaller.Install(Container);
-        EntityInstaller.Install(Container);
-        EntityInstaller.Install(Container);
-        EntityInstaller.Install(Container);
+        Container.Bind<QuestManager>().AsSingle();
 
-    }
-
-}
-
-
-public class EntityInstaller : Installer<EntityInstaller>
-{
-
-    public struct Who
-    {
-        public string name;
-        public Who(string name){
-            this.name = name;
+        for (int index = 0; index <= 10; index++)
+        {
+            Container.Bind<int>().FromInstance(index);
+            Container.Bind<ISculptor>().To<HumanSculptor>().AsCached();
+            Container.Bind<LinkedActor>().AsTransient();
+            Container.Bind<IPosition>().To<PositionEntity>();
+            Container.Bind<Entity>();
         }
-    }
+        //Debug.Log(string.Format("questManager: {0}", questManager == null ? "is null" : "is not null"));
+        //Debug.Log(string.Format("questManager.NPCList.Count: {0}", questManager.NPCList.Count));
+        //LinkedActor temp = questManager.NPCList[0];
+        //Debug.Log(temp.job);
+        //Container.Bind<LinkedActor>().AsTransient();
+        //if (questManager.NPCList[questManager.count] != null)
+        //    
+        //else
+        //    Debug.Log("La puta madre\n");
+        //questManager.count++;
+        //Container.Bind<LinkedActor>().FromInstance(new LinkedActor { id = "id2", name = "tutu", job = "poubelier" });
+        //if (questManager.NPCList[questManager.count].job != null)
 
-
-
-
-    public override void InstallBindings()
-    {
-
-
-        Container.Bind<Who>();
-        Container.Bind<IpositionEntity>();
-        Container.Bind<IinteractionWithUser>(); // done 
-        Container.Bind<IbehaviourEntity>(); // done
         //Container.Bind<IpathFindingEntity>().FromInstance(new pathFindingEntity());
-        Container.Bind<Entity>();
-    }
-}
 
-
-public class Entity : MonoBehaviour
-{
-    IpositionEntity positionEntity;
-    IbehaviourEntity behaviourEntity;
-    IpathFindingEntity pathFindingEntity;
-    IinteractionWithUser interactionWithUser;
-
-    // Entity se qui peut ce deplacer + interagir + comportement
-    Entity(IpositionEntity _positionEntity, IbehaviourEntity _behaviourEntity,
-        IpathFindingEntity _pathFindingEntity, IinteractionWithUser _interactionWithUser)
-    {
-        positionEntity = _positionEntity;
-        behaviourEntity = _behaviourEntity;
-        pathFindingEntity = _pathFindingEntity;
-        interactionWithUser = _interactionWithUser;
-
-        this.transform.position = positionEntity.getPosition();
-
-    }
-    //Entity se qui peut ce deplacer + comportement
-    Entity(IpositionEntity _positionEntity,
-        IpathFindingEntity _pathFindingEntity)
-    {
-        positionEntity = _positionEntity;
-        behaviourEntity = null;
-        pathFindingEntity = _pathFindingEntity;
-        interactionWithUser = null;
-
-        this.transform.position = positionEntity.getPosition();
-    }
-
-    Entity(IpositionEntity _positionEntity, IbehaviourEntity _behaviourEntity,
-        IinteractionWithUser _interactionWithUser)
-    {
-        positionEntity = _positionEntity;
-        behaviourEntity = _behaviourEntity;
-        pathFindingEntity = null;
-        interactionWithUser = _interactionWithUser;
-
-        this.transform.position = positionEntity.getPosition();
-    }
-
-    Entity(IpositionEntity _positionEntity)
-    {
-        positionEntity = _positionEntity;
-        behaviourEntity = null;
-        pathFindingEntity = null;
-        interactionWithUser = null;
-
-        this.transform.position = positionEntity.getPosition();
+        //Debug.Log("Bindings ended.");
     }
 }

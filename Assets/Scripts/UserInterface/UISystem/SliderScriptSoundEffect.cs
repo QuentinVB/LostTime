@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SliderScriptSoundEffect : MonoBehaviour, IDragHandler, IPointerDownHandler
+public class SliderScriptSoundEffect : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
 
     private GameObject _sliderBackGround;
@@ -66,12 +66,10 @@ public class SliderScriptSoundEffect : MonoBehaviour, IDragHandler, IPointerDown
         OnDrag(SliderEvent);
     }
 
-    public int GetSliderSoundTrackMusicValue
+    public virtual void OnPointerUp(PointerEventData SliderEvent)
     {
-        get { return _sliderSoundTrackMusicValue; }
-        set { _sliderSoundTrackMusicValue = value; }
+        PlayerPrefs.SetInt("SoundEffectVolumeSave", _sliderSoundTrackMusicValue);
     }
-
     private void getSliderValue()
     {
         float SliderWidth = _RightLimit - _LeftLimit;
