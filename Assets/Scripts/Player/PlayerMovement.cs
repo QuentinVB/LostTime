@@ -9,9 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public CharaAnimCtrl animCtrl;
     public float speed;
 
-    private Rigidbody playerRigidbody;
-    private Transform targetMovement;
-    private Vector3 direction;
+    private Rigidbody playerRigidbody;   
         
     private NavMeshObstacle playerObstacle;
 
@@ -28,7 +26,30 @@ public class PlayerMovement : MonoBehaviour
         animCtrl = GetComponent<CharaAnimCtrl>();
         playerObstacle = GetComponent<NavMeshObstacle>();
 
+        ///
+        setAstridPosition();
+        ///
+        
+
         SetPlayerObstacle();
+    }
+
+    private void setAstridPosition()
+    {
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
+        {
+            this.transform.position = new Vector3(PlayerPrefs.GetFloat("SaveStateOneAstridPositionX"), PlayerPrefs.GetFloat("SaveStateOneAstridPositionY"), PlayerPrefs.GetFloat("SaveStateOneAstridPositionZ"));
+        }
+
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
+        {
+            this.transform.position = new Vector3(PlayerPrefs.GetFloat("SaveStateTwoAstridPositionX"), PlayerPrefs.GetFloat("SaveStateTwoAstridPositionY"), PlayerPrefs.GetFloat("SaveStateTwoAstridPositionZ"));
+        }
+
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
+        {
+            this.transform.position = new Vector3(PlayerPrefs.GetFloat("SaveStateThreeAstridPositionX"), PlayerPrefs.GetFloat("SaveStateThreeAstridPositionY"), PlayerPrefs.GetFloat("SaveStateThreeAstridPositionZ"));
+        }
     }
 
     // Update is called once per frame

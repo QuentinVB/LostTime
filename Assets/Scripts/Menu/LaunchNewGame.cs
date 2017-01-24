@@ -1,23 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class LaunchNewGame : MonoBehaviour {
+public class LaunchNewGame : MonoBehaviour, IPointerDownHandler
+{
 
-    private bool _saveStateUsed;
-	void Start () {
-		if(_saveStateUsed == false)
-        {
-            Debug.Log("We will save your progress here");
-            SceneManager.LoadScene("LostTimeGearDistrict");
-        }
-        else
-        {
-            Debug.Log("This state is already used. Do you want to save on this state");
-            // créer 2 buttons yes / no qui valide la choix. Récupérez le choix ici. Et agir en conséquences.
-            // oui : lancez le jeu.
-            // Non : Revenir au menu. 
-        }
-	}
+    public virtual void OnPointerDown(PointerEventData NewGame)
+    {
+        //Vérifiez que la current SaveState est vide
+        // => Si oui, 
+                // set currentSaveState à SaveState01
+                // Charger CurrentPosition 'Astrid 
+        // => Si non,
+                // Demandez au joueurs si on écrase les données sur la save
+                // Si oui
+                // set currentsave = saveState 01
+                // charger currentsPosition Astrid
+    }
 }

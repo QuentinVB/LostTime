@@ -1,33 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraPositionBehavior : MonoBehaviour {
+public class CameraPositionBehavior : MonoBehaviour
+{
+    public VirtualRightJoystick rightJoystick;
+    public VirtualLeftJoystick leftJoystick;
+    private float horizontalInput;
+    private Vector3 initialPos;
+    private Vector3 astridPos;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKey(KeyCode.LeftArrow)) //Input for rotation towards left
+    // Use this for initialization
+    void Start()
+    {
+        initialPos = transform.localPosition;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        horizontalInput = rightJoystick.RightHorizontal();
+        astridPos = GameObject.Find("AstridPlayer").transform.position;
+        if (horizontalInput > 0.5)
         {
-            transform.RotateAround(Vector3.zero, Vector3.up, 30 * Time.deltaTime);
+            transform.RotateAround(astridPos, Vector3.up, 30 * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.RightArrow)) //Input for rotation towards right
+        if (horizontalInput < -0.5)
         {
-            transform.RotateAround(Vector3.zero, Vector3.down, 30 * Time.deltaTime);
+            transform.RotateAround(astridPos, Vector3.down, 30 * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.UpArrow)) //Input for rotation above player
+
+        //Reset position on moving
+        if (leftJoystick.LeftHorizontal() != 0
+            || leftJoystick.LeftVertical() != 0)
         {
-            transform.RotateAround(Vector3.zero, Vector3.left, 30 * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.DownArrow)) //Input for rotation below player
-        {
-            transform.RotateAround(Vector3.zero, Vector3.right, 30 * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, initialPos, 30 * Time.deltaTime);
         }
     }
 }
-//Vector3.down = rotation de la camera vers la droite
-//Vector3.up = rotation vers la gauche.
-//transform.RotateAround(Vector3.zero, Vector3.down, 30 * Time.deltaTime);

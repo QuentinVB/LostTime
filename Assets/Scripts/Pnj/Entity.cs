@@ -27,14 +27,14 @@ using Zenject;
         Debug.Log(string.Format("questManager: {0}", questManager == null ? "is null" : "is not null"));
         _name = who.name;
         _id = who.id;
-        entity = PrefabByName(_name);
+        entity = PrefabByJob(_name);
         entity.transform.position = _position.getPosition(); // get the Iposition Vector3 and set the scupltor tranform
     }
 
-    public  GameObject PrefabByName(string name)
+    public  GameObject PrefabByJob(string name)
     {
         Debug.Log("getprefab");
-        return _sculptor.PrefabByName(name);
+        return _sculptor.PrefabByJob(name);
     }
 
   
