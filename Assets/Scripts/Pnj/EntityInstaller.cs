@@ -23,16 +23,24 @@ using System;
 
 public class EntityInstaller : MonoInstaller
 {
+
     public override void InstallBindings()
     {
+        Container.Bind<QuestManager>().AsSingle();
+
+        for (int index = 0; index <= 10; index++)
+        {
+            Container.Bind<int>().FromInstance(index);
+            Container.Bind<ISculptor>().To<HumanSculptor>().AsCached();
+            Container.Bind<LinkedActor>().AsTransient();
+            Container.Bind<IPosition>().To<PositionEntity>();
+            Container.Bind<Entity>();
+        }
         //Debug.Log(string.Format("questManager: {0}", questManager == null ? "is null" : "is not null"));
         //Debug.Log(string.Format("questManager.NPCList.Count: {0}", questManager.NPCList.Count));
         //LinkedActor temp = questManager.NPCList[0];
         //Debug.Log(temp.job);
-        Container.Bind<ISculptor>().To<HumanSculptor>().AsTransient();
-        Container.Bind<QuestManager>().AsSingle();
-        Container.Bind<LinkedActor>().AsTransient();
-        //Container.Bind<LinkedActor>().FromInstance(questManager.NPCList[questManager.count]); // verifier difference entre assingle ,transcient, ascached
+        //Container.Bind<LinkedActor>().AsTransient();
         //if (questManager.NPCList[questManager.count] != null)
         //    
         //else
@@ -40,9 +48,9 @@ public class EntityInstaller : MonoInstaller
         //questManager.count++;
         //Container.Bind<LinkedActor>().FromInstance(new LinkedActor { id = "id2", name = "tutu", job = "poubelier" });
         //if (questManager.NPCList[questManager.count].job != null)
-        Container.Bind<IPosition>().To<PositionEntity>();
-                                            //Container.Bind<IpathFindingEntity>().FromInstance(new pathFindingEntity());
-        Container.Bind<Entity>();
-        Debug.Log("Bindings ended.");
+
+        //Container.Bind<IpathFindingEntity>().FromInstance(new pathFindingEntity());
+
+        //Debug.Log("Bindings ended.");
     }
 }

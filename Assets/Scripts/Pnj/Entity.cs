@@ -12,8 +12,8 @@ using Zenject;
     IPosition _position;
     [Inject]
     IpathFinding pathFinding;
-    [Inject]
-    IBehaviourEntity behaviourEntity;
+    //[Inject]
+    //IBehaviourEntity behaviourEntity;
     [Inject]
     LinkedActor who;
     [Inject]
@@ -28,7 +28,7 @@ using Zenject;
         _name = who.name;
         _id = who.id;
         entity = PrefabByName(_name);
-        entity.transform.position = getPosition(); // get the Iposition Vector3 and set the scupltor tranform
+        entity.transform.position = _position.getPosition(); // get the Iposition Vector3 and set the scupltor tranform
     }
 
     public  GameObject PrefabByName(string name)
@@ -37,12 +37,9 @@ using Zenject;
         return _sculptor.PrefabByName(name);
     }
 
-    public Vector3 getPosition()
-    {
-        return _position.getPosition();
-    }
+  
 
-    public void OnTriggerEnter(Collider other)
-    {
-    }
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //}
 }

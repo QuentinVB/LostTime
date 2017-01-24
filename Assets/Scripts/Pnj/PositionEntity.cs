@@ -12,6 +12,8 @@ public class PositionEntity : MonoBehaviour, IPosition
 {
     Vector3 position;
     string nameOfPosition;
+    [Inject]
+    int index;
     List<Position> positionList = new List<Position>();
 
     public class Position
@@ -47,6 +49,6 @@ public class PositionEntity : MonoBehaviour, IPosition
 
     public Vector3 getPosition()
     {
-        return positionList[0].getPosition();
+        return positionList[index].getPosition();
     }
 }
