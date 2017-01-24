@@ -2515,6 +2515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightJoystick: {fileID: 1121442807}
+  leftJoystick: {fileID: 1928312904}
 --- !u!23 &405717665
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6483,6 +6484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightJoystick: {fileID: 1121442807}
+  leftJoystick: {fileID: 1928312904}
 --- !u!1001 &1347573796
 Prefab:
   m_ObjectHideFlags: 0

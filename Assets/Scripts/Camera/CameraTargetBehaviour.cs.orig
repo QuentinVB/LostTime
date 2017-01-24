@@ -1,10 +1,14 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 
-public class CameraPositionBehavior : MonoBehaviour
+
+public class CameraTargetBehaviour : MonoBehaviour
 {
     public VirtualRightJoystick rightJoystick;
     public VirtualLeftJoystick leftJoystick;
+    private float verticalInput;
     private float horizontalInput;
     private Vector3 initialPos;
     private Vector3 astridPos;
@@ -12,13 +16,31 @@ public class CameraPositionBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+<<<<<<< HEAD
+
+        //initialPos.localPosition = transform.localPosition;
+=======
         initialPos = transform.localPosition;
+>>>>>>> origin/CameraBehavior
     }
 
     // Update is called once per frame
     void Update()
     {
+        //inputs
+        verticalInput = rightJoystick.RightVertical();
         horizontalInput = rightJoystick.RightHorizontal();
+
+        //Y Axis
+        if (verticalInput > 0.5 && transform.localPosition.y <= 5.5)
+        {
+            transform.Translate(Vector3.up * (2 * Time.deltaTime));
+        }
+        if (verticalInput < -0.5 && transform.localPosition.y >= 1.5)
+        {
+            transform.Translate(Vector3.down * (2 * Time.deltaTime));
+        }
+        //X Axis
         astridPos = GameObject.Find("AstridPlayer").transform.position;
         if (horizontalInput > 0.5)
         {
@@ -30,10 +52,12 @@ public class CameraPositionBehavior : MonoBehaviour
         }
 
         //Reset position on moving
-        if (leftJoystick.LeftHorizontal() != 0
-            || leftJoystick.LeftVertical() != 0)
+        if (leftJoystick.LeftHorizontal() != 0.0f
+           || leftJoystick.LeftVertical() != 0.0f)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, initialPos, 30 * Time.deltaTime);
         }
+        Debug.Log(leftJoystick.LeftHorizontal());
+        Debug.Log(leftJoystick.LeftVertical());
     }
 }

@@ -12,7 +12,11 @@ public class CameraPositionBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+<<<<<<< HEAD
+       // initialPos.localPosition = transform.localPosition;
+=======
         initialPos = transform.localPosition;
+>>>>>>> origin/CameraBehavior
     }
 
     // Update is called once per frame
