@@ -26,7 +26,7 @@ class Quest
     [XmlAttribute("questDescritpionID")]
     int questDescritpionID;
     [XmlAttribute("questID")]
-    int questID;
+    public string questID;
 
     [XmlAttribute("nameOfQuest")]
     List<LinkedActor> LinkedActorList = new List<LinkedActor>();
@@ -40,7 +40,7 @@ public class LinkedActor
     public string id;
     public string name;
     public string job;
-    public float[] position;
+    //public float[] position;
 }
 
 public class KeyValue
@@ -51,6 +51,7 @@ public class KeyValue
 
 public class State
 {
+    public string name;
     bool isSetUp { get; set; }
     List<Actor> actor = new List<Actor>();
 

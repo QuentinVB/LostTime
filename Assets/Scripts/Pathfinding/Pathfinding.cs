@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-interface IpathFinding { 
+public interface IpathFinding { 
 }
 
 public class Pathfinding : MonoBehaviour

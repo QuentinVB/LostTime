@@ -3,12 +3,12 @@ using Zenject;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
-interface Iposition
+public interface IPosition
 {
     Vector3 getPosition();
 }
 
-public class PositionEntity : MonoBehaviour, Iposition
+public class PositionEntity : MonoBehaviour, IPosition
 {
     Vector3 position;
     string nameOfPosition;
@@ -26,9 +26,12 @@ public class PositionEntity : MonoBehaviour, Iposition
             return this.position;
         }
     }
+    public PositionEntity()
+    {
+        FillPosition();
+    }
 
-
-    void Start()
+    void FillPosition()
     {
         positionList.Add(new Position { isSetUp = false, position =  new Vector3(17.6f, -0.04f, -21.3f) });
         positionList.Add(new Position { isSetUp = false, position = new Vector3(17.6f, -0.04f, -21.3f) });

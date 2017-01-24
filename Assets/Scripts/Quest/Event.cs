@@ -76,8 +76,8 @@ public struct ChangeBehaviorData : IEvent
 
 public struct StateData : IEvent
 {
-    string QuestToSwitchAction;
-    string TargetState;
+    public string QuestToSwitchAction;
+    public string TargetState;
 
     public string functionName
     {

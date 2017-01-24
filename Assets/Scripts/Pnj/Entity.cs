@@ -4,39 +4,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Entity : MonoBehaviour, ISculptor, Iposition, IpathFinding
+ class Entity : MonoBehaviour
 {
-
+    [Inject]
     ISculptor _sculptor;
-    Iposition _position;
+    [Inject]
+    IPosition _position;
+    [Inject]
     IpathFinding pathFinding;
-    IbehaviourEntity behaviourEntity;
+    [Inject]
+    IBehaviourEntity behaviourEntity;
+    [Inject]
+    LinkedActor who;
+    [Inject]
+    QuestManager questManager;
     string _name;
     string _id;
     GameObject entity;
 
-    [Inject]
-    Entity(LinkedActor who,ISculptor sculptor, Iposition position, [InjectOptional] IpathFinding _pathFinding, IbehaviourEntity _behaviourEntity)
+    public void setUp()
     {
-        name = who.name;
+        Debug.Log(string.Format("questManager: {0}", questManager == null ? "is null" : "is not null"));
+        _name = who.name;
         _id = who.id;
-        _sculptor = sculptor;
-        _position = position;
-        pathFinding = _pathFinding;
-        behaviourEntity = _behaviourEntity;
         entity = PrefabByName(_name);
-
         entity.transform.position = getPosition(); // get the Iposition Vector3 and set the scupltor tranform
     }
 
-
     public  GameObject PrefabByName(string name)
     {
+        Debug.Log("getprefab");
         return _sculptor.PrefabByName(name);
     }
 
     public Vector3 getPosition()
     {
         return _position.getPosition();
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
     }
 }

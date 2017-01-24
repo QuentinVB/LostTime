@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-interface IbehaviourEntity
+interface IBehaviourEntity
 {
 
 }
 
 
 
-public class ForgeronController : MonoBehaviour, IbehaviourEntity
+public class ForgeronController : MonoBehaviour, IBehaviourEntity
 {
     private Forgeron forgeron;
     public bool OntouchPlayer;
