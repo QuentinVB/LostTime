@@ -23,6 +23,14 @@ public class Pathfinding : MonoBehaviour, IpathFinding
     // Use this for initialization
     void Start()
     {
+<<<<<<< HEAD
+        GetNavMeshAgent();
+        target = SetDestination();
+        npcRigidbody = gameObject.AddComponent<Rigidbody>();
+        npcRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;     //temp
+        agent.avoidancePriority = Random.Range(10, 50);
+        agent.speed = 0.2f;        //temp
+=======
         //If NPC never moves, remove Pathfinding script from itself
         if (_willMove == false)
         {
@@ -44,6 +52,7 @@ public class Pathfinding : MonoBehaviour, IpathFinding
             SetWaypoints();                 //Set waypoints
             target = SetDestination();      //Set destination
         }
+>>>>>>> origin/Pathfinding
     }
 
     // Update is called once per frame
