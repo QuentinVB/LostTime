@@ -34,7 +34,7 @@ using Zenject;
     public  GameObject PrefabByJob(string name)
     {
         Debug.Log("getprefab");
-        return _sculptor.PrefabByName(name);
+        return _sculptor.PrefabByJob(name);
     }
 
   

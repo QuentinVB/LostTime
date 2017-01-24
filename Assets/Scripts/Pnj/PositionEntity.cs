@@ -12,6 +12,7 @@ public class PositionEntity : MonoBehaviour, IPosition
 {
     Vector3 position;
     string nameOfPosition;
+    List<Position> positionList;
     [Inject]
     int index;
 
@@ -33,6 +34,7 @@ public class PositionEntity : MonoBehaviour, IPosition
     }
 
     void FillPosition()
+    { 
         positionList = new List<Position>();
         begin();
     }
