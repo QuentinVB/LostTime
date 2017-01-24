@@ -15,7 +15,8 @@ public class CameraTargetBehaviour : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        initialPos.localPosition = transform.localPosition;
+
+        //initialPos.localPosition = transform.localPosition;
     }
 
     // Update is called once per frame
