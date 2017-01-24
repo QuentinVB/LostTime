@@ -6,13 +6,13 @@ public class CameraPositionBehavior : MonoBehaviour
     public VirtualRightJoystick rightJoystick;
     public VirtualLeftJoystick leftJoystick;
     private float horizontalInput;
-    private Transform initialPos;
+    private Vector3 initialPos;
     private Vector3 astridPos;
 
     // Use this for initialization
     void Start()
     {
-        initialPos.localPosition = transform.localPosition;
+        initialPos = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class CameraPositionBehavior : MonoBehaviour
         if (leftJoystick.LeftHorizontal() != 0
             || leftJoystick.LeftVertical() != 0)
         {
-            transform.position = Vector3.Lerp(transform.position, initialPos.position, 30 * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, initialPos, 30 * Time.deltaTime);
         }
     }
 }
