@@ -39,8 +39,9 @@ public class CharaAnimCtrl : MonoBehaviour {
     private int waitForBoringDelay = 800;
 
     private bool awaitThisUpdate;
+
     private float waitForActionCounter = 0; //in s
-    private float waitForActionDelay = 0; //in s
+    private float waitForActionDelay; //in s
 
     private Transform transformOfTheCharacter;
     private Vector3 lastPosition;
@@ -60,13 +61,15 @@ public class CharaAnimCtrl : MonoBehaviour {
         isCatchingTable = anim.GetBool("isCatchingTable");
 
         awaitThisUpdate = false;
+        waitForActionDelay = 1.0f;
+        waitForActionCounter = WaitForActionDelay;
     }
 
     // Update is called once per frame
     void Update ()
     {
 
-        //check if the player avatar get bored.
+        //check if the avatar get bored.
         getBored();
 
         //change the state of the animCtrl according to the environnement
@@ -104,7 +107,7 @@ public class CharaAnimCtrl : MonoBehaviour {
 
         //if set to true : no move !
         if (AwaitThisUpdate == true)
-        {
+        {            
             transformOfTheCharacter.position = lastPosition;
         }
 
@@ -118,8 +121,9 @@ public class CharaAnimCtrl : MonoBehaviour {
     public float InputH { get { return inputH; } set { inputH = Mathf.Clamp(value, -1.0f, 1.0f); } }
     public float InputV { get { return inputV; } set { inputV = Mathf.Clamp(value, -1.0f, 1.0f); } }
     public bool AwaitThisUpdate { get { return awaitThisUpdate; } private set { awaitThisUpdate = value; } }
+    public float WaitForActionDelay { get { return waitForActionDelay; } private set { waitForActionDelay = value; } }
+    private float WaitForActionResetAt { get { return waitForActionDelay; } set{ waitForActionDelay = value; waitForActionCounter = waitForActionDelay; } }
     public WalkMode WalkMode { get { return walkmode; } internal set { walkmode = value; } }
-
     private float Horizontal()
     {
         return 0.0f;

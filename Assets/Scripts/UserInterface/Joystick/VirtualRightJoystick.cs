@@ -19,12 +19,19 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
         ResetPosition();
     }
 
+    //private void Update()
+    //{
+    //    if(GameObject.Find("AstridPlayer").GetComponent<>(). == true)
+    //    {
+    //        ResetPosition();
+    //    }
+    //}
+
     public void ResetPosition()
     {
 
         RightJostickInputVector = new Vector3(0, 0, 0);
         RightJoystick.rectTransform.anchoredPosition = new Vector3(0, 0, 0);
-        //Debug.Log(RightJostickInputVector);
         BackGroundRightJoystick.enabled = false;
         RightJoystick.enabled = false;
     }
@@ -43,8 +50,7 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
             RightJostickInputVector = (RightJostickInputVector.magnitude > 1.0f) ? RightJostickInputVector.normalized : RightJostickInputVector;
 
             RightJoystick.rectTransform.anchoredPosition = new Vector3(RightJostickInputVector.x * (BackGroundRightJoystick.rectTransform.sizeDelta.x / 4), RightJostickInputVector.z * (BackGroundRightJoystick.rectTransform.sizeDelta.y / 4));
-
-            //Debug.Log(RightJostickInputVector);
+            
         }
     }
 

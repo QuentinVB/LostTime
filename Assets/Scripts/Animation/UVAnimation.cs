@@ -11,14 +11,14 @@ public class UVAnimation : MonoBehaviour {
     private int index;
     private Vector2 size;
     private Vector2 offset;
-    private Renderer renderer;
+    private Renderer objectRenderer;
 
     void Start()
     {
-        renderer = GetComponent<Renderer>();
+        objectRenderer = GetComponent<Renderer>();
         //size of each tile
         size = new Vector2(1.0f / UVTileY, 1.0f / UVTileX);
-        renderer.material.SetTextureScale("_MainTex", size);
+        objectRenderer.material.SetTextureScale("_MainTex", size);
     }
     // Update is called once per frame
     void Update () {
@@ -33,6 +33,6 @@ public class UVAnimation : MonoBehaviour {
         offset = new Vector2(uIndex * size.x, 1.0f - size.y - vIndex * size.y);
 
         //offset the uv at the position and rescale based ont the size of the tile
-        renderer.material.SetTextureOffset("_MainTex", offset);
+        objectRenderer.material.SetTextureOffset("_MainTex", offset);
     }
 }

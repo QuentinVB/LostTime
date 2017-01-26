@@ -7,14 +7,15 @@ using UnityEngine.EventSystems;
 public class UserInterfaceRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
     public VirtualRightJoystick _rightJoystick;
-    public Canvas _userInterface;
     public Image bG;
     public Image joyst;
     public bool _isJoystickRightUsed;
 
     private void Start()
     {
-        this.GetComponent<RectTransform>().sizeDelta = new Vector2(_userInterface.GetComponent<RectTransform>().rect.width / 2, _userInterface.GetComponent<RectTransform>().rect.height);
+        this.GetComponent<RectTransform>().sizeDelta = new Vector2((GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 2) - (GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 12),
+            (GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height));
+        this.GetComponent<RectTransform>().anchoredPosition = new Vector2(-(GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 12), 0);
     }
 
     public virtual void OnPointerUp(PointerEventData pedRightJoystick)
@@ -25,7 +26,11 @@ public class UserInterfaceRightJoystick : MonoBehaviour, IDragHandler, IPointerU
 
     public virtual void OnPointerDown(PointerEventData pedRightJoystick)
     {
-        if(pedRightJoystick.position.x > Screen.width / 2)
+        if((pedRightJoystick.position.x > Screen.width / 2)
+            && (GameObject.Find("GameMapPanel") == false)
+            && (GameObject.Find("QuestBookPanel") == false)
+            && (GameObject.Find("SystemConfigurationPanel") == false)
+            && (GameObject.Find("InventoryBag") == false))
         {
             bG.enabled = true;
             joyst.enabled = true;
@@ -37,7 +42,14 @@ public class UserInterfaceRightJoystick : MonoBehaviour, IDragHandler, IPointerU
 
     public virtual void OnDrag(PointerEventData pedRightJoystick)
     {
-        _rightJoystick.OnDrag(pedRightJoystick);
+        if ((pedRightJoystick.position.x > Screen.width / 2)
+            && (GameObject.Find("GameMapPanel") == false)
+            && (GameObject.Find("QuestBookPanel") == false)
+            && (GameObject.Find("SystemConfigurationPanel") == false)
+            && (GameObject.Find("InventoryBag") == false))
+        {
+            _rightJoystick.OnDrag(pedRightJoystick);
+        }
     }
 
     public bool IsJostickUsed
