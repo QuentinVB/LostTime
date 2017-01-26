@@ -19,7 +19,7 @@ public class CharaAnimCtrl : MonoBehaviour {
     public Animator anim;
     //public float turnSpeed;
     //public float runSpeed;
-    //public float walkSpeed;
+   private float walkSpeed;
     public InputMode inputMode = InputMode.byTransform;
     public WalkMode walkmode = WalkMode.idle;
 
@@ -86,6 +86,7 @@ public class CharaAnimCtrl : MonoBehaviour {
         waitForActionCounter = WaitForActionDelay;
 
         waitForBoringDelay = 800;
+        walkSpeed = 1.2f;
     }
 
     // Update is called once per frame
@@ -153,7 +154,7 @@ public class CharaAnimCtrl : MonoBehaviour {
     }
     private float Vertical()
     {
-        computedVelocity = (lastPosition.magnitude - transformOfTheCharacter.position.magnitude)*Time.deltaTime;
+        computedVelocity = (lastPosition.magnitude - transformOfTheCharacter.position.magnitude)*Time.deltaTime* walkSpeed;
         return Mathf.Clamp(computedVelocity, -1.0f, 1.0f); 
     }
     private void getBored()
