@@ -9,7 +9,7 @@ public class CloudAbove : MonoBehaviour {
     // Use this for initialization
     void Start () {
         render = GetComponent<Renderer>();
-        scrollSpeed = 0.1f;
+        scrollSpeed = 0.01f;
 
     }
 	
