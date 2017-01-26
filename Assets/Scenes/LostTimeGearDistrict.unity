@@ -712,7 +712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 116290814}
   inputMode: 1
-  walkmode: 0
+  walkmode: 2
 --- !u!136 &116290818
 CapsuleCollider:
   m_ObjectHideFlags: 0
