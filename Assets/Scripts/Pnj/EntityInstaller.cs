@@ -26,31 +26,15 @@ public class EntityInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<QuestManager>().AsSingle();
-
-        for (int index = 0; index <= 10; index++)
-        {
-            Container.Bind<int>().FromInstance(index);
-            Container.Bind<ISculptor>().To<HumanSculptor>().AsCached();
-            Container.Bind<LinkedActor>().AsTransient();
-            Container.Bind<IPosition>().To<PositionEntity>();
-            Container.Bind<Entity>();
-        }
+        Container.Bind<QuestManager>().AsSingle().NonLazy();      
+            Container.Bind<IPosition>().To<PositionEntity>().NonLazy();
+            
+            Container.Bind<ISculptor>().To<HumanSculptor>().AsCached().NonLazy();
+            Container.Bind<LinkedActor>().NonLazy();
+            Container.Bind<IpathFinding>().To<Pathfinding>().NonLazy();
+            Container.Bind<Entity>().To<Entity>().NonLazy();
         //Debug.Log(string.Format("questManager: {0}", questManager == null ? "is null" : "is not null"));
         //Debug.Log(string.Format("questManager.NPCList.Count: {0}", questManager.NPCList.Count));
-        //LinkedActor temp = questManager.NPCList[0];
-        //Debug.Log(temp.job);
-        //Container.Bind<LinkedActor>().AsTransient();
-        //if (questManager.NPCList[questManager.count] != null)
-        //    
-        //else
-        //    Debug.Log("La puta madre\n");
-        //questManager.count++;
-        //Container.Bind<LinkedActor>().FromInstance(new LinkedActor { id = "id2", name = "tutu", job = "poubelier" });
-        //if (questManager.NPCList[questManager.count].job != null)
-
-        //Container.Bind<IpathFindingEntity>().FromInstance(new pathFindingEntity());
-
-        //Debug.Log("Bindings ended.");
+        Debug.Log("Bindings ended.");
     }
 }

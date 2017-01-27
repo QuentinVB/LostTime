@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public interface IPosition
 {
-    Vector3 getPosition();
+    Vector3 getPosition(int job);
 }
 
 public class PositionEntity : MonoBehaviour, IPosition
@@ -13,8 +13,6 @@ public class PositionEntity : MonoBehaviour, IPosition
     Vector3 position;
     string nameOfPosition;
     List<Position> positionList;
-    [Inject]
-    int index;
 
     public class Position
     {
@@ -30,6 +28,7 @@ public class PositionEntity : MonoBehaviour, IPosition
     }
     public PositionEntity()
     {
+        Debug.Log(string.Format("test"));
         FillPosition();
     }
 
@@ -52,8 +51,8 @@ public class PositionEntity : MonoBehaviour, IPosition
         positionList.Add(new Position { isSetUp = false, position = new Vector3(-23.86f, 1.91f, -13.1f) });
     }
 
-    public Vector3 getPosition()
+    public Vector3 getPosition(int job)
     {
-        return positionList[index].getPosition();
+        return positionList[job].getPosition();
     }
 }

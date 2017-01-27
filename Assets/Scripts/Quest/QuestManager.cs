@@ -17,8 +17,6 @@ public class QuestManager : MonoBehaviour
     {
         //questContainer = new QuestContainer();
         //NPCList = questContainer.setUpActorList;
-        NPCList.Add(new LinkedActor { id = "id1", name = "toto", job = "Forgeron" });
-        NPCList.Add(new LinkedActor { id = "id2", name = "tutu", job = "poubelier" });
         setUP();
 
     }
@@ -71,8 +69,6 @@ public class QuestManager : MonoBehaviour
 
     void setUP()
     {
-        // LOAD xmlconteneur
-        count = 0;
 
     }
 

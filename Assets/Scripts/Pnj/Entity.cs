@@ -6,29 +6,32 @@ using Zenject;
 
  class Entity : MonoBehaviour
 {
-    [Inject]
     ISculptor _sculptor;
-    [Inject]
     IPosition _position;
-    [Inject]
-    IpathFinding pathFinding;
-    //[Inject]
-    //IBehaviourEntity behaviourEntity;
-    [Inject]
-    LinkedActor who;
-    [Inject]
-    QuestManager questManager;
+    IpathFinding _pathFinding;
+    LinkedActor _who;
+
+    QuestManager _questManager;
     string _name;
     string _id;
     GameObject entity;
 
+    public Entity(ISculptor sculptor, IPosition position, IpathFinding pathFinding, LinkedActor who, QuestManager questManager)
+    {
+        Debug.Log("lol");
+        _sculptor = sculptor;
+        _position = position;
+        _who = who;
+        _questManager = questManager;
+        setUp();
+    }
     public void setUp()
     {
-        Debug.Log(string.Format("questManager: {0}", questManager == null ? "is null" : "is not null"));
-        _name = who.name;
-        _id = who.id;
+        Debug.Log(string.Format("sculptor: {0}", _sculptor == null ? "is null" : "is not null"));
+        _name = _who.name;
+        _id = _who.id;
         entity = PrefabByJob(_name);
-        entity.transform.position = _position.getPosition(); // get the Iposition Vector3 and set the scupltor tranform
+        entity.transform.position = _position.getPosition( 0); // get the Iposition Vector3 and set the scupltor tranform
     }
 
     public  GameObject PrefabByJob(string name)
