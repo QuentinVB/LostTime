@@ -26,9 +26,8 @@ public class EntityInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<QuestManager>().AsSingle().NonLazy();      
+            Container.Bind<QuestManager>().AsSingle().NonLazy();
             Container.Bind<IPosition>().To<PositionEntity>().NonLazy();
-            
             Container.Bind<ISculptor>().To<HumanSculptor>().AsCached().NonLazy();
             Container.Bind<LinkedActor>().NonLazy();
             Container.Bind<IpathFinding>().To<Pathfinding>().NonLazy();

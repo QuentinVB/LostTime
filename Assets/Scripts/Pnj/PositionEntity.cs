@@ -26,7 +26,7 @@ public class PositionEntity : MonoBehaviour, IPosition
             return this.position;
         }
     }
-    public PositionEntity()
+    private void Start()
     {
         Debug.Log(string.Format("test"));
         FillPosition();
