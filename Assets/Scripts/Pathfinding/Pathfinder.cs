@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pathfinder : MonoBehaviour
+public interface IPathFinding
+{
+}
+public class Pathfinder : IPathFinding
 {
     public Pathfinder()
     {

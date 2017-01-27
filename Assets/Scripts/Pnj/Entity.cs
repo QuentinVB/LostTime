@@ -8,7 +8,7 @@ using Zenject;
 {
     ISculptor _sculptor;
     IPosition _position;
-    IpathFinding _pathFinding;
+    IPathFinding _pathFinding;
     LinkedActor _who;
 
     QuestManager _questManager;
@@ -16,10 +16,9 @@ using Zenject;
     string _id;
     GameObject entity;
 
-    public Entity(ISculptor sculptor, IPosition position, IpathFinding pathFinding, LinkedActor who, QuestManager questManager)
+    public Entity(IPosition position, IPathFinding pathFinding, LinkedActor who, QuestManager questManager)
     {
         Debug.Log("lol");
-        _sculptor = sculptor;
         _position = position;
         _who = who;
         _questManager = questManager;

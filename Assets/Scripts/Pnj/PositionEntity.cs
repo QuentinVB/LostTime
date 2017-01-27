@@ -8,7 +8,7 @@ public interface IPosition
     Vector3 getPosition(int job);
 }
 
-public class PositionEntity : MonoBehaviour, IPosition
+public class PositionEntity :  IPosition
 {
     Vector3 position;
     string nameOfPosition;
@@ -26,9 +26,9 @@ public class PositionEntity : MonoBehaviour, IPosition
             return this.position;
         }
     }
-    private void Start()
+    public PositionEntity()
     {
-        Debug.Log(string.Format("test"));
+        Debug.Log(string.Format("position check"));
         FillPosition();
     }
 
