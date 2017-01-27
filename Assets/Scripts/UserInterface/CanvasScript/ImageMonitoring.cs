@@ -16,8 +16,9 @@ public class ImageMonitoring : MonoBehaviour {
     public Sprite _BagButton;
     public Sprite _WoodBackGround;
     public Sprite _MetalCircle;
+    public Sprite _yellowGear;
 
-    
+
 
     public void PutBackGroundImageOnGameObject(string GameObjectName, string GameObjectParentName, Sprite BackGround, 
         bool LeftLimitSprite, Sprite BackGroundLimitLeft,
@@ -121,5 +122,10 @@ public class ImageMonitoring : MonoBehaviour {
     public Sprite GetBagButton
     {
         get { return _BagButton; }
+    }
+
+    public Sprite GetYellowGear
+    {
+        get { return _yellowGear; }
     }
 }

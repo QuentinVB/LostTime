@@ -14,8 +14,8 @@ public class InventaireScript : MonoBehaviour {
 
     private void Start()
     {
-        _playerInventory = new List<InventaireScript>();
-        AddTestObejctInList();
+        //_playerInventory = new List<InventaireScript>();
+        //AddTestObejctInList();
     }
 
     public InventaireScript(string ItemName, string ItemDescription, bool UsefulItem, bool Rareitem, bool QuestItem)

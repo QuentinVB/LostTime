@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SavePlayerPosition : MonoBehaviour {
+
     
+
     public void SaveCurrentGameConfig(string CurrentScene)
     {
         if(PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
@@ -50,4 +53,5 @@ public class SavePlayerPosition : MonoBehaviour {
     }
 
 
+    
 }
