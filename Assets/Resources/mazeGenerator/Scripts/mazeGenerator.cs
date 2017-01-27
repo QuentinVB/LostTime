@@ -42,7 +42,7 @@ public class mazeGenerator : MonoBehaviour {
     {
         xMax = 8;
         yMax = 8;
-        choosedAlgorithm = Algo.odd;
+        choosedAlgorithm = Algo.fuzion;
         labyrinth = new Room[xMax, yMax];
 
         //fill the labyrinth with rooms according to the algorithm wanted
@@ -64,6 +64,9 @@ public class mazeGenerator : MonoBehaviour {
                 break;
             case Algo.odd:
                 algoToUse = new OddCorridor();
+                break;
+            case Algo.fuzion:
+                algoToUse = new RandomFuzion();
                 break;
             default:
                 algoToUse = new EmptyRooms();
@@ -121,5 +124,6 @@ public enum Algo
 {
     empty,
     odd,
+    fuzion,
 
 }
