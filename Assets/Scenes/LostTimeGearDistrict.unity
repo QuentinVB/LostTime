@@ -712,7 +712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 116290814}
   inputMode: 1
-  walkmode: 0
+  walkmode: 2
 --- !u!136 &116290818
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7500,6 +7500,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4102450519809820, guid: ef001cec0e9282a4ea27c2ef134a59c1, type: 2}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23191794003061474, guid: ef001cec0e9282a4ea27c2ef134a59c1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114267708544201644, guid: ef001cec0e9282a4ea27c2ef134a59c1,
+        type: 2}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

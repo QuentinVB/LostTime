@@ -19,10 +19,11 @@ public class CharaAnimCtrl : MonoBehaviour {
     public Animator anim;
     //public float turnSpeed;
     //public float runSpeed;
-    //public float walkSpeed;
+   private float walkSpeed;
     public InputMode inputMode = InputMode.byTransform;
     public WalkMode walkmode = WalkMode.idle;
 
+    private RuntimeAnimatorController animCtrl;
 
     private float inputH;
     private float inputV;
@@ -36,7 +37,7 @@ public class CharaAnimCtrl : MonoBehaviour {
     private bool isCatchingTable;
 
     private int waitForBoringCounter = 0;
-    private int waitForBoringDelay = 800;
+    private int waitForBoringDelay;
 
     private bool awaitThisUpdate;
 
@@ -48,12 +49,32 @@ public class CharaAnimCtrl : MonoBehaviour {
     private Quaternion lastRotation;
     private float computedVelocity;
 
+    public CharaAnimCtrl(InputMode inputMode, WalkMode walkmode)
+    {
+        this.inputMode = inputMode;
+        this.walkmode = walkmode;
+        waitForBoringDelay = 800;
+        animCtrl = (RuntimeAnimatorController)Resources.Load("CharacterLowPo/CharacterAnimation");
+        if (animCtrl == null)
+        {
+            Debug.Log(string.Format("Faild to load Animation Controller"));
+        }
+    }
+
     // Use this for initialization
     void Start ()
     {
         anim = GetComponent<Animator>();
-        transformOfTheCharacter= GetComponent<Transform>();
 
+        //SECURITY (load the animatorController into the animator if empty)
+        if (anim.runtimeAnimatorController == null)
+        {
+            Debug.Log(string.Format("load default Animation Controller"));
+            anim.runtimeAnimatorController = animCtrl;
+        }
+
+        transformOfTheCharacter = GetComponent<Transform>();
+        
         isWalking = anim.GetBool("isWalking");
         isRunning = anim.GetBool("isRunning");
         isJumping = anim.GetBool("isJumping");
@@ -63,6 +84,9 @@ public class CharaAnimCtrl : MonoBehaviour {
         awaitThisUpdate = false;
         waitForActionDelay = 1.0f;
         waitForActionCounter = WaitForActionDelay;
+
+        waitForBoringDelay = 800;
+        walkSpeed = 1.2f;
     }
 
     // Update is called once per frame
@@ -130,7 +154,7 @@ public class CharaAnimCtrl : MonoBehaviour {
     }
     private float Vertical()
     {
-        computedVelocity = (lastPosition.magnitude - transformOfTheCharacter.position.magnitude)*Time.deltaTime;
+        computedVelocity = (lastPosition.magnitude - transformOfTheCharacter.position.magnitude)*Time.deltaTime* walkSpeed;
         return Mathf.Clamp(computedVelocity, -1.0f, 1.0f); 
     }
     private void getBored()
@@ -139,10 +163,10 @@ public class CharaAnimCtrl : MonoBehaviour {
         {
             waitForBoringCounter++;
 
-            if (waitForBoringCounter > waitForBoringDelay)
+            if(waitForBoringCounter > waitForBoringDelay)
             {
                 string idleState;
-                int randomNumber = UnityEngine.Random.Range(0, 1);
+                int randomNumber = UnityEngine.Random.Range(0, 2);
                 switch (randomNumber)
                 {
                     case 0:
@@ -158,11 +182,14 @@ public class CharaAnimCtrl : MonoBehaviour {
                 anim.Play(idleState, -1, 0f);
                 waitForBoringCounter = 0;
             }
+
         }
         else
         {
             waitForBoringCounter = 0;
         }
+        //Debug.Log(String.Format("{0},{1}", waitForBoringDelay, waitForBoringCounter));
+
     }
     private void resetBool()
     {
