@@ -5,7 +5,10 @@ public class SimpleCubeInstaller : MonoInstaller<SimpleCubeInstaller>
 {
     public override void InstallBindings()
     {
+        Container.Bind<bool>().FromInstance(true);
+        Container.Bind<IBar>().FromInstance(new Bar());
         Container.InstantiatePrefab(Resources.Load("cubetest"));
+        Container.InstantiateComponent
     }
 }
 
@@ -21,7 +24,7 @@ public class TestRunner
 public class Bar : IBar
 {
     public int name = 2;
-    public string msg = "lol";
+    public string msg = "yup !";
     public Bar()
     {
         name += 2;

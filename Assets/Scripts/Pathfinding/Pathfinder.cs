@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IPathFinding
 {
+     Component Path(bool willMove);
 }
 public class Pathfinder : IPathFinding
 {
