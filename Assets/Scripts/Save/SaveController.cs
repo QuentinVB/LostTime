@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SaveController : MonoBehaviour {
@@ -128,5 +129,13 @@ public class SaveController : MonoBehaviour {
             tmp += 1;
             PlayerPrefs.SetInt("SaveStateThreeCycle", tmp);
         }
+    }
+
+    public void LoadSceneAstridPosition(float AstridPositionX, float AstridPositionY, float AstridPositionZ, string NextScene)
+    {
+        PlayerPrefs.SetFloat("NextSceneAstridPositionX", AstridPositionX);
+        PlayerPrefs.SetFloat("NextSceneAstridPositionY", AstridPositionY);
+        PlayerPrefs.SetFloat("NextSceneAstridPositionZ", AstridPositionZ);
+        SceneManager.LoadScene(NextScene);
     }
 }

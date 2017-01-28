@@ -3,29 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SaveStateWayPoints : MonoBehaviour {
+public class NewSceneWayPointsController : MonoBehaviour {
 
-    private bool _onCollision;
+    private bool _isCollisionTrue;
+    private float _NewSceneAstridPositionX;
+    private float _NewSceneAstridPositionY;
+    private float _NewSceneAstridPositionZ;
+    private string _NewScene;
 
+
+    private void Start()
+    {
+        GameObject.Find("Cube").GetComponent<BoxCollider>().size = new Vector3(2f, 5f, 2f);
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.tag == "Player")
         {
-            _onCollision = true;
+            _isCollisionTrue = true;
         }
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.transform.tag == "Player")
+        if(_isCollisionTrue == true)
         {
-            _onCollision = true;
         }
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            _isCollisionTrue = false;
+        }
+    }
     private void OnMouseDown()
     {
-        if (GameObject.Find("PanelOverWriteData") == false && _onCollision == true && GameObject.Find("InventoryBag") == false && GameObject.Find("GameMapPanel") == false 
+        if (GameObject.Find("PanelOverWriteData") == false && _isCollisionTrue == true && GameObject.Find("InventoryBag") == false && GameObject.Find("GameMapPanel") == false
             && GameObject.Find("QuestBookPanel") == false && GameObject.Find("SystemConfigurationPanel") == false)
         {
             GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("PanelOverWriteData", GameObject.Find("Canvas"), true,
@@ -35,7 +50,7 @@ public class SaveStateWayPoints : MonoBehaviour {
             GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelOverWriteDataLabel", GameObject.Find("PanelOverWriteData"), true,
                 GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2, 0,
                 GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 4,
-                "Save your data ?", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+                "Changer de Scène", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
                 ((int)(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 10)), Color.black);
 
             GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelOverWriteDataLabelYes", GameObject.Find("PanelOverWriteData"), true,
@@ -45,7 +60,7 @@ public class SaveStateWayPoints : MonoBehaviour {
                 "Yes", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
                 ((int)(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 10)), Color.black);
             GameObject.Find("PanelOverWriteDataLabelYes").AddComponent<Button>();
-            GameObject.Find("PanelOverWriteDataLabelYes").GetComponent<Button>().onClick.AddListener(() => SaveGame());
+            GameObject.Find("PanelOverWriteDataLabelYes").GetComponent<Button>().onClick.AddListener(() => LoadNewScene());
 
             GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelOverWriteDataLabelNo", GameObject.Find("PanelOverWriteData"), true,
                 GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2,
@@ -58,21 +73,10 @@ public class SaveStateWayPoints : MonoBehaviour {
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void LoadNewScene()
     {
-        if(collision.transform.tag =="Player")
-        {
-            _onCollision = false;
-            Destroy(GameObject.Find("PanelOverWriteData"));
-        }
-        
-    }
+        GameObject.Find("Canvas").GetComponent<SaveController>().LoadSceneAstridPosition(0, 0, 0, this.gameObject.name);
 
-
-
-    private void SaveGame()
-    {
-        GameObject.Find("Canvas").GetComponent<SaveController>().SaveCurrentGameConfig("LostTimeGearDistrict");
         Destroy(GameObject.Find("PanelOverWriteData"));
     }
 
@@ -80,4 +84,6 @@ public class SaveStateWayPoints : MonoBehaviour {
     {
         Destroy(GameObject.Find("PanelOverWriteData"));
     }
+
+
 }
