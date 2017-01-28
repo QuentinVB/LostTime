@@ -69,6 +69,7 @@ public class Timer : MonoBehaviour {
     void TimeUp()
     {
         jeuFini = !jeuFini;
+        GameObject.Find("Canvas").GetComponent<SaveController>().SaveCyclePlayer();
         // sauvergarder inventaire
         //afficher texture GAMEOVER
         // WAIT 2s

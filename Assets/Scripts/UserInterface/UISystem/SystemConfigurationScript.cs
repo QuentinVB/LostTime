@@ -279,8 +279,16 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
             GameObject.Find("ShadowChoiceText").GetComponent<RectTransform>().rect.width,
             GameObject.Find("ShadowChoiceText").GetComponent<RectTransform>().rect.height,
             GameObject.Find("ShadowChoiceText").GetComponent<RectTransform>().rect.width, 0,
-            "Activé", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            "", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 16)), Color.black);
+        if (PlayerPrefs.GetInt("ShadowIsActivatedSave") == 0)
+        {
+            GameObject.Find("ShadowInput").GetComponent<Text>().text = "Désactivé";
+        }
+        else
+        {
+            GameObject.Find("ShadowInput").GetComponent<Text>().text = "Activé";
+        }
         GameObject.Find("ShadowInput").AddComponent<Button>();
         GameObject.Find("ShadowInput").GetComponent<Button>().onClick.AddListener(() => ShadowButton());
     }
