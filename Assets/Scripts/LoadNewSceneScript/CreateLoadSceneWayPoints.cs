@@ -5,30 +5,14 @@ using UnityEngine;
 public class CreateLoadSceneWayPoints : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
+	void Start ()
+    {
+        
+        if (PlayerPrefs.GetString("CurrentScene") == "LostTimeGearDistrict")
         {
-            if (PlayerPrefs.GetString("SaveStateOneLastScene") == "LostTimeGearDistrict")
-            {
-                createWayPoints("LostTimeMenuGame", 16f, 2.5f, 29.7f);
-            }
+            createWayPoints("LostTimeMenuGame", 16f, 2.5f, 29.7f);
         }
-
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
-        {
-            if (PlayerPrefs.GetString("SaveStateTwoLastScene") == "LostTimeGearDistrict")
-            {
-                createWayPoints("LostTimeMenuGame", 16f, 2.5f, 29.7f);
-            }
-        }
-
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
-        {
-            if (PlayerPrefs.GetString("SaveStateThreeLastScene") == "LostTimeGearDistrict")
-            {
-                createWayPoints("LostTimeMenuGame", 16f, 2.5f, 29.7f);
-            }
-        }
+        
     }
 
 

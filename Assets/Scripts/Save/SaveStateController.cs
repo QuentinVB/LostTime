@@ -12,35 +12,13 @@ public class SaveStateController : MonoBehaviour {
 
     private void SetWayPointsOnMap()
     {
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
-        {
-            if (PlayerPrefs.GetString("SaveStateOneLastScene") == "LostTimeGearDistrict")
+            if (PlayerPrefs.GetString("CurrentScene") == "LostTimeGearDistrict")
             {
                 createWayPoints("ChunkGardenSave", -16f, 3f, -51f);
                 createWayPoints("ChunkSouthStreetSave", 15f, 3f, 54f);
                 createWayPoints("ChunkMarketSave", 12.5f, 2f, -3f);
             }
-        }
-
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
-        {
-            if (PlayerPrefs.GetString("SaveStateTwoLastScene") == "LostTimeGearDistrict")
-            {
-                createWayPoints("ChunkGardenSave", -16f, 3f, -51f);
-                createWayPoints("ChunkSouthStreetSave", 3f, 1.2f, 60f);
-                createWayPoints("ChunkMarketSave", 2f, 0.15f, 4f);
-            }
-        }
-
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
-        {
-            if (PlayerPrefs.GetString("SaveStateThreeLastScene") == "LostTimeGearDistrict")
-            {
-                createWayPoints("ChunkGardenSave", -16f, 3f, -51f);
-                createWayPoints("ChunkSouthStreetSave", 3f, 1.2f, 60f);
-                createWayPoints("ChunkMarketSave", 2f, 0.15f, 4f);
-            }
-        }
+        
     }
 
     private void createWayPoints(string GameObjectName, float PosX, float PosY, float PosZ)

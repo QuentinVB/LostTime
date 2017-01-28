@@ -136,6 +136,7 @@ public class SaveController : MonoBehaviour {
         PlayerPrefs.SetFloat("NextSceneAstridPositionX", AstridPositionX);
         PlayerPrefs.SetFloat("NextSceneAstridPositionY", AstridPositionY);
         PlayerPrefs.SetFloat("NextSceneAstridPositionZ", AstridPositionZ);
+        PlayerPrefs.SetString("CurrentScene", NextScene);
         SceneManager.LoadScene(NextScene);
     }
 }

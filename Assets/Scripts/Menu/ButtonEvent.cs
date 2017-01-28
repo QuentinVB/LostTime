@@ -352,6 +352,7 @@ public class ButtonEvent : MonoBehaviour
             PlayerPrefs.SetInt("Is" + SaveStateName + "Used", 1);
             PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
             GameObject.Find("MenuGameUserInterface").GetComponent<SaveController>().InitialisePlayerSaveState(SaveStateName);
+            PlayerPrefs.SetString("CurrentScene", SaveStateName + "LastScene");
             SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
         }
     }
@@ -361,6 +362,7 @@ public class ButtonEvent : MonoBehaviour
         if (PlayerPrefs.GetInt("Is" + SaveStateName + "Used") == 1)
         {
             PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
+            PlayerPrefs.SetString("CurrentScene", SaveStateName + "LastScene");
             SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
         }
         else
@@ -440,6 +442,7 @@ public class ButtonEvent : MonoBehaviour
         PlayerPrefs.SetInt("Is" + SaveStateName + "Used", 1);
         PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
         GameObject.Find("MenuGameUserInterface").GetComponent<SaveController>().InitialisePlayerSaveState(SaveStateName);
+        PlayerPrefs.SetString("CurrentScene", SaveStateName + "LastScene");
         SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
     }
 
