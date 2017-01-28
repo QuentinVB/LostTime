@@ -60,6 +60,7 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
 
             AddGameMusicConfig();
             AddGameLanguageConfig();
+            AddShadowChoice();
         }
         else
         {
@@ -261,5 +262,42 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
             GameObject.Find("CreateSoundEffectLevelBackGround").GetComponent<RectTransform>().rect.height,
             0, 0, PlayerPrefs.GetString("SoundEffectVolumeSave"), GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.LowerRight, FontStyle.Bold,
             (int)(GameObject.Find("CreateSoundEffectLevelBackGround").GetComponent<RectTransform>().rect.height / 2), Color.black);
+    }
+
+    private void AddShadowChoice()
+    {
+        GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("ShadowChoiceText", GameObject.Find("SystemConfigurationPanel"), true,
+            GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 2,
+            GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 8,
+            (GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / -2) +
+            (GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 4),
+            GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / -3,
+            "Ombres : ", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            (int)(GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 16), Color.black);
+
+        GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("ShadowInput", GameObject.Find("ShadowChoiceText"), true,
+            GameObject.Find("ShadowChoiceText").GetComponent<RectTransform>().rect.width,
+            GameObject.Find("ShadowChoiceText").GetComponent<RectTransform>().rect.height,
+            GameObject.Find("ShadowChoiceText").GetComponent<RectTransform>().rect.width, 0,
+            "Activé", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            ((int)(GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 16)), Color.black);
+        GameObject.Find("ShadowInput").AddComponent<Button>();
+        GameObject.Find("ShadowInput").GetComponent<Button>().onClick.AddListener(() => ShadowButton());
+    }
+
+    private void ShadowButton()
+    {
+        if(PlayerPrefs.GetInt("ShadowIsActivatedSave") == 0)
+        {
+            PlayerPrefs.SetInt("ShadowIsActivatedSave", 1);
+            GameObject.Find("ShadowInput").GetComponent<Text>().text = "Désactivé";
+            GameObject.Find("Sun").GetComponent<Light>().shadows = LightShadows.None;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("ShadowIsActivatedSave", 0);
+            GameObject.Find("ShadowInput").GetComponent<Text>().text = "Activé";
+            GameObject.Find("Sun").GetComponent<Light>().shadows = LightShadows.Soft;
+        }
     }
 }

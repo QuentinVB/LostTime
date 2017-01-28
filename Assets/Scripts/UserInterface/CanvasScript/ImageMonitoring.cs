@@ -19,6 +19,18 @@ public class ImageMonitoring : MonoBehaviour {
     public Sprite _yellowGear;
 
 
+    private void Start()
+    {
+        //Image MapButton = (Image)Resources.Load("Textures/icon-compass");
+        //if(MapButton == null)
+        //{
+        //    Debug.Log("Image Pas charger");
+        //}else
+        //{
+        //    Debug.Log("Image chargée");
+        //}
+    }
+
 
     public void PutBackGroundImageOnGameObject(string GameObjectName, string GameObjectParentName, Sprite BackGround, 
         bool LeftLimitSprite, Sprite BackGroundLimitLeft,

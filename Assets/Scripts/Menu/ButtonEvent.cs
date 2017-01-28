@@ -55,11 +55,11 @@ public class ButtonEvent : MonoBehaviour
         GameObject.Find("ButtonLoadSaveText").GetComponent<Text>().fontSize = ((int)(GameObject.Find("ButtonLoadSave").GetComponent<RectTransform>().rect.height - 10));
 
 
-        /*GameObject.Find("ButtonConfigure").transform.SetParent(GameObject.Find("ButtonLoadSave").transform, true);
-        GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().sizeDelta = new Vector2(GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.width,
-            GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 4);
-        GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 2);
-        GameObject.Find("ButtonConfigureText").GetComponent<Text>().fontSize = ((int)(GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().rect.height - 10));*/
+        //GameObject.Find("ButtonConfigure").transform.SetParent(GameObject.Find("ButtonLoadSave").transform, true);
+        //GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().sizeDelta = new Vector2(GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.width,
+        //    GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 4);
+        //GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 2);
+        //GameObject.Find("ButtonConfigureText").GetComponent<Text>().fontSize = ((int)(GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().rect.height - 10));
 
 
         GameObject.Find("BackGroundMenu").transform.SetParent(GameObject.Find("MenuGameUserInterface").transform, true);
@@ -272,8 +272,6 @@ public class ButtonEvent : MonoBehaviour
             _configureGamePanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(GameObject.Find("MenuGameUserInterface").GetComponent<RectTransform>().rect.width / 2
                 + GameObject.Find("ConfigureGamePanel").GetComponent<RectTransform>().rect.width / 2, 0);
 
-            //CreateConfigureGamePanelComponent();
-
             _configGamePanelActivated = true;
             _configGameAnimationOn = true;
         }
@@ -287,7 +285,7 @@ public class ButtonEvent : MonoBehaviour
 
 
 
-    private void CreateNewGamePanelCSaveStateComponent(string GameObjectName, string gameObjectName, string GameObjectParentName, float sizedeltaX, float sizeDeltaY, float anchoredPositionX, float anchoredPositionY)
+    private void CreateNewGamePanelCSaveStateComponent(string GameObjectName, string PlayerPrefsCurrentSaveState, string GameObjectParentName, float sizedeltaX, float sizeDeltaY, float anchoredPositionX, float anchoredPositionY)
     {
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage(GameObjectName, GameObject.Find(GameObjectParentName), true,
             sizedeltaX, sizeDeltaY, anchoredPositionX, anchoredPositionY, Color.clear);
@@ -312,13 +310,13 @@ public class ButtonEvent : MonoBehaviour
             GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.width / 4, GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.height / 4, "",
             GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.height / 10)), Color.black);
-        if (PlayerPrefs.GetInt("Is" + gameObjectName + "Used") != 1)
+        if (PlayerPrefs.GetInt("Is" + PlayerPrefsCurrentSaveState + "Used") != 1)
         {
-            GameObject.Find((GameObjectName + "CycleTextZone")).GetComponent<Text>().text = "Empty SaveState"; 
+            GameObject.Find((GameObjectName + "CycleTextZone")).GetComponent<Text>().text = "Espace Sauvegarde Vide"; 
         }
         else
         {
-            GameObject.Find((GameObjectName + "CycleTextZone")).GetComponent<Text>().text = "Nombre de cycle : ";
+            GameObject.Find((GameObjectName + "CycleTextZone")).GetComponent<Text>().text = "Nombre de cycle : " + PlayerPrefs.GetInt(PlayerPrefsCurrentSaveState + "Cycle");
         }
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone(GameObjectName + "FragmentTextZone", GameObject.Find(GameObjectName), true,
@@ -326,13 +324,13 @@ public class ButtonEvent : MonoBehaviour
             GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.width / 4, GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.height / -4, "",
             GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.height / 10)), Color.black);
-        if (PlayerPrefs.GetInt("Is" + gameObjectName + "Used") != 1)
+        if (PlayerPrefs.GetInt("Is" + PlayerPrefsCurrentSaveState + "Used") != 1)
         {
             GameObject.Find((GameObjectName + "FragmentTextZone")).GetComponent<Text>().text = "Start New Game";
         }
         else
         {
-            GameObject.Find((GameObjectName + "FragmentTextZone")).GetComponent<Text>().text = "Nombre de fragments : ";
+            GameObject.Find((GameObjectName + "FragmentTextZone")).GetComponent<Text>().text = "Nombre de fragments : " + PlayerPrefs.GetInt(PlayerPrefsCurrentSaveState + "Fragments");
         }
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateEmptyGameObject(GameObjectName + "ButtonZone", GameObject.Find(GameObjectName), true,
@@ -353,8 +351,8 @@ public class ButtonEvent : MonoBehaviour
         {
             PlayerPrefs.SetInt("Is" + SaveStateName + "Used", 1);
             PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
-            InitialisePlayerPosition();
-            SceneManager.LoadScene("LostTimeGearDistrict");
+            GameObject.Find("MenuGameUserInterface").GetComponent<SaveController>().InitialisePlayerSaveState(SaveStateName);
+            SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
         }
     }
 
@@ -363,7 +361,7 @@ public class ButtonEvent : MonoBehaviour
         if (PlayerPrefs.GetInt("Is" + SaveStateName + "Used") == 1)
         {
             PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
-            SceneManager.LoadScene("LostTimeGearDistrict");
+            SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
         }
         else
         {
@@ -379,6 +377,7 @@ public class ButtonEvent : MonoBehaviour
         PlayerPrefs.SetString("CurrentLanguagesUsed", "French");
         PlayerPrefs.SetInt("SoundEffectVolumeSave", 100);
         PlayerPrefs.SetInt("SoundTrackVolumeSave", 100);
+        PlayerPrefs.SetInt("ShadowIsActivatedSave", 0);
     }
 
     private void OverWriteDataFile(string SaveStateName)
@@ -437,8 +436,11 @@ public class ButtonEvent : MonoBehaviour
     private void Yes(string SaveStateName)
     {
         Destroy(GameObject.Find("PanelOverWriteData"));
+
+        PlayerPrefs.SetInt("Is" + SaveStateName + "Used", 1);
         PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
-        SceneManager.LoadScene("LostTimeGearDistrict");
+        GameObject.Find("MenuGameUserInterface").GetComponent<SaveController>().InitialisePlayerSaveState(SaveStateName);
+        SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
     }
 
     private void No()
@@ -451,27 +453,5 @@ public class ButtonEvent : MonoBehaviour
         Destroy(GameObject.Find("PanelSaveStateEmpty"));
     }
 
-    private void InitialisePlayerPosition()
-    {
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
-        {
-            PlayerPrefs.SetFloat("SaveStateOneAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
-            PlayerPrefs.SetFloat("SaveStateOneAstridPositionZ", 25f);
-        }
-
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
-        {
-            PlayerPrefs.SetFloat("SaveStateTwoAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("SaveStateTwoAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
-            PlayerPrefs.SetFloat("SaveStateTwoAstridPositionZ", 25f);
-        }
-
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
-        {
-            PlayerPrefs.SetFloat("SaveStateThreeAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("SaveStateThreeAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
-            PlayerPrefs.SetFloat("SaveStateThreeAstridPositionZ", 25f);
-        }
-    }
+    
 }

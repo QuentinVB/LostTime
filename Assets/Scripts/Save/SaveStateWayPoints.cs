@@ -73,7 +73,7 @@ public class SaveStateWayPoints : MonoBehaviour {
     private void SaveGame()
     {
         Debug.Log("Save");
-        GameObject.Find("Canvas").GetComponent<SavePlayerPosition>().SaveCurrentGameConfig("LostTimeGearDistrict");
+        GameObject.Find("Canvas").GetComponent<SaveController>().SaveCurrentGameConfig("LostTimeGearDistrict");
         Destroy(GameObject.Find("PanelOverWriteData"));
     }
 

@@ -14,11 +14,31 @@ public class SaveStateController : MonoBehaviour {
     {
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
         {
-            if (PlayerPrefs.GetString("SaveStateOneCurrentScene") == "LostTimeGearDistrict")
+            if (PlayerPrefs.GetString("SaveStateOneLastScene") == "LostTimeGearDistrict")
             {
-                createWayPoints("ChunkGarden", -16f, 3f, -51f);
-                createWayPoints("ChunkSouthStreet", 3f, 1.2f, 60f);
-                createWayPoints("ChunkMarket", 2f, 0.15f, 4f);
+                createWayPoints("ChunkGardenSave", -16f, 3f, -51f);
+                createWayPoints("ChunkSouthStreetSave", 15f, 3f, 54f);
+                createWayPoints("ChunkMarketSave", 12.5f, 2f, -3f);
+            }
+        }
+
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
+        {
+            if (PlayerPrefs.GetString("SaveStateTwoLastScene") == "LostTimeGearDistrict")
+            {
+                createWayPoints("ChunkGardenSave", -16f, 3f, -51f);
+                createWayPoints("ChunkSouthStreetSave", 3f, 1.2f, 60f);
+                createWayPoints("ChunkMarketSave", 2f, 0.15f, 4f);
+            }
+        }
+
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
+        {
+            if (PlayerPrefs.GetString("SaveStateThreeLastScene") == "LostTimeGearDistrict")
+            {
+                createWayPoints("ChunkGardenSave", -16f, 3f, -51f);
+                createWayPoints("ChunkSouthStreetSave", 3f, 1.2f, 60f);
+                createWayPoints("ChunkMarketSave", 2f, 0.15f, 4f);
             }
         }
     }
@@ -31,7 +51,7 @@ public class SaveStateController : MonoBehaviour {
             GameObject gameObject = new GameObject(GameObjectName + "WayPoints");
             gameObject.transform.position = new Vector3(PosX, PosY, PosZ);
             gameObject.AddComponent<BoxCollider>();
-            gameObject.GetComponent<BoxCollider>().size = new Vector3(2f, 5f, 2f);
+            gameObject.GetComponent<BoxCollider>().size = new Vector3(1f, 5f, 1f);
             gameObject.AddComponent<SaveStateController>();
             gameObject.AddComponent<SaveStateWayPoints>();
 
