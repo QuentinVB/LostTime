@@ -51,20 +51,24 @@ public class SystemButtonScript : MonoBehaviour {
 
             /// Petit pb de destroy object lors du Destroy de l'object SystemPanel
             /// 
-            if (GameObject.Find("QuestBookPanel") == true)
+            if(_SystemPanelAnimation == false)
             {
-                Destroy(GameObject.Find("QuestBookPanel"));
-            }
+                if (GameObject.Find("QuestBookPanel") == true)
+                {
+                    Destroy(GameObject.Find("QuestBookPanel"));
+                }
 
-            if (GameObject.Find("SystemConfigurationPanel") == true)
-            {
-                Destroy(GameObject.Find("SystemConfigurationPanel"));
-            }
+                if (GameObject.Find("SystemConfigurationPanel") == true)
+                {
+                    Destroy(GameObject.Find("SystemConfigurationPanel"));
+                }
 
-            if (GameObject.Find("GameMapPanel") == true)
-            {
-                Destroy(GameObject.Find("GameMapPanel"));
+                if (GameObject.Find("GameMapPanel") == true)
+                {
+                    Destroy(GameObject.Find("GameMapPanel"));
+                }
             }
+            
         }
     
     }

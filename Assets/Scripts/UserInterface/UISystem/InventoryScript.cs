@@ -82,7 +82,7 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height,
                 0, (GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height * 3) / 4, Color.grey);
 
-            _userInterface.GetComponent<ImageMonitoring>().PutBackGroundImageOnGameObject("InventoryBagTexture", "InventoryBag", _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
+            _userInterface.GetComponent<ImageMonitoring>().PutBackGroundImageOnGameObject("InventoryBagTexture", "InventoryBag", _userInterface.GetComponent<ImageMonitoring>().GetBackGround5,
                 false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
                 false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, 0, 0);
 
@@ -160,7 +160,7 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
                                         (GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.height / 26) * 8,
                                         -(GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 32) * (10 * tmpX),
                                         (GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.height / 26) * (5 * tmpY),
-                                        Color.white,
+                                        Color.clear,
                                         var);
             if (position == 6)
             {
@@ -283,23 +283,23 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
     private void createInventoryItem(string gameObjectName, GameObject setParent, bool anchoredChildToParent, float sizeDeltaX, float sizeDeltaY, float anchoredPositionX, 
         float anchoredPositionY, Color color, int var)
     {
-        _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage(gameObjectName, setParent, anchoredChildToParent, sizeDeltaX, sizeDeltaY,
+        _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage(gameObjectName + "Item", setParent, anchoredChildToParent, sizeDeltaX, sizeDeltaY,
             anchoredPositionX, anchoredPositionY, color);
-
+        
         _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("ItemLabel", 
-            GameObject.Find(_userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetItemName), true,
-            GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.width,
-            GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.height / 8,
-            0, (GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.height / 8) * 3.5f,
+            GameObject.Find(gameObjectName + "Item"), true,
+            GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.width,
+            GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.height / 8,
+            0, (GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.height / 8) * 3.5f,
             _userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetItemName,
             _userInterface.GetComponent<TextMonitoring>().GetArialTextFont,
-            TextAnchor.MiddleCenter, FontStyle.Bold, (int)(GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.height / 16), Color.black);
-
+            TextAnchor.MiddleCenter, FontStyle.Bold, ((int)(GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        
         _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite(gameObjectName + "ItemImage", 
-            GameObject.Find(_userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetItemName), true,
-            GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.width,
-            (GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.height / 8) * 7,
-            0, (GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.height / 8) * -0.5f,
+            GameObject.Find(gameObjectName + "Item"), true,
+            GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.width,
+            (GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.height / 8) * 7,
+            0, (GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.height / 8) * -0.5f,
             _userInterface.GetComponent<ImageMonitoring>().GetDownArrow);
         GameObject.Find(gameObjectName + "ItemImage").AddComponent<Button>();
         GameObject.Find(gameObjectName + "ItemImage").GetComponent<Button>().onClick.AddListener(() => ShowItemDetail(_userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetItemName,
