@@ -25,14 +25,20 @@ public class GameMapScript : MonoBehaviour, IPointerDownHandler
 
     public virtual void OnPointerDown(PointerEventData Map)
     {
-        if(GameObject.Find("SystemConfigurationPanel") == true)
-            Destroy(GameObject.Find("SystemConfigurationPanel"));
+        if (GameObject.Find("SystemConfigurationPanel") == true)
+        {
+            GameObject.Find("SystemConfiguration").GetComponent<SystemConfigurationScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("QuestBookPanel") == true)
-            Destroy(GameObject.Find("QuestBookPanel"));
+        {
+            GameObject.Find("QuestBook").GetComponent<QuestBookScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("InventoryBag") == true)
-            Destroy(GameObject.Find("InventoryBag"));
+        {
+            GameObject.Find("ButtonInventory").GetComponent<InventoryScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("GameMapPanel") == false)
         {
@@ -40,13 +46,19 @@ public class GameMapScript : MonoBehaviour, IPointerDownHandler
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 2,
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height,
                 0, GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 2 + GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 2, 
-                GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetMapPanel);
+                GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetBackGround1);
+
+            GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("Map", GameObject.Find("GameMapPanel"), true,
+                (GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 10) * 8,
+                (GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 10) * 8,
+                0, 0, GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetMapPanel);
 
             GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeave", GameObject.Find("GameMapPanel"), true,
                 GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 15, GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 15,
                 GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 30,
                 GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 30, Color.red);
-            GameObject.Find("ButtonLeave").AddComponent<LeavePanelScript>();
+            GameObject.Find("ButtonLeave").AddComponent<Button>();
+            GameObject.Find("ButtonLeave").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
 
             _isMapPanelActivated = true;
             _launchMapAnimation = true;
@@ -57,6 +69,12 @@ public class GameMapScript : MonoBehaviour, IPointerDownHandler
             _launchMapAnimation = true;
         }
         
+    }
+
+    public void DestroyPanel()
+    {
+        _isMapPanelActivated = false;
+        _launchMapAnimation = true;
     }
 
 }

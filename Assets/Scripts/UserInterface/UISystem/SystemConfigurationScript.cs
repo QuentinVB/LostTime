@@ -27,13 +27,19 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
     public virtual void OnPointerDown(PointerEventData Map)
     {
         if (GameObject.Find("QuestBookPanel") == true)
-            Destroy(GameObject.Find("QuestBookPanel"));
+        {
+            GameObject.Find("QuestBook").GetComponent<QuestBookScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("GameMapPanel") == true)
-            Destroy(GameObject.Find("GameMapPanel"));
+        {
+            GameObject.Find("GameMap").GetComponent<GameMapScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("InventoryBag") == true)
-            Destroy(GameObject.Find("InventoryBag"));
+        {
+            GameObject.Find("ButtonInventory").GetComponent<InventoryScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("SystemConfigurationPanel") == false)
         {
@@ -41,6 +47,10 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height,
                 0, (GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height), 
                 Color.grey);
+
+            GameObject.Find("Canvas").GetComponent<ImageMonitoring>().PutBackGroundImageOnGameObject("SystemConfigurationPanelTexture", "SystemConfigurationPanel", GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
+                false, GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
+                false, GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetInventoryBagBackGround, 0, 0);
 
             GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("SystemConfigurationPanelLabel", GameObject.Find("SystemConfigurationPanel"), true,
                 GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width, GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height,
@@ -53,7 +63,8 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
                 GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 30,
                 GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 30,
                 Color.red);
-            GameObject.Find("ButtonLeaveConfiguration").AddComponent<LeavePanelScript>();
+            GameObject.Find("ButtonLeaveConfiguration").AddComponent<Button>();
+            GameObject.Find("ButtonLeaveConfiguration").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
 
             _isSystemConfigPanelActivated = true;
             _isSystemConfigAnimationOn = true;
@@ -67,6 +78,12 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
             _isSystemConfigPanelActivated = false;
             _isSystemConfigAnimationOn = true;
         }
+    }
+
+    public void DestroyPanel()
+    {
+        _isSystemConfigPanelActivated = false;
+        _isSystemConfigAnimationOn = true;
     }
 
     private void AddGameLanguageConfig()
@@ -89,7 +106,7 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
             GameObject.Find("GameLanguagesText").GetComponent<RectTransform>().rect.width,
             GameObject.Find("GameLanguagesText").GetComponent<RectTransform>().rect.height,
             GameObject.Find("GameLanguagesText").GetComponent<RectTransform>().rect.width, 0,
-            Color.white);
+            Color.clear);
 
         GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("GameLanguagesDropDownArrow", GameObject.Find("GameLanguagesDropDown"), true,
             GameObject.Find("GameLanguagesDropDown").GetComponent<RectTransform>().rect.width / 4,

@@ -11,11 +11,7 @@ public class NewSceneWayPointsController : MonoBehaviour {
     private float _NewSceneAstridPositionZ;
     private string _NewScene;
 
-
-    private void Start()
-    {
-        GameObject.Find("Cube").GetComponent<BoxCollider>().size = new Vector3(2f, 5f, 2f);
-    }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.tag == "Player")

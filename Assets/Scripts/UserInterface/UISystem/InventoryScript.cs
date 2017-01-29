@@ -8,7 +8,7 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
 {
     private GameObject _userInterface;
     private string _LastItemOpen;
-    
+
     private bool _PanelIsActivated;
     private bool _launchPanelAnimation;
     private bool _ItemDescriptionPanelActivated;
@@ -61,13 +61,19 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
     public void Inventaire()
     {
         if (GameObject.Find("QuestBookPanel") == true)
-            Destroy(GameObject.Find("QuestBookPanel"));
+        {
+            GameObject.Find("QuestBook").GetComponent<QuestBookScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("GameMapPanel") == true)
-            Destroy(GameObject.Find("GameMapPanel"));
+        {
+            GameObject.Find("GameMap").GetComponent<QuestBookScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("SystemConfigurationPanel") == true)
-            Destroy(GameObject.Find("SystemConfigurationPanel"));
+        {
+            GameObject.Find("SystemConfiguration").GetComponent<QuestBookScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("InventoryBag") == false)
         {
@@ -75,6 +81,10 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 2,
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height,
                 0, (GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height * 3) / 4, Color.grey);
+
+            _userInterface.GetComponent<ImageMonitoring>().PutBackGroundImageOnGameObject("InventoryBagTexture", "InventoryBag", _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
+                false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
+                false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, 0, 0);
 
 
             _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveConfiguration", GameObject.Find("InventoryBag"), true,
@@ -98,7 +108,7 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    private void DestroyPanel()
+    public void DestroyPanel()
     {
         _PanelIsActivated = false;
         _ItemDescriptionPanelActivated = false;
@@ -298,6 +308,4 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
                                                                                     _userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetRareItem,
                                                                                     _userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetQuestItem));
     }
-
-
 }

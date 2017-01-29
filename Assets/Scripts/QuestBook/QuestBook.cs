@@ -15,7 +15,7 @@ public class QuestBook : MonoBehaviour {
     {
         _questBook = new List<QuestBook>();
         _questStep = new Dictionary<string, int>();
-        //SetQuestTest();
+        SetQuestTest();
     }
 
     public QuestBook(string QuestName, string QuestDescription, bool QuestIsFinished, Dictionary<string, int> QuestStep)

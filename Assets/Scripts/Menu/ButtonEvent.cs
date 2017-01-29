@@ -76,32 +76,32 @@ public class ButtonEvent : MonoBehaviour
     {
         if (GameObject.Find("NewGamePanel") == true)
         {
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneBlueGearSprite", 0, 0, 0, 0, -1, 2);
 
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoBlueGearSprite", 0, 0, 0, 0, -1, 2);
 
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeBlueGearSprite", 0, 0, 0, 0, -1, 2);
         }
 
         if (GameObject.Find("LoadGamePanel") == true)
         {
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneBlueGearSprite", 0, 0, 0, 0, -1, 2);
 
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoBlueGearSprite", 0, 0, 0, 0, -1, 2);
 
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeBlueGearSprite", 0, 0, 0, 0, -1, 2);
         }
 
         if (GameObject.Find("NewGamePanel") == true && _newGamePanelActivated == true && _newGameAnimationOn == true)
@@ -352,7 +352,7 @@ public class ButtonEvent : MonoBehaviour
             PlayerPrefs.SetInt("Is" + SaveStateName + "Used", 1);
             PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
             GameObject.Find("MenuGameUserInterface").GetComponent<SaveController>().InitialisePlayerSaveState(SaveStateName);
-            PlayerPrefs.SetString("CurrentScene", SaveStateName + "LastScene");
+            PlayerPrefs.SetString("CurrentScene", PlayerPrefs.GetString(SaveStateName + "LastScene"));
             SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
         }
     }
@@ -362,7 +362,7 @@ public class ButtonEvent : MonoBehaviour
         if (PlayerPrefs.GetInt("Is" + SaveStateName + "Used") == 1)
         {
             PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
-            PlayerPrefs.SetString("CurrentScene", SaveStateName + "LastScene");
+            PlayerPrefs.SetString("CurrentScene", PlayerPrefs.GetString(SaveStateName + "LastScene"));
             SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
         }
         else

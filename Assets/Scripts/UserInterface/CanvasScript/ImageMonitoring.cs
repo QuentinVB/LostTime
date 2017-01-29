@@ -18,17 +18,21 @@ public class ImageMonitoring : MonoBehaviour {
     public Sprite _MetalCircle;
     public Sprite _yellowGear;
 
+    public Sprite _backGround1;
+    public Sprite _backGround2;
+    public Sprite _backGround3;
+    public Sprite _backGround4;
+    public Sprite _backGround5;
+    public Sprite _inventoryBackGround;
+
+    public Sprite _pub01;
+    public Sprite _pub02;
+    public Sprite _pub03;
+
 
     private void Start()
     {
-        //Image MapButton = (Image)Resources.Load("Textures/icon-compass");
-        //if(MapButton == null)
-        //{
-        //    Debug.Log("Image Pas charger");
-        //}else
-        //{
-        //    Debug.Log("Image chargée");
-        //}
+        
     }
 
 
@@ -85,6 +89,51 @@ public class ImageMonitoring : MonoBehaviour {
         }
     }
 
+
+    public Sprite GetInventoryBagBackGround
+    {
+        get { return _inventoryBackGround; }
+    }
+
+    public Sprite GetBackGround1
+    {
+        get { return _backGround1; }
+    }
+
+    public Sprite GetBackGround2
+    {
+        get { return _backGround2; }
+    }
+
+    public Sprite GetBackGround3
+    {
+        get { return _backGround3; }
+    }
+
+    public Sprite GetBackGround4
+    {
+        get { return _backGround4; }
+    }
+
+    public Sprite GetBackGround5
+    {
+        get { return _backGround5; }
+    }
+
+    public Sprite GetPub1
+    {
+        get { return _pub01; }
+    }
+
+    public Sprite GetPub2
+    {
+        get { return _pub02; }
+    }
+
+    public Sprite GetPub3
+    {
+        get { return _pub03; }
+    }
 
     public Sprite GetWoodBackGround
     {

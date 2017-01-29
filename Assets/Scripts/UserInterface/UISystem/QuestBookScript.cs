@@ -53,13 +53,19 @@ public class QuestBookScript : MonoBehaviour, IPointerDownHandler
     public virtual void OnPointerDown(PointerEventData Map)
     {
         if (GameObject.Find("SystemConfigurationPanel") == true)
-            Destroy(GameObject.Find("SystemConfigurationPanel"));
+        {
+            GameObject.Find("SystemConfiguration").GetComponent<SystemConfigurationScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("GameMapPanel") == true)
-            Destroy(GameObject.Find("GameMapPanel"));
+        {
+            GameObject.Find("GameMap").GetComponent<GameMapScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("InventoryBag") == true)
-            Destroy(GameObject.Find("InventoryBag"));
+        {
+            GameObject.Find("ButtonInventory").GetComponent<InventoryScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("QuestBookPanel") == false)
         {
@@ -68,12 +74,17 @@ public class QuestBookScript : MonoBehaviour, IPointerDownHandler
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height,
                 0, GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height + GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 2, Color.grey);
 
+            _userInterface.GetComponent<ImageMonitoring>().PutBackGroundImageOnGameObject("QuestBookPanelTexture", "QuestBookPanel", _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
+                false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
+                false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, 0, 0);
+
             _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveQuest", GameObject.Find("QuestBookPanel"), true,
                 GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 15,
                 GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 15,
                 GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 30,
                 GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 30, Color.red);
-            GameObject.Find("ButtonLeaveQuest").AddComponent<LeavePanelScript>();
+            GameObject.Find("ButtonLeaveQuest").AddComponent<Button>();
+            GameObject.Find("ButtonLeaveQuest").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
 
             _isBookQuestOpen = true;
             _isQuestBookAnimationOn = true;
@@ -86,6 +97,12 @@ public class QuestBookScript : MonoBehaviour, IPointerDownHandler
             _isQuestBookAnimationOn = true;
         }
 
+    }
+
+    public void DestroyPanel()
+    {
+        _isBookQuestOpen = false;
+        _isQuestBookAnimationOn = true;
     }
 
     private void ShowQuestBook()

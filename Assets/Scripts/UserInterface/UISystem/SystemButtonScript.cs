@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
 public class SystemButtonScript : MonoBehaviour {
@@ -37,7 +38,7 @@ public class SystemButtonScript : MonoBehaviour {
     {
         if(GameObject.Find("SystemPanel") == true && _SystemPanelActivated == true && _SystemPanelAnimation == true)
         {
-            _userInterface.GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SystemControllerImage", 0, 0, -1);
+            _userInterface.GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SystemControllerImage", 0, 0, 0, 0, -1, 10);
             _SystemPanelAnimation = _userInterface.GetComponent<AnimationUserInterfaceController>().VrtAnimToUserInterface("SystemPanel",
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / -2 + GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 16,
                 -(GameObject.Find("ButtonSystem").GetComponent<RectTransform>().rect.height / 2), -1);
@@ -45,7 +46,25 @@ public class SystemButtonScript : MonoBehaviour {
         {
             _SystemPanelAnimation = _userInterface.GetComponent<AnimationUserInterfaceController>().VrtAnimToDestroy("SystemPanel",
                 (GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height) - (GameObject.Find("ButtonSystem").GetComponent<RectTransform>().rect.height / 2), 1);
-            _userInterface.GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SystemControllerImage", 0, 0, 1);
+            _userInterface.GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SystemControllerImage", 0, 0, 0, 0, 1, 10);
+
+
+            /// Petit pb de destroy object lors du Destroy de l'object SystemPanel
+            /// 
+            if (GameObject.Find("QuestBookPanel") == true)
+            {
+                Destroy(GameObject.Find("QuestBookPanel"));
+            }
+
+            if (GameObject.Find("SystemConfigurationPanel") == true)
+            {
+                Destroy(GameObject.Find("SystemConfigurationPanel"));
+            }
+
+            if (GameObject.Find("GameMapPanel") == true)
+            {
+                Destroy(GameObject.Find("GameMapPanel"));
+            }
         }
     
     }
@@ -92,41 +111,40 @@ public class SystemButtonScript : MonoBehaviour {
             _userInterface.GetComponent<CreateUserInterfaceObject>().CreateEmptyGameObject("Leave", GameObject.Find("SystemPanel"), true, 
                 GameObject.Find("SystemPanel").GetComponent<RectTransform>().rect.width / 1.5f, GameObject.Find("SystemPanel").GetComponent<RectTransform>().rect.height / 8, 0, 
                 -GameObject.Find("SystemPanel").GetComponent<RectTransform>().rect.height / 3);
-            GameObject.Find("Leave").AddComponent<LeaveScript>();
+            GameObject.Find("Leave").AddComponent<Button>();
+            GameObject.Find("Leave").GetComponent<Button>().onClick.AddListener(() => GoBackToMenu());
             GameObject.Find("Leave").AddComponent<Image>();
             GameObject.Find("Leave").GetComponent<Image>().sprite = _userInterface.GetComponent<ImageMonitoring>().GetLeaveButton;
-
-
-            BackGroundSystemPanelColor();
+            
 
             _SystemPanelActivated = true;
             _SystemPanelAnimation = true;
         }
         else
         {
+            if (GameObject.Find("QuestBookPanel") == true)
+            {
+                GameObject.Find("QuestBook").GetComponent<QuestBookScript>().DestroyPanel();
+            }
+
+            if (GameObject.Find("SystemConfigurationPanel") == true)
+            {
+                GameObject.Find("SystemConfiguration").GetComponent<SystemConfigurationScript>().DestroyPanel();
+            }
+
+            if (GameObject.Find("GameMapPanel") == true)
+            {
+                GameObject.Find("GameMap").GetComponent<GameMapScript>().DestroyPanel();
+            }
+
             _SystemPanelActivated = false;
             _SystemPanelAnimation = true;
         }
     }
 
-    private void BackGroundSystemPanelColor()
+
+    private void GoBackToMenu()
     {
-        //_userInterface.GetComponent<CreateUserInterfaceObject>().CreateEmptyGameObject("SytemPanelSprite", GameObject.Find("SystemPanel"), true,
-        //        GameObject.Find("SystemPanel").GetComponent<RectTransform>().rect.width / 10, 
-        //        GameObject.Find("SystemPanel").GetComponent<RectTransform>().rect.height / 10,
-        //        (GameObject.Find("SystemPanel").GetComponent<RectTransform>().rect.width * 9) / 10,
-        //        - (GameObject.Find("SystemPanel").GetComponent<RectTransform>().rect.height * 9) / 10);
-        //GameObject.Find("SytemPanelSprite").AddComponent<Image>();
-        //GameObject.Find("SytemPanelSprite").GetComponent<Image>().sprite = _userInterface.GetComponent<ImageMonitoring>().GetWoodBackGround;
-
-        //_userInterface.GetComponent<CreateUserInterfaceObject>().CreateEmptyGameObject("SytemPanelSprite", GameObject.Find("SystemPanel"), true,
-        //        GameObject.Find("SystemPanel").GetComponent<RectTransform>().rect.width / 10,
-        //        GameObject.Find("SystemPanel").GetComponent<RectTransform>().rect.height / 10,
-        //        (GameObject.Find("SystemPanel").GetComponent<RectTransform>().rect.width * 9) / 10,
-        //        -(GameObject.Find("SystemPanel").GetComponent<RectTransform>().rect.height * 8) / 10);
-        //GameObject.Find("SytemPanelSprite").AddComponent<Image>();
-        //GameObject.Find("SytemPanelSprite").GetComponent<Image>().sprite = _userInterface.GetComponent<ImageMonitoring>().GetWoodBackGround;
-
-        
+        SceneManager.LoadScene("LostTimeMenuGame");
     }
 }
