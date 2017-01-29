@@ -8,16 +8,13 @@ public interface IPosition
     Vector3 getPosition(int job);
 }
 
-public class PositionEntity :  IPosition
+public class PositionEntity : IPosition
 {
-    Vector3 position;
-    string nameOfPosition;
+    //Vector3 position;
     List<Position> positionList;
 
     public class Position
     {
-       // string NPCIWant;
-       // string name;
         public bool isSetUp;
         public Vector3 position;
 
@@ -26,6 +23,7 @@ public class PositionEntity :  IPosition
             return this.position;
         }
     }
+
     public PositionEntity()
     {
         Debug.Log(string.Format("position check"));

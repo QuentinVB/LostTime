@@ -26,12 +26,14 @@ public class EntityInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        HumanSculptor sculptor = new HumanSculptor();
+        // HumanSculptor sculptor = new HumanSculptor();
+
         //Container.Bind<QuestManager>().AsSingle().NonLazy();
-        Container.Bind<IPosition>().To<PositionEntity>();
-        Container.InstantiatePrefab(sculptor.GetPrefab);
+        Container.Bind<IPosition>().To<PositionEntity>().FromInstance(new PositionEntity());
+        //Container.InstantiatePrefab(sculptor.GetPrefab);
+        //Container.InstantiatePrefabForComponent<ISculptor>(sculptor.GetPrefab);
         Container.Bind<LinkedActor>();
-        Container.Bind<IPathFinding>().To<Pathfinder>();
+        Container.Bind<IPathFinding>().To<Pathfinder>().FromInstance(new Pathfinder());
         Container.Bind<Entity>().To<Entity>();
         //Debug.Log(string.Format("questManager: {0}", questManager == null ? "is null" : "is not null"));
         //Debug.Log(string.Format("questManager.NPCList.Count: {0}", questManager.NPCList.Count));

@@ -1,12 +1,8 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public interface IEvent
-{
-    string functionName { get; }
-}
-
-public struct Value : IEvent
+public struct Value 
 {
     public string ID;
     public string value;
@@ -19,7 +15,11 @@ public struct Value : IEvent
     }
 }
 
-public struct DialogueData : IEvent
+
+
+
+
+public struct DialogueData 
 {
     string TargetEntity;
     int DialogueID;
@@ -32,7 +32,9 @@ public struct DialogueData : IEvent
     }
 }
 
-public struct NPCData : IEvent
+
+
+public struct NPCData 
 {
     public float[] Position;
     public string name;
@@ -47,7 +49,7 @@ public struct NPCData : IEvent
     }
 }
 
-public struct NPCsData : IEvent
+public struct NPCsData 
 {
     public NPCData[] NPCList;
     public string functionName
@@ -59,7 +61,7 @@ public struct NPCsData : IEvent
     }
 }
 
-public struct ChangeBehaviorData : IEvent
+public struct ChangeBehaviorData 
 {
     //string functionName;
     string BehaviorType;
@@ -74,7 +76,7 @@ public struct ChangeBehaviorData : IEvent
     }
 }
 
-public struct StateData : IEvent
+public struct StateData 
 {
     public string QuestToSwitchAction;
     public string TargetState;
@@ -88,3 +90,85 @@ public struct StateData : IEvent
     }
 }
 
+
+public interface IEvent
+{
+    string getNameEvent();
+    void doSomething();
+}
+
+
+/// <summary>
+/// 
+/// Récepteur
+/// 
+/// </summary>
+public class EventValue : IEvent
+{
+    public string _nameEvent;
+    public int ID;
+    public string value;
+
+    public EventValue() { }
+
+    public string getNameEvent()
+    {
+        return this._nameEvent;
+    }
+
+    public void doSomething()
+    {
+
+        Debug.Log(string.Format("id = {0}, value = {1}", ID, value));
+    }
+}
+
+public class EventDialogue : IEvent
+{
+    public string _nameEvent;
+    private int _dialogueId;
+
+    public EventDialogue(int dialogueId)
+    {
+        _dialogueId = dialogueId;
+    }
+
+    public string getNameEvent()
+    {
+        return this._nameEvent;
+    }
+
+    public void doSomething()
+    {
+        Debug.Log(string.Format("{0}", toto));
+    }
+}
+
+
+public interface Command
+{
+    void execute();
+}
+
+
+/// <summary>
+/// 
+/// Commande concrète
+/// 
+/// </summary>
+/// 
+
+public class ConcreteCommand : Command
+{
+    private IEvent _action;
+
+    public ConcreteCommand(IEvent action)
+    {
+        this._action = action;
+    }
+
+    public void execute()
+    {
+        this._action.doSomething();
+    }
+}

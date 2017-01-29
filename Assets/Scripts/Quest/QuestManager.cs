@@ -13,8 +13,13 @@ public class QuestManager : MonoBehaviour
     //private QuestContainer questContainer;
     List<Entity> entityList = new List<Entity>();
 
+    public QuestManager()
+    {
+        ProcessEvent s = new ProcessEvent(switchToDialogue);
+    }
     private void Start()
     {
+
         //questContainer = new QuestContainer();
         //NPCList = questContainer.setUpActorList;
         setUP();
@@ -72,32 +77,30 @@ public class QuestManager : MonoBehaviour
 
     }
 
+    /* Invocateur */
+    public class ProcessEvent
+    {
+        private Command Command;
+
+        public ProcessEvent(Command Cmd)
+        {
+            this.Command = Cmd;
+        }
+
+        public void executeCmd()
+        {
+            Command.execute();
+        }
+
+        public void setCommand(Command cmd)
+        {
+            this.Command = cmd;
+        }
+    }
+
     //public void ProcessEvent(string functionName, IEvent Event)
     //{
-    //    switch (functionName)
-    //    {
-    //        case "editValue":
-    //            editValue(Event);
-    //            break;
-    //        case "dialogue":
-    //            dialogue(Event);
-    //            break;
-    //        case "addNPC":
-    //            addNPC(Event);
-    //            break;
-    //        case "addNPCs":
-    //            addNPCs(Event);
-    //            break;
-    //        case "switchState":
-    //            switchState(Event);
-    //            break;
-    //        case "switchQuest":
-    //            switchQuest(Event);
-    //            break;
-    //        default:
-    //            Debug.Log("Bad name of function");
-    //            break;
-    //    }
+    //    
     //}
 
 
