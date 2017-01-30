@@ -38,17 +38,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
         {
-            this.transform.position = new Vector3(PlayerPrefs.GetFloat("SaveStateOneAstridPositionX"), PlayerPrefs.GetFloat("SaveStateOneAstridPositionY"), PlayerPrefs.GetFloat("SaveStateOneAstridPositionZ"));
+            this.transform.position = new Vector3(PlayerPrefs.GetFloat("CurrentAstridPositionX"), PlayerPrefs.GetFloat("CurrentAstridPositionY"), PlayerPrefs.GetFloat("CurrentAstridPositionZ"));
         }
 
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
         {
-            this.transform.position = new Vector3(PlayerPrefs.GetFloat("SaveStateTwoAstridPositionX"), PlayerPrefs.GetFloat("SaveStateTwoAstridPositionY"), PlayerPrefs.GetFloat("SaveStateTwoAstridPositionZ"));
+            this.transform.position = new Vector3(PlayerPrefs.GetFloat("CurrentAstridPositionX"), PlayerPrefs.GetFloat("CurrentAstridPositionY"), PlayerPrefs.GetFloat("CurrentAstridPositionZ"));
         }
 
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
         {
-            this.transform.position = new Vector3(PlayerPrefs.GetFloat("SaveStateThreeAstridPositionX"), PlayerPrefs.GetFloat("SaveStateThreeAstridPositionY"), PlayerPrefs.GetFloat("SaveStateThreeAstridPositionZ"));
+            this.transform.position = new Vector3(PlayerPrefs.GetFloat("CurrentAstridPositionX"), PlayerPrefs.GetFloat("CurrentAstridPositionY"), PlayerPrefs.GetFloat("CurrentAstridPositionZ"));
         }
     }
 

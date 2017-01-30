@@ -57,14 +57,14 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
                 0, 0, "Game Config", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.UpperCenter, FontStyle.Bold, 
                 ((int)(GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 10)), Color.black);
 
-            GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveConfiguration", GameObject.Find("SystemConfigurationPanel"), true,
-                GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 15,
-                GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 15,
-                GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 30,
-                GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 30,
-                Color.red);
-            GameObject.Find("ButtonLeaveConfiguration").AddComponent<Button>();
-            GameObject.Find("ButtonLeaveConfiguration").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
+            //GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveConfiguration", GameObject.Find("SystemConfigurationPanel"), true,
+            //    GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 15,
+            //    GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 15,
+            //    GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.width / 30,
+            //    GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("SystemConfigurationPanel").GetComponent<RectTransform>().rect.height / 30,
+            //    Color.red);
+            //GameObject.Find("ButtonLeaveConfiguration").AddComponent<Button>();
+            //GameObject.Find("ButtonLeaveConfiguration").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
 
             _isSystemConfigPanelActivated = true;
             _isSystemConfigAnimationOn = true;

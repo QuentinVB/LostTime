@@ -369,6 +369,7 @@ public class ButtonEvent : MonoBehaviour
         {
             PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
             PlayerPrefs.SetString("CurrentScene", PlayerPrefs.GetString(SaveStateName + "LastScene"));
+            GameObject.Find("MenuGameUserInterface").GetComponent<SaveController>().LoadGame(SaveStateName);
             SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
         }
         else
@@ -391,9 +392,9 @@ public class ButtonEvent : MonoBehaviour
     private void OverWriteDataFile(string SaveStateName)
     {
 
-        GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("PanelOverWriteData", GameObject.Find("MenuGameUserInterface"), true,
+        GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("PanelOverWriteData", GameObject.Find("MenuGameUserInterface"), true,
             GameObject.Find("MenuGameUserInterface").GetComponent<RectTransform>().rect.width / 4, GameObject.Find("MenuGameUserInterface").GetComponent<RectTransform>().rect.height / 2,
-            0, 0, Color.white);
+            0, 0, GameObject.Find("MenuGameUserInterface").GetComponent<ImageMonitoring>().GetBackGround5);
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelOverWriteDataLabel", GameObject.Find("PanelOverWriteData"), true,
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 3, 0,
@@ -422,9 +423,9 @@ public class ButtonEvent : MonoBehaviour
 
     private void LoadGame()
     {
-        GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("PanelSaveStateEmpty", GameObject.Find("MenuGameUserInterface"), true,
+        GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("PanelSaveStateEmpty", GameObject.Find("MenuGameUserInterface"), true,
             GameObject.Find("MenuGameUserInterface").GetComponent<RectTransform>().rect.width / 4, GameObject.Find("MenuGameUserInterface").GetComponent<RectTransform>().rect.height / 2,
-            0, 0, Color.white);
+            0, 0, GameObject.Find("MenuGameUserInterface").GetComponent<ImageMonitoring>().GetBackGround5);
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelSaveStateEmptyLabel", GameObject.Find("PanelSaveStateEmpty"), true,
             GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.width, GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 3, 0,

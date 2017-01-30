@@ -53,12 +53,12 @@ public class GameMapScript : MonoBehaviour, IPointerDownHandler
                 (GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 10) * 8,
                 0, 0, GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetMapPanel);
 
-            GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeave", GameObject.Find("GameMapPanel"), true,
-                GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 15, GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 15,
-                GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 30,
-                GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 30, Color.red);
-            GameObject.Find("ButtonLeave").AddComponent<Button>();
-            GameObject.Find("ButtonLeave").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
+            //GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeave", GameObject.Find("GameMapPanel"), true,
+            //    GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 15, GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 15,
+            //    GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 30,
+            //    GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 30, Color.red);
+            //GameObject.Find("ButtonLeave").AddComponent<Button>();
+            //GameObject.Find("ButtonLeave").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
 
             _isMapPanelActivated = true;
             _launchMapAnimation = true;

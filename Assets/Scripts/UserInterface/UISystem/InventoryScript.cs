@@ -87,13 +87,13 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
                 false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, 0, 0);
 
 
-            _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveConfiguration", GameObject.Find("InventoryBag"), true,
-                GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 15,
-                GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 15,
-                GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 30,
-                GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 30, Color.red);
-            GameObject.Find("ButtonLeaveConfiguration").AddComponent<Button>();
-            GameObject.Find("ButtonLeaveConfiguration").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
+            //_userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveConfiguration", GameObject.Find("InventoryBag"), true,
+            //    GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 15,
+            //    GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 15,
+            //    GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 30,
+            //    GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 30, Color.red);
+            //GameObject.Find("ButtonLeaveConfiguration").AddComponent<Button>();
+            //GameObject.Find("ButtonLeaveConfiguration").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
             
 
             _PanelIsActivated = true;
@@ -180,11 +180,11 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
         {
             _LastItemOpen = ItemName;
 
-            _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("DescriptionItem", GameObject.Find("InventoryBag"), true,
+            _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("DescriptionItem", GameObject.Find("InventoryBag"), true,
                 GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 3,
                 GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.height,
                 (GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 2) - (GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 6),
-                0, Color.white);
+                0, _userInterface.GetComponent<ImageMonitoring>().GetBackGround5);
 
             _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("ItemNameLabel", GameObject.Find("DescriptionItem"), true,
                 GameObject.Find("DescriptionItem").GetComponent<RectTransform>().rect.width,

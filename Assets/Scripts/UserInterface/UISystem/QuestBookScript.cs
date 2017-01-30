@@ -78,13 +78,13 @@ public class QuestBookScript : MonoBehaviour, IPointerDownHandler
                 false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
                 false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, 0, 0);
 
-            _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveQuest", GameObject.Find("QuestBookPanel"), true,
-                GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 15,
-                GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 15,
-                GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 30,
-                GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 30, Color.red);
-            GameObject.Find("ButtonLeaveQuest").AddComponent<Button>();
-            GameObject.Find("ButtonLeaveQuest").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
+            //_userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveQuest", GameObject.Find("QuestBookPanel"), true,
+            //    GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 15,
+            //    GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 15,
+            //    GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 30,
+            //    GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 30, Color.red);
+            //GameObject.Find("ButtonLeaveQuest").AddComponent<Button>();
+            //GameObject.Find("ButtonLeaveQuest").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
 
             _isBookQuestOpen = true;
             _isQuestBookAnimationOn = true;
