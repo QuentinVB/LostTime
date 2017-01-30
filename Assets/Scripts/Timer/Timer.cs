@@ -8,14 +8,18 @@ public class Timer : MonoBehaviour {
     private static float WAKE_UP_SUN = 0.22f;
     public float secondsInFullDay = 120f;
     [Range(0,1)]
-    private float currentTimeOfDay = WAKE_UP_SUN;
+    private float currentTimeOfDay/* = WAKE_UP_SUN*/;
     public float timeMutiplier = 1f;
     public float sunInitialIntensity = 1f;
     bool jeuFini;
     float swapMalus;
     string level;
 
-    public float CurrentTimeOfDay { get { return currentTimeOfDay; } }
+    public float CurrentTimeOfDay
+    {
+        get { return currentTimeOfDay; }
+        set { currentTimeOfDay = value; }
+    }
     void Start () {
         sun = GameObject.Find("Sun").GetComponent<Light>();
         sunInitialIntensity = sun.intensity;

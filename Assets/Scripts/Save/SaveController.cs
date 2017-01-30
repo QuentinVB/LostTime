@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SaveController : MonoBehaviour {
 
-    
+    private bool _LoadTimer;
 
     public void SaveCurrentGameConfig(string CurrentScene)
     {
@@ -47,9 +47,9 @@ public class SaveController : MonoBehaviour {
         }
     }
 
-    public void InitialisePlayerSaveState(string SaveState)
+    public void InitialisePlayerSaveState()
     {
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == SaveState)
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
         {
             PlayerPrefs.SetFloat("SaveStateOneAstridPositionX", 5.0f);
             PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
@@ -63,7 +63,7 @@ public class SaveController : MonoBehaviour {
             PlayerPrefs.SetString("SaveStateOneLastScene", "LostTimeGearDistrict");
         }
 
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == SaveState)
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
         {
             PlayerPrefs.SetFloat("SaveStateTwoAstridPositionX", 5.0f);
             PlayerPrefs.SetFloat("SaveStateTwoAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
@@ -77,7 +77,7 @@ public class SaveController : MonoBehaviour {
             PlayerPrefs.SetString("SaveStateTwoLastScene", "LostTimeGearDistrict");
         }
 
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == SaveState)
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
         {
             PlayerPrefs.SetFloat("SaveStateThreeAstridPositionX", 5.0f);
             PlayerPrefs.SetFloat("SaveStateThreeAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
@@ -149,27 +149,55 @@ public class SaveController : MonoBehaviour {
         SceneManager.LoadScene(NextScene);
     }
 
-    public void LoadGame(string SaveState)
+    public void LoadGame()
     {
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == SaveState)
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
         {
             PlayerPrefs.SetFloat("CurrentAstridPositionX", PlayerPrefs.GetFloat("SaveStateOneAstridPositionX"));
             PlayerPrefs.SetFloat("CurrentAstridPositionY", PlayerPrefs.GetFloat("SaveStateOneAstridPositionY"));
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", PlayerPrefs.GetFloat("SaveStateOneAstridPositionZ"));
+            _LoadTimer = true;
+
         }
 
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == SaveState)
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
         {
             PlayerPrefs.SetFloat("CurrentAstridPositionX", PlayerPrefs.GetFloat("SaveStateTwoAstridPositionX"));
             PlayerPrefs.SetFloat("CurrentAstridPositionY", PlayerPrefs.GetFloat("SaveStateTwoAstridPositionY"));
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", PlayerPrefs.GetFloat("SaveStateTwoAstridPositionZ"));
+            _LoadTimer = true;
         }
 
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == SaveState)
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
         {
             PlayerPrefs.SetFloat("CurrentAstridPositionX", PlayerPrefs.GetFloat("SaveStateThreeAstridPositionX"));
             PlayerPrefs.SetFloat("CurrentAstridPositionY", PlayerPrefs.GetFloat("SaveStateThreeAstridPositionY"));
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", PlayerPrefs.GetFloat("SaveStateThreeAstridPositionZ"));
+            _LoadTimer = true;
         }
+    }
+
+    public void loadTimer()
+    {
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
+        {
+            GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = PlayerPrefs.GetFloat("SaveStateOneTimer");
+        }
+
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
+        {
+            GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = PlayerPrefs.GetFloat("SaveStateTwoTimer");
+        }
+
+        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
+        {
+            GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = PlayerPrefs.GetFloat("SaveStateThreeTimer");
+        }
+    }
+
+    public bool GetIsTimerHaveToBeLoad
+    {
+        get { return _LoadTimer; }
+        set { _LoadTimer = value; }
     }
 }
