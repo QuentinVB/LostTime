@@ -67,12 +67,12 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
 
         if (GameObject.Find("GameMapPanel") == true)
         {
-            GameObject.Find("GameMap").GetComponent<QuestBookScript>().DestroyPanel();
+            GameObject.Find("GameMap").GetComponent<GameMapScript>().DestroyPanel();
         }
 
         if (GameObject.Find("SystemConfigurationPanel") == true)
         {
-            GameObject.Find("SystemConfiguration").GetComponent<QuestBookScript>().DestroyPanel();
+            GameObject.Find("SystemConfiguration").GetComponent<SystemConfigurationScript>().DestroyPanel();
         }
 
         if (GameObject.Find("InventoryBag") == false)
