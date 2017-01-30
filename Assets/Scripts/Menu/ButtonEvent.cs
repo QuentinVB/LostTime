@@ -70,6 +70,10 @@ public class ButtonEvent : MonoBehaviour
         GameObject.Find("BackGroundMenuGame").transform.SetParent(GameObject.Find("BackGroundMenu").transform, true);
         GameObject.Find("BackGroundMenuGame").GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.height, Screen.height);
         GameObject.Find("BackGroundMenuGame").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+
+        GameObject.Find("EventSystem").AddComponent<SoundController>();
+        GameObject.Find("EventSystem").GetComponent<SoundController>().PlaySong(((AudioClip)(Resources.Load("Sound/Cloud Atlas - 02 - Cloud Atlas Opening Title"))), 2f, true);
+        GameObject.Find("EventSystem").GetComponent<SoundController>().GetSongOnOff = true;
     }
 
     private void Update()
@@ -177,6 +181,8 @@ public class ButtonEvent : MonoBehaviour
 
         if (GameObject.Find("NewGamePanel") == false)
         {
+            GameObject.Find("EventSystem").GetComponent<SoundController>().GetSongOnOff = false;
+
             _newGamePanel = new GameObject("NewGamePanel");
             _newGamePanel.AddComponent<RectTransform>();
             _newGamePanel.transform.SetParent(GameObject.Find("BackGroundMenu").transform, true);

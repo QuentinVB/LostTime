@@ -6280,6 +6280,7 @@ GameObject:
   - component: {fileID: 1311161145}
   - component: {fileID: 1311161146}
   - component: {fileID: 1311161147}
+  - component: {fileID: 1311161148}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6413,6 +6414,8 @@ MonoBehaviour:
   _backGround3: {fileID: 21300000, guid: 50195ad157ed6ea43a080751e50aaad5, type: 3}
   _backGround4: {fileID: 21300000, guid: ba56d84306e7a9048832d04907577b2c, type: 3}
   _backGround5: {fileID: 21300000, guid: 2120bcd5ad0a9c246bbc8aaa3204d672, type: 3}
+  _inventoryBackGround: {fileID: 21300000, guid: 4783773821f3a124e9a3a595f454a75a,
+    type: 3}
   _pub01: {fileID: 21300000, guid: ff234a686c7cb374d9a19ce1632cdd39, type: 3}
   _pub02: {fileID: 21300000, guid: 75ab8ea88a86e2349ac38ea32c0dc93a, type: 3}
   _pub03: {fileID: 21300000, guid: a53dbe08c1b19a645992ffefdc2d4ed6, type: 3}
@@ -6514,6 +6517,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e89318d2e99bbb40beab24bfa44b557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1311161148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1311161131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef23adb84d539f44acead140514a838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1314053802 stripped
