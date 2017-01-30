@@ -8,7 +8,6 @@ public class SimpleCubeInstaller : MonoInstaller<SimpleCubeInstaller>
         Container.Bind<bool>().FromInstance(true);
         Container.Bind<IBar>().FromInstance(new Bar());
         Container.InstantiatePrefab(Resources.Load("cubetest"));
-        Container.InstantiateComponent
     }
 }
 
