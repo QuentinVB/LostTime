@@ -95,6 +95,20 @@ public class mazeGenerator : MonoBehaviour {
                     );
             }
         }
+        CarveLabyrinthExit(labyrinth,xMax, yMax);
+    }
+    /// <summary>
+    /// Carves the labyrinth exit. Entrance in south, Exit in north
+    /// </summary>
+    /// <param name="labyrinth">The labyrinth.</param>
+    /// <param name="xMax">The x maximum.</param>
+    /// <param name="yMax">The y maximum.</param>
+    private void CarveLabyrinthExit(Room[,] labyrinth, int xMax, int yMax)
+    {
+        string inLabWallToDestroy = string.Format("wall_{0},{1}_south", (int)Math.Ceiling((double)xMax/2), 0);
+        string outLabWallToDestroy = string.Format("wall_{0},{1}_north", (int)Math.Ceiling((double)xMax/2), yMax-1);
+        Destroy(GameObject.Find(inLabWallToDestroy));
+        Destroy(GameObject.Find(outLabWallToDestroy));
     }
 
     // Update is called once per frame
@@ -103,6 +117,7 @@ public class mazeGenerator : MonoBehaviour {
         //TODO : regenerate the labyrinth on change of the inspector
 		
 	}
+   
 }
 //toolbox
 /// <summary>

@@ -21,6 +21,10 @@ GameObject:
   - component: {fileID: 4131350146168696}
   - component: {fileID: 33543417770166198}
   - component: {fileID: 23885527202552642}
+  - component: {fileID: 65624432267890942}
+  - component: {fileID: 65648633003515838}
+  - component: {fileID: 65204331504448730}
+  - component: {fileID: 65236594210437598}
   m_Layer: 0
   m_Name: maze_doors
   m_TagString: Untagged
@@ -80,3 +84,51 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1225048441931120}
   m_Mesh: {fileID: 4300000, guid: 72ce5de53d9fe7d4f95780407062d7a6, type: 3}
+--- !u!65 &65204331504448730
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1225048441931120}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99272585, y: 1.0134783, z: 4.3981905}
+  m_Center: {x: 2.503637, y: 2.4932609, z: 2.1990952}
+--- !u!65 &65236594210437598
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1225048441931120}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0170798, y: 1.0039616, z: 4.420495}
+  m_Center: {x: 2.49146, y: -2.4980192, z: 2.2102475}
+--- !u!65 &65624432267890942
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1225048441931120}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0015211, y: 1.0043745, z: 4.822396}
+  m_Center: {x: -2.4992394, y: -2.4978127, z: 2.411198}
+--- !u!65 &65648633003515838
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1225048441931120}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0021553, y: 1.0103245, z: 4.346342}
+  m_Center: {x: -2.4989223, y: 2.4948378, z: 2.173171}
