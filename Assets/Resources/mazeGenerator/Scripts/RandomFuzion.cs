@@ -103,7 +103,7 @@ class RandomFuzion : IMazeAlgorithm
         switch (randWall)
         {
             case 0: //North (y-1)
-                if (buildingMaze[randX, randY].yPos != 0)
+                if (buildingMaze[randX, randY].yPos > 1)
                 {
                     if (buildingMaze[randX, randY].id == buildingMaze[randX, randY - 1].id) return true;
                     else return false;
@@ -111,7 +111,7 @@ class RandomFuzion : IMazeAlgorithm
                 break;
 
             case 1: //South (y+1)
-                if (buildingMaze[randX, randY].yPos != mazeY)
+                if (buildingMaze[randX, randY].yPos < mazeY-1)
                 {
                     if (buildingMaze[randX, randY].id == buildingMaze[randX, randY + 1].id) return true;
                     else return false;
@@ -119,7 +119,7 @@ class RandomFuzion : IMazeAlgorithm
                 break;
 
             case 2: //East (x+1)
-                if (buildingMaze[randX, randY].xPos != mazeX)
+                if (buildingMaze[randX, randY].xPos < mazeX-1)
                 {
                     if (buildingMaze[randX, randY].id == buildingMaze[randX + 1, randY].id) return true;
                     else return false;
@@ -127,7 +127,7 @@ class RandomFuzion : IMazeAlgorithm
                 break;
 
             case 3: //West (x-1)
-                if (buildingMaze[randX, randY].xPos != 0)
+                if (buildingMaze[randX, randY].xPos > 1)
                 {
                     if (buildingMaze[randX, randY].id == buildingMaze[randX - 1, randY].id) return true;
                     else return false;
@@ -142,7 +142,7 @@ class RandomFuzion : IMazeAlgorithm
         switch (randWall)
         {
             case 0: //North (y-1)
-                if (buildingMaze[randX, randY].yPos != 0)
+                if (buildingMaze[randX, randY].yPos > 1)
                 {
                     buildingMaze[randX, randY].northWall = false;
                     buildingMaze[randX, randY - 1].southWall = false;
@@ -151,7 +151,7 @@ class RandomFuzion : IMazeAlgorithm
                 break;
 
             case 1: //South (y+1)
-                if (buildingMaze[randX, randY].yPos != mazeY)
+                if (buildingMaze[randX, randY].yPos < mazeY-1)
                 {
                     buildingMaze[randX, randY].southWall = false;
                     buildingMaze[randX, randY + 1].northWall = false;
@@ -160,7 +160,7 @@ class RandomFuzion : IMazeAlgorithm
                 break;
 
             case 2: //East (x+1)
-                if (buildingMaze[randX, randY].xPos != mazeX)
+                if (buildingMaze[randX, randY].xPos < mazeX-1)
                 {
                     buildingMaze[randX, randY].eastWall = false;
                     buildingMaze[randX + 1, randY].westWall = false;
@@ -169,7 +169,7 @@ class RandomFuzion : IMazeAlgorithm
                 break;
 
             case 3: //West (x-1)
-                if (buildingMaze[randX, randY].xPos != 0)
+                if (buildingMaze[randX, randY].xPos > 1)
                 {
                     buildingMaze[randX, randY].westWall = false;
                     buildingMaze[randX - 1, randY].eastWall = false;
