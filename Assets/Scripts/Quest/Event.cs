@@ -1,99 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public struct Value 
-{
-    public string ID;
-    public string value;
-    public string functionName
-    {
-        get
-        {
-            return functionName;
-        }
-    }
-}
-
-
-
-
-
-public struct DialogueData 
-{
-    string TargetEntity;
-    int DialogueID;
-    public string functionName
-    {
-        get
-        {
-            return functionName;
-        }
-    }
-}
-
-
-
-public struct NPCData 
-{
-    public float[] Position;
-    public string name;
-    public string id;
-    public string job;
-    public string functionName
-    {
-        get
-        {
-            return functionName;
-        }
-    }
-}
-
-public struct NPCsData 
-{
-    public NPCData[] NPCList;
-    public string functionName
-    {
-        get
-        {
-            return functionName;
-        }
-    }
-}
-
-public struct ChangeBehaviorData 
-{
-    //string functionName;
-    string BehaviorType;
-    int valueListToMatch;
-
-    public string functionName
-    {
-        get
-        {
-            return functionName;
-        }
-    }
-}
-
-public struct StateData 
-{
-    public string QuestToSwitchAction;
-    public string TargetState;
-
-    public string functionName
-    {
-        get
-        {
-            return functionName;
-        }
-    }
-}
+using Zenject;
 
 
 public interface IEvent
 {
-    string getNameEvent();
     void doSomething();
 }
 
@@ -105,45 +17,145 @@ public interface IEvent
 /// </summary>
 public class EventValue : IEvent
 {
-    public string _nameEvent;
-    public int ID;
-    public string value;
+    [Inject]
+    QuestManager _questnager;
+    public string _value;
+    public string _target;
 
-    public EventValue() { }
 
-    public string getNameEvent()
+    public EventValue(string value, string target)
     {
-        return this._nameEvent;
+        _value = value;
+        _target = target;
     }
 
     public void doSomething()
     {
 
-        Debug.Log(string.Format("id = {0}, value = {1}", ID, value));
     }
 }
 
 public class EventDialogue : IEvent
 {
-    public string _nameEvent;
+    [Inject]
+    QuestManager _questnager;
     private int _dialogueId;
 
-    public EventDialogue(int dialogueId)
+    public EventDialogue(string nameEvent, string dialogueId)
     {
-        _dialogueId = dialogueId;
-    }
-
-    public string getNameEvent()
-    {
-        return this._nameEvent;
+        _dialogueId = int.Parse(dialogueId);
     }
 
     public void doSomething()
     {
-        Debug.Log(string.Format("{0}", toto));
     }
 }
 
+public class SwitchQuest : IEvent
+{
+    [Inject]
+    QuestManager _questManager;
+    public string _value;
+    public string _target;
+    int indexQuest = 0;
+
+
+    public SwitchQuest(string value, string target)
+    {
+
+        _value = value;
+        _target = target;
+    }
+
+    public void doSomething()
+    {
+        for (; _questManager.questContainer.questCollection[indexQuest].questID != null; indexQuest++)
+        {
+            if (_questManager.questContainer.questCollection[indexQuest].questID == _value)
+            {
+                _questManager.questContainer.currentQuest = _value;
+                _questManager.questContainer.questCollection[indexQuest].currentState = _questManager.questContainer.questCollection[indexQuest].stateArray[0].name;
+
+                // _questManager.questContainer.questCollection[indexQuest].stateArray[0].actorArray; //  create entity ; appel a entityManager
+            }
+        }
+    }
+}
+
+public class SwitchState : IEvent
+{
+    [Inject]
+    QuestManager _questManager;
+    public string _value;
+    public string _target;
+    int indexQuest;
+    int indexState;
+
+
+    public SwitchState(string value, string target)
+    {
+        _value = value;
+        _target = target;
+    }
+
+
+    public void doSomething()
+    {
+
+        for (; _questManager.questContainer.questCollection[indexQuest].questID != null; indexQuest++)
+        {
+            if (_questManager.questContainer.questCollection[indexQuest].questID == _questManager.questContainer.currentQuest)
+                for (; _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name != null; indexState++)
+                {
+                    if (_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name == _value)
+                    {
+                        _questManager.questContainer.questCollection[indexQuest].currentState = _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name;
+                        //  _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].LinkedActor // create entity;  appel a entityManager
+                    }
+                }
+        }
+    }
+}
+
+public class SwitchAction : IEvent
+{
+    [Inject]
+    QuestManager _questManager;
+    int indexQuest = 0;
+    int indexState = 0;
+    int indexActor = 0;
+    int indexAction = 0;
+    public string _value;
+    public string _target;
+
+
+    public SwitchAction(string value, string target)
+    {
+        _value = value;
+        _target = target;
+    }
+
+    public void doSomething()
+    {
+        for (; _questManager.questContainer.questCollection[indexQuest].questID != null; indexQuest++)
+        {
+            if (_questManager.questContainer.questCollection[indexQuest].questID == _questManager.questContainer.currentQuest)
+                for (; _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name != null; indexState++)
+                {
+                    if (_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name == _questManager.questContainer.questCollection[indexQuest].currentState)
+                        for (; _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].actorArray[indexActor] != null; indexActor++)
+                        {
+                            if (_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].actorArray[indexActor].name == _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].currentActor)
+                                for (; _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].actorArray[indexActor].actionListActive[indexAction] != null; indexAction++)
+                                {
+                                    if (_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].actorArray[indexActor].actionListActive[indexAction].name == _value)
+                                        _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].actorArray[indexActor].currentAction = _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].actorArray[indexActor].actionListActive[indexAction];
+                                }
+                        }
+                }
+        }
+    }
+}
 
 public interface Command
 {

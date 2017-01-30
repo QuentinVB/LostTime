@@ -5,31 +5,33 @@ using System.Xml.Serialization;
 
 
 [XmlRoot("QuestContainer")]
-class QuestContainer
+public class QuestContainer
 {
     [XmlArray("QuestCollection")]
     [XmlArrayItem("Quest")]
-    public List<Quest> questCollection = new List<Quest>();
-    public Quest currentQuest;
+    public Quest[] questCollection;
+    //public List<Quest> questCollection = new List<Quest>();
+
+    public string currentQuest;
     public List<LinkedActor> setUpActorList = new List<LinkedActor>();
 }
 
-class Quest
+public class Quest
 {
 
     [XmlAttribute("valuesList")]
     public string [] valuesList;
     [XmlAttribute("currentState")]
-    public State currentState;
+    public string currentState;
     [XmlAttribute("currentActivity")]
     string currentActivity;
     [XmlAttribute("questDescritpionID")]
     int questDescritpionID;
-    [XmlAttribute("questID")]
+    [XmlAttribute("nameOfQuest")]
     public string questID;
 
-    [XmlAttribute("nameOfQuest")]
-    List<LinkedActor> LinkedActorList = new List<LinkedActor>();
+    
+    
     [XmlArray("stateArray")]
     [XmlArrayItem("State")]
     public State[] stateArray;
@@ -40,7 +42,7 @@ public class LinkedActor
     public string id;
     public string name;
     public string job;
-    //public float[] position;
+    public float[] position;
 }
 
 public class KeyValue
@@ -53,7 +55,9 @@ public class State
 {
     public string name;
     bool isSetUp { get; set; }
-    List<Actor> actor = new List<Actor>();
+    public Actor[] actorArray;
+    public string currentActor;
+    public LinkedActor[] LinkedActor;
 
     bool get()
     {
@@ -65,17 +69,17 @@ public class State
     }
 }
 
-class Actor
+public class Actor
 {
-    string id;
+    public string name;
     bool isSetUp { get; set; }
     void Update()
     {
     }
-
-    List<IEvent> actionListSetUp = new List<IEvent>(); //  ??
-    List<IEvent> actionListActive = new List<IEvent>(); // ??
-    IEvent currentAction;
+    
+   // List<ActorAction> actionListSetUp = new List<ActorAction>(); //  ??
+    public ActorAction [] actionListActive; // ??
+    public ActorAction currentAction;
     bool get()
     {
         return this.isSetUp;
@@ -84,4 +88,12 @@ class Actor
     {
         this.isSetUp = true;
     }
+}
+
+public class ActorAction
+{
+    public string name;
+    public string switchValue;
+    public string value;
+    public string target;
 }

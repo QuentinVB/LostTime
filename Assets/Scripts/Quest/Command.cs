@@ -23,14 +23,14 @@ using Zenject;
 
 public class Behaviour : MonoBehaviour
 {
-
-    QuestManager _questManager;
+    public string _name;
     [Inject]
-    Command _concreteCommand;
-    IEvent _event;
+    QuestManager _questManager;
+    Command _concreteCommand = null;
+    IEvent _event = null;
     private void Start()
     {
-
+        _name = "Forgeron";
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,38 +42,31 @@ public class Behaviour : MonoBehaviour
     {
         _event = getEvent();
         _concreteCommand = new ConcreteCommand(_event);
-        
-        
-        switch (_event.getNameEvent())
+        _questManager._processEvent.setCommand(_concreteCommand);
+        _questManager._processEvent.executeCmd();
+
+    }
+
+    public IEvent getEvent()
+    {
+        ActorAction action = _questManager.getcurrentAction();
+
+        switch (action.switchValue)
         {
             case "editValue":
-                editValue(Event);
-                break;
-            case "dialogue":
-                dialogue(Event);
-                break;
-            case "addNPC":
-                addNPC(Event);
-                break;
-            case "addNPCs":
-                addNPCs(Event);
-                break;
-            case "switchState":
-                switchState(Event);
-                break;
+              return   new EventValue(action.value, action.target);
+            case "getDialogue":
+                return new EventDialogue(action.value, action.target);
             case "switchQuest":
-                switchQuest(Event);
-                break;
+                return new SwitchQuest(action.value, action.target);
+            case "switchState":
+                return new SwitchState(action.value, action.target);
+            case "switchAction":
+                return new SwitchAction(action.value, action.target);
             default:
                 Debug.Log("Bad name of function");
                 break;
         }
-
-        s.setCommand(_concreteCommand);
-        s.executeCmd();
-    }
-    public IEvent getEvent()
-    {
-        return new 
+        return null;
     }
 }
