@@ -16,7 +16,7 @@ public class NPCTailor : ITailor, INPCComponent
     {
         this.data = data;
         defaultMaterial = (Material)Resources.Load("CharacterLowPo/Materials/citizen1");
-        Debug.Log("New NPCTailor Created");
+        //Debug.Log("New NPCTailor Created");
     }
 
     public void setup(NPC NPCToBeLinked)
@@ -25,7 +25,7 @@ public class NPCTailor : ITailor, INPCComponent
         materialToSetUp = setTheTexture(data.job);
         NPCLinked.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material = materialToSetUp;
         NPCLinked.name = data.name;
-        Debug.Log(String.Format("EndBinding Tailor:{0}, job : {1}", materialToSetUp.ToString(), data.job));
+        //Debug.Log(String.Format("Tailor:{0}, job : {1}", materialToSetUp.ToString(), data.job));
     }
 
     private Material setTheTexture(string characterJob)

@@ -39,21 +39,21 @@ public class NPCAnimCtrl : IAnimCtrl, INPCComponent
     public NPCAnimCtrl(NPCData data)
     {
         this.data = data;
-        Debug.Log("New NPCAnimCtrl Created");
+        //Debug.Log("New NPCAnimCtrl Created");
         this.walkmode = data.walkmode;
-        waitForBoringDelay = 800;
+        waitForBoringDelay = Toolbox.optimizedRand(10, 800); ;
         awaitThisUpdate = false;
         waitForActionDelay = 1.0f;
         waitForActionCounter = WaitForActionDelay;
 
         waitForBoringDelay = 800;
-        walkSpeed = 1.2f;
+        walkSpeed = 5f;
     }
     public void setup(NPC NPCToBeLinked)
     {
         NPCLinked = NPCToBeLinked;
         animator = NPCLinked.GetComponent<Animator>();
-        Debug.Log("EndBinding NPCAnimCtrl");
+        //Debug.Log("EndBinding NPCAnimCtrl");
 
         transformOfTheCharacter = NPCLinked.GetComponent<Transform>();
 
@@ -126,7 +126,8 @@ public class NPCAnimCtrl : IAnimCtrl, INPCComponent
     }
     private float Vertical()
     {
-        computedVelocity = (lastPosition.magnitude - transformOfTheCharacter.position.magnitude) * Time.deltaTime * walkSpeed;
+        computedVelocity = (lastPosition.magnitude - transformOfTheCharacter.position.magnitude) * Time.deltaTime * walkSpeed*100;
+        //Debug.Log(computedVelocity);
         return Mathf.Clamp(computedVelocity, -1.0f, 1.0f);
     }
     private void getBored()

@@ -12,7 +12,7 @@ public class FactoryAnimation
     }
     public IAnimCtrl Create(NPCData data)
     {
-        Debug.Log("craft NPCAnimCtrl");
+        //Debug.Log("craft NPCAnimCtrl");
         return new NPCAnimCtrl(data);
     }
 }

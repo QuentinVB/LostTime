@@ -17,8 +17,8 @@ public class NPCData : IEvent
         this.position = initialPos;
         this.rotation = initialRot;
         willMove = true;
-        walkmode = WalkMode.running;
-        Debug.Log("craft NPCData");
+        walkmode = WalkMode.walking;
+        //Debug.Log("craft NPCData");
     }
     public Vector3 Position
     {
@@ -34,5 +34,10 @@ public class NPCData : IEvent
         {
             return rotation;
         }
+    }
+    public override string ToString()
+    {
+        return string.Format("uuid : {0}, pos {1}, job : {2}", name, position.ToString(), job);
+
     }
 }

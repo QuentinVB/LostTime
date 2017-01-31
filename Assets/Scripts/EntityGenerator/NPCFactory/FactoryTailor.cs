@@ -8,7 +8,7 @@ public class FactoryTailor
     }
     public ITailor Create(NPCData data)
     {
-        Debug.Log("craft NPCTailor");
+        //Debug.Log("craft NPCTailor");
 
         return new NPCTailor(data);
     }

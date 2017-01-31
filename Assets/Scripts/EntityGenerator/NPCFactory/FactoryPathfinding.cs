@@ -13,7 +13,7 @@ public class FactoryPathfinding
     }
     public IPathfinding Create(NPCData data)
     {
-        Debug.Log("craft NPCPathfinding");
+        //Debug.Log("craft NPCPathfinding");
         return new NPCPathfinding(data);
     }
 }

@@ -70,4 +70,9 @@ public class Toolbox
         }
         return translated;
     }
+    public static int optimizedRand(int min, int max)
+    {
+        System.Random rnd = new System.Random();
+        return rnd.Next(min, max);
+    }
 }

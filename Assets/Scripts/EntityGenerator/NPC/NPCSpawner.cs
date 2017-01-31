@@ -14,6 +14,7 @@ public class NPCSpawner : ITickable
     FactoryTailor _tailorFactory;
 
     QuestManager _questManager;
+    private int npcCount = 0;
 
     public NPCSpawner(
         QuestManager questManager,
@@ -29,15 +30,16 @@ public class NPCSpawner : ITickable
         _tailorFactory = tailorFactory;
         _pathfindingFactory = pathfindingFactory;
 
-        Debug.Log("End NPCSpawner");
+        //Debug.Log("End NPCSpawner");
     }
-
 
     public void Tick()
     {
         if(ShouldSpawnNewNPC())
         {
-            Debug.Log("Start Factory NPC");
+            npcCount++;
+
+            //Debug.Log(string.Format("Start Factory NPC #{0}",npcCount));
             var data = _questManager.createNewNpc();            
 
             var newAnimCtrl = _animationFactory.Create(data);
@@ -45,14 +47,20 @@ public class NPCSpawner : ITickable
             var newTailor = _tailorFactory.Create(data);
 
             var npc = _NPCFactory.Create(newTailor, _questManager, data, newAnimCtrl, newPathfinding);
-            Debug.Log("End Factory NPC");
+            //Debug.Log("End Factory NPC");
+            Debug.Log(string.Format("Spawn NPC #{0}, {1}",npcCount, data.ToString()));
+
         }
         //Debug.Log("Tick");
     }
 
     private bool ShouldSpawnNewNPC()
     {
-        return (Input.GetKeyDown(KeyCode.A)) ? true : false;
+        //Debug.Log("coin");
+
+        //return (Input.GetKeyDown(KeyCode.X)) ? true : false;
+        return (npcCount<_questManager.AmountOfCrownToSpawn) ? true : false;
+
     }
 }
 

@@ -23,12 +23,12 @@ public class NPCPathfinding : IPathfinding, INPCComponent
     {
         this.data = data;
         _willMove = data.willMove;
-        Debug.Log("New NPCPathfinding Created");
+        //Debug.Log("New NPCPathfinding Created");
     }
     public void setup(NPC NPCToBeLinked)
     {
         NPCLinked = NPCToBeLinked;
-        Debug.Log("EndBinding NPCPathfinding");
+        //Debug.Log("EndBinding NPCPathfinding");
         
         //If NPC never moves, remove Pathfinding script from itself
         if (_willMove == false)

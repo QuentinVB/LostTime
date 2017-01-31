@@ -26,6 +26,6 @@ public class NPCInstaller : MonoInstaller
 
         //Container.Bind<float>().FromInstance(0.1f);
         Container.BindFactory<ITailor,QuestManager,NPCData,IAnimCtrl,IPathfinding, NPC, NPC.Factory>().FromPrefab(NPCPrefab);
-        Debug.Log("EndBinding");
+        //Debug.Log("EndBinding");
     }
 }

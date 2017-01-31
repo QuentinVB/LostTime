@@ -42,13 +42,13 @@ public class NPC : MonoBehaviour
     }
     void Start()
     {
-        Debug.Log("Begin initializing NewNPC");
+        //Debug.Log("Begin initializing NewNPC");
         transform.rotation = _data.Rotation;
         transform.position = _data.Position;
         _tailor.setup(this);
         _animationControl.setup(this);
         _pathfinding.setup(this);        
-        Debug.Log("End initializing NewNPC");   
+        //Debug.Log("End initializing NewNPC");   
     }
     void Update()
     {
