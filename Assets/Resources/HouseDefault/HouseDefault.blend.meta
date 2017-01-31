@@ -14,6 +14,8 @@ ModelImporter:
     100012: DefaultHouse-carpent
     100014: DefaultHouse-door
     100016: DefaultHouse-foundation
+    100018: DefaultHouse-Door
+    100020: DefaultHouse-window
     400000: DefaultHouse-chimney
     400002: DefaultHouse-roof
     400004: DefaultHouse-wall
@@ -23,6 +25,8 @@ ModelImporter:
     400012: DefaultHouse-carpent
     400014: DefaultHouse-door
     400016: DefaultHouse-foundation
+    400018: DefaultHouse-Door
+    400020: DefaultHouse-window
     2300000: DefaultHouse-chimney
     2300002: DefaultHouse-roof
     2300004: DefaultHouse-wall
@@ -31,6 +35,8 @@ ModelImporter:
     2300010: DefaultHouse-carpent
     2300012: DefaultHouse-door
     2300014: DefaultHouse-foundation
+    2300016: DefaultHouse-Door
+    2300018: DefaultHouse-window
     3300000: DefaultHouse-chimney
     3300002: DefaultHouse-roof
     3300004: DefaultHouse-wall
@@ -39,6 +45,8 @@ ModelImporter:
     3300010: DefaultHouse-carpent
     3300012: DefaultHouse-door
     3300014: DefaultHouse-foundation
+    3300016: DefaultHouse-Door
+    3300018: DefaultHouse-window
     4300000: DefaultHouse-roof
     4300002: DefaultHouse-chimney
     4300004: DefaultHouse-wall
@@ -47,6 +55,8 @@ ModelImporter:
     4300010: DefaultHouse-door
     4300012: DefaultHouse-foundation
     4300014: DefaultHouse-carpent
+    4300016: DefaultHouse-Door
+    4300018: DefaultHouse-window
     6400000: DefaultHouse-carpent
     6400002: DefaultHouse-chimney
     6400004: DefaultHouse-door
