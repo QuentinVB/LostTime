@@ -4,101 +4,28 @@ using UnityEngine;
 using System;
 
 
-public class QuestManager : MonoBehaviour
+public class QuestManager
 {
-
-    //private EntitysInstaller installer;
-    public int count = 0;
-    public List<LinkedActor> NPCList = new List<LinkedActor>();
-    //private QuestContainer questContainer;
-    List<Entity> entityList = new List<Entity>();
-
-    private void Start()
+    public QuestManager()
     {
-        //questContainer = new QuestContainer();
-        //NPCList = questContainer.setUpActorList;
-        setUP();
-
+        Debug.Log("Created QuestManager");
+        //DO THINGs HERE
     }
-
-    //void editValue(Value Event)
-    //{
-    //    int index = questContainer.questCollection.IndexOf(questContainer.currentQuest);
-    //    if (questContainer.questCollection[index].valuesList[0] == Event.ID)
-    //        questContainer.questCollection[index].valuesList[1] = Event.value;
-    //}
-
-    void dialogue(DialogueData Event)
+    /// <summary>
+    /// VERY DIRTY THING TO CREATE RANDOMLY NPC WADERING ACROSS THE MAP
+    /// </summary>
+    /// <returns></returns>
+    public NPCData createNewNpc()
     {
+        string uuid = Guid.NewGuid().ToString();
 
-        // get interactionwithUser and t
+        Vector3 pos = new Vector3(UnityEngine.Random.Range(-2, 2), 1, UnityEngine.Random.Range(-2, 2));
+
+        int randomJobNumber = UnityEngine.Random.Range(1, 10);
+        string job = jobTranslator.jobEnumToString((job)randomJobNumber);
+
+        Debug.Log(string.Format("uuid : {0}, pos {1}, job : {2}", uuid, pos.ToString(), job));
+
+        return new NPCData(uuid, job, pos, Quaternion.Euler(0, 0, 0));
     }
-    //void addNPC(NPCData Event)
-    //{
-    //    NPCList.Clear();
-    //    NPCList.Add(new LinkedActor {id = Event.id, name = Event.name, job = Event.job, position = Event.Position });
-    //    count = 0;
-    //    installer.InstallBindings();
-    //}
-    //void addNPCs(NPCsData Event)
-    //{
-    //    NPCList.Clear();
-    //    foreach (NPCData NPC in Event.NPCList )
-    //    NPCList.Add(new LinkedActor { id = NPC.id, name = NPC.name, job = NPC.job, position = NPC.Position });
-    //    count = 0;
-    //    installer.InstallBindings();
-    //}
-    //void switchState(StateData Event)
-    //{
-    //    int IndexOfQuest = 0;
-    //    foreach (Quest quest in questContainer.questCollection) {
-    //        if (quest.questID == Event.QuestToSwitchAction)
-    //        {
-    //            IndexOfQuest =  questContainer.questCollection.IndexOf(quest);
-    //        }
-    //    }
-
-    //    for (int index = 0 ;questContainer.questCollection[IndexOfQuest].stateArray[index] != null; index++)
-    //    {
-    //        if (questContainer.questCollection[IndexOfQuest].stateArray[index].name == Event.TargetState)
-    //        {
-    //            questContainer.questCollection[IndexOfQuest].currentState = questContainer.currentQuest.stateArray[index];
-    //        }
-    //    }
-    //}
-
-    void setUP()
-    {
-
-    }
-
-    //public void ProcessEvent(string functionName, IEvent Event)
-    //{
-    //    switch (functionName)
-    //    {
-    //        case "editValue":
-    //            editValue(Event);
-    //            break;
-    //        case "dialogue":
-    //            dialogue(Event);
-    //            break;
-    //        case "addNPC":
-    //            addNPC(Event);
-    //            break;
-    //        case "addNPCs":
-    //            addNPCs(Event);
-    //            break;
-    //        case "switchState":
-    //            switchState(Event);
-    //            break;
-    //        case "switchQuest":
-    //            switchQuest(Event);
-    //            break;
-    //        default:
-    //            Debug.Log("Bad name of function");
-    //            break;
-    //    }
-    //}
-
-
 }
