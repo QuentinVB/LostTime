@@ -1503,7 +1503,7 @@ MonoBehaviour:
   _WoodBackGround: {fileID: 21300000, guid: ed14750908d162c448241d581de5d7d2, type: 3}
   _MetalCircle: {fileID: 21300000, guid: 4576a6f3677133349a75632483078c9b, type: 3}
   _yellowGear: {fileID: 21300000, guid: a59436839c00e7d4bb6b6035ed54e91e, type: 3}
-  _backGround1: {fileID: 21300000, guid: c4e272880e0360b4586f86d622a3293c, type: 3}
+  _backGround1: {fileID: 21300000, guid: 10aa39df78426f74aa9c4a31bcc799dc, type: 3}
   _backGround2: {fileID: 21300000, guid: 037a83fc6c24ad04c984e148d4d5b1cc, type: 3}
   _backGround3: {fileID: 21300000, guid: 50195ad157ed6ea43a080751e50aaad5, type: 3}
   _backGround4: {fileID: 21300000, guid: ba56d84306e7a9048832d04907577b2c, type: 3}
