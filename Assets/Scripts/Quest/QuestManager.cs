@@ -7,13 +7,14 @@ using System;
 public class QuestManager
 {
     PositionEntity positionStorage;
-    int amountOfCrownToSpawn = 20;
+    int amountOfCrowdToSpawn = 20;
+    int jobPointer=0;
 
     public int AmountOfCrownToSpawn
     {
         get
         {
-            return amountOfCrownToSpawn;
+            return amountOfCrowdToSpawn;
         }
     }
 
@@ -32,13 +33,21 @@ public class QuestManager
         string uuid = Guid.NewGuid().ToString();
 
 
-        int randomJobNumber = Toolbox.optimizedRand(0, 11);
-        string job = jobTranslator.jobEnumToString((job)randomJobNumber);
+        //int randomJobNumber = Toolbox.optimizedRand(0, 11);
+        int randomJobNumber = jobTick();
+        string job = Toolbox.jobEnumToString((job)randomJobNumber);
 
         Vector3 pos = positionStorage.getPosition(Mathf.Clamp(randomJobNumber,0,9));
         //Vector3 pos = new Vector3(UnityEngine.Random.Range(-2, 2), 1, UnityEngine.Random.Range(-2, 2));
 
 
         return new NPCData(uuid, job, pos, Quaternion.Euler(0, 0, 0));
+    }
+    private int jobTick()
+    {
+        int ret = jobPointer;
+        jobPointer++;
+        if (jobPointer > 11) jobPointer = 0;
+        return ret;
     }
 }

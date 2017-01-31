@@ -48,7 +48,7 @@ public class PositionEntity :  IPosition
         positionList.Add(new Position { isSetUp = false, position = new Vector3(14.2f, 1.959f, -49.6f) });
         positionList.Add(new Position { isSetUp = false, position = new Vector3(29.1f, -0.044f, 32.1f) });
         positionList.Add(new Position { isSetUp = false, position = new Vector3(-12.52f, 0.98f, 7.67f) });
-        positionList.Add(new Position { isSetUp = false, position = new Vector3(-23.86f, 1.91f, -13.1f) });
+        positionList.Add(new Position { isSetUp = false, position = new Vector3(-15.86f, 1.91f, -12.1f) });
     }
 
     public Vector3 getPosition(int job)
