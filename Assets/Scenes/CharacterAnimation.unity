@@ -457,6 +457,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 99eb81e82c873604b9ed7d4d4c1028d3, type: 2}
+    - target: {fileID: 13700000, guid: 6a2d18f33dfc67e45beacc4112b2364d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a9cb231484eb2df49ae646d0b368d0ec, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a2d18f33dfc67e45beacc4112b2364d, type: 3}
   m_IsPrefabParent: 0
@@ -513,10 +517,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _leftJoystick: {fileID: 456524674}
-  _userInterface: {fileID: 960820244}
   bG: {fileID: 456524675}
   joyst: {fileID: 1545441516}
-  _isJoystickLeftUsed: 0
 --- !u!114 &764944166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,7 +651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a374776763407d64d9d3ab8c7e4db16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 929035367}
   target: {fileID: 1076941882}
 --- !u!1 &960820237
 GameObject:
@@ -717,15 +718,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afed47133a395cb44a125ca6b3585005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapButton: {fileID: 21300000, guid: df8c59ee35ade814ba2b4767bf398b86, type: 3}
-  _ConfigButton: {fileID: 21300000, guid: ac3d6e798cd394b4da347a9eea7e6be9, type: 3}
-  _QuestButton: {fileID: 21300000, guid: ef88d874f0e063d4b806b7e1222ef4ac, type: 3}
-  _LeaveButton: {fileID: 21300000, guid: 7fd9c117df8a00f4bba5d1f085133054, type: 3}
-  _MapPanel: {fileID: 21300000, guid: 66638c6b0345cbd42b3b6fe76211d01d, type: 3}
-  _BagButton: {fileID: 21300000, guid: 8824e0e179fdb6c44a8a9ef91193b4d4, type: 3}
-  _DownArrow: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  _knob: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  _ArialTextFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &960820242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,7 +871,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rightJoystick: {fileID: 111548356}
-  _userInterface: {fileID: 960820244}
   bG: {fileID: 111548357}
   joyst: {fileID: 126356623}
   _isJoystickRightUsed: 0

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pathfinder : MonoBehaviour
+public interface IPathFinding
+{
+     Component Path(bool willMove);
+}
+public class Pathfinder : IPathFinding
 {
     public Pathfinder()
     {
