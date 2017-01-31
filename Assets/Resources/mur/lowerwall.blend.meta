@@ -1,15 +1,27 @@
 fileFormatVersion: 2
-guid: bcb926bab3a84054ca67d534cc240914
-timeCreated: 1484667563
+guid: bdcc6089c1f95df4388dce1fb40c3b47
+timeCreated: 1485262005
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Lampadaire
+    100000: door
+    100002: //RootNode
+    100004: tower
+    100006: wall
+    400000: door
+    400002: //RootNode
+    400004: tower
+    400006: wall
+    2300000: door
+    2300002: tower
+    2300004: wall
+    3300000: door
+    3300002: tower
+    3300004: wall
+    4300000: door
+    4300002: tower
+    4300004: wall
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -71,7 +83,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0

@@ -28,13 +28,13 @@ public class CameraTargetBehaviour : MonoBehaviour
         horizontalInput = rightJoystick.RightHorizontal();
 
         //Y Axis
-        if (verticalInput > 0.5 && transform.localPosition.y <= 5.5)
+        if (verticalInput > 0.5 && transform.localPosition.y <=8.5)
         {
-            transform.Translate(Vector3.up * (2 * Time.deltaTime));
+            transform.Translate(Vector3.up * (4 * Time.deltaTime));
         }
         if (verticalInput < -0.5 && transform.localPosition.y >= 1.5)
         {
-            transform.Translate(Vector3.down * (2 * Time.deltaTime));
+            transform.Translate(Vector3.down * (4 * Time.deltaTime));
         }
         //X Axis
         astridPos = GameObject.Find("AstridPlayer").transform.position;
