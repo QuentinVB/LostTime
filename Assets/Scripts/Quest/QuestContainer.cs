@@ -31,6 +31,7 @@ public class LinkedActor
     public string name;
     public string job;
     public float[] position;
+    public bool canDie;
 }
 
 public class State

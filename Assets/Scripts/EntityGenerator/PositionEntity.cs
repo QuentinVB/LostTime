@@ -26,7 +26,7 @@ public class PositionEntity : IPosition
 
     public PositionEntity()
     {
-        Debug.Log(string.Format("position check"));
+        //Debug.Log(string.Format("position check"));
         FillPosition();
     }
 
