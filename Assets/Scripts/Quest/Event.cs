@@ -3,7 +3,7 @@ using System.Collections;
 
 public interface IEvent
 {
-    string functionName { get; }
+    //string functionName { get; }
 }
 
 public struct Value : IEvent
@@ -31,22 +31,6 @@ public struct DialogueData : IEvent
         }
     }
 }
-
-public struct NPCData : IEvent
-{
-    public float[] Position;
-    public string name;
-    public string id;
-    public string job;
-    public string functionName
-    {
-        get
-        {
-            return functionName;
-        }
-    }
-}
-
 public struct NPCsData : IEvent
 {
     public NPCData[] NPCList;

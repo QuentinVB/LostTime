@@ -4,105 +4,50 @@ using UnityEngine;
 using System;
 
 
-public class QuestManager : MonoBehaviour
+public class QuestManager
 {
+    PositionEntity positionStorage;
+    int amountOfCrowdToSpawn = 20;
+    int jobPointer=0;
 
-    //private EntitysInstaller installer;
-    public int count = 0;
-    public List<LinkedActor> NPCList = new List<LinkedActor>();
-    //private QuestContainer questContainer;
-    List<Entity> entityList = new List<Entity>();
-
-    private void Start()
+    public int AmountOfCrownToSpawn
     {
-        //questContainer = new QuestContainer();
-        //NPCList = questContainer.setUpActorList;
-        NPCList.Add(new LinkedActor { id = "id1", name = "toto", job = "Forgeron" });
-        NPCList.Add(new LinkedActor { id = "id2", name = "tutu", job = "poubelier" });
-        setUP();
-
+        get
+        {
+            return amountOfCrowdToSpawn;
+        }
     }
 
-    //void editValue(Value Event)
-    //{
-    //    int index = questContainer.questCollection.IndexOf(questContainer.currentQuest);
-    //    if (questContainer.questCollection[index].valuesList[0] == Event.ID)
-    //        questContainer.questCollection[index].valuesList[1] = Event.value;
-    //}
-
-    void dialogue(DialogueData Event)
+    public QuestManager()
     {
-
-        // get interactionwithUser and t
+        positionStorage = new PositionEntity(); 
+        Debug.Log("Created QuestManager");
+        //DO THINGs HERE
     }
-    //void addNPC(NPCData Event)
-    //{
-    //    NPCList.Clear();
-    //    NPCList.Add(new LinkedActor {id = Event.id, name = Event.name, job = Event.job, position = Event.Position });
-    //    count = 0;
-    //    installer.InstallBindings();
-    //}
-    //void addNPCs(NPCsData Event)
-    //{
-    //    NPCList.Clear();
-    //    foreach (NPCData NPC in Event.NPCList )
-    //    NPCList.Add(new LinkedActor { id = NPC.id, name = NPC.name, job = NPC.job, position = NPC.Position });
-    //    count = 0;
-    //    installer.InstallBindings();
-    //}
-    //void switchState(StateData Event)
-    //{
-    //    int IndexOfQuest = 0;
-    //    foreach (Quest quest in questContainer.questCollection) {
-    //        if (quest.questID == Event.QuestToSwitchAction)
-    //        {
-    //            IndexOfQuest =  questContainer.questCollection.IndexOf(quest);
-    //        }
-    //    }
-
-    //    for (int index = 0 ;questContainer.questCollection[IndexOfQuest].stateArray[index] != null; index++)
-    //    {
-    //        if (questContainer.questCollection[IndexOfQuest].stateArray[index].name == Event.TargetState)
-    //        {
-    //            questContainer.questCollection[IndexOfQuest].currentState = questContainer.currentQuest.stateArray[index];
-    //        }
-    //    }
-    //}
-
-    void setUP()
+    /// <summary>
+    /// VERY DIRTY THING TO CREATE RANDOMLY NPC WANDERING ACROSS THE MAP
+    /// </summary>
+    /// <returns></returns>
+    public NPCData createNewNpc()
     {
-        // LOAD xmlconteneur
-        count = 0;
+        string uuid = Guid.NewGuid().ToString();
 
+
+        //int randomJobNumber = Toolbox.optimizedRand(0, 11);
+        int randomJobNumber = jobTick();
+        string job = Toolbox.jobEnumToString((job)randomJobNumber);
+
+        Vector3 pos = positionStorage.getPosition(Mathf.Clamp(randomJobNumber,0,9));
+        //Vector3 pos = new Vector3(UnityEngine.Random.Range(-2, 2), 1, UnityEngine.Random.Range(-2, 2));
+
+
+        return new NPCData(uuid, job, pos, Quaternion.Euler(0, 0, 0));
     }
-
-    //public void ProcessEvent(string functionName, IEvent Event)
-    //{
-    //    switch (functionName)
-    //    {
-    //        case "editValue":
-    //            editValue(Event);
-    //            break;
-    //        case "dialogue":
-    //            dialogue(Event);
-    //            break;
-    //        case "addNPC":
-    //            addNPC(Event);
-    //            break;
-    //        case "addNPCs":
-    //            addNPCs(Event);
-    //            break;
-    //        case "switchState":
-    //            switchState(Event);
-    //            break;
-    //        case "switchQuest":
-    //            switchQuest(Event);
-    //            break;
-    //        default:
-    //            Debug.Log("Bad name of function");
-    //            break;
-    //    }
-    //}
-
-
+    private int jobTick()
+    {
+        int ret = jobPointer;
+        jobPointer++;
+        if (jobPointer > 11) jobPointer = 0;
+        return ret;
+    }
 }

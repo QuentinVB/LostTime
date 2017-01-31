@@ -2,28 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum WalkMode
+public class NPCAnimCtrl : IAnimCtrl, INPCComponent
 {
-    idle,
-    walking,
-    running,
-    sneaking
-}
-public enum InputMode
-{
-    byTransform,
-    byInput,
-}
-public class CharaAnimCtrl : MonoBehaviour {
+    NPC NPCLinked;
+    NPCData data;
+    Animator animator;
 
-    public Animator anim;
-    //public float turnSpeed;
-    //public float runSpeed;
-   private float walkSpeed;
-    public InputMode inputMode = InputMode.byTransform;
+    private float walkSpeed;
     public WalkMode walkmode = WalkMode.idle;
-
-    private RuntimeAnimatorController animCtrl;
 
     private float inputH;
     private float inputV;
@@ -49,56 +35,43 @@ public class CharaAnimCtrl : MonoBehaviour {
     private Quaternion lastRotation;
     private float computedVelocity;
 
-    public CharaAnimCtrl(InputMode inputMode, WalkMode walkmode)
+
+    public NPCAnimCtrl(NPCData data)
     {
-        this.inputMode = inputMode;
-        this.walkmode = walkmode;
-        waitForBoringDelay = 800;
-        animCtrl = (RuntimeAnimatorController)Resources.Load("CharacterLowPo/CharacterAnimation");
-        if (animCtrl == null)
-        {
-            Debug.Log(string.Format("Faild to load Animation Controller"));
-        }
-    }
-
-    // Use this for initialization
-    void Start ()
-    {
-        anim = GetComponent<Animator>();
-
-        //SECURITY (load the animatorController into the animator if empty)
-        if (anim.runtimeAnimatorController == null)
-        {
-            Debug.Log(string.Format("load default Animation Controller"));
-            anim.runtimeAnimatorController = animCtrl;
-        }
-
-        transformOfTheCharacter = GetComponent<Transform>();
-        
-        isWalking = anim.GetBool("isWalking");
-        isRunning = anim.GetBool("isRunning");
-        isJumping = anim.GetBool("isJumping");
-        isCatchingGround = anim.GetBool("isCatchingGround");
-        isCatchingTable = anim.GetBool("isCatchingTable");
-
+        this.data = data;
+        //Debug.Log("New NPCAnimCtrl Created");
+        this.walkmode = data.walkmode;
+        waitForBoringDelay = Toolbox.optimizedRand(10, 800); ;
         awaitThisUpdate = false;
         waitForActionDelay = 1.0f;
         waitForActionCounter = WaitForActionDelay;
 
         waitForBoringDelay = 800;
-        walkSpeed = 1.2f;
+        walkSpeed = 5f;
+    }
+    public void setup(NPC NPCToBeLinked)
+    {
+        NPCLinked = NPCToBeLinked;
+        animator = NPCLinked.GetComponent<Animator>();
+        //Debug.Log("EndBinding NPCAnimCtrl");
+
+        transformOfTheCharacter = NPCLinked.GetComponent<Transform>();
+
+        isWalking = animator.GetBool("isWalking");
+        isRunning = animator.GetBool("isRunning");
+        isJumping = animator.GetBool("isJumping");
+        isCatchingGround = animator.GetBool("isCatchingGround");
+        isCatchingTable = animator.GetBool("isCatchingTable");   
     }
 
-    // Update is called once per frame
-    void Update ()
+    public void update()
     {
-
         //check if the avatar get bored.
         getBored();
 
         //change the state of the animCtrl according to the environnement
-        normalizedHorizontal = (inputMode == InputMode.byTransform) ? Horizontal() : InputH;
-        normalizedVertical = (inputMode == InputMode.byTransform) ? Vertical() : InputV;
+        normalizedHorizontal =  Horizontal();
+        normalizedVertical = Vertical() ;
 
         resetBool();
         switch (walkmode)
@@ -116,22 +89,22 @@ public class CharaAnimCtrl : MonoBehaviour {
             default:
                 break;
         }
-        
+
 
         //set the state of animation
-        anim.SetFloat("horizontal", normalizedHorizontal);
-        anim.SetFloat("vertical", normalizedVertical);
+        animator.SetFloat("horizontal", normalizedHorizontal);
+        animator.SetFloat("vertical", normalizedVertical);
 
-        anim.SetBool("isWalking", isWalking);
-        anim.SetBool("isRunning", isRunning);
-        anim.SetBool("isJumping", isJumping);
+        animator.SetBool("isWalking", isWalking);
+        animator.SetBool("isRunning", isRunning);
+        animator.SetBool("isJumping", isJumping);
 
-        anim.SetBool("isCatchingGround", isCatchingGround);
-        anim.SetBool("isCatchingTable", isCatchingTable);
+        animator.SetBool("isCatchingGround", isCatchingGround);
+        animator.SetBool("isCatchingTable", isCatchingTable);
 
         //if set to true : no move !
         if (AwaitThisUpdate == true)
-        {            
+        {
             transformOfTheCharacter.position = lastPosition;
         }
 
@@ -140,13 +113,12 @@ public class CharaAnimCtrl : MonoBehaviour {
         lastRotation = transformOfTheCharacter.rotation;
 
         //Debug.Log(string.Format("{0},  {1}, {2},{3}", normalizedVertical, normalizedHorizontal, waitForBoringCounter, isRunning));
-
     }
     public float InputH { get { return inputH; } set { inputH = Mathf.Clamp(value, -1.0f, 1.0f); } }
     public float InputV { get { return inputV; } set { inputV = Mathf.Clamp(value, -1.0f, 1.0f); } }
     public bool AwaitThisUpdate { get { return awaitThisUpdate; } private set { awaitThisUpdate = value; } }
     public float WaitForActionDelay { get { return waitForActionDelay; } private set { waitForActionDelay = value; } }
-    private float WaitForActionResetAt { get { return waitForActionDelay; } set{ waitForActionDelay = value; waitForActionCounter = waitForActionDelay; } }
+    private float WaitForActionResetAt { get { return waitForActionDelay; } set { waitForActionDelay = value; waitForActionCounter = waitForActionDelay; } }
     public WalkMode WalkMode { get { return walkmode; } internal set { walkmode = value; } }
     private float Horizontal()
     {
@@ -154,8 +126,9 @@ public class CharaAnimCtrl : MonoBehaviour {
     }
     private float Vertical()
     {
-        computedVelocity = (lastPosition.magnitude - transformOfTheCharacter.position.magnitude)*Time.deltaTime* walkSpeed;
-        return Mathf.Clamp(computedVelocity, -1.0f, 1.0f); 
+        computedVelocity = (lastPosition.magnitude - transformOfTheCharacter.position.magnitude) * Time.deltaTime * walkSpeed*100;
+        //Debug.Log(computedVelocity);
+        return Mathf.Clamp(computedVelocity, -1.0f, 1.0f);
     }
     private void getBored()
     {
@@ -163,7 +136,7 @@ public class CharaAnimCtrl : MonoBehaviour {
         {
             waitForBoringCounter++;
 
-            if(waitForBoringCounter > waitForBoringDelay)
+            if (waitForBoringCounter > waitForBoringDelay)
             {
                 string idleState;
                 int randomNumber = UnityEngine.Random.Range(0, 2);
@@ -179,10 +152,9 @@ public class CharaAnimCtrl : MonoBehaviour {
                         idleState = "Idle2cough";
                         break;
                 }
-                anim.Play(idleState, -1, 0f);
+                animator.Play(idleState, -1, 0f);
                 waitForBoringCounter = 0;
             }
-
         }
         else
         {
