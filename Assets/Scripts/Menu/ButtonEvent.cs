@@ -389,10 +389,18 @@ public class ButtonEvent : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         Debug.Log("All PlayerPrefs have been reset");
-        PlayerPrefs.SetString("CurrentLanguagesUsed", "Français");
         PlayerPrefs.SetInt("SoundEffectVolumeSave", 100);
         PlayerPrefs.SetInt("SoundTrackVolumeSave", 100);
-        PlayerPrefs.SetInt("ShadowIsActivatedSave", 0);
+        PlayerPrefs.SetInt("ShadowIsActivatedSave", 1);
+        if (PlayerPrefs.GetString("CurrentLanguagesUsed") == "Français" || PlayerPrefs.GetString("CurrentLanguagesUsed")== "French")
+        {
+            PlayerPrefs.SetString("CurrentLanguagesUsed", "Français");
+        }
+        else
+        {
+            PlayerPrefs.SetString("CurrentLanguagesUsed", "Anglais");
+        }
+        SceneManager.LoadScene("LostTimeMenuGame");
     }
 
     private void OverWriteDataFile(string SaveStateName)
@@ -407,6 +415,7 @@ public class ButtonEvent : MonoBehaviour
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 6,
             "OverWrite Data File", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelOverWriteDataLabel"), "OverWrite Data File", "Ecraser les données");
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelOverWriteDataLabelYes", GameObject.Find("PanelOverWriteData"), true,
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 3,
@@ -414,6 +423,7 @@ public class ButtonEvent : MonoBehaviour
             -(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 6),
             "Yes", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelOverWriteDataLabelYes"), "YES", "OUI");
         GameObject.Find("PanelOverWriteDataLabelYes").AddComponent<Button>();
         GameObject.Find("PanelOverWriteDataLabelYes").GetComponent<Button>().onClick.AddListener(() => Yes(SaveStateName));
 
@@ -423,6 +433,7 @@ public class ButtonEvent : MonoBehaviour
             -(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 6),
             "No", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelOverWriteDataLabelNo"), "NO", "NON");
         GameObject.Find("PanelOverWriteDataLabelNo").AddComponent<Button>();
         GameObject.Find("PanelOverWriteDataLabelNo").GetComponent<Button>().onClick.AddListener(() => No());
     }
@@ -436,14 +447,16 @@ public class ButtonEvent : MonoBehaviour
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelSaveStateEmptyLabel", GameObject.Find("PanelSaveStateEmpty"), true,
             GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.width, GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 3, 0,
             GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 6,
-            "SaveState Empty", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            "", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelSaveStateEmptyLabel"), "Empty SaveState", "Sauvegarde Vide");
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelSaveStateEmptyLabelYes", GameObject.Find("PanelSaveStateEmpty"), true,
             GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 3,
             0, -(GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 6),
-            "Ok", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            "", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelSaveStateEmptyLabelYes"), "OK", "OK");
         GameObject.Find("PanelSaveStateEmptyLabelYes").AddComponent<Button>();
         GameObject.Find("PanelSaveStateEmptyLabelYes").GetComponent<Button>().onClick.AddListener(() => ok());
     }
