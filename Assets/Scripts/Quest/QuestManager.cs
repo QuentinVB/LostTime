@@ -6,8 +6,10 @@ using System;
 
 public class QuestManager
 {
+    PositionEntity positionStorage;
     public QuestManager()
     {
+        positionStorage = new PositionEntity(); 
         Debug.Log("Created QuestManager");
         //DO THINGs HERE
     }
@@ -18,11 +20,12 @@ public class QuestManager
     public NPCData createNewNpc()
     {
         string uuid = Guid.NewGuid().ToString();
-
-        Vector3 pos = new Vector3(UnityEngine.Random.Range(-2, 2), 1, UnityEngine.Random.Range(-2, 2));
-
+        
         int randomJobNumber = UnityEngine.Random.Range(1, 10);
         string job = jobTranslator.jobEnumToString((job)randomJobNumber);
+
+        Vector3 pos = positionStorage.getPosition(Mathf.Clamp(randomJobNumber,1,10));
+        //Vector3 pos = new Vector3(UnityEngine.Random.Range(-2, 2), 1, UnityEngine.Random.Range(-2, 2));
 
         Debug.Log(string.Format("uuid : {0}, pos {1}, job : {2}", uuid, pos.ToString(), job));
 

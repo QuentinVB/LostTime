@@ -113,7 +113,6 @@ public class NPCAnimCtrl : IAnimCtrl, INPCComponent
         lastRotation = transformOfTheCharacter.rotation;
 
         //Debug.Log(string.Format("{0},  {1}, {2},{3}", normalizedVertical, normalizedHorizontal, waitForBoringCounter, isRunning));
-
     }
     public float InputH { get { return inputH; } set { inputH = Mathf.Clamp(value, -1.0f, 1.0f); } }
     public float InputV { get { return inputV; } set { inputV = Mathf.Clamp(value, -1.0f, 1.0f); } }
@@ -155,7 +154,6 @@ public class NPCAnimCtrl : IAnimCtrl, INPCComponent
                 animator.Play(idleState, -1, 0f);
                 waitForBoringCounter = 0;
             }
-
         }
         else
         {
