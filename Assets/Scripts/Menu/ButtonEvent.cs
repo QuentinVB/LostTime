@@ -389,8 +389,8 @@ public class ButtonEvent : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         Debug.Log("All PlayerPrefs have been reset");
-        PlayerPrefs.SetInt("SoundEffectVolumeSave", 100);
-        PlayerPrefs.SetInt("SoundTrackVolumeSave", 100);
+        PlayerPrefs.SetString("SoundEffectVolumeSave", "50");
+        PlayerPrefs.SetString("SoundTrackVolumeSave", "50");
         PlayerPrefs.SetInt("ShadowIsActivatedSave", 1);
         if (PlayerPrefs.GetString("CurrentLanguagesUsed") == "Français" || PlayerPrefs.GetString("CurrentLanguagesUsed")== "French")
         {

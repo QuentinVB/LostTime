@@ -229,7 +229,7 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
         GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("CreateMusicLevelLabel", GameObject.Find("CreateMusicLevelBackGround"), true,
             GameObject.Find("CreateMusicLevelBackGround").GetComponent<RectTransform>().rect.width,
             GameObject.Find("CreateMusicLevelBackGround").GetComponent<RectTransform>().rect.height,
-            0, 0, "Sound Track", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.UpperCenter,
+            0, 0, "Sound Track", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.UpperLeft,
             FontStyle.Bold, (int)(GameObject.Find("CreateMusicLevelBackGround").GetComponent<RectTransform>().rect.height / 2), Color.black);
         GameObject.Find("Canvas").GetComponent<TextMonitoring>().setTextInCorrectLanguages("CreateMusicLevelLabel", "SoundTrack", "Bande-Son");
     }
@@ -239,7 +239,7 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
         GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("CreateMusicLevelNb", GameObject.Find("CreateMusicLevelBackGround"), true,
             GameObject.Find("CreateMusicLevelBackGround").GetComponent<RectTransform>().rect.width,
             GameObject.Find("CreateMusicLevelBackGround").GetComponent<RectTransform>().rect.height,
-            0, 0, PlayerPrefs.GetString("SoundTrackVolumeSave"), GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.LowerRight,
+            0, 0, PlayerPrefs.GetString("SoundTrackVolumeSave"), GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.UpperRight,
             FontStyle.Bold, (int)(GameObject.Find("CreateMusicLevelBackGround").GetComponent<RectTransform>().rect.height / 2), Color.black);
     }
 
@@ -275,7 +275,7 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
         GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("CreateSoundEffectLevelLabel", GameObject.Find("CreateSoundEffectLevelBackGround"), true,
             GameObject.Find("CreateSoundEffectLevelBackGround").GetComponent<RectTransform>().rect.width,
             GameObject.Find("CreateSoundEffectLevelBackGround").GetComponent<RectTransform>().rect.height,
-            0, 0, "Sound Effect", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.UpperCenter,
+            0, 0, "Sound Effect", GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.UpperLeft,
             FontStyle.Bold, (int)(GameObject.Find("CreateSoundEffectLevelBackGround").GetComponent<RectTransform>().rect.height / 2), Color.black);
         GameObject.Find("Canvas").GetComponent<TextMonitoring>().setTextInCorrectLanguages("CreateSoundEffectLevelLabel", "Sound Effect", "Effets Sonores");
     }
@@ -301,7 +301,7 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
         GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("CreateSoundEffectLevelNb", GameObject.Find("CreateSoundEffectLevelBackGround"), true,
             GameObject.Find("CreateSoundEffectLevelBackGround").GetComponent<RectTransform>().rect.width,
             GameObject.Find("CreateSoundEffectLevelBackGround").GetComponent<RectTransform>().rect.height,
-            0, 0, PlayerPrefs.GetString("SoundEffectVolumeSave"), GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.LowerRight, FontStyle.Bold,
+            0, 0, PlayerPrefs.GetString("SoundEffectVolumeSave"), GameObject.Find("Canvas").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.UpperRight, FontStyle.Bold,
             (int)(GameObject.Find("CreateSoundEffectLevelBackGround").GetComponent<RectTransform>().rect.height / 2), Color.black);
     }
 
