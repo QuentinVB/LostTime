@@ -1,35 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
-
+using System.IO;
 
 [XmlRoot("QuestContainer")]
-class QuestContainer
+public class QuestContainer
 {
     [XmlArray("QuestCollection")]
     [XmlArrayItem("Quest")]
-    public List<Quest> questCollection = new List<Quest>();
-    public Quest currentQuest;
-    public List<LinkedActor> setUpActorList = new List<LinkedActor>();
+    public Quest[] questCollection;
+    //public List<Quest> questCollection = new List<Quest>();
+
+    public string currentQuest;
+    public LinkedActor[] setUpActorList;
 }
 
-class Quest
+public class Quest
 {
-
-    [XmlAttribute("valuesList")]
-    public string [] valuesList;
     [XmlAttribute("currentState")]
-    public State currentState;
-    [XmlAttribute("currentActivity")]
-    string currentActivity;
-    [XmlAttribute("questDescritpionID")]
-    int questDescritpionID;
-    [XmlAttribute("questID")]
-    public string questID;
-
+    public string currentState;
     [XmlAttribute("nameOfQuest")]
-    List<LinkedActor> LinkedActorList = new List<LinkedActor>();
+    public string questID;
     [XmlArray("stateArray")]
     [XmlArrayItem("State")]
     public State[] stateArray;
@@ -40,48 +30,46 @@ public class LinkedActor
     public string id;
     public string name;
     public string job;
-    //public float[] position;
-}
-
-public class KeyValue
-{
-    public string key;
-    public string value;
+    public float[] position;
+    public bool canDie;
 }
 
 public class State
 {
-    public string name;
-    bool isSetUp { get; set; }
-    List<Actor> actor = new List<Actor>();
+    [XmlAttribute("valuesList")]
+    //public bool[] valuesList;
+    public ToggleBool [] valuesList;
 
-    bool get()
-    {
-        return this.isSetUp;
-    }
-    void set()
-    {
-        this.isSetUp = true;
-    }
+    public string name;
+    public bool isSetUp;
+    public Actor[] actorArray;
+    public LinkedActor[] LinkedActor;
 }
 
-class Actor
+public class ToggleBool
 {
-    string id;
+    public bool state;
+    public string linkedActorName;
+    public bool isDisposable;
+}
+
+public class Actor
+{
+    public string name;
     bool isSetUp { get; set; }
     void Update()
     {
     }
 
-    List<IEvent> actionListSetUp = new List<IEvent>(); //  ??
-    List<IEvent> actionListActive = new List<IEvent>(); // ??
-    IEvent currentAction;
-    bool get()
-    {
-        return this.isSetUp;
-    }
-    void set()
-    {
-        this.isSetUp = true;
-    }
+    public List<ActorAction[]> actionListSetUp = new List<ActorAction[]>();
+    //public ActorAction[] actionListActive;
+    public ActorAction[] currentActions;
+}
+
+public class ActorAction
+{
+    public string name;
+    public string switchValue;
+    public string value;
+    public string target;
 }
