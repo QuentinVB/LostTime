@@ -2,38 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveStateController : MonoBehaviour {
+public class CreateLoadSceneWayPoints : MonoBehaviour {
 
-    private void Start()
+	// Use this for initialization
+	void Start ()
     {
-        SetWayPointsOnMap();
-    }
-    
-
-    private void SetWayPointsOnMap()
-    {
-            if (PlayerPrefs.GetString("CurrentScene") == "LostTimeGearDistrict")
-            {
-                createWayPoints("ChunkGardenSave", -16f, 3f, -51f);
-                createWayPoints("ChunkSouthStreetSave", 15f, 3f, 54f);
-                createWayPoints("ChunkMarketSave", 12.5f, 2f, -3f);
-            }
+        
+        if (PlayerPrefs.GetString("CurrentScene") == "LostTimeGearDistrict")
+        {
+            createWayPoints("LostTimeMenuGame", 16f, 2.5f, 29.7f);
+        }
         
     }
 
+
+    
     private void createWayPoints(string GameObjectName, float PosX, float PosY, float PosZ)
     {
 
-        if(GameObject.Find(GameObjectName + "WayPoints") ==  false)
+        if (GameObject.Find(GameObjectName) == false)
         {
-            GameObject gameObject = new GameObject(GameObjectName + "WayPoints");
+            GameObject gameObject = new GameObject(GameObjectName);
             gameObject.transform.position = new Vector3(PosX, PosY, PosZ);
             gameObject.AddComponent<BoxCollider>();
             gameObject.GetComponent<BoxCollider>().size = new Vector3(1f, 5f, 1f);
-            gameObject.AddComponent<SaveStateWayPoints>();
+            gameObject.AddComponent<NewSceneWayPointsController>();
 
             GameObject gameObjectAnimation = new GameObject(GameObjectName + "GearAnimation");
-            gameObjectAnimation.transform.SetParent(GameObject.Find(GameObjectName + "WayPoints").transform, true);
+            gameObjectAnimation.transform.SetParent(GameObject.Find(GameObjectName).transform, true);
             gameObjectAnimation.transform.position = new Vector3(PosX, PosY, PosZ);
             gameObjectAnimation.AddComponent<SaveStateAnimation>();
 
@@ -42,8 +38,10 @@ public class SaveStateController : MonoBehaviour {
             gameObjectGearSprite.transform.SetParent(GameObject.Find(GameObjectName + "GearAnimation").transform, true);
             gameObjectGearSprite.transform.position = new Vector3(PosX, PosY, PosZ);
             gameObjectGearSprite.AddComponent<SpriteRenderer>();
-            gameObjectGearSprite.GetComponent<SpriteRenderer>().sprite = GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetYellowGear;
-            gameObjectGearSprite.AddComponent<SaveStateSpriteAnimation>();
+            gameObjectGearSprite.GetComponent<SpriteRenderer>().sprite = GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetLeaveButton;
+            //gameObjectGearSprite.AddComponent<SaveStateSpriteAnimation>();
         }
     }
 }
+
+
