@@ -179,19 +179,42 @@ public class SaveController : MonoBehaviour {
 
     public void loadTimer()
     {
+        float setFirstCurrentTimeOfDay = 0.22f;
+
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
         {
-            GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = PlayerPrefs.GetFloat("SaveStateOneTimer");
+            if (PlayerPrefs.HasKey("SaveStateOneTimer") == true)
+            {
+                GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = PlayerPrefs.GetFloat("SaveStateOneTimer");
+            }
+            else
+            {
+                GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = setFirstCurrentTimeOfDay;
+            }
         }
 
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
         {
-            GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = PlayerPrefs.GetFloat("SaveStateTwoTimer");
+            if (PlayerPrefs.HasKey("SaveStateTwoTimer") == true)
+            {
+                GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = PlayerPrefs.GetFloat("SaveStateTwoTimer");
+            }
+            else
+            {
+                GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = setFirstCurrentTimeOfDay;
+            }
         }
 
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
         {
-            GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = PlayerPrefs.GetFloat("SaveStateThreeTimer");
+            if (PlayerPrefs.HasKey("SaveStateThreeTimer") == true)
+            {
+                GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = PlayerPrefs.GetFloat("SaveStateThreeTimer");
+            }
+            else
+            {
+                GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = setFirstCurrentTimeOfDay;
+            }
         }
     }
 

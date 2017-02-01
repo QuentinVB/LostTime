@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour {
     private static float WAKE_UP_SUN = 0.22f;
     public float secondsInFullDay = 120f;
     [Range(0,1)]
-    private float currentTimeOfDay/* = WAKE_UP_SUN*/;
+    public float currentTimeOfDay;
     public float timeMutiplier = 1f;
     public float sunInitialIntensity = 1f;
     bool jeuFini;
@@ -24,7 +24,7 @@ public class Timer : MonoBehaviour {
         sun = GameObject.Find("Sun").GetComponent<Light>();
         sunInitialIntensity = sun.intensity;
         jeuFini = false;
-
+        GameObject.Find("Canvas").GetComponent<SaveController>().loadTimer();
         swapMalus = 0;
         level = "LostTimeGearDistrict";
         getSwapMalus();
