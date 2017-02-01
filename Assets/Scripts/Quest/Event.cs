@@ -17,14 +17,13 @@ public interface IEvent
 /// </summary>
 public class Toggle : IEvent
 {
-    //[Inject]
+    [Inject]
     QuestManager _questManager;
     public string _value = null;
     public string _target = null;
     public int indexQuest = 0;
     public int indexState = 0;
     public int indexValue = 1;
-
 
     public Toggle()
     {
@@ -78,7 +77,7 @@ public class Toggle : IEvent
 
 public class EventDialogue : IEvent
 {
-    //[Inject]
+    [Inject]
     DialogueCollection _dialogueCollection;
     private string _dialogueId = null;
     List<string> _dialoguelist = new List<string>();
@@ -94,7 +93,7 @@ public class EventDialogue : IEvent
         _dialogueId = dialogueId;
     }
 
-    public int [] getListDialogue()
+    public int[] getListDialogue()
     {
 
         char[] tmpchar = _dialogueId.ToCharArray();
@@ -103,13 +102,11 @@ public class EventDialogue : IEvent
 
         for (int i = 0; i < tmpchar.Length; i++)
         {
-            if (tmpchar[i] != '§')
-            {
+            if (tmpchar[i] != '§'){
                 tmp += tmpchar[i];
             }
-            else
-            {
-                _dialoguelist.Add( _dialogueCollection.dialogueArray[int.Parse(tmp)]);
+            else{
+                _dialoguelist.Add(_dialogueCollection.dialogueArray[int.Parse(tmp)]);
                 tmp = null;
             }
         }
@@ -119,13 +116,15 @@ public class EventDialogue : IEvent
     {
         if (_dialogueId.Contains("§"))
             getListDialogue();
+        //else
+
         // a terminer
     }
 }
 
 public class SwitchQuest : IEvent
 {
-    //[Inject]
+    [Inject]
     QuestManager _questManager;
     public string _value;
     public string _target;
@@ -147,12 +146,11 @@ public class SwitchQuest : IEvent
     {
         for (; _questManager.questContainer.questCollection[indexQuest].questID != null; indexQuest++)
         {
-            if (_questManager.questContainer.questCollection[indexQuest].questID == _value)
+            if (_questManager.questContainer.questCollection[indexQuest].questID == _target)
             {
-                _questManager.questContainer.currentQuest = _value;
+                _questManager.questContainer.currentQuest = _target;
                 _questManager.questContainer.questCollection[indexQuest].currentState = _questManager.questContainer.questCollection[indexQuest].stateArray[0].name;
-
-                // _questManager.questContainer.questCollection[indexQuest].stateArray[0].actorArray; //  create entity ; appel a entityManager
+                _questManager.NPCsCaching(_questManager.questContainer.questCollection[indexQuest].stateArray[0].LinkedActor);
             }
         }
     }
@@ -186,10 +184,10 @@ public class SwitchState : IEvent
             if (_questManager.questContainer.questCollection[indexQuest].questID == _questManager.questContainer.currentQuest)
                 for (; _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name != null; indexState++)
                 {
-                    if (_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name == _value)
+                    if (_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name == _target)
                     {
                         _questManager.questContainer.questCollection[indexQuest].currentState = _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name;
-                        //  _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].LinkedActor // create entity;  appel a entityManager
+                        _questManager.NPCsCaching(_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].LinkedActor);
                     }
                 }
         }
@@ -198,7 +196,7 @@ public class SwitchState : IEvent
 
 public class SwitchAction : IEvent
 {
-    //[Inject]
+    [Inject]
     QuestManager _questManager;
     int indexQuest = 0;
     int indexState = 0;
@@ -257,8 +255,6 @@ public interface Command
 /// Commande concrète
 /// 
 /// </summary>
-/// 
-
 public class ConcreteCommand : Command
 {
     private IEvent _action;
