@@ -42,6 +42,7 @@ public class Pathfinding : MonoBehaviour
             }
             SetWaypoints();                 //Set waypoints
             target = SetDestination();      //Set destination
+			  
         }
     }
 
@@ -75,8 +76,7 @@ public class Pathfinding : MonoBehaviour
 
     private void MoveTo(Vector3 target)
     {
-        agent.SetDestination(target);
-        
+        agent.SetDestination(target);     
     }
 
     //Will set the NavMeshAgent and its properties

@@ -4,13 +4,12 @@ using UnityEngine;
 
 public interface IPathFinding
 {
-     Component Path(bool willMove);
 }
 public class Pathfinder : IPathFinding
 {
     public Pathfinder()
     {
-
+        Debug.Log(string.Format("pathfinder check"));
     }
     public Component Path(bool willMove)
     {

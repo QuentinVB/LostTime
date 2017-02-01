@@ -35,32 +35,37 @@ public class NPCSpawner : ITickable
 
     public void Tick()
     {
-        if(ShouldSpawnNewNPC())
+        // if questmanager warehouse is true then create the bunch of npcs requested
+        if (_questManager.hasRequest)
         {
-            npcCount++;
-
-            //Debug.Log(string.Format("Start Factory NPC #{0}",npcCount));
-            var data = _questManager.createNewNpc();            
-
-            var newAnimCtrl = _animationFactory.Create(data);
-            var newPathfinding = _pathfindingFactory.Create(data);
-            var newTailor = _tailorFactory.Create(data);
-
-            var npc = _NPCFactory.Create(newTailor, _questManager, data, newAnimCtrl, newPathfinding);
-            //Debug.Log("End Factory NPC");
-            Debug.Log(string.Format("Spawn NPC #{0}, {1}",npcCount, data.ToString()));
-
+            List<NPCData> npcRequested =  _questManager.NPCCache;
+            foreach (NPCData data in npcRequested)
+            {
+                spawnNPC(data);
+            }
+            _questManager.hasRequest = false;
+        }
+        if(ShouldSpawnCrowdNPC())
+        {
+            spawnNPC(_questManager.craftNewNpcByRandom());
         }
         //Debug.Log("Tick");
     }
-
-    private bool ShouldSpawnNewNPC()
+    private void spawnNPC(NPCData data)
     {
-        //Debug.Log("coin");
-
-        //return (Input.GetKeyDown(KeyCode.X)) ? true : false;
-        return (npcCount<_questManager.AmountOfCrownToSpawn) ? true : false;
-
+        //Debug.Log(string.Format("Start Factory NPC #{0}",npcCount));      
+        var newAnimCtrl = _animationFactory.Create(data);
+        var newPathfinding = _pathfindingFactory.Create(data);
+        var newTailor = _tailorFactory.Create(data);
+        var npc = _NPCFactory.Create(newTailor, _questManager, data, newAnimCtrl, newPathfinding);
+        //Debug.Log("End Factory NPC");
+        Debug.Log(string.Format("Spawn NPC #{0}, {1}", npcCount, data.ToString()));
     }
+    public bool ShouldSpawnCrowdNPC()
+    {
+        npcCount++;
+        return (npcCount<_questManager.AmountOfCrowdToSpawn) ? true : false;
+    }
+
 }
 
