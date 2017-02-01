@@ -46,14 +46,14 @@ public class ButtonEvent : MonoBehaviour
         GameObject.Find("ButtonNewGame").GetComponent<RectTransform>().sizeDelta = new Vector2(GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.width,
             GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 4);
         GameObject.Find("ButtonNewGame").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / -2);
-        GameObject.Find("ButtonNewGameText").GetComponent<Text>().fontSize = ((int)(Screen.height / 15));
+        GameObject.Find("ButtonNewGameText").GetComponent<Text>().fontSize = ((int)(Screen.height / 20));
         GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages("ButtonNewGameText", "New Game", "Nouvelle Partie");
 
         GameObject.Find("ButtonLoadSave").transform.SetParent(GameObject.Find("ButtonNewGame").transform, true);
         GameObject.Find("ButtonLoadSave").GetComponent<RectTransform>().sizeDelta = new Vector2(GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.width,
             GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 4);
         GameObject.Find("ButtonLoadSave").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 2);
-        GameObject.Find("ButtonLoadSaveText").GetComponent<Text>().fontSize = ((int)(Screen.height / 15));
+        GameObject.Find("ButtonLoadSaveText").GetComponent<Text>().fontSize = ((int)(Screen.height / 20));
         GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages("ButtonLoadSaveText", "Load Game", "Charger une Partie");
 
         //GameObject.Find("ButtonConfigure").transform.SetParent(GameObject.Find("ButtonLoadSave").transform, true);
@@ -76,10 +76,10 @@ public class ButtonEvent : MonoBehaviour
         GameObject.Find("EventSystem").GetComponent<SoundController>().PlaySong(((AudioClip)(Resources.Load("Sound/Cloud Atlas - 02 - Cloud Atlas Opening Title"))), 2f, true);
         GameObject.Find("EventSystem").GetComponent<SoundController>().GetSongOnOff = true;
 
-        //if(PlayerPrefs.HasKey("CurrentLanguagesUsed") == false)
-        //{
-        //    SceneManager.LoadScene("LostTimeGameLanguagesFirstChoice");
-        //}
+        if (PlayerPrefs.HasKey("CurrentLanguagesUsed") == false)
+        {
+            SceneManager.LoadScene("LostTimeGameLanguagesFirstChoice");
+        }
     }
 
     private void Update()
