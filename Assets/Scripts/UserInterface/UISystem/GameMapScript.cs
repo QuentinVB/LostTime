@@ -46,12 +46,12 @@ public class GameMapScript : MonoBehaviour, IPointerDownHandler
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 2,
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height,
                 0, GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 2 + GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 2, 
-                GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetBackGround1);
+                GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetMapPanel);
 
-            GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("Map", GameObject.Find("GameMapPanel"), true,
-                (GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 10) * 8,
-                (GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 10) * 8,
-                0, 0, GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetMapPanel);
+            //GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("Map", GameObject.Find("GameMapPanel"), true,
+            //    (GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 10) * 8,
+            //    (GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.height / 10) * 8,
+            //    0, 0, GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetMapPanel);
 
             //GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeave", GameObject.Find("GameMapPanel"), true,
             //    GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 15, GameObject.Find("GameMapPanel").GetComponent<RectTransform>().rect.width / 15,

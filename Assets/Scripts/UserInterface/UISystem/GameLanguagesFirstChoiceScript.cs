@@ -23,6 +23,10 @@ public class GameLanguagesFirstChoiceScript : MonoBehaviour {
 
     private void Start()
     {
+        if (PlayerPrefs.HasKey("CurrentLanguagesUsed") == true)
+        {
+            SceneManager.LoadScene("LostTimeMenuGame");
+        }
         _userInterface = GameObject.Find("Canvas");
 
         _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("SpriteOfCloud04", _userInterface, true,

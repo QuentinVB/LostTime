@@ -74,9 +74,9 @@ public class QuestBookScript : MonoBehaviour, IPointerDownHandler
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height,
                 0, GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height + GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 2, Color.grey);
 
-            _userInterface.GetComponent<ImageMonitoring>().PutBackGroundImageOnGameObject("QuestBookPanelTexture", "QuestBookPanel", _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
-                false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
-                false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, 0, 0);
+            _userInterface.GetComponent<ImageMonitoring>().PutBackGroundImageOnGameObject("QuestBookPanelTexture", "QuestBookPanel", _userInterface.GetComponent<ImageMonitoring>().GetBackGround5,
+                false, _userInterface.GetComponent<ImageMonitoring>().GetBackGround5, false, _userInterface.GetComponent<ImageMonitoring>().GetBackGround5,
+                false, _userInterface.GetComponent<ImageMonitoring>().GetBackGround5, false, _userInterface.GetComponent<ImageMonitoring>().GetBackGround5, 0, 0);
 
             //_userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveQuest", GameObject.Find("QuestBookPanel"), true,
             //    GameObject.Find("QuestBookPanel").GetComponent<RectTransform>().rect.width / 15,
