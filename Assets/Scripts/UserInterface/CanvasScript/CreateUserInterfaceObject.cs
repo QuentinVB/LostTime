@@ -4,13 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CreateUserInterfaceObject : MonoBehaviour {
-
-    private GameObject _userInterface;
-
-    private void Start()
-    {
-        _userInterface = GameObject.Find("Canvas");
-    }
+    
 
     public void CreateGameObjectImage(string GameObjectName, GameObject GameObjectParent, bool isAnchoredToParent, float SizeDeltaX, float SizeDeltaY, 
         float AnchoredPositionX, float AnchoredPositionY, Color BackGroundColor)

@@ -6,42 +6,44 @@ public class SaveStateController : MonoBehaviour {
 
     private void Start()
     {
-        // créer dynamiquement les SaveState WayPoints en fts des scènes charger
+        SetWayPointsOnMap();
+    }
+    
 
-
-        /*if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
-        {
-            if(PlayerPrefs.GetString("SaveStateOneCurrentScene") == "LostTimeGearDistrict")
+    private void SetWayPointsOnMap()
+    {
+            if (PlayerPrefs.GetString("CurrentScene") == "LostTimeGearDistrict")
             {
-                CreateLostTimeGearDiscritSaveStateWayPoints();
+                createWayPoints("ChunkGardenSave", -16f, 3f, -51f);
+                createWayPoints("ChunkSouthStreetSave", 15f, 3f, 54f);
+                createWayPoints("ChunkMarketSave", 12.5f, 2f, -3f);
             }
-        }
-
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
-        {
-            if (PlayerPrefs.GetString("SaveStateTwoCurrentScene") == "LostTimeGearDistrict")
-            {
-                CreateLostTimeGearDiscritSaveStateWayPoints();
-            }
-        }
-
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
-        {
-            if (PlayerPrefs.GetString("SaveStateThreeCurrentScene") == "LostTimeGearDistrict")
-            {
-                CreateLostTimeGearDiscritSaveStateWayPoints();
-            }
-        }*/
+        
     }
 
-    private void Update()
+    private void createWayPoints(string GameObjectName, float PosX, float PosY, float PosZ)
     {
-        GameObject.Find("Chunk-Market-GearAnimation").transform.Rotate(0, 0, GameObject.Find("Chunk-Market-GearAnimation").transform.rotation.z + 1f);
-        GameObject.Find("Chunk-Garden-GearAnimation").transform.Rotate(0, 0, GameObject.Find("Chunk-Garden-GearAnimation").transform.rotation.z + 1f);
-        GameObject.Find("Chunk-SouthStreet-GearAnimation").transform.Rotate(0, 0, GameObject.Find("Chunk-SouthStreet-GearAnimation").transform.rotation.z + 1f);
 
-        GameObject.Find("Chunk-Market-GearSprite").transform.Rotate(0, 0, GameObject.Find("Chunk-Market-GearSprite").transform.rotation.z + 1f);
-        GameObject.Find("Chunk-Garden-GearSprite").transform.Rotate(0, 0, GameObject.Find("Chunk-Garden-GearSprite").transform.rotation.z + 1f);
-        GameObject.Find("Chunk-SouthStreet-GearSprite").transform.Rotate(0, 0, GameObject.Find("Chunk-SouthStreet-GearSprite").transform.rotation.z + 1f);
+        if(GameObject.Find(GameObjectName + "WayPoints") ==  false)
+        {
+            GameObject gameObject = new GameObject(GameObjectName + "WayPoints");
+            gameObject.transform.position = new Vector3(PosX, PosY, PosZ);
+            gameObject.AddComponent<BoxCollider>();
+            gameObject.GetComponent<BoxCollider>().size = new Vector3(1f, 5f, 1f);
+            gameObject.AddComponent<SaveStateWayPoints>();
+
+            GameObject gameObjectAnimation = new GameObject(GameObjectName + "GearAnimation");
+            gameObjectAnimation.transform.SetParent(GameObject.Find(GameObjectName + "WayPoints").transform, true);
+            gameObjectAnimation.transform.position = new Vector3(PosX, PosY, PosZ);
+            gameObjectAnimation.AddComponent<SaveStateAnimation>();
+
+            GameObject gameObjectGearSprite = new GameObject(GameObjectName + "GearSprite");
+            gameObjectGearSprite.transform.tag = "SaveStateWayPointGearSprite";
+            gameObjectGearSprite.transform.SetParent(GameObject.Find(GameObjectName + "GearAnimation").transform, true);
+            gameObjectGearSprite.transform.position = new Vector3(PosX, PosY, PosZ);
+            gameObjectGearSprite.AddComponent<SpriteRenderer>();
+            gameObjectGearSprite.GetComponent<SpriteRenderer>().sprite = GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetYellowGear;
+            gameObjectGearSprite.AddComponent<SaveStateSpriteAnimation>();
+        }
     }
 }

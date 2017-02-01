@@ -27,6 +27,7 @@ public class ButtonEvent : MonoBehaviour
     public Sprite _blue;
     public Sprite _yellow;
 
+    private bool _isLoadPanelActivated;
     private void Start()
     {
 
@@ -45,21 +46,21 @@ public class ButtonEvent : MonoBehaviour
         GameObject.Find("ButtonNewGame").GetComponent<RectTransform>().sizeDelta = new Vector2(GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.width,
             GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 4);
         GameObject.Find("ButtonNewGame").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / -2);
-        GameObject.Find("ButtonNewGameText").GetComponent<Text>().fontSize = ((int)(GameObject.Find("ButtonNewGame").GetComponent<RectTransform>().rect.height - 10));
-
+        GameObject.Find("ButtonNewGameText").GetComponent<Text>().fontSize = ((int)(Screen.height / 20));
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages("ButtonNewGameText", "New Game", "Nouvelle Partie");
 
         GameObject.Find("ButtonLoadSave").transform.SetParent(GameObject.Find("ButtonNewGame").transform, true);
         GameObject.Find("ButtonLoadSave").GetComponent<RectTransform>().sizeDelta = new Vector2(GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.width,
             GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 4);
         GameObject.Find("ButtonLoadSave").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 2);
-        GameObject.Find("ButtonLoadSaveText").GetComponent<Text>().fontSize = ((int)(GameObject.Find("ButtonLoadSave").GetComponent<RectTransform>().rect.height - 10));
+        GameObject.Find("ButtonLoadSaveText").GetComponent<Text>().fontSize = ((int)(Screen.height / 20));
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages("ButtonLoadSaveText", "Load Game", "Charger une Partie");
 
-
-        /*GameObject.Find("ButtonConfigure").transform.SetParent(GameObject.Find("ButtonLoadSave").transform, true);
-        GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().sizeDelta = new Vector2(GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.width,
-            GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 4);
-        GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 2);
-        GameObject.Find("ButtonConfigureText").GetComponent<Text>().fontSize = ((int)(GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().rect.height - 10));*/
+        //GameObject.Find("ButtonConfigure").transform.SetParent(GameObject.Find("ButtonLoadSave").transform, true);
+        //GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().sizeDelta = new Vector2(GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.width,
+        //    GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 4);
+        //GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 2);
+        //GameObject.Find("ButtonConfigureText").GetComponent<Text>().fontSize = ((int)(GameObject.Find("ButtonConfigure").GetComponent<RectTransform>().rect.height - 10));
 
 
         GameObject.Find("BackGroundMenu").transform.SetParent(GameObject.Find("MenuGameUserInterface").transform, true);
@@ -70,38 +71,47 @@ public class ButtonEvent : MonoBehaviour
         GameObject.Find("BackGroundMenuGame").transform.SetParent(GameObject.Find("BackGroundMenu").transform, true);
         GameObject.Find("BackGroundMenuGame").GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.height, Screen.height);
         GameObject.Find("BackGroundMenuGame").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+
+        GameObject.Find("EventSystem").AddComponent<SoundController>();
+        GameObject.Find("EventSystem").GetComponent<SoundController>().PlaySong(((AudioClip)(Resources.Load("Sound/Cloud Atlas - 02 - Cloud Atlas Opening Title"))), 2f, true);
+        GameObject.Find("EventSystem").GetComponent<SoundController>().GetSongOnOff = true;
+
+        if (PlayerPrefs.HasKey("CurrentLanguagesUsed") == false)
+        {
+            SceneManager.LoadScene("LostTimeGameLanguagesFirstChoice");
+        }
     }
 
     private void Update()
     {
         if (GameObject.Find("NewGamePanel") == true)
         {
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateOneBlueGearSprite", 0, 0, 0, 0, -1, 2);
 
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateTwoBlueGearSprite", 0, 0, 0, 0, -1, 2);
 
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SaveStateThreeBlueGearSprite", 0, 0, 0, 0, -1, 2);
         }
 
         if (GameObject.Find("LoadGamePanel") == true)
         {
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateOneBlueGearSprite", 0, 0, 0, 0, -1, 2);
 
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateTwoBlueGearSprite", 0, 0, 0, 0, -1, 2);
 
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeYellowGearSprite", 0, 0, -1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeRedGearSprite", 0, 0, 1);
-            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeBlueGearSprite", 0, 0, -1);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeYellowGearSprite", 0, 0, 0, 0, -1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeRedGearSprite", 0, 0, 0, 0, 1, 2);
+            GameObject.Find("MenuGameUserInterface").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("LoadSaveStateThreeBlueGearSprite", 0, 0, 0, 0, -1, 2);
         }
 
         if (GameObject.Find("NewGamePanel") == true && _newGamePanelActivated == true && _newGameAnimationOn == true)
@@ -145,7 +155,7 @@ public class ButtonEvent : MonoBehaviour
                 1);
         }
 
-        
+
 
 
     }
@@ -174,9 +184,12 @@ public class ButtonEvent : MonoBehaviour
     public void NewGame()
     {
         checkOpenPanel();
+        _isLoadPanelActivated = false;
 
         if (GameObject.Find("NewGamePanel") == false)
         {
+            GameObject.Find("EventSystem").GetComponent<SoundController>().GetSongOnOff = false;
+
             _newGamePanel = new GameObject("NewGamePanel");
             _newGamePanel.AddComponent<RectTransform>();
             _newGamePanel.transform.SetParent(GameObject.Find("BackGroundMenu").transform, true);
@@ -217,6 +230,7 @@ public class ButtonEvent : MonoBehaviour
     public void loadGame()
     {
         checkOpenPanel();
+        _isLoadPanelActivated = true;
 
         if (GameObject.Find("LoadGamePanel") == false)
         {
@@ -272,8 +286,6 @@ public class ButtonEvent : MonoBehaviour
             _configureGamePanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(GameObject.Find("MenuGameUserInterface").GetComponent<RectTransform>().rect.width / 2
                 + GameObject.Find("ConfigureGamePanel").GetComponent<RectTransform>().rect.width / 2, 0);
 
-            //CreateConfigureGamePanelComponent();
-
             _configGamePanelActivated = true;
             _configGameAnimationOn = true;
         }
@@ -287,7 +299,7 @@ public class ButtonEvent : MonoBehaviour
 
 
 
-    private void CreateNewGamePanelCSaveStateComponent(string GameObjectName, string gameObjectName, string GameObjectParentName, float sizedeltaX, float sizeDeltaY, float anchoredPositionX, float anchoredPositionY)
+    private void CreateNewGamePanelCSaveStateComponent(string GameObjectName, string PlayerPrefsCurrentSaveState, string GameObjectParentName, float sizedeltaX, float sizeDeltaY, float anchoredPositionX, float anchoredPositionY)
     {
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage(GameObjectName, GameObject.Find(GameObjectParentName), true,
             sizedeltaX, sizeDeltaY, anchoredPositionX, anchoredPositionY, Color.clear);
@@ -312,13 +324,13 @@ public class ButtonEvent : MonoBehaviour
             GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.width / 4, GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.height / 4, "",
             GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.height / 10)), Color.black);
-        if (PlayerPrefs.GetInt("Is" + gameObjectName + "Used") != 1)
+        if (PlayerPrefs.GetInt("Is" + PlayerPrefsCurrentSaveState + "Used") != 1)
         {
-            GameObject.Find((GameObjectName + "CycleTextZone")).GetComponent<Text>().text = "Empty SaveState"; 
+            GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(GameObjectName + "CycleTextZone", "Empty Save", "Sauvegarde Vide");
         }
         else
         {
-            GameObject.Find((GameObjectName + "CycleTextZone")).GetComponent<Text>().text = "Nombre de cycle : ";
+            GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(GameObjectName + "CycleTextZone", "Number of cycle : " + PlayerPrefs.GetInt(PlayerPrefsCurrentSaveState + "Cycle"), "Nombre de cycle : " + PlayerPrefs.GetInt(PlayerPrefsCurrentSaveState + "Cycle"));
         }
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone(GameObjectName + "FragmentTextZone", GameObject.Find(GameObjectName), true,
@@ -326,13 +338,16 @@ public class ButtonEvent : MonoBehaviour
             GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.width / 4, GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.height / -4, "",
             GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find(GameObjectName).GetComponent<RectTransform>().rect.height / 10)), Color.black);
-        if (PlayerPrefs.GetInt("Is" + gameObjectName + "Used") != 1)
+        if (PlayerPrefs.GetInt("Is" + PlayerPrefsCurrentSaveState + "Used") != 1)
         {
-            GameObject.Find((GameObjectName + "FragmentTextZone")).GetComponent<Text>().text = "Start New Game";
+            if (_isLoadPanelActivated == false)
+            {
+                GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages((GameObjectName + "FragmentTextZone"), "Start New Game", "Nouvelle Partie");
+            }
         }
         else
         {
-            GameObject.Find((GameObjectName + "FragmentTextZone")).GetComponent<Text>().text = "Nombre de fragments : ";
+            GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages((GameObjectName + "FragmentTextZone"), "Number of fragments : " + PlayerPrefs.GetInt(PlayerPrefsCurrentSaveState + "Fragments"), "Nombre de fragments : " + PlayerPrefs.GetInt(PlayerPrefsCurrentSaveState + "Fragments"));
         }
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateEmptyGameObject(GameObjectName + "ButtonZone", GameObject.Find(GameObjectName), true,
@@ -341,11 +356,11 @@ public class ButtonEvent : MonoBehaviour
         GameObject.Find(GameObjectName + "ButtonZone").GetComponent<Image>().color = Color.clear;
     }
 
-    
+
     public void SaveStateAction(string SaveStateName)
     {
 
-        if(PlayerPrefs.GetInt("Is"+ SaveStateName + "Used") == 1)
+        if (PlayerPrefs.GetInt("Is" + SaveStateName + "Used") == 1)
         {
             OverWriteDataFile(SaveStateName);
         }
@@ -353,8 +368,9 @@ public class ButtonEvent : MonoBehaviour
         {
             PlayerPrefs.SetInt("Is" + SaveStateName + "Used", 1);
             PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
-            InitialisePlayerPosition();
-            SceneManager.LoadScene("LostTimeGearDistrict");
+            GameObject.Find("MenuGameUserInterface").GetComponent<SaveController>().InitialisePlayerSaveState();
+            PlayerPrefs.SetString("CurrentScene", PlayerPrefs.GetString(SaveStateName + "LastScene"));
+            SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
         }
     }
 
@@ -363,43 +379,49 @@ public class ButtonEvent : MonoBehaviour
         if (PlayerPrefs.GetInt("Is" + SaveStateName + "Used") == 1)
         {
             PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
-            SceneManager.LoadScene("LostTimeGearDistrict");
+            PlayerPrefs.SetString("CurrentScene", PlayerPrefs.GetString(SaveStateName + "LastScene"));
+            GameObject.Find("MenuGameUserInterface").GetComponent<SaveController>().LoadGame();
+            SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
         }
         else
         {
             LoadGame();
         }
-            
+
     }
 
     public void ResetPlayerPref()
     {
         PlayerPrefs.DeleteAll();
         Debug.Log("All PlayerPrefs have been reset");
-        PlayerPrefs.SetString("CurrentLanguagesUsed", "French");
-        PlayerPrefs.SetInt("SoundEffectVolumeSave", 100);
-        PlayerPrefs.SetInt("SoundTrackVolumeSave", 100);
+        PlayerPrefs.SetString("SoundEffectVolumeSave", "50");
+        PlayerPrefs.SetString("SoundTrackVolumeSave", "50");
+        PlayerPrefs.SetInt("ShadowIsActivatedSave", 1);
+        
+        SceneManager.LoadScene("LostTimeMenuGame");
     }
 
     private void OverWriteDataFile(string SaveStateName)
     {
 
-        GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("PanelOverWriteData", GameObject.Find("MenuGameUserInterface"), true,
+        GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("PanelOverWriteData", GameObject.Find("MenuGameUserInterface"), true,
             GameObject.Find("MenuGameUserInterface").GetComponent<RectTransform>().rect.width / 4, GameObject.Find("MenuGameUserInterface").GetComponent<RectTransform>().rect.height / 2,
-            0, 0, Color.white);
+            0, 0, GameObject.Find("MenuGameUserInterface").GetComponent<ImageMonitoring>().GetBackGround5);
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelOverWriteDataLabel", GameObject.Find("PanelOverWriteData"), true,
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 3, 0,
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 6,
-            "OverWrite Data File", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            "", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelOverWriteDataLabel"), "OverWrite Data File", "Ecraser les données");
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelOverWriteDataLabelYes", GameObject.Find("PanelOverWriteData"), true,
-            GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 3, 
+            GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 3,
             -GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width / 3.5f,
             -(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 6),
-            "Yes", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            "", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelOverWriteDataLabelYes"), "YES", "OUI");
         GameObject.Find("PanelOverWriteDataLabelYes").AddComponent<Button>();
         GameObject.Find("PanelOverWriteDataLabelYes").GetComponent<Button>().onClick.AddListener(() => Yes(SaveStateName));
 
@@ -407,29 +429,32 @@ public class ButtonEvent : MonoBehaviour
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 3,
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width / 3.5f,
             -(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 6),
-            "No", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            "", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelOverWriteDataLabelNo"), "NO", "NON");
         GameObject.Find("PanelOverWriteDataLabelNo").AddComponent<Button>();
         GameObject.Find("PanelOverWriteDataLabelNo").GetComponent<Button>().onClick.AddListener(() => No());
     }
 
     private void LoadGame()
     {
-        GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("PanelSaveStateEmpty", GameObject.Find("MenuGameUserInterface"), true,
+        GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("PanelSaveStateEmpty", GameObject.Find("MenuGameUserInterface"), true,
             GameObject.Find("MenuGameUserInterface").GetComponent<RectTransform>().rect.width / 4, GameObject.Find("MenuGameUserInterface").GetComponent<RectTransform>().rect.height / 2,
-            0, 0, Color.white);
+            0, 0, GameObject.Find("MenuGameUserInterface").GetComponent<ImageMonitoring>().GetBackGround5);
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelSaveStateEmptyLabel", GameObject.Find("PanelSaveStateEmpty"), true,
             GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.width, GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 3, 0,
             GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 6,
-            "SaveState Empty", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            "", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelSaveStateEmptyLabel"), "Empty SaveState", "Sauvegarde Vide");
 
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelSaveStateEmptyLabelYes", GameObject.Find("PanelSaveStateEmpty"), true,
             GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 3,
             0, -(GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 6),
-            "Ok", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            "", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelSaveStateEmpty").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelSaveStateEmptyLabelYes"), "OK", "OK");
         GameObject.Find("PanelSaveStateEmptyLabelYes").AddComponent<Button>();
         GameObject.Find("PanelSaveStateEmptyLabelYes").GetComponent<Button>().onClick.AddListener(() => ok());
     }
@@ -437,8 +462,12 @@ public class ButtonEvent : MonoBehaviour
     private void Yes(string SaveStateName)
     {
         Destroy(GameObject.Find("PanelOverWriteData"));
+
+        PlayerPrefs.SetInt("Is" + SaveStateName + "Used", 1);
         PlayerPrefs.SetString("CurrentSaveStateUsed", SaveStateName);
-        SceneManager.LoadScene("LostTimeGearDistrict");
+        GameObject.Find("MenuGameUserInterface").GetComponent<SaveController>().InitialisePlayerSaveState();
+        PlayerPrefs.SetString("CurrentScene", PlayerPrefs.GetString(SaveStateName + "LastScene"));
+        SceneManager.LoadScene(PlayerPrefs.GetString(SaveStateName + "LastScene"));
     }
 
     private void No()
@@ -451,27 +480,5 @@ public class ButtonEvent : MonoBehaviour
         Destroy(GameObject.Find("PanelSaveStateEmpty"));
     }
 
-    private void InitialisePlayerPosition()
-    {
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
-        {
-            PlayerPrefs.SetFloat("SaveStateOneAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
-            PlayerPrefs.SetFloat("SaveStateOneAstridPositionZ", 25f);
-        }
 
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
-        {
-            PlayerPrefs.SetFloat("SaveStateTwoAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("SaveStateTwoAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
-            PlayerPrefs.SetFloat("SaveStateTwoAstridPositionZ", 25f);
-        }
-
-        if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
-        {
-            PlayerPrefs.SetFloat("SaveStateThreeAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("SaveStateThreeAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
-            PlayerPrefs.SetFloat("SaveStateThreeAstridPositionZ", 25f);
-        }
-    }
 }
