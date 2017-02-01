@@ -89,8 +89,6 @@ public class NPCAnimCtrl : IAnimCtrl, INPCComponent
             default:
                 break;
         }
-
-
         //set the state of animation
         animator.SetFloat("horizontal", normalizedHorizontal);
         animator.SetFloat("vertical", normalizedVertical);
