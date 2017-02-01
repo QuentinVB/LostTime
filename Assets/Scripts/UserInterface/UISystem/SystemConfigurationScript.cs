@@ -340,13 +340,13 @@ public class SystemConfigurationScript : MonoBehaviour, IPointerDownHandler
         if(PlayerPrefs.GetInt("ShadowIsActivatedSave") == 0)
         {
             PlayerPrefs.SetInt("ShadowIsActivatedSave", 1);
-            GameObject.Find("Canvas").GetComponent<TextMonitoring>().setTextInCorrectLanguages("ShadowInput", "Disable", "Désactiver");
+            GameObject.Find("Canvas").GetComponent<TextMonitoring>().setTextInCorrectLanguages("ShadowInput", "Enable", "Activer");
             GameObject.Find("Sun").GetComponent<Light>().shadows = LightShadows.None;
         }
         else
         {
             PlayerPrefs.SetInt("ShadowIsActivatedSave", 0);
-            GameObject.Find("Canvas").GetComponent<TextMonitoring>().setTextInCorrectLanguages("ShadowInput", "Enable", "Activer");
+            GameObject.Find("Canvas").GetComponent<TextMonitoring>().setTextInCorrectLanguages("ShadowInput", "Disable", "Désactiver");
             GameObject.Find("Sun").GetComponent<Light>().shadows = LightShadows.Soft;
         }
     }
