@@ -20,6 +20,7 @@ public class GameLanguagesFirstChoiceScript : MonoBehaviour {
 
     public Sprite _Frenchgear;
     public Sprite _EnglishGear;
+    public Sprite _Gear;
 
     private void Start()
     {
@@ -73,7 +74,7 @@ public class GameLanguagesFirstChoiceScript : MonoBehaviour {
 
         _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("FirstFrenchGear", GameObject.Find("FrenchButton"), true,
             GameObject.Find("FrenchButton").GetComponent<RectTransform>().rect.height, GameObject.Find("FrenchButton").GetComponent<RectTransform>().rect.height,
-            GameObject.Find("FrenchButton").GetComponent<RectTransform>().rect.width / -2 - GameObject.Find("FrenchButton").GetComponent<RectTransform>().rect.height / 2, 0, _Frenchgear);
+            GameObject.Find("FrenchButton").GetComponent<RectTransform>().rect.width / -2 - GameObject.Find("FrenchButton").GetComponent<RectTransform>().rect.height / 2, 0, _Gear);
 
         _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("SecondFrenchGear", GameObject.Find("FrenchButton"), true,
             GameObject.Find("FrenchButton").GetComponent<RectTransform>().rect.height, GameObject.Find("FrenchButton").GetComponent<RectTransform>().rect.height,
@@ -81,19 +82,18 @@ public class GameLanguagesFirstChoiceScript : MonoBehaviour {
 
         _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("FirstEnglishGear", GameObject.Find("EnglishButton"), true,
             GameObject.Find("EnglishButton").GetComponent<RectTransform>().rect.height, GameObject.Find("EnglishButton").GetComponent<RectTransform>().rect.height,
-            GameObject.Find("EnglishButton").GetComponent<RectTransform>().rect.width / -2 - GameObject.Find("EnglishButton").GetComponent<RectTransform>().rect.height / 2, 0, _EnglishGear);
+            GameObject.Find("EnglishButton").GetComponent<RectTransform>().rect.width / -2 - GameObject.Find("EnglishButton").GetComponent<RectTransform>().rect.height / 2, 0, _Gear);
 
         _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("SecondEnglishGear", GameObject.Find("EnglishButton"), true,
             GameObject.Find("EnglishButton").GetComponent<RectTransform>().rect.height, GameObject.Find("EnglishButton").GetComponent<RectTransform>().rect.height,
             GameObject.Find("EnglishButton").GetComponent<RectTransform>().rect.width / 2 + GameObject.Find("EnglishButton").GetComponent<RectTransform>().rect.height / 2, 0, _EnglishGear);
+        GameObject.Find("SecondEnglishGear").GetComponent<RectTransform>().Rotate(0, 0, -90);
     }
 
     private void Update()
     {
         GameObject.Find("Canvas").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("FirstFrenchGear", 0, 0, 0, 0, -1, 2);
-        GameObject.Find("Canvas").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SecondFrenchGear", 0, 0, 0, 0, -1, 2);
         GameObject.Find("Canvas").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("FirstEnglishGear", 0, 0, 0, 0, -1, 2);
-        GameObject.Find("Canvas").GetComponent<AnimationUserInterfaceController>().RotationObjectOnAxe("SecondEnglishGear", 0, 0, 0, 0, -1, 2);
     }
 
     private void FrenchButtonAction()
