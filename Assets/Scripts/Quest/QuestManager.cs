@@ -17,18 +17,18 @@ public class QuestManager
     PositionEntity _positionStorage;
     int amountOfCrowdToSpawn = 20;
     int jobPointer = 0;
-
+    public NPCSpawner NPCSpawnerInjector { get { return _npcSpawner; } set { _npcSpawner = value; } }
     public int AmountOfCrowdToSpawn { get { return amountOfCrowdToSpawn; } }
     public bool hasRequest { get; internal set; }
     public List<NPCData> NPCCache { get { return NPCCacheList; } private set { NPCCacheList = value; } }
-    [Inject]
-    public QuestManager(NPCSpawner npcSpawner)
+    public QuestManager()
     {
-        NPCCacheList = new List<NPCData>();
-        _npcSpawner = npcSpawner;
+        NPCCacheList = new List<NPCData>();       
         _positionStorage = new PositionEntity();
         _processEvent = new ProcessEvent();
-        setUP();
+        //setUP();
+        Debug.Log("End building QuestManager");
+
     }
 
     void setUP()

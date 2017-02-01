@@ -8,11 +8,12 @@ using Zenject;
 public class GameInstaller : MonoInstaller
 {
     public GameObject NPCPrefab;
-
     public override void InstallBindings()
     {
+
         Container.BindAllInterfaces<NPCSpawner>().To<NPCSpawner>().AsSingle();
-        Container.BindAllInterfaces<QuestManager>().To<QuestManager>().AsSingle();
+        Container.Bind<QuestManager>().AsSingle();
+
 
         //Container.Bind<IPositionDirector>().To<NPCPositionDirector>();
         Container.Bind<IPathfinding>().To<NPCPathfinding>();
@@ -25,6 +26,9 @@ public class GameInstaller : MonoInstaller
 
         //Container.Bind<float>().FromInstance(0.1f);
         Container.BindFactory<ITailor,QuestManager,NPCData,IAnimCtrl,IPathfinding, NPC, NPC.Factory>().FromPrefab(NPCPrefab);
-        //Debug.Log("EndBinding");
+
+        //Container.Bind<CrossDependecyResolver>().AsSingle().NonLazy();
+
+        Debug.Log("EndBinding");
     }
 }

@@ -35,8 +35,11 @@ public class QuestBook : MonoBehaviour {
         test.Add("4CRecup", 0);
         test.Add("5CRecup", 0);
 
-        _questBook.Add(new QuestBook("Poulets Braisés", "Récupérez tous les poulets de Julie", false, test));
-        _questBook.Add(new QuestBook("Poulets Samoussas", "Récupérer tous les poulets du cuisinier", true, test));
+        _questBook.Add(new QuestBook("Le Marteau du Forgeron", "Retrouvez le Marteau du Forgeron perdu dans la ville", false, test));
+        _questBook.Add(new QuestBook("Panique chez les poulets", "Récupérez les poulets mécaniques de Julie", false, test));
+        _questBook.Add(new QuestBook("La fuite du temps", "Réunissez les 6 morceaux de l'horloge", false, test));
+        _questBook.Add(new QuestBook("Tutoriel", "Découvrez l'univers et les fonctionnalités du jeu", true, test));
+        _questBook.Add(new QuestBook("Premier Pas", "Lancer le jeu avec succès", true, test));
 
     }
 

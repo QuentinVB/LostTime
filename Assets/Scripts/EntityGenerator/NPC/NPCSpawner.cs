@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 using Zenject;
 
-public class NPCSpawner : ITickable
+public class NPCSpawner : ITickable, IInitializable
 {
     readonly NPC.Factory _NPCFactory;  
 
@@ -15,7 +15,7 @@ public class NPCSpawner : ITickable
 
     QuestManager _questManager;
     private int npcCount = 0;
-
+    public QuestManager QuestManagerInjector { get { return _questManager; } set { _questManager = value; } }
     public NPCSpawner(
         QuestManager questManager,
         FactoryAnimation animationFactory,
@@ -24,17 +24,23 @@ public class NPCSpawner : ITickable
         NPC.Factory NPCFactory
         )
     {
-        _questManager=questManager;
+        _questManager = questManager;
         _NPCFactory = NPCFactory;
         _animationFactory = animationFactory;
         _tailorFactory = tailorFactory;
         _pathfindingFactory = pathfindingFactory;
 
-        //Debug.Log("End NPCSpawner");
+        Debug.Log("End Building NPCSpawner");
     }
-
+    public void Initialize()
+    {
+        _questManager.NPCSpawnerInjector = this;
+        Debug.Log("Loaded");
+    }
     public void Tick()
     {
+
+        //Debug.Log("tick");
         // if questmanager warehouse is true then create the bunch of npcs requested
         if (_questManager.hasRequest)
         {
@@ -67,5 +73,6 @@ public class NPCSpawner : ITickable
         return (npcCount<_questManager.AmountOfCrowdToSpawn) ? true : false;
     }
 
+    
 }
 
