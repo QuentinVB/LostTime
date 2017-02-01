@@ -30,11 +30,6 @@ public class ImageMonitoring : MonoBehaviour {
     public Sprite _pub03;
 
 
-    private void Start()
-    {
-        
-    }
-
 
     public void PutBackGroundImageOnGameObject(string GameObjectName, string GameObjectParentName, Sprite BackGround, 
         bool LeftLimitSprite, Sprite BackGroundLimitLeft,
@@ -88,6 +83,7 @@ public class ImageMonitoring : MonoBehaviour {
                     BackGroundLimitDown);
         }
     }
+    
 
 
     public Sprite GetInventoryBagBackGround

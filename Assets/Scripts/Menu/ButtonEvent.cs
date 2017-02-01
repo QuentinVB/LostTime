@@ -53,7 +53,7 @@ public class ButtonEvent : MonoBehaviour
         GameObject.Find("ButtonLoadSave").GetComponent<RectTransform>().sizeDelta = new Vector2(GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.width,
             GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 4);
         GameObject.Find("ButtonLoadSave").GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -GameObject.Find("GameTittle").GetComponent<RectTransform>().rect.height / 2);
-        GameObject.Find("ButtonLoadSaveText").GetComponent<Text>().fontSize = ((int)(GameObject.Find("ButtonLoadSave").GetComponent<RectTransform>().rect.height - 10));
+        GameObject.Find("ButtonLoadSaveText").GetComponent<Text>().fontSize = ((int)(GameObject.Find("ButtonLoadSave").GetComponent<RectTransform>().rect.height - 15));
         GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages("ButtonLoadSaveText", "Load Game", "Charger une Partie");
 
         //GameObject.Find("ButtonConfigure").transform.SetParent(GameObject.Find("ButtonLoadSave").transform, true);
@@ -75,6 +75,11 @@ public class ButtonEvent : MonoBehaviour
         GameObject.Find("EventSystem").AddComponent<SoundController>();
         GameObject.Find("EventSystem").GetComponent<SoundController>().PlaySong(((AudioClip)(Resources.Load("Sound/Cloud Atlas - 02 - Cloud Atlas Opening Title"))), 2f, true);
         GameObject.Find("EventSystem").GetComponent<SoundController>().GetSongOnOff = true;
+
+        if(PlayerPrefs.HasKey("CurrentLanguagesUsed") == false)
+        {
+            SceneManager.LoadScene("LostTimeGameLanguagesFirstChoice");
+        }
     }
 
     private void Update()
@@ -392,14 +397,7 @@ public class ButtonEvent : MonoBehaviour
         PlayerPrefs.SetString("SoundEffectVolumeSave", "50");
         PlayerPrefs.SetString("SoundTrackVolumeSave", "50");
         PlayerPrefs.SetInt("ShadowIsActivatedSave", 1);
-        if (PlayerPrefs.GetString("CurrentLanguagesUsed") == "Français" || PlayerPrefs.GetString("CurrentLanguagesUsed")== "French")
-        {
-            PlayerPrefs.SetString("CurrentLanguagesUsed", "Français");
-        }
-        else
-        {
-            PlayerPrefs.SetString("CurrentLanguagesUsed", "Anglais");
-        }
+        
         SceneManager.LoadScene("LostTimeMenuGame");
     }
 
@@ -413,7 +411,7 @@ public class ButtonEvent : MonoBehaviour
         GameObject.Find("MenuGameUserInterface").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelOverWriteDataLabel", GameObject.Find("PanelOverWriteData"), true,
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 3, 0,
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 6,
-            "OverWrite Data File", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            "", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 10)), Color.black);
         GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelOverWriteDataLabel"), "OverWrite Data File", "Ecraser les données");
 
@@ -421,7 +419,7 @@ public class ButtonEvent : MonoBehaviour
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 3,
             -GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width / 3.5f,
             -(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 6),
-            "Yes", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            "", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 10)), Color.black);
         GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelOverWriteDataLabelYes"), "YES", "OUI");
         GameObject.Find("PanelOverWriteDataLabelYes").AddComponent<Button>();
@@ -431,7 +429,7 @@ public class ButtonEvent : MonoBehaviour
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width / 2, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 3,
             GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width / 3.5f,
             -(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 6),
-            "No", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
+            "", GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
             ((int)(GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 10)), Color.black);
         GameObject.Find("MenuGameUserInterface").GetComponent<TextMonitoring>().setTextInCorrectLanguages(("PanelOverWriteDataLabelNo"), "NO", "NON");
         GameObject.Find("PanelOverWriteDataLabelNo").AddComponent<Button>();
