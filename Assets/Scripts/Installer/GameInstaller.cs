@@ -5,13 +5,15 @@ using System.Text;
 using UnityEngine;
 using Zenject;
 
-public class NPCInstaller : MonoInstaller
+public class GameInstaller : MonoInstaller
 {
     public GameObject NPCPrefab;
-
     public override void InstallBindings()
     {
+
         Container.BindAllInterfaces<NPCSpawner>().To<NPCSpawner>().AsSingle();
+        Container.Bind<QuestManager>().AsSingle();
+
 
         //Container.Bind<IPositionDirector>().To<NPCPositionDirector>();
         Container.Bind<IPathfinding>().To<NPCPathfinding>();
@@ -22,10 +24,11 @@ public class NPCInstaller : MonoInstaller
         Container.Bind<FactoryPathfinding>().AsSingle();
         Container.Bind<FactoryTailor>().AsSingle();
 
-        Container.Bind<QuestManager>().AsSingle();
-
         //Container.Bind<float>().FromInstance(0.1f);
         Container.BindFactory<ITailor,QuestManager,NPCData,IAnimCtrl,IPathfinding, NPC, NPC.Factory>().FromPrefab(NPCPrefab);
-        //Debug.Log("EndBinding");
+
+        //Container.Bind<CrossDependecyResolver>().AsSingle().NonLazy();
+
+        Debug.Log("EndBinding");
     }
 }
