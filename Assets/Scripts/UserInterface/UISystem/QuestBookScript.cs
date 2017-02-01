@@ -150,6 +150,7 @@ public class QuestBookScript : MonoBehaviour, IPointerDownHandler
         GameObject.Find("ButtonFinishedQuestPanel").AddComponent<Button>();
         GameObject.Find("ButtonFinishedQuestPanel").GetComponent<Button>().onClick.AddListener(() => ShowEndedQuest());
 
+        _isActivedQuestBookPanelActivated = false;
         ShowActiveQuest();
     }
 

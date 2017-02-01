@@ -25,6 +25,8 @@ public class Timer : MonoBehaviour {
         sunInitialIntensity = sun.intensity;
         jeuFini = false;
         GameObject.Find("Canvas").GetComponent<SaveController>().loadTimer();
+        GameObject.Find("Sun").AddComponent<SoundController>();
+        GameObject.Find("Sun").GetComponent<SoundController>().PlaySong(((AudioClip)(Resources.Load("Sound/Bruitages horloges - vieille - minuit - 12 coups"))), 2f, true);
         swapMalus = 0;
         level = "LostTimeGearDistrict";
         getSwapMalus();
@@ -33,7 +35,15 @@ public class Timer : MonoBehaviour {
 
     void Update () {
         getSwapMalus();
-        Chrono();       
+        Chrono();     
+        if(currentTimeOfDay > 0.57)
+        {
+            GameObject.Find("Sun").GetComponent<SoundController>().GetSongOnOff = true;
+        }
+        else
+        {
+            GameObject.Find("Sun").GetComponent<SoundController>().GetSongOnOff = false;
+        }
 	}
 
 

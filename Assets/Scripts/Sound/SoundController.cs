@@ -5,7 +5,6 @@ using UnityEngine;
 public class SoundController : MonoBehaviour {
 
     public AudioClip _soundName;
-    private AudioSource _Soundtrack;
     private float _AudioVolume;
     private bool _PlaySong;
     private bool _isSongPlaying;
