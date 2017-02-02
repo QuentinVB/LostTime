@@ -11,7 +11,7 @@ public class ForgeronController : MonoBehaviour
     public Collider collisionPlayer;
     public bool showPnjName;
     string StringForgeronTalk;
-    public Text display;                      ////////////////////////////////////////
+    //public Text display;                      ////////////////////////////////////////
 
 
     void Start()
@@ -20,9 +20,9 @@ public class ForgeronController : MonoBehaviour
         forgeron = new Forgeron();
         showPnjName = false;
 
-        display = GameObject.Find("display").GetComponent<Text>();                ////////////////////////////////////////
-        display.verticalOverflow = VerticalWrapMode.Overflow;               ////////////////////////////////////////
-        display.text = "";                ////////////////////////////////////////
+    //    display = GameObject.Find("display").GetComponent<Text>();                ////////////////////////////////////////
+    //    display.verticalOverflow = VerticalWrapMode.Overflow;               ////////////////////////////////////////
+    //    display.text = "";                ////////////////////////////////////////
     }
 
 
@@ -57,7 +57,7 @@ public class ForgeronController : MonoBehaviour
 
 
 
-        display.text = "";////////////////////////////////////////
+        //display.text = "";////////////////////////////////////////
     }
 
     interface IControlerForgeron

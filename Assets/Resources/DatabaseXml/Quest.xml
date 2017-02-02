@@ -58,9 +58,9 @@
               <name>Forgeron</name>
               <job>Forgeron</job>
               <position>
-                <float>0</float>
-                <float>0</float>
-                <float>0</float>
+                <float>17.6</float>
+                <float>-0.04</float>
+                <float>-21.3</float>
               </position>
               <canDie>false</canDie>
             </LinkedActor>
@@ -145,23 +145,13 @@
               <name>Forgeron</name>
               <job>Forgeron</job>
               <position>
-                <float>0</float>
-                <float>0</float>
-                <float>0</float>
+                <float>17.6</float>
+                <float>-0.04</float>
+                <float>-21.3</float>
               </position>
               <canDie>false</canDie>
             </LinkedActor>
-            <LinkedActor>
-              <id>Marteau</id>
-              <name>Marteau</name>
-              <job />
-              <position>
-                <float>0</float>
-                <float>0</float>
-                <float>0</float>
-              </position>
-              <canDie>true</canDie>
-            </LinkedActor>
+            <LinkedActor xsi:nil="true" />
           </LinkedActorArray>
         </State>
       </stateArray>
