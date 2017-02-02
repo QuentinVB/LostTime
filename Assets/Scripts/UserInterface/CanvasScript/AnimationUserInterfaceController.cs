@@ -91,8 +91,8 @@ public class AnimationUserInterfaceController : MonoBehaviour
         return true;
     }
 
-    public void RotationObjectOnAxe(string GameObjectName, float x, float y, float z)
+    public void RotationObjectOnAxe(string GameObjectName, float x, float AnimationRotateSpeedX, float y, float AnimationRotateSpeedY, float z, float AnimationRotateSpeedZ)
     {
-        GameObject.Find(GameObjectName).GetComponent<RectTransform>().transform.Rotate(x * _AnimationRotateSpeed, y * _AnimationRotateSpeed, z * _AnimationRotateSpeed);
+        GameObject.Find(GameObjectName).GetComponent<RectTransform>().transform.Rotate(x * AnimationRotateSpeedX, y * AnimationRotateSpeedY, z * AnimationRotateSpeedZ);
     }
 }

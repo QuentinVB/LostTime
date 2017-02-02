@@ -9,6 +9,15 @@ public class Monitoring : MonoBehaviour {
 
     private void Start()
     {
+        if(PlayerPrefs.GetInt("ShadowIsActivatedSave") == 0)
+        {
+            GameObject.Find("Sun").GetComponent<Light>().shadows = LightShadows.None;
+        }
+        else
+        {
+            GameObject.Find("Sun").GetComponent<Light>().shadows = LightShadows.Soft;
+        }
+
         _CurrentGameLanguages = "English";
     }
     public void CreateGameLanguagesList()
