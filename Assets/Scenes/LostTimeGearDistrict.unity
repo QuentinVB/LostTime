@@ -3784,7 +3784,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sun: {fileID: 949462177}
-  secondsInFullDay: 120
+  secondsInFullDay: 60
+  currentTimeOfDay: 0.22
   timeMutiplier: 1
   sunInitialIntensity: 1.1
 --- !u!114 &949462180
@@ -4265,6 +4266,66 @@ Prefab:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 114917322336755880, guid: 2b52b1903efbabb4dba181f2f579d638,
+        type: 2}
+      propertyPath: _yellowGear
+      value: 
+      objectReference: {fileID: 21300000, guid: a59436839c00e7d4bb6b6035ed54e91e,
+        type: 3}
+    - target: {fileID: 114917322336755880, guid: 2b52b1903efbabb4dba181f2f579d638,
+        type: 2}
+      propertyPath: _backGround1
+      value: 
+      objectReference: {fileID: 21300000, guid: c4e272880e0360b4586f86d622a3293c,
+        type: 3}
+    - target: {fileID: 114917322336755880, guid: 2b52b1903efbabb4dba181f2f579d638,
+        type: 2}
+      propertyPath: _backGround2
+      value: 
+      objectReference: {fileID: 21300000, guid: 037a83fc6c24ad04c984e148d4d5b1cc,
+        type: 3}
+    - target: {fileID: 114917322336755880, guid: 2b52b1903efbabb4dba181f2f579d638,
+        type: 2}
+      propertyPath: _backGround3
+      value: 
+      objectReference: {fileID: 21300000, guid: 50195ad157ed6ea43a080751e50aaad5,
+        type: 3}
+    - target: {fileID: 114917322336755880, guid: 2b52b1903efbabb4dba181f2f579d638,
+        type: 2}
+      propertyPath: _backGround4
+      value: 
+      objectReference: {fileID: 21300000, guid: ba56d84306e7a9048832d04907577b2c,
+        type: 3}
+    - target: {fileID: 114917322336755880, guid: 2b52b1903efbabb4dba181f2f579d638,
+        type: 2}
+      propertyPath: _backGround5
+      value: 
+      objectReference: {fileID: 21300000, guid: 2120bcd5ad0a9c246bbc8aaa3204d672,
+        type: 3}
+    - target: {fileID: 114917322336755880, guid: 2b52b1903efbabb4dba181f2f579d638,
+        type: 2}
+      propertyPath: _inventoryBackGround
+      value: 
+      objectReference: {fileID: 21300000, guid: 4783773821f3a124e9a3a595f454a75a,
+        type: 3}
+    - target: {fileID: 114917322336755880, guid: 2b52b1903efbabb4dba181f2f579d638,
+        type: 2}
+      propertyPath: _pub01
+      value: 
+      objectReference: {fileID: 21300000, guid: ff234a686c7cb374d9a19ce1632cdd39,
+        type: 3}
+    - target: {fileID: 114917322336755880, guid: 2b52b1903efbabb4dba181f2f579d638,
+        type: 2}
+      propertyPath: _pub02
+      value: 
+      objectReference: {fileID: 21300000, guid: 75ab8ea88a86e2349ac38ea32c0dc93a,
+        type: 3}
+    - target: {fileID: 114917322336755880, guid: 2b52b1903efbabb4dba181f2f579d638,
+        type: 2}
+      propertyPath: _pub03
+      value: 
+      objectReference: {fileID: 21300000, guid: a53dbe08c1b19a645992ffefdc2d4ed6,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2b52b1903efbabb4dba181f2f579d638, type: 2}
   m_IsPrefabParent: 0
