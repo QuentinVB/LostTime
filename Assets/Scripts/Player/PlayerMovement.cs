@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
         playerObstacle = GetComponent<NavMeshObstacle>();
 
         ///
-        setAstridPosition();
+        //setAstridPosition();
         ///
         
 

@@ -59,7 +59,6 @@ public class SaveController : MonoBehaviour {
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", 25f);
             PlayerPrefs.SetInt("SaveStateOneCycle", 0);
             PlayerPrefs.SetInt("SaveStateOneFragments", 0);
-            PlayerPrefs.SetFloat("SaveStateOneTimer", 0f);
             PlayerPrefs.SetString("SaveStateOneLastScene", "LostTimeGearDistrict");
         }
 
@@ -73,7 +72,6 @@ public class SaveController : MonoBehaviour {
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", 25f);
             PlayerPrefs.SetInt("SaveStateTwoCycle", 0);
             PlayerPrefs.SetInt("SaveStateTwoFragments", 0);
-            PlayerPrefs.SetFloat("SaveStateTwoTimer", 0f);
             PlayerPrefs.SetString("SaveStateTwoLastScene", "LostTimeGearDistrict");
         }
 
@@ -87,7 +85,6 @@ public class SaveController : MonoBehaviour {
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", 25f);
             PlayerPrefs.SetInt("SaveStateThreeCycle", 0);
             PlayerPrefs.SetInt("SaveStateThreeFragments", 0);
-            PlayerPrefs.SetFloat("SaveStateThreeTimer", 0f);
             PlayerPrefs.SetString("SaveStateThreeLastScene", "LostTimeGearDistrict");
         }
     }
@@ -183,12 +180,15 @@ public class SaveController : MonoBehaviour {
 
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
         {
+            Debug.Log(PlayerPrefs.HasKey("SaveStateOneTimer"));
+
             if (PlayerPrefs.HasKey("SaveStateOneTimer") == true)
             {
                 GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = PlayerPrefs.GetFloat("SaveStateOneTimer");
             }
             else
             {
+                
                 GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay = setFirstCurrentTimeOfDay;
             }
         }
