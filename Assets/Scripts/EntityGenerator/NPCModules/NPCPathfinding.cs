@@ -95,7 +95,7 @@ public class NPCPathfinding : IPathfinding, INPCComponent
     private void GetRigidBody()
     {
         npcRigidbody = NPCLinked.gameObject.AddComponent<Rigidbody>();
-        npcRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        npcRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
     }
     //Generates the list of waypoints for the NPC movement patern
     private void SetWaypoints()
