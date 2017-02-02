@@ -13,6 +13,8 @@ TagManager:
   - Ground
   - Waypoint
   - StreetLight
+  - SaveStateWayPointAnimation
+  - SaveStateWayPointGearSprite
   layers:
   - Default
   - TransparentFX

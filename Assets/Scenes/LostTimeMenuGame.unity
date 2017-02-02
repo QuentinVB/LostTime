@@ -248,7 +248,6 @@ GameObject:
   m_Component:
   - component: {fileID: 682377717}
   - component: {fileID: 682377719}
-  - component: {fileID: 682377718}
   m_Layer: 5
   m_Name: BackGroundMenu
   m_TagString: Untagged
@@ -279,33 +278,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1006, y: 1002}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &682377718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 682377716}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!222 &682377719
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -347,7 +319,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 285, y: 105}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &693227032
 MonoBehaviour:
@@ -9319,7 +9291,6 @@ GameObject:
   - component: {fileID: 1817328821}
   - component: {fileID: 1817328823}
   - component: {fileID: 1817328822}
-  - component: {fileID: 1817328825}
   m_Layer: 5
   m_Name: BackGroundMenuGame
   m_TagString: Untagged
@@ -9379,86 +9350,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1817328820}
---- !u!82 &1817328825
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1817328820}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 55dfa1ee168d60b4eb7c86c0b1944704, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1 &1913639455
 GameObject:
   m_ObjectHideFlags: 0
@@ -9609,10 +9500,11 @@ GameObject:
   - component: {fileID: 2052847226}
   - component: {fileID: 2052847225}
   - component: {fileID: 2052847224}
-  - component: {fileID: 2052847228}
   - component: {fileID: 2052847229}
   - component: {fileID: 2052847230}
   - component: {fileID: 2052847231}
+  - component: {fileID: 2052847228}
+  - component: {fileID: 2052847232}
   m_Layer: 5
   m_Name: MenuGameUserInterface
   m_TagString: Untagged
@@ -9746,6 +9638,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ArialTextFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2052847232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2052847223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e350baa3360c3064da443b9cc325371e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MapPanel: {fileID: 21300000, guid: 66638c6b0345cbd42b3b6fe76211d01d, type: 3}
+  _DownArrow: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  _knob: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  _mapButton: {fileID: 21300000, guid: df8c59ee35ade814ba2b4767bf398b86, type: 3}
+  _ConfigButton: {fileID: 21300000, guid: ac3d6e798cd394b4da347a9eea7e6be9, type: 3}
+  _QuestButton: {fileID: 21300000, guid: ef88d874f0e063d4b806b7e1222ef4ac, type: 3}
+  _LeaveButton: {fileID: 21300000, guid: 7fd9c117df8a00f4bba5d1f085133054, type: 3}
+  _BagButton: {fileID: 21300000, guid: 8824e0e179fdb6c44a8a9ef91193b4d4, type: 3}
+  _WoodBackGround: {fileID: 21300000, guid: ed14750908d162c448241d581de5d7d2, type: 3}
+  _MetalCircle: {fileID: 21300000, guid: 4576a6f3677133349a75632483078c9b, type: 3}
+  _yellowGear: {fileID: 21300000, guid: a59436839c00e7d4bb6b6035ed54e91e, type: 3}
+  _backGround1: {fileID: 21300000, guid: 10aa39df78426f74aa9c4a31bcc799dc, type: 3}
+  _backGround2: {fileID: 21300000, guid: 037a83fc6c24ad04c984e148d4d5b1cc, type: 3}
+  _backGround3: {fileID: 21300000, guid: 50195ad157ed6ea43a080751e50aaad5, type: 3}
+  _backGround4: {fileID: 21300000, guid: ba56d84306e7a9048832d04907577b2c, type: 3}
+  _backGround5: {fileID: 21300000, guid: 2120bcd5ad0a9c246bbc8aaa3204d672, type: 3}
+  _inventoryBackGround: {fileID: 21300000, guid: 4783773821f3a124e9a3a595f454a75a,
+    type: 3}
+  _pub01: {fileID: 21300000, guid: ff234a686c7cb374d9a19ce1632cdd39, type: 3}
+  _pub02: {fileID: 21300000, guid: 75ab8ea88a86e2349ac38ea32c0dc93a, type: 3}
+  _pub03: {fileID: 21300000, guid: a53dbe08c1b19a645992ffefdc2d4ed6, type: 3}
 --- !u!1 &2093035665
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
 {
     private GameObject _userInterface;
     private string _LastItemOpen;
-    
+
     private bool _PanelIsActivated;
     private bool _launchPanelAnimation;
     private bool _ItemDescriptionPanelActivated;
@@ -61,13 +61,19 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
     public void Inventaire()
     {
         if (GameObject.Find("QuestBookPanel") == true)
-            Destroy(GameObject.Find("QuestBookPanel"));
+        {
+            GameObject.Find("QuestBook").GetComponent<QuestBookScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("GameMapPanel") == true)
-            Destroy(GameObject.Find("GameMapPanel"));
+        {
+            GameObject.Find("GameMap").GetComponent<GameMapScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("SystemConfigurationPanel") == true)
-            Destroy(GameObject.Find("SystemConfigurationPanel"));
+        {
+            GameObject.Find("SystemConfiguration").GetComponent<SystemConfigurationScript>().DestroyPanel();
+        }
 
         if (GameObject.Find("InventoryBag") == false)
         {
@@ -76,14 +82,18 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
                 GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height,
                 0, (GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height * 3) / 4, Color.grey);
 
+            _userInterface.GetComponent<ImageMonitoring>().PutBackGroundImageOnGameObject("InventoryBagTexture", "InventoryBag", _userInterface.GetComponent<ImageMonitoring>().GetBackGround5,
+                false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround,
+                false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, false, _userInterface.GetComponent<ImageMonitoring>().GetInventoryBagBackGround, 0, 0);
 
-            _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveConfiguration", GameObject.Find("InventoryBag"), true,
-                GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 15,
-                GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 15,
-                GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 30,
-                GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 30, Color.red);
-            GameObject.Find("ButtonLeaveConfiguration").AddComponent<Button>();
-            GameObject.Find("ButtonLeaveConfiguration").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
+
+            //_userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("ButtonLeaveConfiguration", GameObject.Find("InventoryBag"), true,
+            //    GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 15,
+            //    GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 15,
+            //    GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 2 - GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 30,
+            //    GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 30, Color.red);
+            //GameObject.Find("ButtonLeaveConfiguration").AddComponent<Button>();
+            //GameObject.Find("ButtonLeaveConfiguration").GetComponent<Button>().onClick.AddListener(() => DestroyPanel());
             
 
             _PanelIsActivated = true;
@@ -98,7 +108,7 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    private void DestroyPanel()
+    public void DestroyPanel()
     {
         _PanelIsActivated = false;
         _ItemDescriptionPanelActivated = false;
@@ -150,7 +160,7 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
                                         (GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.height / 26) * 8,
                                         -(GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 32) * (10 * tmpX),
                                         (GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.height / 26) * (5 * tmpY),
-                                        Color.white,
+                                        Color.clear,
                                         var);
             if (position == 6)
             {
@@ -170,11 +180,11 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
         {
             _LastItemOpen = ItemName;
 
-            _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("DescriptionItem", GameObject.Find("InventoryBag"), true,
+            _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("DescriptionItem", GameObject.Find("InventoryBag"), true,
                 GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 3,
                 GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.height,
                 (GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 2) - (GameObject.Find("InventoryBag").GetComponent<RectTransform>().rect.width / 6),
-                0, Color.white);
+                0, _userInterface.GetComponent<ImageMonitoring>().GetBackGround5);
 
             _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("ItemNameLabel", GameObject.Find("DescriptionItem"), true,
                 GameObject.Find("DescriptionItem").GetComponent<RectTransform>().rect.width,
@@ -273,23 +283,23 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
     private void createInventoryItem(string gameObjectName, GameObject setParent, bool anchoredChildToParent, float sizeDeltaX, float sizeDeltaY, float anchoredPositionX, 
         float anchoredPositionY, Color color, int var)
     {
-        _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage(gameObjectName, setParent, anchoredChildToParent, sizeDeltaX, sizeDeltaY,
+        _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage(gameObjectName + "Item", setParent, anchoredChildToParent, sizeDeltaX, sizeDeltaY,
             anchoredPositionX, anchoredPositionY, color);
-
+        
         _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("ItemLabel", 
-            GameObject.Find(_userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetItemName), true,
-            GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.width,
-            GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.height / 8,
-            0, (GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.height / 8) * 3.5f,
+            GameObject.Find(gameObjectName + "Item"), true,
+            GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.width,
+            GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.height / 8,
+            0, (GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.height / 8) * 3.5f,
             _userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetItemName,
             _userInterface.GetComponent<TextMonitoring>().GetArialTextFont,
-            TextAnchor.MiddleCenter, FontStyle.Bold, (int)(GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.height / 16), Color.black);
-
+            TextAnchor.MiddleCenter, FontStyle.Bold, ((int)(GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.height / 10)), Color.black);
+        
         _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite(gameObjectName + "ItemImage", 
-            GameObject.Find(_userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetItemName), true,
-            GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.width,
-            (GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.height / 8) * 7,
-            0, (GameObject.Find(gameObjectName).GetComponent<RectTransform>().rect.height / 8) * -0.5f,
+            GameObject.Find(gameObjectName + "Item"), true,
+            GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.width,
+            (GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.height / 8) * 7,
+            0, (GameObject.Find(gameObjectName + "Item").GetComponent<RectTransform>().rect.height / 8) * -0.5f,
             _userInterface.GetComponent<ImageMonitoring>().GetDownArrow);
         GameObject.Find(gameObjectName + "ItemImage").AddComponent<Button>();
         GameObject.Find(gameObjectName + "ItemImage").GetComponent<Button>().onClick.AddListener(() => ShowItemDetail(_userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetItemName,
@@ -298,6 +308,4 @@ public class InventoryScript : MonoBehaviour, IPointerDownHandler
                                                                                     _userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetRareItem,
                                                                                     _userInterface.GetComponent<InventaireScript>().GetInventoryItem[var].GetQuestItem));
     }
-
-
 }
