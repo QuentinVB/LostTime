@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Storm : MonoBehaviour
 {
-    private int outrand;
+    public int outrand;
     private Image image;
     private bool clak;
 
@@ -20,7 +20,7 @@ public class Storm : MonoBehaviour
 	void Update () {
         if (clak == true) { image.color = new Color(1, 1, 1, 0); }
 
-        outrand = Random.Range(0, 100);
+        outrand = Random.Range(0, 300);
         //Debug.Log(outrand); ;
         if (outrand == 1)
         {
