@@ -11,7 +11,7 @@ public class QuestContainer
     //public List<Quest> questCollection = new List<Quest>();
 
     public string currentQuest;
-    public LinkedActor[] setUpActorList;
+    //public LinkedActor[] setUpActorList;
 }
 
 public class Quest
@@ -25,6 +25,22 @@ public class Quest
     public State[] stateArray;
 }
 
+public class State
+{
+    [XmlArray("ToggleBoolArray")]
+    [XmlArrayItem("ToggleBool")]
+    public ToggleBool[] valuesList;
+
+    [XmlAttribute("nameOfState")]
+    public string name;
+    [XmlArray("ActorArray")]
+    [XmlArrayItem("Actor")]
+    public Actor[] actorArray;
+    [XmlArray("LinkedActorArray")]
+    [XmlArrayItem("LinkedActor")]
+    public LinkedActor[] linkedActor;
+}
+
 public class LinkedActor
 {
     public string id;
@@ -34,17 +50,7 @@ public class LinkedActor
     public bool canDie;
 }
 
-public class State
-{
-    [XmlAttribute("valuesList")]
-    //public bool[] valuesList;
-    public ToggleBool [] valuesList;
 
-    public string name;
-    public bool isSetUp;
-    public Actor[] actorArray;
-    public LinkedActor[] LinkedActor;
-}
 
 public class ToggleBool
 {
@@ -56,13 +62,8 @@ public class ToggleBool
 public class Actor
 {
     public string name;
-    bool isSetUp { get; set; }
-    void Update()
-    {
-    }
 
     public List<ActorAction[]> actionListSetUp = new List<ActorAction[]>();
-    //public ActorAction[] actionListActive;
     public ActorAction[] currentActions;
 }
 

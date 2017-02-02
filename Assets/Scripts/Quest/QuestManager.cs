@@ -35,14 +35,14 @@ public class QuestManager
     {
         //load Quests database
         questContainer = loadQuest();
-        Debug.Log(questContainer.currentQuest);
+        //Debug.Log(questContainer.currentQuest);
 
         //load dialogue database
         dialogueCollection = loadDialogue();
-        Debug.Log(dialogueCollection.dialogueArray[0]);
+        //Debug.Log(dialogueCollection.dialogueArray[0]);
 
         //call the spawner to create the npcs for the begining of the game
-        NPCsCaching(questContainer.questCollection[0].stateArray[0].LinkedActor);
+        NPCsCaching(questContainer.questCollection[0].stateArray[0].linkedActor);
     }
 
     internal void NPCsCaching(LinkedActor[] actorList)
@@ -60,8 +60,11 @@ public class QuestManager
 
     public static QuestContainer loadQuest()
     {
+        
+        //string [] path = Directory.GetFiles(@"..\..\Resources\DatabaseXml\", "Quest.xml");
+
         var serializer = new XmlSerializer(typeof(QuestContainer));
-        using (var stream = new FileStream("C:\\Users\\Camille\\Desktop\\Quest1.xml", FileMode.Open))
+        using (var stream = new FileStream(Path.Combine(@"C:\Users\Camille\Documents\cours 3 tiers\GitRepo\LostTime\Assets\Resources\DatabaseXml\", "Quest.xml"), FileMode.Open))
         {
             return serializer.Deserialize(stream) as QuestContainer;
         }
@@ -69,8 +72,9 @@ public class QuestManager
 
     public static DialogueCollection loadDialogue()
     {
+        //string path = @"..\..\Resources\DatabaseXml\Dialogue.xml";
         var serializer = new XmlSerializer(typeof(DialogueCollection));
-        using (var stream = new FileStream("C:\\Users\\Camille\\Desktop\\Dialogue.xml", FileMode.Open))
+        using (var stream = new FileStream(Path.Combine(@"C:\Users\Camille\Documents\cours 3 tiers\GitRepo\LostTime\Assets\Resources\DatabaseXml\", "Dialogue.xml"), FileMode.Open))
         {
             return serializer.Deserialize(stream) as DialogueCollection;
         }

@@ -14,6 +14,7 @@ public class Behaviour : MonoBehaviour
     SwitchQuest _switchQuest;
     SwitchState _switchState;
     SwitchAction _switchAction;
+    ValideState _valideState;
     Command _concreteCommand = null;
     IEvent _event = null;
     private void Start()
@@ -28,11 +29,10 @@ public class Behaviour : MonoBehaviour
         _switchAction = new SwitchAction();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnMouseUp()
     {
         catchEvent();
     }
-
     public void catchEvent()
     {
         _event = getEvent();
@@ -56,6 +56,9 @@ public class Behaviour : MonoBehaviour
                 case "getDialogue":
                     _eventDialogue.set(action.value);
                     return _eventDialogue;
+                case "stateValid":
+                    _toggle.set(action.value, action.target);
+                    return _toggle;
                 case "switchQuest":
                     _switchQuest.set(action.value, action.target);
                     return _switchQuest;

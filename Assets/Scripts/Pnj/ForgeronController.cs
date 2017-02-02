@@ -3,23 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-interface IBehaviourEntity
-{
 
-}
-
-
-
-public class ForgeronController : MonoBehaviour, IBehaviourEntity
+public class ForgeronController : MonoBehaviour
 {
     private Forgeron forgeron;
     public bool OntouchPlayer;
     public Collider collisionPlayer;
     public bool showPnjName;
     string StringForgeronTalk;
-    //public Text display;                      ////////////////////////////////////////
-    IinteractionWithUser interactionWithUser;
-    
+    public Text display;                      ////////////////////////////////////////
+
 
     void Start()
     {
@@ -27,15 +20,11 @@ public class ForgeronController : MonoBehaviour, IBehaviourEntity
         forgeron = new Forgeron();
         showPnjName = false;
 
-        /*display = GameObject.Find("display").GetComponent<Text>();                ////////////////////////////////////////
+        display = GameObject.Find("display").GetComponent<Text>();                ////////////////////////////////////////
         display.verticalOverflow = VerticalWrapMode.Overflow;               ////////////////////////////////////////
-        display.text = "";*/                ////////////////////////////////////////
+        display.text = "";                ////////////////////////////////////////
     }
 
-    ForgeronController(IinteractionWithUser _interactionWithUser)
-    {
-        interactionWithUser = _interactionWithUser;
-    }
 
     void OnGUI()
     {
@@ -50,42 +39,25 @@ public class ForgeronController : MonoBehaviour, IBehaviourEntity
         //}
     }
 
-    //private void OnMouseUp()
-    //{
-    //    if (showPnjName == true)
-    //    {
-    //        OntouchPlayer = true;
-    //        StringForgeronTalk = forgeron.callStateCurrent(collisionPlayer);
-    //    }
-    //}
-
-    private void OnTriggerEnter(Collider other)
+    private void OnMouseUp()
     {
-        if (other.gameObject.tag == "Player")
-        {
-            showPnjName = true;
-            collisionPlayer = other;
+
             OntouchPlayer = true;
             StringForgeronTalk = forgeron.callStateCurrent(collisionPlayer);
-        }
     }
+
+
 
 
     private void OnTriggerExit(Collider other)
     {
         OntouchPlayer = false;
         collisionPlayer = null;
-        showPnjName = false;
 
 
 
 
-       // display.text = "";////////////////////////////////////////
-
-
-
-
-        //interactionWithUser.setDisplay("");
+        display.text = "";////////////////////////////////////////
     }
 
     interface IControlerForgeron

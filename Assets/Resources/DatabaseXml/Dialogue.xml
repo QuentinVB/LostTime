@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DialogueCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <dialogueArray>
+    <dialogue>Hey ! J'ai perdu mon unique marteau sur une montagne à des centaines de km d'ici !</dialogue>
+    <dialogue>Non  désolé j'ai poney mécanique.</dialogue>
+    <dialogue>Oui bien-sur c'est sur mon chemin.</dialogue>
+    <dialogue>Merci d'avoir récupéré mon marteau , en récompense , je te donne un marteau !</dialogue>
+  </dialogueArray>
+</DialogueCollection>

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -27,7 +28,7 @@ public class Toggle : IEvent
 
     public Toggle()
     {
-        _questManager = GameObject.Find("QuestTable").GetComponent<QuestManager>();
+//        _questManager = GameObject.Find("QuestTable").GetComponent<QuestManager>();
     }
 
     public void set(string value, string target)
@@ -78,14 +79,14 @@ public class Toggle : IEvent
 public class EventDialogue : IEvent
 {
     [Inject]
+    QuestManager _questManager;
     DialogueCollection _dialogueCollection;
     private string _dialogueId = null;
     List<string> _dialoguelist = new List<string>();
 
     public EventDialogue()
     {
-        QuestManager questManager = GameObject.Find("QuestTable").GetComponent<QuestManager>();
-        _dialogueCollection = questManager.dialogueCollection;
+        _dialogueCollection = _questManager.dialogueCollection;
     }
 
     public void set(string dialogueId)
@@ -133,7 +134,7 @@ public class SwitchQuest : IEvent
 
     public SwitchQuest()
     {
-        _questManager = GameObject.Find("QuestTable").GetComponent<QuestManager>();
+       // _questManager = GameObject.Find("QuestTable").GetComponent<QuestManager>();
     }
 
     public void set(string value, string target)
@@ -150,8 +151,43 @@ public class SwitchQuest : IEvent
             {
                 _questManager.questContainer.currentQuest = _target;
                 _questManager.questContainer.questCollection[indexQuest].currentState = _questManager.questContainer.questCollection[indexQuest].stateArray[0].name;
-                _questManager.NPCsCaching(_questManager.questContainer.questCollection[indexQuest].stateArray[0].LinkedActor);
+                _questManager.NPCsCaching(_questManager.questContainer.questCollection[indexQuest].stateArray[0].linkedActor);
             }
+        }
+    }
+}
+public class ValideState : IEvent
+{
+    [Inject]
+    QuestManager _questManager;
+    public string _value;
+    public string _target;
+    int indexQuest;
+    int indexState;
+
+    public ValideState()
+    {
+    }
+
+    public void set(string value, string target)
+    {
+        _value = value;
+        _target = target;
+    }
+    public void doSomething()
+    {
+
+        for (; _questManager.questContainer.questCollection[indexQuest].questID != null; indexQuest++)
+        {
+            if (_questManager.questContainer.questCollection[indexQuest].questID == _questManager.questContainer.currentQuest)
+                for (; _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name != null; indexState++)
+                {
+                    if (_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name == _target)
+                    {
+                        _questManager.questContainer.questCollection[indexQuest].currentState = _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name;
+                        _questManager.NPCsCaching(_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].linkedActor);
+                    }
+                }
         }
     }
 }
@@ -168,7 +204,7 @@ public class SwitchState : IEvent
 
     public SwitchState()
     {
-        _questManager = GameObject.Find("QuestTable").GetComponent<QuestManager>();
+       // _questManager = GameObject.Find("QuestTable").GetComponent<QuestManager>();
     }
 
     public void set(string value, string target)
@@ -187,7 +223,7 @@ public class SwitchState : IEvent
                     if (_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name == _target)
                     {
                         _questManager.questContainer.questCollection[indexQuest].currentState = _questManager.questContainer.questCollection[indexQuest].stateArray[indexState].name;
-                        _questManager.NPCsCaching(_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].LinkedActor);
+                        _questManager.NPCsCaching(_questManager.questContainer.questCollection[indexQuest].stateArray[indexState].linkedActor);
                     }
                 }
         }
