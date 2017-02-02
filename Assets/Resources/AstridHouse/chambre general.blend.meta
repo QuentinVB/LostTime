@@ -18,6 +18,10 @@ ModelImporter:
     100020: Wall-South
     100022: Wall-West
     100024: Wall-East2
+    100026: EscalierBasCollider
+    100028: EscalierHautCollider
+    100030: Wall-North-charpente
+    100032: Wall-South-charpente
     400000: bow-window
     400002: //RootNode
     400004: entresol
@@ -31,6 +35,10 @@ ModelImporter:
     400020: Wall-South
     400022: Wall-West
     400024: Wall-East2
+    400026: EscalierBasCollider
+    400028: EscalierHautCollider
+    400030: Wall-North-charpente
+    400032: Wall-South-charpente
     2300000: bow-window
     2300002: entresol
     2300004: escalier-entresol-etage
@@ -43,6 +51,10 @@ ModelImporter:
     2300018: Wall-South
     2300020: Wall-West
     2300022: Wall-East2
+    2300024: EscalierBasCollider
+    2300026: EscalierHautCollider
+    2300028: Wall-North-charpente
+    2300030: Wall-South-charpente
     3300000: bow-window
     3300002: entresol
     3300004: escalier-entresol-etage
@@ -55,6 +67,10 @@ ModelImporter:
     3300018: Wall-South
     3300020: Wall-West
     3300022: Wall-East2
+    3300024: EscalierBasCollider
+    3300026: EscalierHautCollider
+    3300028: Wall-North-charpente
+    3300030: Wall-South-charpente
     4300000: escalier-rdc-entresol
     4300002: escalier-entresol-etage
     4300004: Wall-North
@@ -67,6 +83,10 @@ ModelImporter:
     4300018: etage
     4300020: rdc
     4300022: Wall-East2
+    4300024: EscalierBasCollider
+    4300026: EscalierHautCollider
+    4300028: Wall-North-charpente
+    4300030: Wall-South-charpente
     7400000: Default Take
     9500000: //RootNode
   materials:
