@@ -52,10 +52,10 @@ public class SaveController : MonoBehaviour {
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
         {
             PlayerPrefs.SetFloat("SaveStateOneAstridPositionX", 6f);
-            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 4f); 
+            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 10f); 
             PlayerPrefs.SetFloat("SaveStateOneAstridPositionZ", 25f);
             PlayerPrefs.SetFloat("CurrentAstridPositionX", 6f);
-            PlayerPrefs.SetFloat("CurrentAstridPositionY", 4f); 
+            PlayerPrefs.SetFloat("CurrentAstridPositionY", 5f); 
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", 3f);
             PlayerPrefs.SetFloat("CurrentAstridRotationX", 0);
             PlayerPrefs.SetFloat("CurrentAstridRotationY", -180);
@@ -68,10 +68,10 @@ public class SaveController : MonoBehaviour {
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
         {
             PlayerPrefs.SetFloat("SaveStateOneAstridPositionX", 6f);
-            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 4f);
+            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 10f);
             PlayerPrefs.SetFloat("SaveStateOneAstridPositionZ", 25f);
             PlayerPrefs.SetFloat("CurrentAstridPositionX", 6f);
-            PlayerPrefs.SetFloat("CurrentAstridPositionY", 4f);
+            PlayerPrefs.SetFloat("CurrentAstridPositionY", 5f);
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", 3f);
             PlayerPrefs.SetFloat("CurrentAstridRotationX", 0);
             PlayerPrefs.SetFloat("CurrentAstridRotationY", -180);
@@ -84,10 +84,10 @@ public class SaveController : MonoBehaviour {
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
         {
             PlayerPrefs.SetFloat("SaveStateOneAstridPositionX", 6f);
-            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 4f);
+            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 5f);
             PlayerPrefs.SetFloat("SaveStateOneAstridPositionZ", 25f);
             PlayerPrefs.SetFloat("CurrentAstridPositionX", 6f);
-            PlayerPrefs.SetFloat("CurrentAstridPositionY", 4f);
+            PlayerPrefs.SetFloat("CurrentAstridPositionY", 5f);
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", 3f);
             PlayerPrefs.SetFloat("CurrentAstridRotationX", 0);
             PlayerPrefs.SetFloat("CurrentAstridRotationY", -180);

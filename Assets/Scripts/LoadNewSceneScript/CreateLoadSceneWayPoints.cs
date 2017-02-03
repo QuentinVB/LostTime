@@ -65,7 +65,7 @@ public class CreateLoadSceneWayPoints : MonoBehaviour {
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", z);
             PlayerPrefs.SetFloat("CurrentAstridRotationX", X);
             PlayerPrefs.SetFloat("CurrentAstridRotationX", Y);
-            PlayerPrefs.SetFloat("CurrentAstridRotationX", Z);
+            PlayerPrefs.SetFloat("CurrentAstridRotationX", Z);  
             //_NewSceneAstridPositionX = x;
             //_NewSceneAstridPositionY = y;
             //_NewSceneAstridPositionZ = z;
