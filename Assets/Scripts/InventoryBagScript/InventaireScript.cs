@@ -12,13 +12,14 @@ public class InventaireScript : MonoBehaviour {
     private bool _rareItem;
     private bool _questItem;
 
+    private Sprite _itemSprite;
+
     private void Start()
     {
         _playerInventory = new List<InventaireScript>();
-        AddTestObejctInList();
     }
 
-    public InventaireScript(string ItemName, string ItemDescription, bool UsefulItem, bool Rareitem, bool QuestItem)
+    public InventaireScript(string ItemName, string ItemDescription, bool UsefulItem, bool Rareitem, bool QuestItem, Sprite ItemSprite)
     {
         
         _itemName = ItemName;
@@ -26,14 +27,12 @@ public class InventaireScript : MonoBehaviour {
         _usefulItem = UsefulItem;
         _rareItem = Rareitem;
         _questItem = QuestItem;
+        _itemSprite = ItemSprite;
     }
 
-    public void AddTestObejctInList()
+    public void AddTestObejctInList(string ItemName, string ItemDescription, bool UseFulItem, bool RareItem, bool QuestItem, Sprite ItemSprite)
     {
-        _playerInventory.Add(new InventaireScript("Marteau", "Objet commun de travail", true, false, false));
-        _playerInventory.Add(new InventaireScript("Livre", "Objet commun pour se cultiver ou trouver de l'aide", true, false, false));
-        _playerInventory.Add(new InventaireScript("Morceau n°1 de l'horloge", "Objet de quête principale", false, true, true));
-        _playerInventory.Add(new InventaireScript("Montre de la famille", "Object de famille venant de votre grand-mère", false, true, false));
+        _playerInventory.Add(new InventaireScript(ItemName, ItemDescription, UseFulItem, RareItem, QuestItem, ItemSprite));
     }
 
     public List<InventaireScript> GetInventoryItem

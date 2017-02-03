@@ -71,9 +71,9 @@ public class NewSceneWayPointsController : MonoBehaviour {
 
     private void LoadNewScene()
     {
-        GameObject.Find("Canvas").GetComponent<SaveController>().LoadSceneAstridPosition(0, 0, 0, this.gameObject.name);
+        /*GameObject.Find("Canvas").GetComponent<SaveController>().LoadSceneAstridPosition(0, 0, 0, this.gameObject.name);
 
-        Destroy(GameObject.Find("PanelOverWriteData"));
+        Destroy(GameObject.Find("PanelOverWriteData"));*/
     }
 
     private void ClosePanel()

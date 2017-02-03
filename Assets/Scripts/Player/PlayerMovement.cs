@@ -26,10 +26,10 @@ public class PlayerMovement : MonoBehaviour
         animCtrl = GetComponent<CharaAnimCtrl>();
         playerObstacle = GetComponent<NavMeshObstacle>();
 
-        ///
-        //setAstridPosition();
-        ///
         
+        setAstridPosition();
+        
+
 
         SetPlayerObstacle();
     }
@@ -39,16 +39,19 @@ public class PlayerMovement : MonoBehaviour
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
         {
             GameObject.Find("AstridPlayer").transform.position = new Vector3(PlayerPrefs.GetFloat("CurrentAstridPositionX"), PlayerPrefs.GetFloat("CurrentAstridPositionY"), PlayerPrefs.GetFloat("CurrentAstridPositionZ"));
+            this.transform.rotation = new Quaternion(PlayerPrefs.GetFloat("CurrentAstridRotationX"), PlayerPrefs.GetFloat("CurrentAstridRotationY"), PlayerPrefs.GetFloat("CurrentAstridRotationZ"), 0.0f);
         }
 
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
         {
             this.transform.position = new Vector3(PlayerPrefs.GetFloat("CurrentAstridPositionX"), PlayerPrefs.GetFloat("CurrentAstridPositionY"), PlayerPrefs.GetFloat("CurrentAstridPositionZ"));
+            this.transform.rotation = new Quaternion(PlayerPrefs.GetFloat("CurrentAstridRotationX"), PlayerPrefs.GetFloat("CurrentAstridRotationY"), PlayerPrefs.GetFloat("CurrentAstridRotationZ"), 0.0f);
         }
 
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
         {
             this.transform.position = new Vector3(PlayerPrefs.GetFloat("CurrentAstridPositionX"), PlayerPrefs.GetFloat("CurrentAstridPositionY"), PlayerPrefs.GetFloat("CurrentAstridPositionZ"));
+            this.transform.rotation = new Quaternion(PlayerPrefs.GetFloat("CurrentAstridRotationX"), PlayerPrefs.GetFloat("CurrentAstridRotationY"), PlayerPrefs.GetFloat("CurrentAstridRotationZ"), 0.0f);
         }
     }
 

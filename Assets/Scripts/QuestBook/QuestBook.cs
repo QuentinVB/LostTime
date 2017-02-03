@@ -25,8 +25,7 @@ public class QuestBook : MonoBehaviour {
         _questIsFnished = QuestIsFinished;
         _questStep = QuestStep;
     }
-
-    private void SetQuestTest()
+    public void SetQuestTest()
     {
         Dictionary<string, int> test = new Dictionary<string, int>();
         test.Add("FirstChicken Recup", 0);

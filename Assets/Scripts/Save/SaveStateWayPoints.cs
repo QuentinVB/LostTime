@@ -28,9 +28,9 @@ public class SaveStateWayPoints : MonoBehaviour {
         if (GameObject.Find("PanelOverWriteData") == false && _onCollision == true && GameObject.Find("InventoryBag") == false && GameObject.Find("GameMapPanel") == false 
             && GameObject.Find("QuestBookPanel") == false && GameObject.Find("SystemConfigurationPanel") == false)
         {
-            GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImage("PanelOverWriteData", GameObject.Find("Canvas"), true,
+            GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectImageSprite("PanelOverWriteData", GameObject.Find("Canvas"), true,
             GameObject.Find("Canvas").GetComponent<RectTransform>().rect.width / 6, GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 4,
-            0, GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 8, Color.white);
+            0, GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 2 - GameObject.Find("Canvas").GetComponent<RectTransform>().rect.height / 8, GameObject.Find("Canvas").GetComponent<ImageMonitoring>().GetBackGround5);
 
             GameObject.Find("Canvas").GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("PanelOverWriteDataLabel", GameObject.Find("PanelOverWriteData"), true,
                 GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.width, GameObject.Find("PanelOverWriteData").GetComponent<RectTransform>().rect.height / 2, 0,
@@ -72,7 +72,7 @@ public class SaveStateWayPoints : MonoBehaviour {
 
     private void SaveGame()
     {
-        GameObject.Find("Canvas").GetComponent<SaveController>().SaveCurrentGameConfig("LostTimeGearDistrict");
+        GameObject.Find("Canvas").GetComponent<SaveController>().SaveCurrentGameConfig(PlayerPrefs.GetString("CurrentScene"));
         Debug.Log("Save");
         Destroy(GameObject.Find("PanelOverWriteData"));
     }
