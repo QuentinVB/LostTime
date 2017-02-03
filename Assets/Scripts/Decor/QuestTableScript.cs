@@ -8,9 +8,10 @@ public class QuestTableScript : MonoBehaviour {
 
 	void Start () {
       //  QuestTableRigidbody = gameObject.AddComponent<Rigidbody>();
-        Marteau = GameObject.Find("Marteau");
+        Marteau = GameObject.Find("MarteauPa");
         Marteau.SetActive(false);
     }
+    
 
 
     private void OnCollisionEnter(Collision collision)

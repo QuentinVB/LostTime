@@ -7,11 +7,9 @@ class PlayerQuest : MonoBehaviour
 {
     public List<string> inventory;
     public bool Quest;
-    private Rigidbody PlayerRigidbody;
 
     void Start()
     {
-        //PlayerRigidbody = gameObject.AddComponent<Rigidbody>();
 
         Quest = false;
         inventory = new List<string>();
