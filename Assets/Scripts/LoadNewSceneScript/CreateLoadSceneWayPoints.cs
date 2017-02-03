@@ -28,7 +28,7 @@ public class CreateLoadSceneWayPoints : MonoBehaviour {
         {
             if (GameObject.Find("LostTimeGearDistrict") == false)
             {
-                createWayPoints("LostTimeGearDistrict", -1.8f, 2.5f, 5.15f, 16f, 2.5f, 29.7f);
+                createWayPoints("LostTimeGearDistrict", -1.8f, 2.5f, 5.15f, 17f, 2.5f, 29.7f);
             }
                 
         }

@@ -15,7 +15,7 @@ public class QuestManager
     List<NPCData> NPCCacheList;
 
     PositionEntity _positionStorage;
-    int amountOfCrowdToSpawn = 20;
+    int amountOfCrowdToSpawn = 30;
     int jobPointer = 0;
     public NPCSpawner NPCSpawnerInjector { get { return _npcSpawner; } set { _npcSpawner = value; } }
     public int AmountOfCrowdToSpawn { get { return amountOfCrowdToSpawn; } }
@@ -140,9 +140,9 @@ public class QuestManager
         string uuid = Guid.NewGuid().ToString();
  
         int randomJobNumber = jobTick();
-        string job = Toolbox.jobEnumToString((job)randomJobNumber);
+        string job = Toolbox.jobEnumToString((job)Toolbox.optimizedRand(0,11));
 
-        Vector3 pos = _positionStorage.getPosition(Mathf.Clamp(randomJobNumber, 0, 9));
+        Vector3 pos = _positionStorage.getPosition(Mathf.Clamp(randomJobNumber, 0, Toolbox.optimizedRand(0, randomJobNumber)));
 
 
         return new NPCData(uuid, job, pos, Quaternion.Euler(0, 0, 0), true, WalkMode.walking,false);

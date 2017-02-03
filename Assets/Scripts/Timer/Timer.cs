@@ -39,6 +39,7 @@ public class Timer : MonoBehaviour {
         if(currentTimeOfDay > 0.57)
         {
             GameObject.Find("Sun").GetComponent<SoundController>().GetSongOnOff = true;
+            GameObject.Find("Sun").GetComponent<SoundController>().GetComponent<AudioSource>().volume = 0.2f;
         }
         else
         {
