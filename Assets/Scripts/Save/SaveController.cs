@@ -19,7 +19,7 @@ public class SaveController : MonoBehaviour {
             PlayerPrefs.SetFloat("SaveStateOneAstridRotationY", GameObject.Find("AstridPlayer").transform.rotation.y);
             PlayerPrefs.SetFloat("SaveStateOneAstridRotationZ", GameObject.Find("AstridPlayer").transform.rotation.z);
             PlayerPrefs.SetFloat("SaveStateOneTimer", GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay);
-            PlayerPrefs.SetString("SaveStateOneCurrentScene", CurrentScene);
+            PlayerPrefs.SetString("SaveStateOneLastScene", CurrentScene);
         }
 
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
@@ -31,7 +31,7 @@ public class SaveController : MonoBehaviour {
             PlayerPrefs.SetFloat("SaveStateTwoAstridRotationY", GameObject.Find("AstridPlayer").transform.rotation.y);
             PlayerPrefs.SetFloat("SaveStateTwoAstridRotationZ", GameObject.Find("AstridPlayer").transform.rotation.z);
             PlayerPrefs.SetFloat("SaveStateTwoTimer", GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay);
-            PlayerPrefs.SetString("SaveStateTwoCurrentScene", CurrentScene);
+            PlayerPrefs.SetString("SaveStateTwoLastScene", CurrentScene);
         }
 
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
@@ -43,7 +43,7 @@ public class SaveController : MonoBehaviour {
             PlayerPrefs.SetFloat("SaveStateThreeAstridRotationY", GameObject.Find("AstridPlayer").transform.rotation.y);
             PlayerPrefs.SetFloat("SaveStateThreeAstridRotationZ", GameObject.Find("AstridPlayer").transform.rotation.z);
             PlayerPrefs.SetFloat("SaveStateThreeTimer", GameObject.Find("Sun").GetComponent<Timer>().CurrentTimeOfDay);
-            PlayerPrefs.SetString("SaveStateThreeCurrentScene", CurrentScene);
+            PlayerPrefs.SetString("SaveStateThreeLastScene", CurrentScene);
         }
     }
 
@@ -51,41 +51,50 @@ public class SaveController : MonoBehaviour {
     {
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateOne")
         {
-            PlayerPrefs.SetFloat("SaveStateOneAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
+            PlayerPrefs.SetFloat("SaveStateOneAstridPositionX", 6f);
+            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 4f); 
             PlayerPrefs.SetFloat("SaveStateOneAstridPositionZ", 25f);
-            PlayerPrefs.SetFloat("CurrentAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("CurrentAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
-            PlayerPrefs.SetFloat("CurrentAstridPositionZ", 25f);
+            PlayerPrefs.SetFloat("CurrentAstridPositionX", 6f);
+            PlayerPrefs.SetFloat("CurrentAstridPositionY", 4f); 
+            PlayerPrefs.SetFloat("CurrentAstridPositionZ", 3f);
+            PlayerPrefs.SetFloat("CurrentAstridRotationX", 0);
+            PlayerPrefs.SetFloat("CurrentAstridRotationY", -180);
+            PlayerPrefs.SetFloat("CurrentAstridRotationZ", 0);
             PlayerPrefs.SetInt("SaveStateOneCycle", 0);
             PlayerPrefs.SetInt("SaveStateOneFragments", 0);
-            PlayerPrefs.SetString("SaveStateOneLastScene", "LostTimeGearDistrict");
+            PlayerPrefs.SetString("SaveStateOneLastScene", "LostTimeAstridHouse");
         }
 
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateTwo")
         {
-            PlayerPrefs.SetFloat("SaveStateTwoAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("SaveStateTwoAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
-            PlayerPrefs.SetFloat("SaveStateTwoAstridPositionZ", 25f);
-            PlayerPrefs.SetFloat("CurrentAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("CurrentAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
-            PlayerPrefs.SetFloat("CurrentAstridPositionZ", 25f);
+            PlayerPrefs.SetFloat("SaveStateOneAstridPositionX", 6f);
+            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 4f);
+            PlayerPrefs.SetFloat("SaveStateOneAstridPositionZ", 25f);
+            PlayerPrefs.SetFloat("CurrentAstridPositionX", 6f);
+            PlayerPrefs.SetFloat("CurrentAstridPositionY", 4f);
+            PlayerPrefs.SetFloat("CurrentAstridPositionZ", 3f);
+            PlayerPrefs.SetFloat("CurrentAstridRotationX", 0);
+            PlayerPrefs.SetFloat("CurrentAstridRotationY", -180);
+            PlayerPrefs.SetFloat("CurrentAstridRotationZ", 0);
             PlayerPrefs.SetInt("SaveStateTwoCycle", 0);
             PlayerPrefs.SetInt("SaveStateTwoFragments", 0);
-            PlayerPrefs.SetString("SaveStateTwoLastScene", "LostTimeGearDistrict");
+            PlayerPrefs.SetString("SaveStateTwoLastScene", "LostTimeAstridHouse");
         }
 
         if (PlayerPrefs.GetString("CurrentSaveStateUsed") == "SaveStateThree")
         {
-            PlayerPrefs.SetFloat("SaveStateThreeAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("SaveStateThreeAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
-            PlayerPrefs.SetFloat("SaveStateThreeAstridPositionZ", 25f);
-            PlayerPrefs.SetFloat("CurrentAstridPositionX", 5.0f);
-            PlayerPrefs.SetFloat("CurrentAstridPositionY", 1f + 1); // +1 pour éviter que astrid ne tombe sous la map au prochain chargement du niveau
-            PlayerPrefs.SetFloat("CurrentAstridPositionZ", 25f);
+            PlayerPrefs.SetFloat("SaveStateOneAstridPositionX", 6f);
+            PlayerPrefs.SetFloat("SaveStateOneAstridPositionY", 4f);
+            PlayerPrefs.SetFloat("SaveStateOneAstridPositionZ", 25f);
+            PlayerPrefs.SetFloat("CurrentAstridPositionX", 6f);
+            PlayerPrefs.SetFloat("CurrentAstridPositionY", 4f);
+            PlayerPrefs.SetFloat("CurrentAstridPositionZ", 3f);
+            PlayerPrefs.SetFloat("CurrentAstridRotationX", 0);
+            PlayerPrefs.SetFloat("CurrentAstridRotationY", -180);
+            PlayerPrefs.SetFloat("CurrentAstridRotationZ", 0);
             PlayerPrefs.SetInt("SaveStateThreeCycle", 0);
             PlayerPrefs.SetInt("SaveStateThreeFragments", 0);
-            PlayerPrefs.SetString("SaveStateThreeLastScene", "LostTimeGearDistrict");
+            PlayerPrefs.SetString("SaveStateThreeLastScene", "LostTimeAstridHouse");
         }
     }
 
@@ -153,6 +162,10 @@ public class SaveController : MonoBehaviour {
             PlayerPrefs.SetFloat("CurrentAstridPositionX", PlayerPrefs.GetFloat("SaveStateOneAstridPositionX"));
             PlayerPrefs.SetFloat("CurrentAstridPositionY", PlayerPrefs.GetFloat("SaveStateOneAstridPositionY"));
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", PlayerPrefs.GetFloat("SaveStateOneAstridPositionZ"));
+            PlayerPrefs.SetFloat("CurrentAstridRotationX", PlayerPrefs.GetFloat("SaveStateTwoAstridRotationX"));
+            PlayerPrefs.SetFloat("CurrentAstridRotationY", PlayerPrefs.GetFloat("SaveStateTwoAstridRotationY"));
+            PlayerPrefs.SetFloat("CurrentAstridRotationZ", PlayerPrefs.GetFloat("SaveStateTwoAstridRotationZ"));
+            PlayerPrefs.SetString("CurrentScene", PlayerPrefs.GetString("SaveStateOneLastScene"));
             _LoadTimer = true;
 
         }
@@ -162,6 +175,10 @@ public class SaveController : MonoBehaviour {
             PlayerPrefs.SetFloat("CurrentAstridPositionX", PlayerPrefs.GetFloat("SaveStateTwoAstridPositionX"));
             PlayerPrefs.SetFloat("CurrentAstridPositionY", PlayerPrefs.GetFloat("SaveStateTwoAstridPositionY"));
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", PlayerPrefs.GetFloat("SaveStateTwoAstridPositionZ"));
+            PlayerPrefs.SetFloat("CurrentAstridRotationX", PlayerPrefs.GetFloat("SaveStateTwoAstridRotationX"));
+            PlayerPrefs.SetFloat("CurrentAstridRotationY", PlayerPrefs.GetFloat("SaveStateTwoAstridRotationY"));
+            PlayerPrefs.SetFloat("CurrentAstridRotationZ", PlayerPrefs.GetFloat("SaveStateTwoAstridRotationZ"));
+            PlayerPrefs.SetString("CurrentScene", PlayerPrefs.GetString("SaveStateTwoLastScene"));
             _LoadTimer = true;
         }
 
@@ -170,6 +187,10 @@ public class SaveController : MonoBehaviour {
             PlayerPrefs.SetFloat("CurrentAstridPositionX", PlayerPrefs.GetFloat("SaveStateThreeAstridPositionX"));
             PlayerPrefs.SetFloat("CurrentAstridPositionY", PlayerPrefs.GetFloat("SaveStateThreeAstridPositionY"));
             PlayerPrefs.SetFloat("CurrentAstridPositionZ", PlayerPrefs.GetFloat("SaveStateThreeAstridPositionZ"));
+            PlayerPrefs.SetFloat("CurrentAstridRotationX", PlayerPrefs.GetFloat("SaveStateTwoAstridRotationX"));
+            PlayerPrefs.SetFloat("CurrentAstridRotationY", PlayerPrefs.GetFloat("SaveStateTwoAstridRotationY"));
+            PlayerPrefs.SetFloat("CurrentAstridRotationZ", PlayerPrefs.GetFloat("SaveStateTwoAstridRotationZ"));
+            PlayerPrefs.SetString("CurrentScene", PlayerPrefs.GetString("SaveStateThreeLastScene"));
             _LoadTimer = true;
         }
     }

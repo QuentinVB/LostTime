@@ -9,7 +9,7 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
     private Image BackGroundRightJoystick;
     private Image RightJoystick;
     private Vector3 RightJostickInputVector;
-    public bool _isRightJoystickUsed = false;
+    private bool _isRightJoystickUsed = false;
 
     // initialise the two Image : BackGroundRightJoystick , RightJoystick
     private void Start()
@@ -57,14 +57,14 @@ public class VirtualRightJoystick : MonoBehaviour, IDragHandler, IPointerUpHandl
     // // fct start when user touch the Right Joystick
     public virtual void OnPointerDown(PointerEventData pedRightJoystick)
     {
-        OnDrag(pedRightJoystick);
         _isRightJoystickUsed = true;
+        OnDrag(pedRightJoystick);
     }
 
     // fct start when user stop touching the Right Joystick
     public virtual void OnPointerUp(PointerEventData pedRightJoystick)
     {
-        //_isRightJoystickUsed = false;
+        
     }
     
     // this fct return the InputVectorPosition.x of the Left Joystick

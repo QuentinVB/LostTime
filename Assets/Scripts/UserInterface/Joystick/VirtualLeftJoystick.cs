@@ -8,7 +8,7 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
     private Image BackGroundLeftJoystick;
     private Image LeftJoystick;
     private Vector3 LeftJostickInputVector;
-    private bool _isLeftJoystickUsed;
+    public bool _isLeftJoystickUsed;
 
     public bool IsLeftJoystickUsed { get { return _isLeftJoystickUsed; } internal set { _isLeftJoystickUsed = value; } }
 
@@ -58,8 +58,8 @@ public class VirtualLeftJoystick : MonoBehaviour, IDragHandler, IPointerUpHandle
     // fct start when user touch the Left Joystick
     public virtual void OnPointerDown(PointerEventData pedLeftJoystick)
     {
-        OnDrag(pedLeftJoystick);
         IsLeftJoystickUsed = true;
+        OnDrag(pedLeftJoystick);
     }
 
     // fct start when user stop touching the Left Joystick

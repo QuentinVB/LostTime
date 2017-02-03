@@ -21,6 +21,22 @@ public class UserInterfaceRightJoystick : MonoBehaviour, IDragHandler, IPointerU
     public virtual void OnPointerUp(PointerEventData pedRightJoystick)
     {
         _isJoystickRightUsed = false;
+
+        // Code Tutoriel
+        if (PlayerPrefs.HasKey("TutorielRightJoystickComplete") == false)
+        {
+            if (GameObject.Find("TemporelleTutorielQuestController") == true)
+            {
+                if (GameObject.Find("TemporelleTutorielQuestController").GetComponent<TmpTutorielScript>().getSetTutorialStep < 2)
+                {
+                    GameObject.Find("TemporelleTutorielQuestController").GetComponent<TmpTutorielScript>().getSetTutorialStep = 2;
+                }
+            }
+            PlayerPrefs.SetInt("TutorielRightJoystickComplete", 1);
+        }
+            
+        //
+
         _rightJoystick.ResetPosition();
     }
 

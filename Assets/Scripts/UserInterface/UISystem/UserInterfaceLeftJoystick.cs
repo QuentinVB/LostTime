@@ -25,6 +25,22 @@ public class UserInterfaceLeftJoystick : MonoBehaviour, IDragHandler, IPointerUp
     public virtual void OnPointerUp(PointerEventData pedLeftJoystick)
     {
         _isJoystickLeftUsed = false;
+
+        // Code Tutoriel
+        if (PlayerPrefs.HasKey("TutorielLeftJoystickComplete") == false)
+        {
+            if (GameObject.Find("TemporelleTutorielQuestController") == true)
+            {
+                if (GameObject.Find("TemporelleTutorielQuestController").GetComponent<TmpTutorielScript>().getSetTutorialStep < 1)
+                {
+                    GameObject.Find("TemporelleTutorielQuestController").GetComponent<TmpTutorielScript>().getSetTutorialStep = 1;
+                }
+            }
+            PlayerPrefs.SetInt("TutorielLeftJoystickComplete", 1);
+        }
+            
+        //
+
         _leftJoystick.ResetPosition();
     }
 
