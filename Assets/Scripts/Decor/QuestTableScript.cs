@@ -11,6 +11,7 @@ public class QuestTableScript : MonoBehaviour {
         Marteau = GameObject.Find("Marteau");
         Marteau.SetActive(false);
     }
+    
 
 
     private void OnCollisionEnter(Collision collision)

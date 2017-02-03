@@ -26,7 +26,7 @@ public class QuestManager
         NPCCacheList = new List<NPCData>();       
         _positionStorage = new PositionEntity();
         _processEvent = new ProcessEvent();
-        setUP();
+        //setUP();
         Debug.Log("End building QuestManager");
 
     }

@@ -9,55 +9,52 @@ public class ForgeronController : MonoBehaviour
     private Forgeron forgeron;
     public bool OntouchPlayer;
     public Collider collisionPlayer;
-    public bool showPnjName;
+    public bool onTrigger;
     string StringForgeronTalk;
-    //public Text display;                      ////////////////////////////////////////
+    public Text _displayDialogue;
+    public GameObject Marteau;
 
 
     void Start()
     {
+
+        _displayDialogue = GameObject.Find("DisplayDialogue").GetComponent<Text>();
+        collisionPlayer = GameObject.Find("AstridPlayer").GetComponent<Collider>();
         OntouchPlayer = false;
         forgeron = new Forgeron();
-        showPnjName = false;
-
-    //    display = GameObject.Find("display").GetComponent<Text>();                ////////////////////////////////////////
-    //    display.verticalOverflow = VerticalWrapMode.Overflow;               ////////////////////////////////////////
-    //    display.text = "";                ////////////////////////////////////////
+        onTrigger = false;
+        Debug.Log(string.Format("le tag d'astrid est : {0}", collisionPlayer.tag));
+        Marteau = GameObject.Find("Marteau");
+        Marteau.SetActive(false);
+        ////////////////////////////////////AstrifPlayer////
+        _displayDialogue.verticalOverflow = VerticalWrapMode.Overflow;               ////////////////////////////////////////
+        _displayDialogue.text = "";                ////////////////////////////////////////
     }
 
 
     void OnGUI()
     {
-        if (OntouchPlayer)
+        if (OntouchPlayer == true)
         {
-            // display.text = "Forgeron : " + StringForgeronTalk;            ////////////////////////////////////////
+            _displayDialogue.text = "Forgeron : " + StringForgeronTalk;
         }
-
-        //else if (showPnjName)
-        //{
-        //    interactionWithUser.setDisplay("Forgeron");
-        //}
     }
 
     private void OnMouseUp()
     {
-
-            OntouchPlayer = true;
-            StringForgeronTalk = forgeron.callStateCurrent(collisionPlayer);
+        if (onTrigger)
+        OntouchPlayer = true;
+        StringForgeronTalk = forgeron.callStateCurrent(collisionPlayer);
     }
-
-
-
+    private void OnTriggerEnter(Collider other)
+    {
+        onTrigger = true;
+    }
 
     private void OnTriggerExit(Collider other)
     {
         OntouchPlayer = false;
-        collisionPlayer = null;
-
-
-
-
-        //display.text = "";////////////////////////////////////////
+        _displayDialogue.text = "";
     }
 
     interface IControlerForgeron
@@ -91,28 +88,30 @@ public class ForgeronController : MonoBehaviour
 
     class Neutral : IControlerForgeron
     {
+        public GameObject Marteau;
+
+        public Neutral()
+        {
+            Marteau = GameObject.Find("Marteau");
+
+        }
         public string forgeronTalk(Forgeron context, Collider otherObject)
         {
-
-            if (otherObject.gameObject.tag == "Player")
+            if (otherObject.tag == "Player")
             {
-                PlayerQuest player = otherObject.gameObject.GetComponent<PlayerQuest>();
-                if (player.Quest)
-                {
-                    context.changeState(new Quest());
-                    return "J'ai perdu mon marteau, peux tu aller me le chercher ?";
-                }
-                else
-                    return "Attention !!! J'ai falli perdre mon marteau ! Jette un coup d'oeil sur le tableau des quêtes de la guilde ,tu traineras moins dans mes pattes.";
+                PlayerQuest player = otherObject.GetComponent<PlayerQuest>();
+                context.changeState(new QuestF());
+                Marteau.SetActive(true);
+                return "J'ai perdu mon marteau, peux tu aller me le chercher ?";
             }
             else
             {
-                return "Attention !!! J'ai falli perdre mon marteau !";
+                return "";
             }
         }
     }
 
-    class Quest : IControlerForgeron
+    class QuestF : IControlerForgeron
     {
 
         public string forgeronTalk(Forgeron context, Collider otherObject)
