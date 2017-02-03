@@ -240,7 +240,7 @@ public class TmpTutorielScript : MonoBehaviour {
 
             _userInterface.GetComponent<CreateUserInterfaceObject>().CreateGameObjectTextZone("letterText", GameObject.Find("letterTextbackGround"), true, _userInterface.GetComponent<RectTransform>().rect.width / 2, _userInterface.GetComponent<RectTransform>().rect.height / 2,
                 0, 0, "", _userInterface.GetComponent<TextMonitoring>().GetArialTextFont, TextAnchor.MiddleCenter, FontStyle.Bold,
-                ((int)(_userInterface.GetComponent<RectTransform>().rect.height / 15)), Color.black);
+                ((int)(_userInterface.GetComponent<RectTransform>().rect.height / 20)), Color.black);
             _userInterface.GetComponent<TextMonitoring>().setTextInCorrectLanguages("letterText",
                 "Clumsy person that you are! The clock which you have just broken was not that a simple antiquity. It is an artefact controlling the time. Now, the City is condemned to live again the same day as long as you will not have assembled all the fragments...You have to find how to repair your damages. Visit the watchmakers' guild's master, he will help you.",
                 "Maladroite que tu es ! L’horloge que tu viens de briser n’était pas qu’une simple antiquité. Il s’agit d’un artefact contrôlant le temps. Maintenant, la Ville est condamnée à revivre la même journée tant que tu n’auras pas réassemblé tous les fragments... A toi de trouver comment réparer tes dégats. Vas voir le maître de la Guilde des horlogers, il t'aidera.");

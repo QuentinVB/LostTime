@@ -5,7 +5,7 @@ using UnityEngine;
 public class AnimationUserInterfaceController : MonoBehaviour
 {
 
-    private float _AnimationPanelSpeed = 20f;
+    private float _AnimationPanelSpeed = 50f;
     private float _AnimationRotateSpeed = 2f;
     
 

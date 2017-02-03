@@ -148,9 +148,13 @@ public class SaveController : MonoBehaviour {
 
     public void LoadSceneAstridPosition(float AstridPositionX, float AstridPositionY, float AstridPositionZ, string NextScene)
     {
-        PlayerPrefs.SetFloat("CurrentAstridPositionX", AstridPositionX);
-        PlayerPrefs.SetFloat("CurrentAstridPositionY", AstridPositionY);
-        PlayerPrefs.SetFloat("CurrentAstridPositionZ", AstridPositionZ);
+        Debug.Log(PlayerPrefs.GetFloat("CurrentAstridPositionX"));
+        Debug.Log(PlayerPrefs.GetFloat("CurrentAstridPositionY"));
+        Debug.Log(PlayerPrefs.GetFloat("CurrentAstridPositionZ"));
+
+        //PlayerPrefs.SetFloat("CurrentAstridPositionX", AstridPositionX);
+        //PlayerPrefs.SetFloat("CurrentAstridPositionY", AstridPositionY);
+        //PlayerPrefs.SetFloat("CurrentAstridPositionZ", AstridPositionZ);
         PlayerPrefs.SetString("CurrentScene", NextScene);
         SceneManager.LoadScene(NextScene);
     }
