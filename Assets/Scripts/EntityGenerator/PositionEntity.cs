@@ -39,7 +39,7 @@ public class PositionEntity : IPosition
     {
         positionList.Add(new Position { isSetUp = false, position =  new Vector3(17.6f, -0.04f, -21.3f) });
         positionList.Add(new Position { isSetUp = false, position = new Vector3(17.6f, -0.04f, -21.3f) });
-        positionList.Add(new Position { isSetUp = false, position = new Vector3(16.48f, 0.87f, 55.57f) });
+        positionList.Add(new Position { isSetUp = false, position = new Vector3(16.48f, 0.87f, 51.57f) });
         positionList.Add(new Position { isSetUp = false, position = new Vector3(-22.5f, 1.915f, 23.9f) });
         positionList.Add(new Position { isSetUp = false, position = new Vector3(-19.1f, 1.915f, 35.3f) });
         positionList.Add(new Position { isSetUp = false, position = new Vector3(-19.1f, 1.88f, -26.5f) });
