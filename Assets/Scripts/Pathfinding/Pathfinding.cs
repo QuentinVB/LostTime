@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
-
 public class Pathfinding : MonoBehaviour
 {
     public Vector3 target;
@@ -34,12 +32,15 @@ public class Pathfinding : MonoBehaviour
             {
                 GetRigidBody();
             }
-
-            //Sets NavMeshAgent values
-            if (GetComponent<NavMeshAgent>() == null)
+            else
             {
-                GetNavMeshAgent();
+                npcRigidbody = GetComponent<Rigidbody>();
             }
+
+                
+
+            agent = GetComponent<NavMeshAgent>();
+            GetNavMeshAgent();
             SetWaypoints();                 //Set waypoints
             target = SetDestination();      //Set destination
 			  
@@ -82,14 +83,14 @@ public class Pathfinding : MonoBehaviour
     //Will set the NavMeshAgent and its properties
     private void GetNavMeshAgent()
     {
-        agent = gameObject.AddComponent<NavMeshAgent>();
+        //agent = gameObject.AddComponent<NavMeshAgent>();
         agent.avoidancePriority = Random.Range(10, 50);
         agent.speed = 2;
     }
     //Will set the Rigidbody and its properties
     private void GetRigidBody()
     {
-        npcRigidbody = gameObject.AddComponent<Rigidbody>();
+        //npcRigidbody = gameObject.AddComponent<Rigidbody>();
         npcRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
     }
     //Generates the list of waypoints for the NPC movement patern
